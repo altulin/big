@@ -1,0 +1,32 @@
+@import "@/sass/helpers/variables";
+@import "@/sass/helpers/mixins.scss";
+
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+
+  &__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 1.8rem;
+    padding-bottom: 1.8rem;
+    padding-left: torem(100);
+    padding-right: torem(100);
+
+    @include mw($ldt) {
+      padding-left: 1rem;
+      padding-right: 2rem;
+    }
+
+    @include mw($tb) {
+      padding-top: 1.5rem;
+      padding-bottom: 1.5rem;
+      padding-right: 1rem;
+    }
+  }
+
+  &__burger {
+  }
+}
