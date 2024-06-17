@@ -75,11 +75,31 @@
     background-color: var(--basic-light);
     z-index: 10;
     flex-direction: column;
-    // display: grid;
-    // grid-template-rows: auto auto;
-    // grid-template-columns: 0.56rem auto 0.56rem;
-    border-left: var(--line) solid var(--basic-dark);
-    border-right: var(--line) solid var(--basic-dark);
+  }
+
+  &__bar {
+    flex-grow: 1;
+    display: flex;
+    @include mw($tb) {
+      display: block;
+      overflow: auto;
+      padding-bottom: 10rem;
+    }
+  }
+
+  &__inner {
+    flex-grow: 1;
+    display: flex;
+
+    @include mw($tb) {
+      flex-direction: column;
+      border-left: var(--line) solid var(--basic-dark);
+      border-right: var(--line) solid var(--basic-dark);
+      padding-top: 0.5rem;
+      margin-left: 0.56rem;
+      margin-right: 0.56rem;
+      flex-grow: 0;
+    }
   }
 
   &__links {
@@ -110,8 +130,9 @@
   position: relative;
 
   @include mw($tb) {
-    padding-top: 1rem;
-    padding-bottom: 1rem;
+    justify-content: center;
+    padding: 1rem;
+    width: 100%;
   }
 
   &:after {
@@ -151,6 +172,7 @@
       // grid-column: 2 / 3;
 
       margin-top: 0.4rem;
+      margin-bottom: 0.4rem;
     }
   }
 }
@@ -161,6 +183,7 @@
   align-items: center;
   justify-content: center;
   font-size: 1rem;
+  line-height: 1;
   color: var(--basic-dark);
   text-transform: uppercase;
   grid-column: 3 / 4;
@@ -168,9 +191,16 @@
   transition: 0.3s;
   border-left: var(--line) solid var(--basic-dark);
   transition: 0.3s;
+  padding: 0.5rem;
 
   &:hover {
     background-color: var(--color-green-hover);
+  }
+
+  @include mw($tb) {
+    border-left: 0;
+    padding-top: 2.2rem;
+    padding-bottom: 1.8rem;
   }
 }
 
@@ -180,6 +210,7 @@
   align-items: center;
   justify-content: center;
   font-size: 1rem;
+  line-height: 1;
   color: var(--color-green);
   text-transform: uppercase;
   grid-column: 3 / 4;
@@ -187,9 +218,16 @@
   transition: 0.3s;
   border-top: var(--line) solid var(--basic-dark);
   border-left: var(--line) solid var(--basic-dark);
+  padding: 0.5rem;
 
   &:hover {
     color: var(--basic-light);
+  }
+
+  @include mw($tb) {
+    border-left: 0;
+    padding-top: 2.2rem;
+    padding-bottom: 1.8rem;
   }
 }
 
@@ -225,15 +263,19 @@
   }
 
   @include mw($tb) {
-    // padding-left: 0.6rem;
-    // padding-right: 0.6rem;
-    padding: 1rem 0;
+    width: 100%;
+    justify-content: center;
+    padding: 1rem;
   }
 
   &_wrap {
     padding: 0 0.75rem;
     display: flex;
     flex-direction: column;
+
+    @include mw($dt) {
+      padding: 0 0.5rem;
+    }
 
     @include mw($tb) {
       padding-left: 0;
