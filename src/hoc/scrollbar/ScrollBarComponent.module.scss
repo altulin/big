@@ -1,0 +1,41 @@
+@import "@/sass/helpers/variables";
+@import "@/sass/helpers/mixins.scss";
+
+.track {
+  width: 1.5rem !important;
+  position: absolute;
+  height: calc(100% - 3rem);
+  right: 0;
+  top: 1.5rem;
+  border-right: var(--line) solid var(--basic-dark);
+  border-left: var(--line) solid var(--basic-dark);
+  display: flex;
+  flex-direction: column;
+}
+
+.thumb {
+  background-color: var(--basic-dark);
+  width: 1.5rem !important;
+}
+
+.button {
+  position: absolute;
+  width: 1.5rem;
+  height: 1.5em;
+  top: 0;
+  right: 0;
+  cursor: pointer;
+  // border: var(--line) solid var(--basic-dark);
+  // border-bottom: none;
+
+  &--down {
+    top: auto;
+    bottom: 0;
+    transform: rotate(180deg);
+  }
+
+  svg {
+    width: inherit;
+    height: inherit;
+  }
+}

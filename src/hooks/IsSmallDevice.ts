@@ -1,7 +1,9 @@
 import { useMediaQuery } from "@uidotdev/usehooks";
 
-const useIsSmallDevice = () => {
+export const useIsTabletDevice = () => {
   return useMediaQuery("only screen and (max-width : 768px)");
 };
 
-export default useIsSmallDevice;
+export const useIsMobileDevice = () => {
+  return useMediaQuery("only screen and (max-width : 600px)");
+};

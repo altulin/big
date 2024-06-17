@@ -1,0 +1,78 @@
+@import "@/sass/helpers/variables";
+@import "@/sass/helpers/mixins.scss";
+
+.nominations {
+  &__inner {
+    display: flex;
+    height: calc(100vh - 10.7rem);
+
+    @media screen and (max-width: 1920px) {
+      height: calc(100vh - 8.2rem);
+    }
+  }
+
+  &__title {
+    font-size: 5.63rem;
+    font-weight: 400;
+    text-transform: uppercase;
+    line-height: 1;
+  }
+}
+
+.content {
+  width: 51%;
+  padding: 2rem;
+  border-right: var(--line) solid var(--basic-dark);
+}
+
+.accordion {
+  display: flex;
+  flex-direction: column;
+  row-gap: 1.5rem;
+  padding-bottom: 1rem;
+  padding-top: 4rem;
+  padding-right: 3rem;
+
+  &_wrap {
+    width: 49%;
+    padding-left: 2rem;
+    position: relative;
+    // padding-top: 4rem;
+    // padding-bottom: 1rem;
+  }
+
+  &__label {
+    font-size: 1.13rem;
+    letter-spacing: 0.02rem;
+    text-transform: uppercase;
+    font-weight: 400;
+    flex-grow: 1;
+    color: var(--basic-dark);
+    text-align: left;
+    padding: 1rem 0;
+  }
+
+  &__icon {
+    width: 4rem;
+    height: 4rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--basic-dark);
+    flex-shrink: 0;
+
+    svg {
+      width: 2rem;
+      height: 2rem;
+    }
+  }
+
+  &__answer {
+    display: flex;
+    flex-direction: column;
+    row-gap: 0.3rem;
+    font-size: 1.13rem;
+    padding: 2rem;
+    border-top: var(--line) solid var(--basic-dark);
+  }
+}

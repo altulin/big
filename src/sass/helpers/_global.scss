@@ -13,7 +13,7 @@ html {
   font-size: 0.83vw;
 
   @include mw($ldt) {
-    font-size: 1.1vw;
+    font-size: 1.12vw;
   }
 
   @include mw($dt) {
@@ -29,9 +29,20 @@ html {
   }
 }
 
+.swiper {
+  min-width: 0;
+}
+
+.main {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
 body {
   scroll-behavior: smooth;
-  @include font("ProximaNova");
+  @include font("NeueMachina");
+  font-weight: 400;
   color: $text-dark;
   background-color: $bg;
   min-height: 100vh;
@@ -57,6 +68,7 @@ body {
   display: flex;
   flex-direction: column;
   flex-grow: 1;
+  max-height: 100vh;
 }
 
 a {
@@ -141,6 +153,55 @@ input:-webkit-autofill:active {
 
   @include mw($dt) {
     width: auto;
+  }
+}
+
+.swiper {
+  height: 100%;
+}
+
+img {
+  user-select: none;
+}
+
+.body--menu {
+  overflow: hidden;
+}
+
+.szh-accordion__item-content {
+  transition: height 0.5s cubic-bezier(0, 0, 0, 1);
+}
+
+.szh-accordion__item {
+  border: var(--line) solid var(--basic-dark);
+}
+
+.szh-accordion__item-btn {
+  display: flex;
+  align-items: center;
+  padding-left: 2rem;
+  background-color: transparent;
+  width: 100%;
+  gap: 1rem;
+}
+
+.szh-accordion__item svg {
+  flex-shrink: 0;
+  transition: 0.5s;
+}
+
+.szh-accordion__item--expanded {
+  // border-color: #6d712e;
+}
+
+.szh-accordion__item--expanded svg {
+  transform: rotate(180deg);
+}
+
+.hamburger-react {
+  background-color: rgba(#141414, 0.04);
+  div {
+    border-radius: 5px;
   }
 }
 
