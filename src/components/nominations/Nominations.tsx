@@ -4,9 +4,11 @@ import { FC, useEffect } from "react";
 import AccordionComonent from "./Accordion";
 import { useLazyGetFaqQuery } from "@/store/rtk/feedback/faq";
 import ScrollBarComponent from "@/hoc/scrollbar/ScrollBarComponent";
+import { useIsTabletDevice } from "@/hooks/IsSmallDevice";
 
 const Nominations: FC = () => {
   const [getNominations, result] = useLazyGetFaqQuery();
+  const isTablet = useIsTabletDevice();
 
   useEffect(() => {
     getNominations(undefined, true).unwrap();
@@ -21,9 +23,13 @@ const Nominations: FC = () => {
         </div>
 
         <div className={clsx(style.accordion_wrap)}>
-          <ScrollBarComponent>
+          {isTablet ? (
             <AccordionComonent data={result.data?.results} />
-          </ScrollBarComponent>
+          ) : (
+            <ScrollBarComponent>
+              <AccordionComonent data={result.data?.results} />
+            </ScrollBarComponent>
+          )}
         </div>
       </div>
     </section>

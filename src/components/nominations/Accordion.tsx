@@ -8,10 +8,10 @@ const Head: FC<{ label: string }> = ({ label }) => {
   return (
     <>
       <p className={clsx(style.accordion__label)}>{label}</p>
-      <span className={clsx(style.accordion__icon)}>
+      <div className={clsx(style.accordion__icon)}>
         {" "}
         <IconArr />
-      </span>
+      </div>
     </>
   );
 };

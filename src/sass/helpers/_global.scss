@@ -178,6 +178,11 @@ img {
 
 .szh-accordion__item {
   border: var(--line) solid var(--basic-dark);
+
+  @include mw($tb) {
+    border-left: 0;
+    border-right: 0;
+  }
 }
 
 .szh-accordion__item-btn {

@@ -28,6 +28,10 @@
   // border: var(--line) solid var(--basic-dark);
   // border-bottom: none;
 
+  @include mw($tb) {
+    display: none;
+  }
+
   &--down {
     top: auto;
     bottom: 0;
