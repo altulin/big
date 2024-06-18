@@ -69,6 +69,10 @@ body {
   flex-direction: column;
   flex-grow: 1;
   max-height: 100vh;
+
+  @include mw($tb) {
+    max-height: none;
+  }
 }
 
 a {

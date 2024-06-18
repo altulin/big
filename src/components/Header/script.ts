@@ -1,5 +1,7 @@
+import { paths } from "@/service/paths";
+
 export const links = [
-  { label: "Номинации", path: "nominations" },
+  { label: "Номинации", path: paths.nominations },
   {
     label: "Подача работ",
     path: "submission_of_works",

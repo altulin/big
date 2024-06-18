@@ -9,8 +9,13 @@ import { HelmetProvider } from "react-helmet-async";
 import Promo from "@/components/promo/Promo";
 import Steps from "@/components/steps/Steps";
 import Nominations from "@/components/nominations/Nominations";
+import { paths } from "./service/paths";
+import { useIsTabletDevice } from "./hooks/IsSmallDevice";
+import HomePage from "./pages/HomePage";
 
 const App: FC = () => {
+  const isTablet = useIsTabletDevice();
+
   const title = import.meta.env.VITE_APP_TITLE;
   const description = import.meta.env.VITE_APP_DESCRIPTION;
   const url = import.meta.env.VITE_APP_URL;
@@ -22,11 +27,22 @@ const App: FC = () => {
       )}
       <Routes>
         <Route path="/" element={<Template />}>
-          <Route index element={<Promo />} />
-          <Route path="/steps" element={<Steps />} />
-          <Route path="/nominations" element={<Nominations />} />
+          {!isTablet ? (
+            <>
+              <Route index element={<Promo />} />
+              <Route path={paths.steps} element={<Steps />} />
+              <Route path={paths.nominations} element={<Nominations />} />
+              <Route path="*" element={<Promo />} />
+            </>
+          ) : (
+            <>
+              <Route index element={<HomePage />} />
+              <Route path="*" element={<HomePage />} />
+            </>
+          )}
+
           <Route
-            path="/private"
+            path={paths.private}
             element={<RequireAuth>{/* <Private /> */ <h1>лк</h1>}</RequireAuth>}
           />
         </Route>
