@@ -3,6 +3,7 @@ import style from "./Steps.module.scss";
 import { FC } from "react";
 import StepContentDesk from "./StepContentDesk";
 import { useIsTabletDevice } from "@/hooks/IsSmallDevice";
+import StepContentMob from "./StepContentMob";
 //
 
 const Steps: FC = () => {
@@ -16,7 +17,7 @@ const Steps: FC = () => {
             Этапы конкурса и&nbsp;подачи работ
           </span>
         </h2>
-        {!isTablet ? <StepContentDesk /> : null}
+        {!isTablet ? <StepContentDesk /> : <StepContentMob />}
       </div>
     </section>
   );

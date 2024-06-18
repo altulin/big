@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import {
   format,
   isAfter,
@@ -7,12 +8,12 @@ import {
   differenceInHours,
 } from "date-fns";
 // import { formatInTimeZone } from "date-fns-tz";
+import style from "./Steps.module.scss";
 
-export const head = [
-  { label: "Подача работ", name: "job" },
-  { label: "Жюрение", name: "jury" },
-  { label: "Финал", name: "final" },
-];
+const frmtDt = (date: Date) => {
+  // return formatInTimeZone(new Date(date), "Europe/Moscow", "dd/MM");
+  return format(date, "dd/MM");
+};
 
 const objDate = (date: string) => {
   return new Date(date);
@@ -29,10 +30,40 @@ const dates: { [key: string]: { start: Date; end: Date; step: number } } = {
   empty5: { start: objDate("2024,9,3"), end: objDate("2024,9,17"), step: 5 },
   reward: { start: objDate("2024,9,18"), end: objDate("2024,9,18"), step: 6 },
 };
-const frmtDt = (date: Date) => {
-  // return formatInTimeZone(new Date(date), "Europe/Moscow", "dd/MM");
-  return format(date, "dd/MM");
-};
+
+export const head = [
+  {
+    label: "Подача работ",
+    name: "job",
+    sub_item: [
+      {
+        date: `${frmtDt(dates.early.start)} – ${frmtDt(dates.early.end)}`,
+        title: "Ранняя пташка",
+      },
+      {
+        date: `${frmtDt(dates.basic.start)} – ${frmtDt(dates.basic.end)}`,
+        title: "Основной этап",
+      },
+      {
+        date: `${frmtDt(dates.final.start)} – ${frmtDt(dates.final.end)}`,
+        title: "Финальный этап",
+      },
+    ],
+  },
+  {
+    label: "Жюрение",
+    name: "jury",
+    sub_item: [
+      { date: `${frmtDt(dates.short.start)}`, title: "Шорт-листы" },
+      { date: `${frmtDt(dates.winner.start)}`, title: "Победители" },
+    ],
+  },
+  {
+    label: "Финал",
+    name: "final",
+    sub_item: [{ date: `${frmtDt(dates.reward.start)}`, title: "Награждение" }],
+  },
+];
 
 export const schedule = [
   {
@@ -93,4 +124,86 @@ export const getLength = (date: Date) => {
   if (isAfter(date, endOfDay(dates.reward.end))) return 100;
 
   return 0;
+};
+
+export const getLengthMob = (date: Date, s: any) => {
+  const list = Object.keys(dates);
+
+  let n = 0;
+  const key = list.filter((item) => {
+    return (
+      isAfter(date, dates[item].start) &&
+      isBefore(date, endOfDay(dates[item].end))
+    );
+  });
+
+  if (["early", "basic", "final"].includes(key[0])) {
+    while (n < dates[key[0]].step) {
+      let length;
+      const item = list.filter((item) => dates[item].step === n + 1)[0];
+
+      if (isAfter(date, endOfDay(dates[item].end))) {
+        length = 100;
+      } else {
+        const daysStartToEnd = differenceInDays(
+          dates[item].end,
+          dates[item].start,
+        );
+        const daysStartToToday = differenceInDays(date, dates[key[0]].start);
+        length = Math.round((daysStartToToday / daysStartToEnd) * 100);
+      }
+      s.slides[n].querySelector(`.${style.top__bar}`).style.width =
+        `${length}%`;
+
+      n++;
+    }
+    n = 0;
+  }
+
+  if (["empty3", "empty4", "empty5"].includes(key[0])) {
+    while (n < dates[key[0]].step) {
+      let length;
+      const item = list.filter((item) => dates[item].step === n + 1)[0];
+
+      if (isAfter(date, endOfDay(dates[item].end))) {
+        length = 100;
+      } else {
+        const daysStartToEnd = differenceInDays(
+          dates[item].end,
+          dates[item].start,
+        );
+        const daysStartToToday = differenceInDays(date, dates[key[0]].start);
+        length = Math.round((daysStartToToday / daysStartToEnd) * 100);
+      }
+      s.slides[n].querySelector(`.${style.top__bar}`).style.width =
+        `${length}%`;
+      n++;
+    }
+    n = 0;
+  }
+
+  if (["short", "reward", "winner"].includes(key[0])) {
+    while (n < dates[key[0]].step) {
+      let length;
+      const item = list.filter((item) => dates[item].step === n + 1)[0];
+
+      if (isAfter(date, endOfDay(dates[item].end))) {
+        length = 100;
+      } else {
+        const hoursStartToEnd = differenceInHours(
+          endOfDay(dates[key[0]].end),
+          dates[key[0]].start,
+        );
+        const hoursStartToToday = differenceInHours(date, dates[key[0]].start);
+        length = Math.round((hoursStartToToday / hoursStartToEnd) * 100);
+      }
+      s.slides[n].querySelector(`.${style.top__bar}`).style.width =
+        `${length}%`;
+
+      n++;
+    }
+    n = 0;
+  }
+
+  return;
 };

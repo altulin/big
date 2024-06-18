@@ -114,3 +114,78 @@
   grid-template-columns: repeat(6, calc(100% / 6));
   height: 7.5rem;
 }
+
+.steps_mob {
+  &__inner {
+    display: flex;
+    border-top: var(--line) solid var(--basic-dark);
+    border-bottom: var(--line) solid var(--basic-dark);
+  }
+}
+
+.button_slider {
+  width: 2rem;
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  background-color: transparent;
+
+  svg {
+    width: 100%;
+    aspect-ratio: 1;
+  }
+
+  &--prev {
+    border-right: var(--line) solid var(--basic-dark);
+  }
+
+  &--next {
+    transform: rotate(180deg);
+    border-right: var(--line) solid var(--basic-dark);
+  }
+}
+
+.top {
+  border-bottom: var(--line) solid var(--basic-dark);
+  position: relative;
+
+  &__bar {
+    position: absolute;
+    width: 0;
+    height: 100%;
+    left: 0;
+    top: 0;
+    transition: width 2s;
+    background-color: var(--color-green);
+    z-index: -1;
+  }
+
+  &__title {
+    padding: 2rem 1rem;
+    text-align: center;
+    font-size: 1.25rem;
+    line-height: 1;
+    font-weight: 400;
+    text-transform: uppercase;
+  }
+}
+
+.bottom {
+  &__inner {
+    display: flex;
+    flex-direction: column;
+    padding: 1.5rem 1rem;
+    align-items: center;
+  }
+
+  &__date {
+    font-size: 1.12rem;
+    line-height: 1.3;
+    font-weight: 400;
+  }
+  &__title {
+    font-size: 0.88rem;
+    line-height: 1.3;
+    font-weight: 400;
+  }
+}
