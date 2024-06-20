@@ -8,7 +8,7 @@ export const links = [
     submenu: [
       { label: "Цены", path: paths.price },
       { label: "Тех.требования", path: paths.requirements },
-      { label: "Критерии оценки", path: "criteria" },
+      { label: "Критерии оценки", path: paths.criteria },
     ],
   },
   {

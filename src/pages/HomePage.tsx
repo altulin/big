@@ -4,7 +4,8 @@ import Steps from "@/components/steps/Steps";
 import Nominations from "@/components/nominations/Nominations";
 import SubmissionOfWorks from "@/components/submission_of_works/SubmissionOfWorks";
 import Price from "@/components/Price/Price";
-import Requirements from "@/components/Requirements/Requirements";
+import Requirements from "@/components/requirements/Requirements";
+import Criteria from "@/components/criteria/Criteria";
 
 const HomePage: FC = () => {
   return (
@@ -15,6 +16,7 @@ const HomePage: FC = () => {
       <SubmissionOfWorks />
       <Price />
       <Requirements />
+      <Criteria />
     </>
   );
 };

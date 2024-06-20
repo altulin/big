@@ -15,7 +15,6 @@ const Links: FC = () => {
   return (
     <>
       {links.map((item, i) => {
-        console.log(`${item.path}`);
         return (
           <div className={clsx(style.link_wrap)} key={i}>
             <HashLink

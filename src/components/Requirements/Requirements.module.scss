@@ -2,6 +2,119 @@
 @import "@/sass/helpers/mixins.scss";
 
 .requirements {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+
   &__inner {
+    flex-grow: 1;
+    display: flex;
+
+    @include mw($tb) {
+      flex-direction: column;
+      margin-left: 0.56rem;
+      margin-right: 0.56rem;
+      border-left: var(--line) solid var(--basic-dark);
+      border-right: var(--line) solid var(--basic-dark);
+    }
   }
+}
+
+.presents {
+  padding: 4rem 2rem;
+  width: 51%;
+  flex-shrink: 0;
+  @include mw($tb) {
+    width: 100%;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    padding-bottom: 2rem;
+  }
+}
+
+.title {
+  font-weight: 400;
+  font-size: 3.75rem;
+  line-height: 110%;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: #141414;
+  display: flex;
+  flex-direction: column;
+
+  @include mw($tb) {
+    font-size: 1.75rem;
+    line-height: 1;
+  }
+}
+
+.content {
+  flex-grow: 1;
+  border-left: var(--line) solid var(--basic-dark);
+  height: calc(100vh - 10.8rem);
+  padding-bottom: 1rem;
+  padding-top: 1rem;
+
+  @include mw($ldt) {
+    height: calc(100vh - 8.2rem);
+  }
+
+  @include mw($tb) {
+    border-left: 0;
+    padding: 0;
+    height: auto;
+  }
+}
+
+.list {
+  overflow: auto;
+  height: 100%;
+  &__item {
+    display: flex;
+    border-top: var(--line) solid var(--basic-dark);
+
+    &:last-child {
+      border-bottom: var(--line) solid var(--basic-dark);
+    }
+  }
+
+  &__num {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--color-green);
+    color: var(--basic-dark);
+    font-size: 2rem;
+    line-height: 1;
+    text-transform: uppercase;
+    width: 4rem;
+    min-height: 4rem;
+    flex-shrink: 0;
+
+    @include mw($tb) {
+      font-size: 1.25rem;
+    }
+  }
+
+  &__text {
+    padding: 1rem 1.5rem;
+    font-size: 1rem;
+    line-height: 1.3;
+
+    @include mw($tb) {
+      padding: 1rem;
+      line-height: 1.4;
+    }
+  }
+}
+
+.button_add {
+  margin-top: 2rem;
+  font-size: 1rem;
+  letter-spacing: 0.02rem;
+  text-transform: uppercase;
+  color: var(--basic-dark);
+  padding: 1.4rem 1rem 1.2rem;
+  background-color: var(--color-green);
+  width: 100%;
 }

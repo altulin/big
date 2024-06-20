@@ -1,0 +1,185 @@
+@import "@/sass/helpers/variables";
+@import "@/sass/helpers/mixins.scss";
+
+.criteria {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  &__inner {
+    display: flex;
+    flex-grow: 1;
+
+    @include mw($tb) {
+      flex-direction: column;
+      margin-left: 0.56rem;
+      margin-right: 0.56rem;
+      border-left: var(--line) solid var(--basic-dark);
+      border-right: var(--line) solid var(--basic-dark);
+    }
+  }
+}
+
+.present {
+  flex-shrink: 0;
+  width: 51%;
+  padding: 4rem 2rem;
+
+  @include mw($tb) {
+    width: 100%;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    padding-bottom: 2rem;
+  }
+}
+
+.title {
+  font-weight: 400;
+  font-size: 3.75rem;
+  line-height: 110%;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  display: flex;
+  flex-direction: column;
+
+  @include mw($tb) {
+    font-size: 1.75rem;
+    line-height: 1;
+  }
+}
+
+.content {
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+  border-left: var(--line) solid var(--basic-dark);
+
+  @include mw($tb) {
+    border: 0;
+    display: block;
+  }
+}
+
+.rules {
+  // display: flex;
+  border-top: var(--line) solid var(--basic-dark);
+  border-bottom: var(--line) solid var(--basic-dark);
+
+  &__head {
+    display: flex;
+
+    @include mw($tb) {
+      position: relative;
+    }
+  }
+
+  &__title {
+    width: 50%;
+    padding: 1.5rem 2rem;
+    border-bottom: var(--line) solid var(--basic-dark);
+    font-weight: 900;
+    font-size: 1rem;
+    line-height: 100%;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    @include mw($tb) {
+      border: 0;
+      width: 100%;
+      height: 100%;
+      box-sizing: border-box;
+    }
+
+    &:first-child {
+      border-right: var(--line) solid var(--basic-dark);
+
+      @include mw($tb) {
+        border: 0;
+      }
+    }
+  }
+
+  &__content {
+    display: flex;
+
+    @include mw($tb) {
+      border-top: var(--line) solid var(--basic-dark);
+      padding: 0 2rem;
+    }
+  }
+
+  &__list {
+    padding: 2rem;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    row-gap: 1rem;
+
+    &:first-child {
+      border-right: var(--line) solid var(--basic-dark);
+
+      @include mw($tb) {
+        border-right: 0;
+        padding: 1rem;
+      }
+    }
+
+    @include mw($tb) {
+      width: 100%;
+      box-sizing: border-box;
+    }
+  }
+
+  &__item {
+    font-weight: 400;
+    font-size: 1.12rem;
+    line-height: 140%;
+    display: flex;
+
+    &::before {
+      content: "";
+      display: block;
+      width: 0.5rem;
+      height: 0.5rem;
+      background-color: var(--color-green);
+      border-radius: 50%;
+      flex-shrink: 0;
+      margin: 0.5rem;
+      margin-right: 1rem;
+    }
+  }
+}
+
+.slider {
+  width: 100%;
+}
+
+.button {
+  background-color: transparent;
+  position: absolute;
+  top: 0;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  border-right: var(--line) solid var(--basic-dark);
+  z-index: 2;
+  background-color: var(--basic-light);
+
+  &--next {
+    right: 0;
+    transform: rotate(180deg);
+  }
+  &--prev {
+    left: 0;
+  }
+
+  svg {
+    width: inherit;
+    aspect-ratio: 1;
+  }
+}
