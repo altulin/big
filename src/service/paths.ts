@@ -9,6 +9,8 @@ export const paths = {
   price: "/submission_of_works/price",
   requirements: "/submission_of_works/requirements",
   criteria: "/submission_of_works/criteria",
+  jury: "/jury",
+  program: "/program",
 
   private: "/private",
 };

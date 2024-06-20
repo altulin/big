@@ -13,10 +13,14 @@ export const links = [
   },
   {
     label: "Жюри",
-    path: "jury",
+    path: paths.jury,
+    // submenu: [{ label: "Спикеры", path: "speakers" }],
+  },
+  {
+    label: "Программа",
+    path: paths.program,
     submenu: [{ label: "Спикеры", path: "speakers" }],
   },
-  { label: "Программа", path: "program" },
   {
     label: "О фестивале",
     path: "about_the_festival",

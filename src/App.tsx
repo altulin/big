@@ -16,6 +16,8 @@ import SubmissionOfWorks from "./components/submission_of_works/SubmissionOfWork
 import Price from "./components/Price/Price";
 import Requirements from "./components/requirements/Requirements";
 import Criteria from "./components/criteria/Criteria";
+import Jury from "./components/jury/Jury";
+import Program from "./components/program/Program";
 
 const App: FC = () => {
   const isTablet = useIsTabletDevice();
@@ -43,6 +45,8 @@ const App: FC = () => {
               <Route path={paths.price} element={<Price />} />
               <Route path={paths.requirements} element={<Requirements />} />
               <Route path={paths.criteria} element={<Criteria />} />
+              <Route path={paths.jury} element={<Jury />} />
+              <Route path={paths.program} element={<Program />} />
               <Route path="*" element={<Promo />} />
             </>
           ) : (

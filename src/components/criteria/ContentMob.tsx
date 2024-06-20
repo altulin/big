@@ -27,7 +27,7 @@ const ContentMob: FC = () => {
           allowTouchMove={false}
         >
           {criteria.map((item, i) => (
-            <SwiperSlide key={i}>
+            <SwiperSlide key={i} className={clsx(style.head_slide)}>
               <h3 className={clsx(style.rules__title)}>{item.title}</h3>
             </SwiperSlide>
           ))}
