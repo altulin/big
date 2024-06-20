@@ -24,8 +24,9 @@
     grid-column: 2 / 3;
     grid-row: 3 / 4;
     border-top: var(--line) solid var(--basic-dark);
-    // border-right: var(--line) solid var(--basic-dark);
     border-left: var(--line) solid var(--basic-dark);
+    padding: 0 0.75rem;
+    display: flex;
 
     @include mw($tb) {
       display: none;
@@ -268,6 +269,9 @@
     padding: 1rem;
   }
 
+  &--submenu {
+  }
+
   &_wrap {
     padding: 0 0.75rem;
     display: flex;
@@ -293,4 +297,10 @@
     grid-column: 2 / 3;
     grid-row: 2 / 3;
   }
+}
+
+.link_wrap_submenu {
+  padding: 0 0.75rem;
+  display: flex;
+  flex-direction: column;
 }

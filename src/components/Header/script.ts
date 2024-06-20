@@ -4,10 +4,10 @@ export const links = [
   { label: "Номинации", path: paths.nominations },
   {
     label: "Подача работ",
-    path: "submission_of_works",
+    path: paths.submission_of_works,
     submenu: [
-      { label: "Цены", path: "price" },
-      { label: "Тех.требования", path: "requirements" },
+      { label: "Цены", path: paths.price },
+      { label: "Тех.требования", path: paths.requirements },
       { label: "Критерии оценки", path: "criteria" },
     ],
   },

@@ -12,6 +12,9 @@ import Nominations from "@/components/nominations/Nominations";
 import { paths } from "./service/paths";
 import { useIsTabletDevice } from "./hooks/IsSmallDevice";
 import HomePage from "./pages/HomePage";
+import SubmissionOfWorks from "./components/submission_of_works/SubmissionOfWorks";
+import Price from "./components/Price/Price";
+import Requirements from "./components/Requirements/Requirements";
 
 const App: FC = () => {
   const isTablet = useIsTabletDevice();
@@ -32,6 +35,12 @@ const App: FC = () => {
               <Route index element={<Promo />} />
               <Route path={paths.steps} element={<Steps />} />
               <Route path={paths.nominations} element={<Nominations />} />
+              <Route
+                path={paths.submission_of_works}
+                element={<SubmissionOfWorks />}
+              />
+              <Route path={paths.price} element={<Price />} />
+              <Route path={paths.requirements} element={<Requirements />} />
               <Route path="*" element={<Promo />} />
             </>
           ) : (

@@ -10,7 +10,7 @@ import {
 // import { formatInTimeZone } from "date-fns-tz";
 import style from "./Steps.module.scss";
 
-const frmtDt = (date: Date) => {
+export const frmtDt = (date: Date) => {
   // return formatInTimeZone(new Date(date), "Europe/Moscow", "dd/MM");
   return format(date, "dd/MM");
 };
@@ -19,7 +19,9 @@ const objDate = (date: string) => {
   return new Date(date);
 };
 
-const dates: { [key: string]: { start: Date; end: Date; step: number } } = {
+export const dates: {
+  [key: string]: { start: Date; end: Date; step: number };
+} = {
   early: { start: objDate("2024,6,17"), end: objDate("2024,6,30"), step: 1 },
   basic: { start: objDate("2024,7,1"), end: objDate("2024,7,28"), step: 2 },
   final: { start: objDate("2024,7,29"), end: objDate("2024,8,9"), step: 3 },

@@ -15,7 +15,8 @@ const StepContentMob: FC = () => {
     if (!swiper) return;
     if (swiper.destroyed) return;
     setTimeout(() => {
-      getLengthMob(new Date(2024, 8, 18, 12, 0, 1, 0), swiper);
+      // getLengthMob(new Date(2024, 8, 18, 12, 0, 1, 0), swiper);
+      getLengthMob(new Date(), swiper);
     }, 500);
   }, [swiper]);
 

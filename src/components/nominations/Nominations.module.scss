@@ -108,3 +108,14 @@
     border-top: var(--line) solid var(--basic-dark);
   }
 }
+
+.button_add {
+  margin-top: 2rem;
+  font-size: 1rem;
+  letter-spacing: 0.02rem;
+  text-transform: uppercase;
+  color: var(--basic-dark);
+  padding: 1.4rem 1rem 1.2rem;
+  background-color: var(--color-green);
+  width: 100%;
+}
