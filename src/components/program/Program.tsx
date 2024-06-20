@@ -1,6 +1,7 @@
 import clsx from "clsx";
 import style from "./Program.module.scss";
 import { FC } from "react";
+import SvgPlanet from "@/images/program/program.svg?react";
 
 const Program: FC = () => {
   return (
@@ -12,9 +13,7 @@ const Program: FC = () => {
             <span>фестиваля</span>
           </h2>
 
-          <div className={clsx(style.picture)}>
-            <figurecl></figure>
-          </div>
+          <SvgPlanet />
         </div>
       </div>
     </section>
