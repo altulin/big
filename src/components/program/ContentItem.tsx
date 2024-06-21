@@ -28,23 +28,14 @@ const ContentItem: FC<{ item: IProgram; i: number }> = ({ item, i }) => {
   return (
     <div className={clsx(style.item)}>
       <button onClick={handle} data-button={i} className={clsx(style.button)}>
-        {current !== null && Number(current) === i ? (
-          <span className={clsx(style.button__icon)}>
-            <IconBtn />
-          </span>
-        ) : (
-          <>
-            <span className={clsx(style.button__date)}>{date}</span>
-            <span className={clsx(style.button__title)}>{title}</span>
-          </>
-        )}
+        <span className={clsx(style.button__icon)}>
+          <IconBtn />
+        </span>
+
+        <span className={clsx(style.button__date)}>{date}</span>
+        <span className={clsx(style.button__title)}>{title}</span>
       </button>
-      <div
-        className={clsx(
-          style.info,
-          current !== null && Number(current) === i && style.info_active,
-        )}
-      >
+      <div className={clsx(style.info)}>
         <div className={clsx(style.info__inner)}>
           <div className={clsx(style.info__head)}>
             <h3 className={clsx(style.info__title)}>

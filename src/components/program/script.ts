@@ -100,11 +100,3 @@ export const program: IProgram[] = [
     description,
   },
 ];
-
-export const setBtnWidth = (parent: HTMLDivElement) => {
-  const listBtn = Array.from(parent.querySelectorAll("[data-button]"));
-  const width = parent.offsetWidth / listBtn.length;
-  listBtn.forEach((item) => {
-    (item as HTMLElement).style.width = `${width}px`;
-  });
-};
