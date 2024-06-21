@@ -15,18 +15,20 @@ const speakers = [
   },
 ];
 
-const description =
-  "Индустрия видеопроизводства в России стремительно развивается. С каждым годом появляется всё больше интересных работ, новых форматов и технических решений. Но имена многих талантов остаются неуслышанными, и рынок не знает в лицо своих героев.";
-
-const time = "21:00-22:00";
-
-export const program: {
+export interface IProgram {
   title: string;
   date: string;
   time: string;
   speakers: { avatar: string; name: string }[];
   description: string;
-}[] = [
+}
+
+const description =
+  "Индустрия видеопроизводства в России стремительно развивается. С каждым годом появляется всё больше интересных работ, новых форматов и технических решений. Но имена многих талантов остаются неуслышанными, и рынок не знает в лицо своих героев.";
+
+const time = "21:00-22:00";
+
+export const program: IProgram[] = [
   {
     title: "Big Battle: AI или крафт?",
     date: "04/07",
@@ -98,3 +100,11 @@ export const program: {
     description,
   },
 ];
+
+export const setBtnWidth = (parent: HTMLDivElement) => {
+  const listBtn = Array.from(parent.querySelectorAll("[data-button]"));
+  const width = parent.offsetWidth / listBtn.length;
+  listBtn.forEach((item) => {
+    (item as HTMLElement).style.width = `${width}px`;
+  });
+};
