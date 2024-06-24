@@ -10,6 +10,15 @@
     flex-grow: 1;
     display: flex;
     height: calc(100vh - 10.8rem);
+
+    @include mw($tb) {
+      height: auto;
+      margin-left: 0.56rem;
+      margin-right: 0.56rem;
+      border-left: var(--line) solid var(--basic-dark);
+      border-right: var(--line) solid var(--basic-dark);
+      flex-direction: column;
+    }
   }
 
   &__main {
@@ -21,6 +30,14 @@
     flex-direction: column;
     justify-content: space-between;
 
+    @include mw($tb) {
+      width: 100%;
+      padding-top: 5rem;
+      padding-left: 0.5rem;
+      padding-right: 0.5rem;
+      overflow: hidden;
+    }
+
     &_hidden {
       display: none;
     }
@@ -28,6 +45,10 @@
     svg {
       align-self: center;
       width: 89%;
+
+      @include mw($tb) {
+        width: 110%;
+      }
     }
   }
 }
@@ -41,25 +62,39 @@
   color: #141414;
   display: flex;
   flex-direction: column;
+
+  @include mw($dt) {
+    font-size: 4rem;
+  }
+
+  @include mw($tb) {
+    font-size: 2.38rem;
+    margin-bottom: 0rem;
+  }
 }
 
 .content {
   display: flex;
   width: 56%;
   margin-left: auto;
-  transition: 0.5s;
   justify-content: flex-end;
 
-  &_active {
+  @include mw($tb) {
     width: 100%;
+    flex-direction: column;
+    justify-content: flex-start;
+    border-top: var(--line) solid var(--basic-dark);
   }
 }
 
 .item {
   flex: 0 0 0px;
   display: flex;
-  transition: 0.5s;
   border-left: var(--line) solid var(--basic-dark);
+
+  @include mw($tb) {
+    border: 0;
+  }
 }
 
 .button {
@@ -69,10 +104,19 @@
   align-items: center;
   gap: 3rem;
   padding-top: 1.5rem;
-  padding-bottom: 1.5rem;
+  padding-bottom: 4.5rem;
   transform: rotate(180deg);
   position: relative;
   flex-shrink: 0;
+
+  @include mw($tb) {
+    transform: none;
+    flex-direction: row;
+    gap: 1.5rem;
+    padding: 1rem 0.5rem;
+    width: 100%;
+  }
+
   &__date {
     writing-mode: vertical-rl;
     pointer-events: none;
@@ -82,6 +126,11 @@
     line-height: 130%;
     text-align: center;
     color: #141414;
+
+    @include mw($tb) {
+      writing-mode: inherit;
+      font-size: 1.12rem;
+    }
   }
 
   &__title {
@@ -92,15 +141,23 @@
     line-height: 130%;
     color: #141414;
     text-align: left;
+
+    @include mw($tb) {
+      writing-mode: inherit;
+      font-size: 1.12rem;
+    }
   }
 
   &__icon {
-    position: absolute;
     position: absolute;
     bottom: 1.5rem;
     @include centered("x");
     cursor: pointer;
     transition: 0.3s;
+
+    @include mw($tb) {
+      display: none;
+    }
 
     &:hover {
       opacity: 0.6;
@@ -114,14 +171,19 @@
 }
 
 .info {
-  width: 0;
-  display: none;
+  // width: 0;
   padding-top: 1.5rem;
   padding-bottom: 1.5rem;
   flex-direction: column;
+  display: none;
+
+  @include mw($tb) {
+    display: flex;
+    padding-top: 0;
+  }
 
   &_active {
-    width: auto;
+    // width: auto;
     // flex-grow: 1;
     // display: flex;
   }
@@ -134,10 +196,19 @@
     padding-bottom: 0.6rem;
     display: flex;
     flex-direction: column;
+
+    @include mw($tb) {
+      padding-left: 0.5rem;
+      padding-right: 0.5rem;
+    }
   }
 
   &__head {
     margin-bottom: 3rem;
+
+    @include mw($tb) {
+      margin-bottom: 1rem;
+    }
   }
 
   &__title {
@@ -148,6 +219,10 @@
     line-height: 130%;
     color: #141414;
     margin-bottom: 1rem;
+
+    @include mw($tb) {
+      display: none;
+    }
   }
 
   &__time {
@@ -156,17 +231,30 @@
     line-height: 130%;
     color: #141414;
     margin-bottom: 1rem;
+
+    @include mw($tb) {
+      font-size: 1rem;
+    }
   }
 }
 
 .speakers {
   margin-bottom: 3rem;
+
+  @include mw($tb) {
+    margin-bottom: 1rem;
+  }
+
   &__title {
     font-weight: 400;
     font-size: 1.5rem;
     line-height: 130%;
     color: #141414;
     margin-bottom: 1rem;
+
+    @include mw($tb) {
+      font-size: 1rem;
+    }
   }
 
   &__pictures {

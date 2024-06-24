@@ -3,38 +3,18 @@ import clsx from "clsx";
 import { FC } from "react";
 import style from "./Program.module.scss";
 import { IProgram } from "./script";
-import { useAppDispatch, useAppSelector } from "@/hooks/hook";
-import { setProgramItem } from "@/store/program/programSlice";
-import IconBtn from "@/images/program/btn_icon.svg?react";
+
+import { useIsTabletDevice } from "@/hooks/IsSmallDevice";
+import ProgramBtn from "./ProgramBtn";
 
 const ContentItem: FC<{ item: IProgram; i: number }> = ({ item, i }) => {
   const { date, title, time, speakers, description } = item;
-  const dispatch = useAppDispatch();
-
-  const { current } = useAppSelector((state) => state.program);
-
-  const handle = (e: any) => {
-    const button = e.target.getAttribute("data-button");
-
-    if (current === button) {
-      e.target.parentElement.style.flexGrow = "0";
-      dispatch(setProgramItem(null));
-      return;
-    }
-
-    dispatch(setProgramItem(button));
-  };
+  const isTablet = useIsTabletDevice();
 
   return (
     <div className={clsx(style.item)}>
-      <button onClick={handle} data-button={i} className={clsx(style.button)}>
-        <span className={clsx(style.button__icon)}>
-          <IconBtn />
-        </span>
+      {!isTablet && <ProgramBtn date={date} title={title} i={i} />}
 
-        <span className={clsx(style.button__date)}>{date}</span>
-        <span className={clsx(style.button__title)}>{title}</span>
-      </button>
       <div className={clsx(style.info)}>
         <div className={clsx(style.info__inner)}>
           <div className={clsx(style.info__head)}>

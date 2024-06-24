@@ -4,12 +4,15 @@ import style from "./Program.module.scss";
 import { FC, useRef } from "react";
 import SvgPlanet from "@/images/program/program.svg?react";
 import Content from "./Content";
+import { useIsTabletDevice } from "@/hooks/IsSmallDevice";
+import ContentMob from "./ContentMob";
 
 const Program: FC = () => {
   const refContent = useRef<HTMLDivElement | null>(null);
+  const isTablet = useIsTabletDevice();
 
   return (
-    <section className={clsx(style.program)}>
+    <section className={clsx(style.program, "program")}>
       <div ref={refContent} className={clsx(style.program__inner)}>
         <div className={clsx(style.program__main)}>
           <h2 className={clsx(style.title)}>
@@ -20,7 +23,7 @@ const Program: FC = () => {
           <SvgPlanet />
         </div>
 
-        <Content refParent={refContent} />
+        {isTablet ? <ContentMob /> : <Content refParent={refContent} />}
       </div>
     </section>
   );

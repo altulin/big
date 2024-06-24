@@ -196,6 +196,16 @@ img {
   gap: 1rem;
 }
 
+.program {
+  .szh-accordion__item-btn {
+    padding-left: 0;
+  }
+
+  .szh-accordion__item {
+    border-top: 0;
+  }
+}
+
 .szh-accordion__item svg {
   flex-shrink: 0;
   transition: 0.5s;
@@ -217,5 +227,5 @@ img {
 }
 
 * {
-  outline: 1px solid #ff6347;
+  // outline: 1px solid #ff6347;
 }
