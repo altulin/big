@@ -11,6 +11,7 @@ export const paths = {
   criteria: "/submission_of_works/criteria",
   jury: "/jury",
   program: "/program",
+  speakers: "/program/speakers",
 
   private: "/private",
 };

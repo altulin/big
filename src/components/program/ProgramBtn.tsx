@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useAppDispatch, useAppSelector } from "@/hooks/hook";
 import { setProgramItem } from "@/store/program/programSlice";
-import { FC, ReactNode } from "react";
+import { FC } from "react";
 import style from "./Program.module.scss";
 import IconBtn from "@/images/program/btn_icon.svg?react";
 import clsx from "clsx";
@@ -30,8 +30,8 @@ export const ProgramBtn: FC<{
 }> = ({ date, title, i }) => {
   const dispatch = useAppDispatch();
   const isTablet = useIsTabletDevice();
-
   const { current } = useAppSelector((state) => state.program);
+
   const handle = (e: any) => {
     const button = e.target.getAttribute("data-button");
 

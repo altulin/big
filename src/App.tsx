@@ -18,6 +18,7 @@ import Requirements from "./components/requirements/Requirements";
 import Criteria from "./components/criteria/Criteria";
 import Jury from "./components/jury/Jury";
 import Program from "./components/program/Program";
+import Speakers from "./components/speakers/Speakers";
 
 const App: FC = () => {
   const isTablet = useIsTabletDevice();
@@ -36,7 +37,7 @@ const App: FC = () => {
           {!isTablet ? (
             <>
               <Route index element={<Promo />} />
-              <Route path={paths.steps} element={<Steps />} />
+              {/* <Route path={paths.steps} element={<Steps />} />
               <Route path={paths.nominations} element={<Nominations />} />
               <Route
                 path={paths.submission_of_works}
@@ -47,7 +48,8 @@ const App: FC = () => {
               <Route path={paths.criteria} element={<Criteria />} />
               <Route path={paths.jury} element={<Jury />} />
               <Route path={paths.program} element={<Program />} />
-              <Route path="*" element={<Promo />} />
+              <Route path={paths.speakers} element={<Speakers />} />
+              <Route path="*" element={<Promo />} /> */}
             </>
           ) : (
             <>
