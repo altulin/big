@@ -10,7 +10,7 @@ const Slide_1: FC = () => {
 
   useEffect(() => {
     if (isTablet) return;
-    canvasCursor();
+    canvasCursor("canvas-sm");
   }, [isTablet]);
 
   return (

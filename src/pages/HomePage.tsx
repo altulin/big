@@ -13,6 +13,9 @@ import style from "./HomePage.module.scss";
 import Program from "@/components/program/Program";
 import SliderHome from "./SliderHome";
 import { useIsTabletDevice } from "@/hooks/IsSmallDevice";
+import Festival from "@/components/Festival/Festival";
+import Contacts from "@/components/Contacts/Contacts";
+import Faq from "@/components/Faq/Faq";
 
 export const pages: any = [
   <Promo />,
@@ -24,6 +27,9 @@ export const pages: any = [
   <Criteria />,
   <Jury />,
   <Program />,
+  <Festival />,
+  <Faq />,
+  <Contacts />,
 ];
 
 const HomePage: FC = () => {

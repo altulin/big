@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-export const canvasCursor = (unmount = false) => {
+export const canvasCursor = (id: string) => {
   const body = document.body as HTMLBodyElement;
   const parentBlock = body.querySelector(
     ".js-logo-placemove",
@@ -10,8 +10,15 @@ export const canvasCursor = (unmount = false) => {
     .getPropertyValue("font-size")
     .slice(0, -2);
 
-  const canvasHeight = parentBlock.offsetHeight - 7 * rem;
+  const canvasHeight =
+    id === "canvas-contacts"
+      ? parentBlock.offsetHeight - 7 * rem
+      : parentBlock.offsetHeight - 7 * rem;
   const canvasWidth = parentBlock.offsetWidth - 2 * rem;
+
+  console.log(id, canvasHeight);
+  console.log(id, canvasWidth);
+
   const img = new Image();
   img.src = new URL("./assets/canvas_logo.svg", import.meta.url).href;
 
@@ -23,8 +30,8 @@ export const canvasCursor = (unmount = false) => {
 
   const scale = window.devicePixelRatio;
 
-  if (body.querySelectorAll("#canvas-sm")?.length) {
-    canvas = body.querySelector("#canvas-sm") as HTMLCanvasElement;
+  if (body.querySelectorAll(`#${id}`)?.length) {
+    canvas = body.querySelector(`#${id}`) as HTMLCanvasElement;
     ctx = canvas.getContext("2d");
 
     if (devicePixelRatio >= 2) {
@@ -188,5 +195,5 @@ export const canvasCursor = (unmount = false) => {
     body.addEventListener("mousemove", handleDraw);
   }
 
-  if (unmount) body.removeEventListener("mousemove", handleDraw);
+  // if (unmount) body.removeEventListener("mousemove", handleDraw);
 };

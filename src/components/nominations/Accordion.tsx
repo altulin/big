@@ -3,6 +3,7 @@ import { FC } from "react";
 import style from "./Nominations.module.scss";
 import { Accordion, AccordionItem } from "@szhsin/react-accordion";
 import IconArr from "@/images/nominations/arr.svg?react";
+import img from "@/images/nominations/konda.png";
 
 const Head: FC<{ label: string }> = ({ label }) => {
   return (
@@ -36,17 +37,22 @@ const AccordionComonent: FC<{
           { question, answer }: { answer: string; question: string },
           i: number,
         ) => (
-          <AccordionItem
-            className={clsx(style.accordion__item)}
-            header={<Head label={question} />}
-            key={i}
-          >
-            <p className={clsx(style.accordion__answer)}>
-              {getAnswer(answer).map((el, i) => (
-                <span key={i}>{el}</span>
-              ))}
-            </p>
-          </AccordionItem>
+          <div key={i} className={clsx(style.accordion__block)}>
+            <div className={clsx(style.support)}>
+              <p className={clsx(style.support__text)}>При поддержке </p>
+              <img src={img} alt="support" width={78} height={13} />
+            </div>
+            <AccordionItem
+              className={clsx(style.accordion__item)}
+              header={<Head label={question} />}
+            >
+              <p className={clsx(style.accordion__answer)}>
+                {getAnswer(answer).map((el, i) => (
+                  <span key={i}>{el}</span>
+                ))}
+              </p>
+            </AccordionItem>
+          </div>
         ),
       )}
     </Accordion>

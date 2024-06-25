@@ -1,0 +1,22 @@
+@import "@/sass/helpers/variables";
+@import "@/sass/helpers/mixins.scss";
+
+.faq {
+  height: var(--heigh);
+  border-right: var(--line) solid var(--basic-dark);
+  box-sizing: border-box;
+
+  @include mw($tb) {
+    border: 0;
+    height: auto;
+  }
+
+  &__inner {
+  }
+}
+
+.title {
+  font-size: 3.75rem;
+  display: flex;
+  flex-direction: column;
+}

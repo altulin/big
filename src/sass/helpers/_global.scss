@@ -228,6 +228,16 @@ img {
   }
 }
 
+.contacts {
+  .logo {
+    @include mw($tb) {
+      height: 80%;
+      width: 80%;
+      margin-bottom: 5rem;
+    }
+  }
+}
+
 * {
   // outline: 1px solid #ff6347;
 }

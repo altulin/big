@@ -1,0 +1,112 @@
+@import "@/sass/helpers/variables";
+@import "@/sass/helpers/mixins.scss";
+
+.festival {
+  height: var(--heigh);
+  border-right: var(--line) solid var(--basic-dark);
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+
+  @include mw($tb) {
+    border: 0;
+    height: auto;
+  }
+
+  &__inner {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+
+    @include mw($tb) {
+      margin-left: 0.56rem;
+      margin-right: 0.56rem;
+      border-left: var(--line) solid var(--basic-dark);
+      border-right: var(--line) solid var(--basic-dark);
+    }
+  }
+}
+
+.title {
+  font-weight: 400;
+  font-size: 5.62rem;
+  line-height: 100%;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  text-align: center;
+  color: #141414;
+  padding-top: 8rem;
+  padding-bottom: 5rem;
+
+  @include mw($tb) {
+    font-weight: 400;
+    font-size: 2.38rem;
+    line-height: 100%;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    text-align: center;
+    color: #141414;
+    padding-top: 5rem;
+    padding-bottom: 3rem;
+  }
+}
+
+.content {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+
+  &__info {
+    display: flex;
+    border-top: var(--line) solid var(--basic-dark);
+    border-bottom: var(--line) solid var(--basic-dark);
+
+    @include mw($tb) {
+      flex-direction: column;
+    }
+  }
+
+  &__inner {
+    width: 50%;
+    padding: 2rem;
+
+    @include mw($tb) {
+      width: 100%;
+      padding: 1rem 0.5rem;
+    }
+
+    &:first-child {
+      border-right: var(--line) solid var(--basic-dark);
+
+      @include mw($tb) {
+        border-bottom: var(--line) solid var(--basic-dark);
+        border-right: 0;
+      }
+    }
+  }
+
+  &__text {
+    font-weight: 400;
+    font-size: 1.12rem;
+    line-height: 140%;
+    color: #141414;
+    max-width: 34.5rem;
+  }
+}
+
+.footer {
+  display: flex;
+  flex-grow: 1;
+
+  @include mw($tb) {
+    display: none;
+  }
+
+  &__inner {
+    width: 50%;
+
+    &:first-child {
+      border-right: var(--line) solid var(--basic-dark);
+    }
+  }
+}

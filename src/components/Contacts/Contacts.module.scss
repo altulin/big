@@ -1,0 +1,188 @@
+@import "@/sass/helpers/variables";
+@import "@/sass/helpers/mixins.scss";
+
+.contacts {
+  height: var(--heigh);
+  border-right: var(--line) solid var(--basic-dark);
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+
+  @include mw($tb) {
+    border: 0;
+    height: auto;
+  }
+
+  &__inner {
+    flex-grow: 1;
+    display: flex;
+
+    @include mw($tb) {
+      margin-left: 0.56rem;
+      margin-right: 0.56rem;
+      border-left: var(--line) solid var(--basic-dark);
+      border-right: var(--line) solid var(--basic-dark);
+    }
+  }
+
+  .title {
+    padding-left: 2rem;
+    padding-top: 4rem;
+    font-weight: 400;
+    font-size: 5.62rem;
+    line-height: 100%;
+    letter-spacing: 0.01em;
+    text-transform: uppercase;
+    color: #141414;
+    margin-bottom: auto;
+
+    @include mw($tb) {
+      font-size: 2.38rem;
+      padding-left: 0.5rem;
+      padding-top: 0;
+      align-self: flex-start;
+      margin-bottom: 5rem;
+    }
+  }
+}
+
+.info {
+  width: 57%;
+  border-right: var(--line) solid var(--basic-dark);
+  display: flex;
+  flex-direction: column;
+
+  @include mw($tb) {
+    width: 100%;
+    border: 0;
+    align-items: center;
+
+    .logo {
+      width: 100%;
+    }
+  }
+}
+
+.footer {
+  width: 100%;
+  &__top {
+    display: flex;
+    border-top: var(--line) solid var(--basic-dark);
+    border-bottom: var(--line) solid var(--basic-dark);
+    display: flex;
+
+    @include mw($tb) {
+      flex-direction: column;
+    }
+  }
+
+  &__inner {
+    flex-grow: 1;
+    border-right: var(--line) solid var(--basic-dark);
+    display: flex;
+    padding-left: 2rem;
+    align-items: center;
+
+    @include mw($tb) {
+      border-right: 0;
+      padding-left: 0.5rem;
+      padding-top: 1rem;
+    }
+  }
+
+  &__link {
+    font-weight: 400;
+    font-size: 1.5rem;
+    line-height: 130%;
+    color: #141414;
+    transition: 0.3s;
+    padding: 0.1rem 0;
+    position: relative;
+
+    @include mw($tb) {
+      font-size: 1.12rem;
+    }
+
+    &::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 0.12rem;
+      background-color: #141414;
+      transition: 0.3s;
+    }
+
+    &:hover {
+      opacity: 0.6;
+    }
+  }
+}
+
+.soc {
+  display: flex;
+
+  &__link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 4rem;
+    height: 4rem;
+    transition: 0.3s;
+
+    &:hover {
+      opacity: 0.6;
+    }
+
+    svg {
+      width: 2rem;
+      height: 2rem;
+    }
+  }
+}
+
+.law {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 2rem;
+
+  @include mw($tb) {
+    padding: 1rem 0.5rem;
+
+    flex-direction: column;
+  }
+
+  &__link {
+    font-weight: 400;
+    font-size: 0.88rem;
+    line-height: 120%;
+    color: rgba(#131313, 0.48);
+    transition: 0.3s;
+    padding: 1.25rem 0;
+
+    @include mw($tb) {
+      padding: 0.6rem 0;
+    }
+
+    &:hover {
+      opacity: 0.6;
+    }
+  }
+}
+
+.canvas {
+  flex-grow: 1;
+
+  @include mw($tb) {
+    display: none;
+  }
+
+  &__figure {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    padding: 2rem;
+  }
+}
