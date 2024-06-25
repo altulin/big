@@ -1,8 +1,23 @@
+@import "@/sass/helpers/variables";
+@import "@/sass/helpers/mixins.scss";
+
 :root {
   --basic-dark: #141414;
   --basic-light: #ffffff;
   --line: 0.06rem;
   --color-green: #13ff00;
   --color-green-hover: #0bdb00;
-  --heigh: calc(100vh - 12.3rem);
+  --heigh: calc(100vh - 12.25rem);
+
+  @include mw($ldt) {
+    --heigh: calc(100vh - 9.7rem);
+  }
+
+  @include mw($dt) {
+    --heigh: calc(100vh - 9.3rem);
+  }
+
+  @include mw($tb) {
+    --height: auto;
+  }
 }

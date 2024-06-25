@@ -3,21 +3,26 @@
 
 .price {
   flex-grow: 1;
-  height: 100%;
+  height: var(--heigh);
   display: flex;
   flex-direction: column;
   border-right: var(--line) solid var(--basic-dark);
 
   @include mw($tb) {
     display: block;
-    // grid-template-columns: 0.56rem auto 0.56rem;
     padding: 0 0.56rem;
+    height: auto;
+    border: 0;
   }
 
   &__wrapper {
     grid-template-columns: 16% 60% 24%;
     display: grid;
     flex-grow: 1;
+
+    @include mw($tb) {
+      display: block;
+    }
   }
 
   &__inner {

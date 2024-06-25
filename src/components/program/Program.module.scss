@@ -8,6 +8,11 @@
   height: var(--heigh);
   box-sizing: border-box;
 
+  @include mw($tb) {
+    height: auto;
+    border: 0;
+  }
+
   &__inner {
     flex-grow: 1;
     display: flex;

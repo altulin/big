@@ -7,14 +7,18 @@
   flex-direction: column;
   box-sizing: border-box;
   border-right: var(--line) solid var(--basic-dark);
-  height: 100%;
+  height: var(--heigh);
+
+  @include mw($tb) {
+    height: auto;
+    border: 0;
+  }
 
   &__inner {
     flex-grow: 1;
     display: flex;
     align-items: center;
     padding-left: 5.75rem;
-    width: 100vw;
 
     @include mw($tb) {
       margin-left: 0.56rem;

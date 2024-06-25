@@ -5,15 +5,19 @@
   flex-grow: 1;
   display: flex;
   flex-direction: column;
-  height: 100%;
+  height: var(--heigh);
   border-right: var(--line) solid var(--basic-dark);
   box-sizing: border-box;
+
+  @include mw($tb) {
+    height: auto;
+    border: 0;
+  }
 
   &__inner {
     flex-grow: 1;
     display: flex;
     flex-direction: column;
-    width: 100vw;
 
     @include mw($tb) {
       margin: 0 0.56rem;

@@ -11,45 +11,30 @@ import Jury from "@/components/jury/Jury";
 import clsx from "clsx";
 import style from "./HomePage.module.scss";
 import Program from "@/components/program/Program";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Scrollbar, Mousewheel, FreeMode } from "swiper/modules";
+import SliderHome from "./SliderHome";
+import { useIsTabletDevice } from "@/hooks/IsSmallDevice";
+
+export const pages: any = [
+  <Promo />,
+  <Steps />,
+  <Nominations />,
+  <SubmissionOfWorks />,
+  <Price />,
+  <Requirements />,
+  <Criteria />,
+  <Jury />,
+  <Program />,
+];
 
 const HomePage: FC = () => {
-  const pages: any = [
-    <Promo />,
-    <Steps />,
-    <Nominations />,
-    <SubmissionOfWorks />,
-    <Price />,
-    <Requirements />,
-    <Criteria />,
-    <Jury />,
-    <Program />,
-  ];
-
-  console.log(`.${style.scrollbar}`);
+  const isTablet = useIsTabletDevice();
 
   return (
     <div className={clsx(style.home)}>
-      <Swiper
-        className={clsx(style.home__slider)}
-        modules={[Scrollbar, Mousewheel, FreeMode]}
-        // allowTouchMove={false}
-        mousewheel={{ enabled: true }}
-        // freeMode={{ enabled: true }}
-        scrollbar={{
-          draggable: true,
-          el: `.${style.scrollbar}`,
-          dragClass: `${style.scrollbar__drag}`,
-        }}
-      >
-        {pages.map((slide: any, index: number) => (
-          <SwiperSlide key={index} className={clsx(style.slide)}>
-            {slide}
-          </SwiperSlide>
-        ))}
-      </Swiper>
-      <div className={clsx(style.scrollbar)}></div>
+      {isTablet &&
+        pages.map((item: any, i: number) => <div key={i}>{item}</div>)}
+
+      {!isTablet && <SliderHome />}
     </div>
   );
 };

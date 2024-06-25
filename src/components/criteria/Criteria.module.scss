@@ -7,7 +7,12 @@
   flex-grow: 1;
   box-sizing: border-box;
   border-right: var(--line) solid var(--basic-dark);
-  height: 100%;
+  height: var(--heigh);
+
+  @include mw($tb) {
+    height: auto;
+    border: 0;
+  }
 
   &__inner {
     display: flex;

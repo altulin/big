@@ -3,15 +3,17 @@
 
 .nominations {
   box-sizing: border-box;
-  height: 100%;
+  height: var(--heigh);
   display: flex;
   flex-direction: column;
+
+  @include mw($tb) {
+    height: auto;
+  }
 
   &__inner {
     display: flex;
     flex-grow: 1;
-    // height: calc(100vh - 10.7rem);
-    // width: 100vw;
 
     @media screen and (max-width: 1920px) {
       height: calc(100vh - 8.2rem);
