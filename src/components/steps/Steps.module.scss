@@ -5,11 +5,15 @@
   flex-grow: 1;
   display: flex;
   flex-direction: column;
+  height: 100%;
+  border-right: var(--line) solid var(--basic-dark);
+  box-sizing: border-box;
 
   &__inner {
     flex-grow: 1;
     display: flex;
     flex-direction: column;
+    width: 100vw;
 
     @include mw($tb) {
       margin: 0 0.56rem;

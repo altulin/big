@@ -33,7 +33,7 @@ const Nominations: FC = () => {
           <div className={clsx(style.torus)}></div>
         </div>
 
-        <div className={clsx(style.accordion_wrap)}>
+        <div className={clsx(style.accordion_wrap, "swiper-no-mousewheel")}>
           {isTablet ? (
             <>
               {listResults && <AccordionComonent data={listResults} />}

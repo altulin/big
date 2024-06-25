@@ -9,7 +9,7 @@ import Marquee from "react-fast-marquee";
 
 const Promo: FC = () => {
   return (
-    <section className={clsx(style.promo)}>
+    <section className={clsx(style.promo, "panel")}>
       <div className={clsx(style.promo__inner)}>
         <div className={clsx(style.promo__content)}>
           <AsideBrands />

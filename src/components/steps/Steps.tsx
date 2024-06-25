@@ -10,7 +10,7 @@ const Steps: FC = () => {
   const isTablet = useIsTabletDevice();
 
   return (
-    <section className={clsx(style.steps)}>
+    <section className={clsx(style.steps, "panel")}>
       <div className={clsx(style.steps__inner)}>
         <h2 className={clsx(style.title)}>
           <span className={clsx(style.title__text)}>
