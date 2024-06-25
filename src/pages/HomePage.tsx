@@ -36,7 +36,7 @@ const HomePage: FC = () => {
   const isTablet = useIsTabletDevice();
 
   return (
-    <div className={clsx(style.home)}>
+    <div className={clsx(style.home, "home")}>
       {isTablet &&
         pages.map((item: any, i: number) => <div key={i}>{item}</div>)}
 

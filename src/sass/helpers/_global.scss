@@ -238,6 +238,14 @@ img {
   }
 }
 
+.home {
+  .swiper-wrapper {
+    transition-duration: 1s !important;
+    /*Ease-out for scrolling, big difference when changed*/
+    transition-timing-function: ease-out;
+  }
+}
+
 * {
   // outline: 1px solid #ff6347;
 }

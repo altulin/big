@@ -13,8 +13,8 @@ const SliderHome: FC = () => {
         className={clsx(style.home__slider)}
         modules={[Scrollbar, Mousewheel, FreeMode]}
         // allowTouchMove={false}
-        mousewheel={{ enabled: true }}
-        // freeMode={{ enabled: true }}
+        mousewheel={{ enabled: true, releaseOnEdges: true, sensitivity: 6 }}
+        freeMode={{ enabled: true }}
         scrollbar={{
           draggable: true,
           el: `.${style.scrollbar}`,
