@@ -5,13 +5,15 @@ import Registration from "./Registration";
 import SubmitJob from "./SubmitJob";
 import Logo from "./Logo";
 import { useIsTabletDevice } from "@/hooks/IsSmallDevice";
-import { useAppSelector } from "@/hooks/hook";
+import { useAppDispatch, useAppSelector } from "@/hooks/hook";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
-import { useEffect, useRef, useState } from "react";
+import { MouseEvent, useEffect, useRef, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { links } from "./script";
 import { HashLink } from "react-router-hash-link";
+import { setClick, setMenuControl, setPath } from "@/store/menu/menuSlice";
+import useStickyHead from "@/hooks/stickyHead";
 
 const Header = () => {
   const { isMenu } = useAppSelector((state) => state.menu);
@@ -19,7 +21,8 @@ const Header = () => {
   const itemRef = useRef(null);
   const tl = useRef(gsap.timeline({ paused: true }));
   const q = gsap.utils.selector(itemRef);
-  //  const sticky = useStickyHead();
+  const sticky = useStickyHead();
+  const { path } = useAppSelector((state) => state.menu);
   const location = useLocation();
   const [subMenu, setSubMenu] = useState<
     | {
@@ -29,21 +32,41 @@ const Header = () => {
       }[]
     | undefined
   >(undefined);
+  const dispatch = useAppDispatch();
+
+  const handleClick = (e: MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
+
+    if (isTablet) {
+      dispatch(setMenuControl(false));
+    } else {
+      const href = (e.target as HTMLAnchorElement).href.split("/").pop();
+      dispatch(setClick(true));
+      dispatch(setPath(href));
+    }
+  };
 
   useEffect(() => {
     if (isTablet) return;
 
-    try {
-      const path = location.pathname.split("/")[1];
-      setSubMenu(
-        links.filter((item) => {
-          return item.path === `/${path}`;
-        })[0].submenu,
-      );
-    } catch (error) {
-      setSubMenu(undefined);
-    }
-  }, [isTablet, location.pathname]);
+    links.forEach((item) => {
+      if (item.path === path) {
+        if (item.submenu) {
+          setSubMenu(item.submenu);
+        } else {
+          setSubMenu(undefined);
+        }
+      }
+
+      if (item.submenu) {
+        item.submenu.forEach((subItem) => {
+          if (subItem.path === path) {
+            setSubMenu(item.submenu);
+          }
+        });
+      }
+    });
+  }, [isTablet, location.pathname, path]);
 
   useEffect(() => {
     if (!isTablet) return;
@@ -62,7 +85,9 @@ const Header = () => {
     { scope: itemRef },
   );
   return (
-    <header className={clsx(style.header)}>
+    <header
+      className={clsx(style.header, sticky && style[`header--${sticky}`])}
+    >
       <div ref={itemRef} className={clsx(style.header__inner)}>
         <div className={clsx(style.header__empty)}></div>
         <div className={clsx(style.header__empty_big)}>
@@ -73,11 +98,11 @@ const Header = () => {
                   return (
                     <div key={i} className={clsx(style.link_wrap_submenu)}>
                       <HashLink
+                        onClick={handleClick}
                         className={clsx(
                           style.link,
                           style["link--submenu"],
-                          `${location.pathname}${location.hash}` ===
-                            `${item.path}` && style["link--active"],
+                          path === item.path && style["link--active"],
                         )}
                         to={`${item.path}`}
                       >

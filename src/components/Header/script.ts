@@ -19,7 +19,7 @@ export const links = [
   {
     label: "Программа",
     path: paths.program,
-    submenu: [{ label: "Спикеры", path: paths.speakers }],
+    // submenu: [{ label: "Спикеры", path: paths.speakers }],
   },
   {
     label: "О фестивале",

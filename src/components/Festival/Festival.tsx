@@ -1,10 +1,11 @@
 import clsx from "clsx";
 import style from "./Festival.module.scss";
 import { FC } from "react";
+import { paths } from "@/service/paths";
 
 const Festival: FC = () => {
   return (
-    <section className={clsx(style.festival)}>
+    <section id={paths.festival} className={clsx(style.festival, "panel")}>
       <div className={clsx(style.festival__inner)}>
         <h2 className={clsx(style.title)}>
           <span>Манифест</span>

@@ -6,6 +6,7 @@ import { useLazyGetFaqQuery } from "@/store/rtk/feedback/faq";
 import ScrollBarComponent from "@/hoc/scrollbar/ScrollBarComponent";
 import { useIsTabletDevice } from "@/hooks/IsSmallDevice";
 import styleFaq from "./Faq.module.scss";
+import { paths } from "@/service/paths";
 
 const Faq: FC = () => {
   const [getNominations, result] = useLazyGetFaqQuery();
@@ -27,7 +28,10 @@ const Faq: FC = () => {
   }, [getNominations]);
 
   return (
-    <section className={clsx(style.nominations, styleFaq.faq)}>
+    <section
+      id={paths.faq}
+      className={clsx(style.nominations, styleFaq.faq, "panel")}
+    >
       <div className={clsx(style.nominations__inner)}>
         <div className={clsx(style.content)}>
           <h2 className={clsx(style.nominations__title, styleFaq.title)}>

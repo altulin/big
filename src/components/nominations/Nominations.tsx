@@ -5,6 +5,7 @@ import AccordionComonent from "./Accordion";
 import { useLazyGetFaqQuery } from "@/store/rtk/feedback/faq";
 import ScrollBarComponent from "@/hoc/scrollbar/ScrollBarComponent";
 import { useIsTabletDevice } from "@/hooks/IsSmallDevice";
+import { paths } from "@/service/paths";
 
 const Nominations: FC = () => {
   const [getNominations, result] = useLazyGetFaqQuery();
@@ -26,7 +27,10 @@ const Nominations: FC = () => {
   }, [getNominations]);
 
   return (
-    <section className={clsx(style.nominations)}>
+    <section
+      id={paths.nominations}
+      className={clsx(style.nominations, "panel")}
+    >
       <div className={clsx(style.nominations__inner)}>
         <div className={clsx(style.content)}>
           <h2 className={clsx(style.nominations__title)}>Номинации</h2>

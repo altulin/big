@@ -16,9 +16,6 @@ export const canvasCursor = (id: string) => {
       : parentBlock.offsetHeight - 7 * rem;
   const canvasWidth = parentBlock.offsetWidth - 2 * rem;
 
-  console.log(id, canvasHeight);
-  console.log(id, canvasWidth);
-
   const img = new Image();
   img.src = new URL("./assets/canvas_logo.svg", import.meta.url).href;
 

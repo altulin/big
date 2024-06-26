@@ -3,6 +3,7 @@ import style from "./Requirements.module.scss";
 import { FC, useEffect, useState } from "react";
 import { useIsTabletDevice } from "@/hooks/IsSmallDevice";
 import { requirements } from "./script";
+import { paths } from "@/service/paths";
 
 const Requirements: FC = () => {
   const isTablet = useIsTabletDevice();
@@ -17,7 +18,10 @@ const Requirements: FC = () => {
   }, [isTablet]);
 
   return (
-    <section className={clsx(style.requirements)}>
+    <section
+      id={paths.requirements}
+      className={clsx(style.requirements, "panel")}
+    >
       <div className={clsx(style.requirements__inner)}>
         <div className={clsx(style.presents)}>
           <h2 className={clsx(style.title)}>

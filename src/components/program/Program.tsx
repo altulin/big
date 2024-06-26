@@ -6,13 +6,17 @@ import SvgPlanet from "@/images/program/program.svg?react";
 import Content from "./Content";
 import { useIsTabletDevice } from "@/hooks/IsSmallDevice";
 import ContentMob from "./ContentMob";
+import { paths } from "@/service/paths";
 
 const Program: FC = () => {
   const refContent = useRef<HTMLDivElement | null>(null);
   const isTablet = useIsTabletDevice();
 
   return (
-    <section className={clsx(style.program, "program")}>
+    <section
+      id={paths.program}
+      className={clsx(style.program, "program", "panel")}
+    >
       <div ref={refContent} className={clsx(style.program__inner)}>
         <div className={clsx(style.program__main)}>
           <h2 className={clsx(style.title)}>

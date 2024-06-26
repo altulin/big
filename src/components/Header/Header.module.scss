@@ -2,6 +2,23 @@
 @import "@/sass/helpers/mixins.scss";
 
 .header {
+  @include mw($tb) {
+    position: fixed;
+    width: 100%;
+    left: 0;
+    top: 0;
+    z-index: 10;
+    transition: 0.3s;
+    background-color: var(--basic-light);
+
+    &--down {
+      transform: translateY(-100%);
+    }
+
+    &--up {
+    }
+  }
+
   &__inner {
     display: grid;
     grid-template-columns: 16% 60% 24%;

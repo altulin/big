@@ -4,11 +4,12 @@ import { FC } from "react";
 import ContentDesk from "./ContentDesk";
 import { useIsTabletDevice } from "@/hooks/IsSmallDevice";
 import ContentMob from "./ContentMob";
+import { paths } from "@/service/paths";
 
 const Criteria: FC = () => {
   const isTablet = useIsTabletDevice();
   return (
-    <section className={clsx(style.criteria)}>
+    <section id={paths.criteria} className={clsx(style.criteria, "panel")}>
       <div className={clsx(style.criteria__inner)}>
         <div className={clsx(style.present)}>
           <h2 className={clsx(style.title)}>

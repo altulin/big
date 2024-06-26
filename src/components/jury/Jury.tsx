@@ -3,10 +3,11 @@ import style from "./Jury.module.scss";
 import { FC } from "react";
 import Marquee from "react-fast-marquee";
 import { jury } from "./script";
+import { paths } from "@/service/paths";
 
 const Jury: FC = () => {
   return (
-    <section className={clsx(style.jury)}>
+    <section id={paths.jury} className={clsx(style.jury, "panel")}>
       <div className={clsx(style.jury__inner)}>
         <div className={clsx(style.jury__head)}>
           <h2 className={clsx(style.title)}>Жюри</h2>

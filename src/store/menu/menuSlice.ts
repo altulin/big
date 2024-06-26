@@ -5,6 +5,8 @@ const menuSlice = createSlice({
 
   initialState: {
     isMenu: false,
+    path: null,
+    isClick: false,
   },
 
   reducers: {
@@ -16,8 +18,16 @@ const menuSlice = createSlice({
 
       state.isMenu = action.payload;
     },
+
+    setPath(state, action) {
+      state.path = action.payload;
+    },
+
+    setClick(state, action) {
+      state.isClick = action.payload;
+    },
   },
 });
 
-export const { setMenuControl } = menuSlice.actions;
+export const { setMenuControl, setPath, setClick } = menuSlice.actions;
 export default menuSlice.reducer;

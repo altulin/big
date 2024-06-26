@@ -6,6 +6,7 @@ import { useIsTabletDevice } from "@/hooks/IsSmallDevice";
 import IconMain from "@/images/header/logo.svg?react";
 import { canvasCursor } from "@/service/canvas";
 import { law, soc } from "./data";
+import { paths } from "@/service/paths";
 
 const Contacts: FC = () => {
   const isTablet = useIsTabletDevice();
@@ -16,7 +17,10 @@ const Contacts: FC = () => {
   }, [isTablet]);
 
   return (
-    <section className={clsx(style.contacts, "contacts")}>
+    <section
+      id={paths.contacts}
+      className={clsx(style.contacts, "contacts", "panel")}
+    >
       <div className={clsx(style.contacts__inner)}>
         <div className={clsx(style.info)}>
           <h2 className={clsx(style.title)}>

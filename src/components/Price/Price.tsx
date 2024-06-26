@@ -2,6 +2,7 @@ import clsx from "clsx";
 import style from "./Price.module.scss";
 import { FC } from "react";
 import { dates, frmtDt } from "../steps/script";
+import { paths } from "@/service/paths";
 
 const Price: FC = () => {
   const head = [
@@ -26,7 +27,7 @@ const Price: FC = () => {
     ["5 подач", "30 000 ₽", "36 000 ₽", "44 000 ₽"],
   ];
   return (
-    <section className={clsx(style.price)}>
+    <section id={paths.price} className={clsx(style.price, "panel")}>
       <div className={clsx(style.price__wrapper)}>
         <div className={clsx(style.price__inner)}>
           <h2 className={clsx(style.title)}>
