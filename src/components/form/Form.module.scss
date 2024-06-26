@@ -1,12 +1,27 @@
+@import "@/sass/helpers/variables";
+@import "@/sass/helpers/mixins.scss";
+
 .container {
   & + .container {
     margin-top: 2rem;
+  }
+  &--radio {
+    & + .container--radio {
+      margin-top: 0;
+    }
   }
 }
 
 .label {
   border: var(--line) solid var(--basic-dark);
   display: flex;
+
+  &--radio {
+    display: flex;
+    column-gap: 0.5rem;
+    align-items: center;
+    border: 0;
+  }
 
   &__text {
     padding-left: 1rem;
@@ -34,6 +49,10 @@
 
   &::placeholder {
     color: #131313;
+  }
+
+  &--radio {
+    @include vh();
   }
 }
 

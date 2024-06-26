@@ -15,6 +15,7 @@ const PasswordField: FC<IPasswordField> = ({ name, label, placeholder }) => {
     <TextInput
       type={isTypeText ? "text" : "password"}
       name={name}
+      placeholder={placeholder}
       label={label}
       placeholder={placeholder}
     >

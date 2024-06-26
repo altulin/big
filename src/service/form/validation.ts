@@ -6,8 +6,8 @@ import {
   file,
   nameMax,
   nameMin,
-  passwordMax,
-  passwordMin,
+  // passwordMax,
+  // passwordMin,
   required,
   requiredCeck,
   valid,
@@ -28,6 +28,13 @@ export const object: any = {
     .min(2, nameMin)
     .max(50, nameMax),
 
+  surname: yup
+    .string()
+    .required(required)
+    .matches(/[^-]$/, valid)
+    .min(2, nameMin)
+    .max(50, nameMax),
+
   phone: yup
     .string()
     .required(required)
@@ -39,11 +46,7 @@ export const object: any = {
     .matches(/@[^.]*\./, valid)
     .email(valid),
 
-  password: yup
-    .string()
-    .required(required)
-    .min(8, passwordMin)
-    .max(14, passwordMax),
+  password: yup.string().required(required),
 
   confirm_password: yup
     .string()
@@ -53,6 +56,10 @@ export const object: any = {
   rule: yup.boolean().oneOf([true], requiredCeck),
 
   select: yup.string().required(required),
+  login: yup.string().required(required),
+
+  text: yup.mixed().required(required),
+  card: yup.mixed().required(required),
 
   file: yup.mixed().required(file),
   // .test("fileFormat", "Only PDF files are allowed", (value) => {
