@@ -7,6 +7,7 @@ interface IInitialState {
 }
 
 export const initialState: IInitialState = {
-  modalState: null,
+  // modalState: null,
   // modalState: { error: { text: "Ошибка" } },
+  modalState: { auth: { step: 1 } },
 };

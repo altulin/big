@@ -1,0 +1,49 @@
+.container {
+  & + .container {
+    margin-top: 2rem;
+  }
+}
+
+.label {
+  border: var(--line) solid var(--basic-dark);
+  display: flex;
+
+  &__text {
+    padding-left: 1rem;
+    padding-right: 1rem;
+    font-weight: 400;
+    font-size: 1rem;
+    line-height: 130%;
+    color: #141414;
+    border-right: var(--line) solid var(--basic-dark);
+    width: 8rem;
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+  }
+}
+
+.input {
+  font-weight: 400;
+  font-size: 1.12rem;
+  line-height: 140%;
+  border: 0;
+  color: var(--basic-dark);
+  padding: 0.875rem 1rem;
+  width: 100%;
+
+  &::placeholder {
+    color: #131313;
+  }
+}
+
+.button {
+  width: 3.5rem;
+  aspect-ratio: 1;
+
+  background-color: transparent;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+}

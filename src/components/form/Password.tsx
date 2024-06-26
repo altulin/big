@@ -5,9 +5,10 @@ import ButtonEye from "./ButtonEye";
 interface IPasswordField {
   name: string;
   label?: string;
+  placeholder?: string;
 }
 
-const PasswordField: FC<IPasswordField> = ({ name, label }) => {
+const PasswordField: FC<IPasswordField> = ({ name, label, placeholder }) => {
   const [isTypeText, setType] = useState(false);
 
   return (
@@ -15,6 +16,7 @@ const PasswordField: FC<IPasswordField> = ({ name, label }) => {
       type={isTypeText ? "text" : "password"}
       name={name}
       label={label}
+      placeholder={placeholder}
     >
       <ButtonEye isTypeText={isTypeText} setType={setType} />
     </TextInput>

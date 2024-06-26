@@ -1,7 +1,7 @@
 import style from "./Modal.module.scss";
 import clsx from "clsx";
 import ModalPortal from "../ModalPortal";
-import Icon from "@/images/svg/menuClose.svg?react";
+import Icon from "@/images/svg/close.svg?react";
 import { clearAllStep } from "@/store/modal/modalSlice";
 import { useClickAway } from "@uidotdev/usehooks";
 import { FC, ReactNode, RefObject, useCallback, useEffect } from "react";
@@ -9,9 +9,10 @@ import { useAppDispatch } from "@/hooks/hook";
 
 interface IModal {
   children: ReactNode;
+  title?: string;
 }
 
-const Modal: FC<IModal> = ({ children }) => {
+const Modal: FC<IModal> = ({ children, title }) => {
   const dispatch = useAppDispatch();
 
   const clearModal = useCallback(
@@ -46,12 +47,16 @@ const Modal: FC<IModal> = ({ children }) => {
           ref={ref as RefObject<HTMLDivElement>}
           className={clsx(style.modal__inner)}
         >
-          <button
-            className={clsx(style.modal__close)}
-            onClick={() => dispatch(clearAllStep())}
-          >
-            <Icon />
-          </button>
+          <div className={clsx(style.modal__head)}>
+            <h2 className={clsx(style.modal__title)}>{title}</h2>
+            <button
+              className={clsx(style.modal__close)}
+              onClick={() => dispatch(clearAllStep())}
+            >
+              <Icon />
+            </button>
+          </div>
+
           {children}
         </div>
       </div>

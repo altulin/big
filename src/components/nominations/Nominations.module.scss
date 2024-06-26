@@ -6,9 +6,11 @@
   height: var(--heigh);
   display: flex;
   flex-direction: column;
+  border-right: var(--line) solid var(--basic-dark);
 
   @include mw($tb) {
     height: auto;
+    border-right: 0;
   }
 
   &__inner {

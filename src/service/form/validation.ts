@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable no-useless-escape */
 import * as yup from "yup";
 import {
@@ -19,7 +20,7 @@ import {
 //   valid,
 // } from "../../form/input/js/errText";
 
-export const validationSchema = yup.object().shape({
+export const object: any = {
   name: yup
     .string()
     .required(required)
@@ -64,4 +65,16 @@ export const validationSchema = yup.object().shape({
   // }),
 
   // rule: yup.boolean().oneOf([true], requiredCeck),
-});
+};
+
+export const getValidationSchema = (arr: string[]) => {
+  const schema: { [key: string]: yup.ObjectSchema<any> } = {};
+
+  arr.forEach((el: string) => {
+    schema[el] = object[el];
+  });
+
+  return yup.object().shape(schema);
+};
+
+export const validationSchema = yup.object().shape(object);
