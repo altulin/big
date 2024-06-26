@@ -1,0 +1,56 @@
+@import "@/sass/helpers/variables";
+@import "@/sass/helpers/mixins.scss";
+
+.container {
+  & + .container {
+    margin-top: 1.5rem;
+  }
+  &--radio {
+    & + .container--radio {
+      margin-top: 0;
+    }
+  }
+}
+
+.label {
+  width: 100%;
+  display: flex;
+  border: var(--line) solid var(--basic-dark);
+
+  &--radio {
+    display: flex;
+    column-gap: 0.5rem;
+    align-items: center;
+    border: 0;
+  }
+
+  &__text {
+    font-weight: 400;
+    font-size: 1rem;
+    line-height: 130%;
+    color: #141414;
+    width: 8rem;
+    border-right: var(--line) solid var(--basic-dark);
+    padding: 1rem;
+    flex-shrink: 0;
+  }
+}
+
+.input {
+  width: 100%;
+  border: 0;
+  font-family: var(--font-family);
+  font-weight: 400;
+  font-size: 1.12rem;
+  line-height: 140%;
+  color: var(--basic-dark);
+  padding: 0.875rem 1rem;
+
+  &::placeholder {
+    color: #131313;
+  }
+
+  &--radio {
+    @include vh();
+  }
+}

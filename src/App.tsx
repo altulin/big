@@ -8,7 +8,9 @@ import Seo from "./hoc/Seo";
 import { HelmetProvider } from "react-helmet-async";
 
 import { paths } from "./service/paths";
-import HomePage from "./pages/HomePage";
+import HomePage from "./pages/home/HomePage";
+import ServicePage from "./pages/service/ServicePage";
+import Registration from "@/components/registration/Registration";
 
 const App: FC = () => {
   const title = import.meta.env.VITE_APP_TITLE;
@@ -38,6 +40,12 @@ const App: FC = () => {
 
           <Route index element={<HomePage />} />
           <Route path="*" element={<HomePage />} />
+          <Route
+            path="/registration"
+            element={
+              <ServicePage children={<Registration />} title="Регистрация" />
+            }
+          />
 
           <Route
             path={paths.private}

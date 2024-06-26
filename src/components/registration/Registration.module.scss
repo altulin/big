@@ -1,0 +1,41 @@
+@import "@/sass/helpers/variables";
+@import "@/sass/helpers/mixins.scss";
+
+.registration {
+  flex-grow: 1;
+}
+
+.form {
+  padding-top: 4rem;
+  padding-right: 2rem;
+  padding-left: 2rem;
+}
+
+.radio {
+  display: flex;
+  column-gap: 4rem;
+  margin-bottom: 4rem;
+
+  &__text {
+    font-weight: 400;
+    font-size: 1.12rem;
+    line-height: 140%;
+    color: #141414;
+  }
+  &__icon {
+    width: 1rem;
+    height: 1rem;
+    border-radius: 50%;
+    border: var(--line) solid var(--basic-dark);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &__active {
+    width: 0.625rem;
+    height: 0.625rem;
+    background-color: var(--basic-dark);
+    border-radius: 50%;
+  }
+}

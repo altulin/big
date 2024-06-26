@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable no-useless-escape */
 import * as yup from "yup";
 import {
@@ -19,8 +20,15 @@ import {
 //   valid,
 // } from "../../form/input/js/errText";
 
-export const validationSchema = yup.object().shape({
+const object: any = {
   name: yup
+    .string()
+    .required(required)
+    .matches(/[^-]$/, valid)
+    .min(2, nameMin)
+    .max(50, nameMax),
+
+  surname: yup
     .string()
     .required(required)
     .matches(/[^-]$/, valid)
@@ -38,11 +46,7 @@ export const validationSchema = yup.object().shape({
     .matches(/@[^.]*\./, valid)
     .email(valid),
 
-  password: yup
-    .string()
-    .required(required)
-    .min(8, passwordMin)
-    .max(14, passwordMax),
+  password: yup.string().required(required),
 
   confirm_password: yup
     .string()
@@ -52,6 +56,10 @@ export const validationSchema = yup.object().shape({
   rule: yup.boolean().oneOf([true], requiredCeck),
 
   select: yup.string().required(required),
+  login: yup.string().required(required),
+
+  text: yup.mixed().required(required),
+  card: yup.mixed().required(required),
 
   file: yup.mixed().required(file),
   // .test("fileFormat", "Only PDF files are allowed", (value) => {
@@ -64,4 +72,16 @@ export const validationSchema = yup.object().shape({
   // }),
 
   // rule: yup.boolean().oneOf([true], requiredCeck),
-});
+};
+
+export const getValidationSchema = (arr: string[]) => {
+  const schema = {};
+
+  arr.forEach((el: string) => {
+    schema[el] = object[el];
+  });
+
+  return yup.object().shape(schema);
+};
+
+export const validationSchema = yup.object().shape(object);

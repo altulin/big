@@ -35,7 +35,7 @@ const Links: FC = () => {
                 style.link,
                 path === item.path && style["link--active"],
               )}
-              to={`#${item.path}`}
+              to={isTablet ? `#${item.path}` : `${item.path}`}
               onClick={handleClick}
             >
               {item.label}
