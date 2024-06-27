@@ -6,10 +6,11 @@ import AsideBrands from "./AsideBrands";
 import Slider from "./Slider";
 import Controls from "./Controls";
 import Marquee from "react-fast-marquee";
+import { paths } from "@/service/paths";
 
 const Promo: FC = () => {
   return (
-    <section className={clsx(style.promo, "panel")}>
+    <section id={paths.promo} className={clsx(style.promo, "panel")}>
       <div className={clsx(style.promo__inner)}>
         <div className={clsx(style.promo__content)}>
           <AsideBrands />

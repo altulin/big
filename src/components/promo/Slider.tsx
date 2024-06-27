@@ -29,7 +29,6 @@ const Slider: FC = () => {
         prevEl: `.${style[`button_slider--prev`]}`,
       }}
       speed={1000}
-      loop={true}
       allowTouchMove={false}
     >
       {slides.map((slide, index) => (

@@ -2,7 +2,6 @@ import style from "./Header.module.scss";
 import clsx from "clsx";
 import Nav from "./Nav";
 import Registration from "./Registration";
-import SubmitJob from "./SubmitJob";
 import Logo from "./Logo";
 import { useIsTabletDevice } from "@/hooks/IsSmallDevice";
 import { useAppDispatch, useAppSelector } from "@/hooks/hook";
@@ -14,6 +13,9 @@ import { links } from "./script";
 import { HashLink } from "react-router-hash-link";
 import { setClick, setMenuControl, setPath } from "@/store/menu/menuSlice";
 import useStickyHead from "@/hooks/stickyHead";
+import Submit from "./Submit";
+import { paths } from "@/service/paths";
+import LogoAnime from "./LogoAnime";
 
 const Header = () => {
   const { isMenu } = useAppSelector((state) => state.menu);
@@ -23,6 +25,7 @@ const Header = () => {
   const q = gsap.utils.selector(itemRef);
   const sticky = useStickyHead();
   const { path } = useAppSelector((state) => state.menu);
+
   const location = useLocation();
   const [subMenu, setSubMenu] = useState<
     | {
@@ -114,12 +117,12 @@ const Header = () => {
             </>
           )}
         </div>
-        <Logo parent={"header"} />
+        {path === paths.promo ? <Logo parent={"header"} /> : <LogoAnime />}
 
         <Nav />
 
         {!isTablet && <Registration />}
-        {!isTablet && <SubmitJob />}
+        {!isTablet && <Submit />}
       </div>
     </header>
   );

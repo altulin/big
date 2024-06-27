@@ -39,6 +39,10 @@ html {
   flex-direction: column;
 
   @include mw($tb) {
+    padding-top: 7.8rem;
+  }
+
+  @include mw($ph) {
     padding-top: 7rem;
   }
 }

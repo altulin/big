@@ -4,6 +4,7 @@ import ModalError from "./error/ModalError";
 import useGetCurrentModal from "@/hooks/getCurrentModal";
 import { FC } from "react";
 import { IModalState } from "@/store/modal/initialState";
+import ModalJury1 from "./jury/ModalJury";
 
 interface IModalElements {
   modalState: IModalState;
@@ -16,6 +17,7 @@ const ModalElements: FC<IModalElements> = ({ modalState }) => {
     <>
       {modal === "auth-1" && <ModalAuth1 />};
       {modal === "error" && <ModalError />}
+      {modal === "jury-1" && <ModalJury1 />}
     </>
   );
 };

@@ -5,8 +5,9 @@ import { FC, useEffect } from "react";
 import { useIsTabletDevice } from "@/hooks/IsSmallDevice";
 import IconMain from "@/images/header/logo.svg?react";
 import { canvasCursor } from "@/service/canvas";
-import { law, soc } from "./data";
+import { law } from "./data";
 import { paths } from "@/service/paths";
+import Soc from "./Soc";
 
 const Contacts: FC = () => {
   const isTablet = useIsTabletDevice();
@@ -41,18 +42,7 @@ const Contacts: FC = () => {
                 </a>
               </div>
 
-              <ul className={clsx(style.soc)}>
-                {soc.map((item, i) => (
-                  <a
-                    className={clsx(style.soc__link)}
-                    href={item.href}
-                    aria-label="Соц. сети"
-                    key={i}
-                  >
-                    {<item.icon />}
-                  </a>
-                ))}
-              </ul>
+              <Soc className={clsx(style.footer__soc)} />
             </div>
 
             <div className={clsx(style.law)}>

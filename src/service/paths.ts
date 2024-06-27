@@ -1,5 +1,7 @@
 export const paths = {
   login: "/login",
+  promo: "promo",
+
   reg_event: "/",
   submit_job: "/",
   registration: "registration",

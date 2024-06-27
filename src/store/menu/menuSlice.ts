@@ -1,3 +1,4 @@
+import { paths } from "@/service/paths";
 import { createSlice } from "@reduxjs/toolkit";
 
 const menuSlice = createSlice({
@@ -5,7 +6,7 @@ const menuSlice = createSlice({
 
   initialState: {
     isMenu: false,
-    path: null,
+    path: paths.promo,
     isClick: false,
   },
 

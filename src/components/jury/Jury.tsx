@@ -4,8 +4,19 @@ import { FC } from "react";
 import Marquee from "react-fast-marquee";
 import { jury } from "./script";
 import { paths } from "@/service/paths";
+import { useAppDispatch, useAppSelector } from "@/hooks/hook";
+import useGetCurrentModal from "@/hooks/getCurrentModal";
+import { stepTo } from "@/store/modal/modalSlice";
 
 const Jury: FC = () => {
+  const { modalState } = useAppSelector((state) => state.modal);
+  const modal = useGetCurrentModal(modalState);
+  const dispatch = useAppDispatch();
+
+  const handleClick = () => {
+    dispatch(stepTo({ jury: { step: 1 } }));
+  };
+
   return (
     <section id={paths.jury} className={clsx(style.jury, "panel")}>
       <div className={clsx(style.jury__inner)}>
@@ -17,14 +28,19 @@ const Jury: FC = () => {
           <div className={clsx(style.marquee__inner, "scroll")}>
             {jury.map((item, index) => (
               <Marquee
+                play={modal !== "jury-1"}
                 key={index}
+                pauseOnHover={true}
                 autoFill={true}
                 // gradient={false}
                 speed={10}
                 direction={index % 2 === 0 ? "left" : "right"}
                 className={clsx(style.marquee__row)}
               >
-                <div className={clsx(style.marquee__item)}>
+                <button
+                  className={clsx(style.marquee__item)}
+                  onClick={handleClick}
+                >
                   <img
                     className={clsx(style.marquee__avatar)}
                     src={item.avatar}
@@ -36,7 +52,7 @@ const Jury: FC = () => {
                     </span>
                     <span className={clsx(style.marquee__job)}>{item.job}</span>
                   </p>
-                </div>
+                </button>
               </Marquee>
             ))}
           </div>
