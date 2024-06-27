@@ -6,6 +6,8 @@ import { IProgram } from "./script";
 
 import { useIsTabletDevice } from "@/hooks/IsSmallDevice";
 import ProgramBtn from "./ProgramBtn";
+import { Link } from "react-router-dom";
+import { paths } from "@/service/paths";
 
 const ContentItem: FC<{ item: IProgram; i: number }> = ({ item, i }) => {
   const { date, title, time, speakers, description } = item;
@@ -49,9 +51,9 @@ const ContentItem: FC<{ item: IProgram; i: number }> = ({ item, i }) => {
             <p className={clsx(style.description__text)}>{description}</p>
           </div>
 
-          <a href="#" className={clsx(style.registration)}>
-            Регистрация{" "}
-          </a>
+          <Link to={paths.registration} className={clsx(style.registration)}>
+            Регистрация
+          </Link>
         </div>
       </div>
     </div>

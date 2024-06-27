@@ -17,11 +17,12 @@ const Button: FC<IButton> = ({
   label,
   disabled = false,
   className,
+  modifier,
 }) => {
   return (
     <button
       onClick={onClick}
-      className={clsx(style.button, className)}
+      className={clsx(style.button, style[`button--${modifier}`], className)}
       type={type}
       disabled={disabled}
     >

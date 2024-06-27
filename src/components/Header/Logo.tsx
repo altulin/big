@@ -10,7 +10,7 @@ const Logo: FC<{ parent: string }> = ({ parent }) => {
     <div className={clsx(style.logo)}>
       <HashLink
         className={clsx(style.logo__link, style[`logo--${parent}`])}
-        to={"/#top"}
+        to={"/"}
         aria-label="logo"
         smooth
       >

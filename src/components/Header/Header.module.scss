@@ -146,6 +146,8 @@
   color: var(--basic-dark);
   flex-grow: 1;
   position: relative;
+  cursor: pointer;
+  background-color: transparent;
 
   @include mw($tb) {
     justify-content: center;

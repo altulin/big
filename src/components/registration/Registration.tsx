@@ -8,6 +8,7 @@ import { onNameInput } from "@/service/form/masks/name";
 import { onPhoneInput } from "@/service/form/masks/phone";
 import Radio from "./Radio";
 import PasswordField from "../form/Password";
+import Checkbox from "../form/Checkbox";
 
 const ServicePage: FC = () => {
   return (
@@ -17,24 +18,27 @@ const ServicePage: FC = () => {
           initialValues={{
             status: "individual",
             mail: "",
-
-            name: "",
-            surname: "",
-            phone: "",
+            password: "",
             rule: true,
+
+            // name: "",
+            // surname: "",
+            // phone: "",
+            // rule: true,
           }}
           validationSchema={getValidationSchema([
+            "mail",
+            "password",
+            "confirm_password",
             "name",
-            "surname",
-            "phone",
-
-            "rule",
           ])}
           onSubmit={async (values, { resetForm }) => {
             resetForm();
           }}
         >
           {(formik) => {
+            const isIndividual = formik.values.status === "individual";
+
             return (
               <>
                 <Form className={clsx(style.form)}>
@@ -64,7 +68,28 @@ const ServicePage: FC = () => {
                     placeholder="Введите пароль"
                   />
 
+                  <PasswordField
+                    name="confirm_password"
+                    label="Пароль"
+                    placeholder="Повторите пароль"
+                  />
+
                   <TextInput
+                    name="name"
+                    label="Ф.И."
+                    placeholder="Укажите Имя и Фамилию"
+                    onInput={onNameInput}
+                  />
+
+                  {isIndividual && (
+                    <TextInput
+                      name="company_name"
+                      label="Компания"
+                      placeholder="Название компании, в которой работаете"
+                    />
+                  )}
+
+                  {/* <TextInput
                     name="mail"
                     label="E-mail"
                     placeholder="Введите имя"
@@ -75,33 +100,17 @@ const ServicePage: FC = () => {
                     label="Фамилия"
                     placeholder="Введите фамилию"
                     onInput={onNameInput}
-                  />
+                  /> */}
 
-                  <TextInput
+                  {/* <TextInput
                     type="tel"
                     name="phone"
                     label="Телефон"
                     placeholder="+7(999)999-99-99"
                     onInput={onPhoneInput}
-                  />
+                  /> */}
 
-                  <TextInput name="rule" type="checkbox" modifier="checkbox">
-                    <div className={clsx(style.checkbox)}>
-                      <span className={clsx(style.checkbox__icon)}>
-                        {/* {formik.values.rule && <IconRule />} */}
-                      </span>
-                      <span className={clsx(style.checkbox__text)}>
-                        Согласие на обработку
-                        <a
-                          className={clsx(style.checkbox__link)}
-                          href="#"
-                          target="_blank"
-                        >
-                          персональных данных
-                        </a>
-                      </span>
-                    </div>
-                  </TextInput>
+                  <Checkbox isChecked={formik.values.rule} />
 
                   <button
                     className={clsx(style.modal__btn_submit)}
@@ -111,13 +120,6 @@ const ServicePage: FC = () => {
                     Регистрация
                   </button>
                 </Form>
-
-                <p className={clsx(style.reg__service)}>
-                  Уже есть аккаунт?
-                  {/* <button className={clsx(style.reg__auth)} onClick={handleExit}>
-                  Войти
-                </button> */}
-                </p>
               </>
             );
           }}

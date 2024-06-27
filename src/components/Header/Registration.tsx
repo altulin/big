@@ -2,12 +2,13 @@ import { paths } from "@/service/paths";
 import clsx from "clsx";
 import { FC } from "react";
 import style from "./Header.module.scss";
+import { Link } from "react-router-dom";
 
 const Registration: FC = () => {
   return (
-    <a className={clsx(style.event)} href={paths.reg_event}>
+    <Link className={clsx(style.event)} to={paths.registration}>
       Регистрация на мероприятие
-    </a>
+    </Link>
   );
 };
 export default Registration;

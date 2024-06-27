@@ -8,6 +8,7 @@
   --color-green: #13ff00;
   --color-green-hover: #0bdb00;
   --heigh: calc(100vh - 12.25rem);
+  --error: #ee00ff;
 
   @include mw($ldt) {
     --heigh: calc(100vh - 9.7rem);

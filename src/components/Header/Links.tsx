@@ -6,11 +6,14 @@ import { setClick, setMenuControl, setPath } from "@/store/menu/menuSlice";
 import { useAppDispatch, useAppSelector } from "@/hooks/hook";
 import { HashLink } from "react-router-hash-link";
 import { useIsTabletDevice } from "@/hooks/IsSmallDevice";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const Links: FC = () => {
   const dispatch = useAppDispatch();
   const isTablet = useIsTabletDevice();
   const { path } = useAppSelector((state) => state.menu);
+  const { pathname } = useLocation();
+  const navigate = useNavigate();
 
   const handleClick = (e: MouseEvent<HTMLAnchorElement>) => {
     if (isTablet) {
@@ -20,6 +23,10 @@ const Links: FC = () => {
       const href = (e.target as HTMLAnchorElement).href.split("/").pop();
       dispatch(setClick(true));
       dispatch(setPath(href));
+
+      if (pathname !== "/") {
+        navigate("/");
+      }
     }
   };
 

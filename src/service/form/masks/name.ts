@@ -1,6 +1,6 @@
 /* eslint-disable no-useless-escape */
 const isLetter = (value: string) => {
-  return /^[А-Яа-яЁёa-zA-Z\-]+$/g.test(value);
+  return /^[А-Яа-яЁёa-zA-Z\- ]+$/g.test(value);
 };
 
 export const onNameInput = (e: React.ChangeEvent<HTMLInputElement>) => {

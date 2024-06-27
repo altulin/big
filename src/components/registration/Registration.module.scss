@@ -16,6 +16,14 @@
   column-gap: 4rem;
   margin-bottom: 4rem;
 
+  &__item {
+    &:hover {
+      .radio__icon {
+        border-color: var(--color-green-hover);
+      }
+    }
+  }
+
   &__text {
     font-weight: 400;
     font-size: 1.12rem;

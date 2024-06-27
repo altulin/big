@@ -17,7 +17,7 @@ const PasswordField: FC<IPasswordField> = ({ name, label, placeholder }) => {
       name={name}
       placeholder={placeholder}
       label={label}
-      placeholder={placeholder}
+      modifier="password"
     >
       <ButtonEye isTypeText={isTypeText} setType={setType} />
     </TextInput>

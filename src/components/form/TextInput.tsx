@@ -22,11 +22,14 @@ interface IMyTextInput {
   error?: string;
   touched?: boolean;
   multiple?: boolean;
+  className?: string;
 }
 
 const TextInput: FC<IMyTextInput> = ({ children, ...props }) => {
   const [field, meta] = useField(props);
   const id = useId();
+
+  console.log(meta);
 
   return (
     <Container {...props} meta={meta} id={props.id || id}>
@@ -34,7 +37,12 @@ const TextInput: FC<IMyTextInput> = ({ children, ...props }) => {
         <Field
           {...field}
           {...props}
-          className={clsx(style.input, style[`input--${props.modifier}`] || "")}
+          className={clsx(
+            props.className,
+            style.input,
+            style[`input--${props.modifier}`] || "",
+            meta.touched && meta.error && style["input--error"],
+          )}
           id={props.id || id}
         />
         {children}

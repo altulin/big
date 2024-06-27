@@ -24,24 +24,9 @@ const App: FC = () => {
       )}
       <Routes>
         <Route path="/" element={<Template />}>
-          {/* <Route path={paths.steps} element={<Steps />} />
-              <Route path={paths.nominations} element={<Nominations />} />
-              <Route
-                path={paths.submission_of_works}
-                element={<SubmissionOfWorks />}
-              />
-              <Route path={paths.price} element={<Price />} />
-              <Route path={paths.requirements} element={<Requirements />} />
-              <Route path={paths.criteria} element={<Criteria />} />
-              <Route path={paths.jury} element={<Jury />} />
-              <Route path={paths.program} element={<Program />} />
-              <Route path={paths.speakers} element={<Speakers />} />
-              <Route path="*" element={<Promo />} /> */}
-
           <Route index element={<HomePage />} />
-          <Route path="*" element={<HomePage />} />
           <Route
-            path="/registration"
+            path={paths.registration}
             element={
               <ServicePage children={<Registration />} title="Регистрация" />
             }
@@ -51,6 +36,8 @@ const App: FC = () => {
             path={paths.private}
             element={<RequireAuth>{/* <Private /> */ <h1>лк</h1>}</RequireAuth>}
           />
+
+          <Route path="*" element={<HomePage />} />
         </Route>
       </Routes>
       <ModalManager />

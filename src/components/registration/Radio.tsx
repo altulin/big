@@ -13,7 +13,13 @@ interface IRadio {
 
 const Radio: FC<IRadio> = ({ label, value, formik }) => {
   return (
-    <TextInput name="status" type="radio" modifier="radio" value={value}>
+    <TextInput
+      className={clsx(style.radio__item)}
+      name="status"
+      type="radio"
+      modifier="radio"
+      value={value}
+    >
       <>
         <div className={clsx(style.radio__icon)}>
           {formik && formik.values.status === value && (

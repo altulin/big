@@ -1,3 +1,6 @@
+@import "@/sass/helpers/variables";
+@import "@/sass/helpers/mixins.scss";
+
 .modal {
   position: fixed;
   width: 100%;
@@ -5,14 +8,27 @@
   left: 0;
   top: 0;
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   background-color: rgba(#141414, 0.5);
+  overflow: auto;
+  padding: 2rem 0.56rem;
+
+  @include mw($tb) {
+  }
 
   &__inner {
     min-width: 36rem;
     background-color: var(--basic-light);
     border: var(--line) solid var(--basic-dark);
+    margin-top: auto;
+    margin-bottom: auto;
+
+    @include mw($tb) {
+      min-width: auto;
+      width: 100%;
+    }
   }
 
   &__head {
@@ -49,6 +65,8 @@
 
 .form {
   padding: 5rem;
+  display: flex;
+  flex-direction: column;
 }
 
 .button_service {
@@ -57,15 +75,64 @@
   line-height: 120%;
   color: #141414;
   position: relative;
+  background-color: transparent;
+
+  &--right {
+    align-self: flex-end;
+  }
+
+  &--top {
+    margin-top: 1rem;
+  }
 
   &:after {
     position: absolute;
     content: "";
     width: 100%;
     height: 0.125rem;
-    background-color: var(--);
+    background-color: var(--basic-dark);
     left: 0;
     bottom: 0;
     transition: 0.3s;
   }
+}
+
+.button {
+  font-family: var(--font-family);
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 100%;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  text-align: right;
+  padding: 1.5rem 3rem;
+  cursor: pointer;
+  transition: 0.3s;
+
+  &--green {
+    color: var(--basic-dark);
+    background-color: var(--color-green);
+
+    &:hover {
+      background-color: var(--color-green-hover);
+    }
+  }
+}
+
+.auth {
+  &__submit {
+    align-self: center;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+  }
+}
+
+.acc {
+  font-weight: 400;
+  font-size: 0.88rem;
+  line-height: 120%;
+  color: #141414;
+  display: flex;
+  column-gap: 0.5rem;
+  align-self: center;
 }

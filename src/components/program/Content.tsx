@@ -54,26 +54,29 @@ const Content: FC<{ refParent: any }> = ({ refParent }) => {
     );
   }, []);
 
-  useGSAP(() => {
-    if (q(`.${styleProgram.program__main}`).length === 0) return;
+  useGSAP(
+    () => {
+      if (q(`.${styleProgram.program__main}`).length === 0) return;
 
-    return tlPLanet.current
-      .fromTo(
-        q(`.${styleProgram.program__main}`),
-        { autoAlpha: 1 },
-        { autoAlpha: 0, duration: 0.01, ease },
-      )
-      .fromTo(
-        q(`.${styleProgram.program__main}`),
-        { display: "flex" },
-        { display: "none", duration: 0.01, ease },
-      )
-      .fromTo(
-        refContent.current,
-        { width: "56%" },
-        { width: "100%", ease, duration: 0.01 },
-      );
-  });
+      return tlPLanet.current
+        .fromTo(
+          q(`.${styleProgram.program__main}`),
+          { autoAlpha: 1 },
+          { autoAlpha: 0, duration: 0.01, ease },
+        )
+        .fromTo(
+          q(`.${styleProgram.program__main}`),
+          { display: "flex" },
+          { display: "none", duration: 0.01, ease },
+        )
+        .fromTo(
+          refContent.current,
+          { width: "56%" },
+          { width: "100%", ease, duration: 0.01 },
+        );
+    },
+    { scope: refParent },
+  );
 
   useEffect(() => {
     if (current === null) {

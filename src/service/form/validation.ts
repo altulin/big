@@ -6,8 +6,8 @@ import {
   file,
   nameMax,
   nameMin,
-  // passwordMax,
-  // passwordMin,
+  passwordMax,
+  passwordMin,
   required,
   requiredCeck,
   valid,
@@ -46,7 +46,11 @@ export const object: any = {
     .matches(/@[^.]*\./, valid)
     .email(valid),
 
-  password: yup.string().required(required),
+  password: yup
+    .string()
+    .required(required)
+    .min(8, passwordMin)
+    .max(14, passwordMax),
 
   confirm_password: yup
     .string()

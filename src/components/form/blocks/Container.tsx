@@ -24,7 +24,14 @@ const Container: FC<{
         htmlFor={id}
       >
         {props.label ? (
-          <span className={clsx(style.label__text)}>{props.label}</span>
+          <span
+            className={clsx(
+              style.label__text,
+              meta.touched && meta.error && style["label__text--error"],
+            )}
+          >
+            {props.label}
+          </span>
         ) : null}
 
         {children}
