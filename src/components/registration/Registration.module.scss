@@ -3,12 +3,20 @@
 
 .registration {
   flex-grow: 1;
+  overflow: auto;
+  height: 100%;
+
+  &__inner {
+    height: 100%;
+    position: relative;
+  }
 }
 
 .form {
   padding-top: 4rem;
   padding-right: 2rem;
   padding-left: 2rem;
+  padding-bottom: 4rem;
 }
 
 .radio {
@@ -46,4 +54,26 @@
     background-color: var(--basic-dark);
     border-radius: 50%;
   }
+}
+
+.control {
+  margin-top: 3rem;
+  display: flex;
+  gap: 2rem;
+}
+
+.entity {
+  &__title {
+    font-weight: 400;
+    font-size: 1.5rem;
+    line-height: 130%;
+    color: #141414;
+    margin-top: 3rem;
+    margin-bottom: 2rem;
+  }
+}
+
+.add {
+  margin-top: 1.5rem;
+  margin-bottom: 3rem;
 }

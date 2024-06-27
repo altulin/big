@@ -117,6 +117,20 @@
       background-color: var(--color-green-hover);
     }
   }
+
+  &--black {
+    background-color: var(--basic-dark);
+    color: var(--color-green);
+
+    &:hover {
+      color: var(--basic-light);
+    }
+  }
+
+  &--disabled {
+    opacity: 0.5;
+    pointer-events: none;
+  }
 }
 
 .auth {

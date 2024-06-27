@@ -1,9 +1,11 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Field, useField } from "formik";
-import { ChangeEvent, FC, useId } from "react";
+import { ChangeEvent, FC, useEffect, useId } from "react";
 import Container from "./blocks/Container";
 import style from "./Form.module.scss";
 import clsx from "clsx";
+import { useAppDispatch } from "@/hooks/hook";
+import { setStatus } from "@/store/reg/regSlice";
 
 interface IMyTextInput {
   label?: string;
@@ -23,13 +25,20 @@ interface IMyTextInput {
   touched?: boolean;
   multiple?: boolean;
   className?: string;
+  autoComplete?: "on" | "off";
 }
 
 const TextInput: FC<IMyTextInput> = ({ children, ...props }) => {
   const [field, meta] = useField(props);
   const id = useId();
+  const dispatch = useAppDispatch();
 
-  console.log(meta);
+  useEffect(() => {
+    if (field.name !== "status") return;
+    if (!field.checked) return;
+
+    dispatch(setStatus(field.value));
+  }, [dispatch, field.checked, field.name, field.value]);
 
   return (
     <Container {...props} meta={meta} id={props.id || id}>
@@ -44,6 +53,7 @@ const TextInput: FC<IMyTextInput> = ({ children, ...props }) => {
             meta.touched && meta.error && style["input--error"],
           )}
           id={props.id || id}
+          value={field.value || ""}
         />
         {children}
       </>

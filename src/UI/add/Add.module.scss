@@ -1,0 +1,27 @@
+.button {
+  width: 100%;
+  display: block;
+  background-color: rgba(#131313, 0.06);
+  font-weight: 400;
+  font-size: 1.12rem;
+  line-height: 110%;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: #141414;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 1rem;
+  cursor: pointer;
+  transition: 0.3s;
+
+  &:hover {
+    background-color: var(--color-green);
+  }
+
+  svg {
+    width: 2rem;
+    height: 2rem;
+  }
+}
