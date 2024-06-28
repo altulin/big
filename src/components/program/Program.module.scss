@@ -37,6 +37,7 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    position: relative;
 
     @include mw($tb) {
       width: 100%;
@@ -334,5 +335,56 @@
 
   &:hover {
     opacity: 0.6;
+  }
+}
+
+.planet {
+  flex-grow: 1;
+  position: relative;
+}
+
+$n: 12;
+$r: 13em;
+$t: 2s;
+
+$base-angle: calc(180deg / $n);
+
+.sphere {
+  &,
+  * {
+    box-sizing: border-box;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform-style: preserve-3d;
+  }
+
+  transform: rotateY(-135deg);
+}
+
+.ring {
+  margin: -$r;
+  border: solid 0.25em var(--color-green);
+  width: 2 * $r;
+  height: 2 * $r;
+  border-radius: 50%;
+
+  @for $i from 0 to $n {
+    $curr-angle: $i * $base-angle - 90deg;
+
+    &:nth-child(#{$i + 1}) {
+      transform: translateZ($r * sin($curr-angle)) scale(cos($curr-angle));
+      animation: next#{$i + 1} $t linear infinite;
+    }
+
+    @at-root {
+      $next-angle: $curr-angle + $base-angle;
+
+      @keyframes next#{$i + 1} {
+        to {
+          transform: translateZ($r * sin($next-angle)) scale(cos($next-angle));
+        }
+      }
+    }
   }
 }

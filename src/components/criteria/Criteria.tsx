@@ -1,13 +1,35 @@
 import clsx from "clsx";
 import style from "./Criteria.module.scss";
-import { FC } from "react";
+import { FC, useCallback, useEffect } from "react";
 import ContentDesk from "./ContentDesk";
 import { useIsTabletDevice } from "@/hooks/IsSmallDevice";
 import ContentMob from "./ContentMob";
 import { paths } from "@/service/paths";
+import { handleDraw, canvasCreate } from "@/service/canvasNet";
+import { useAppSelector } from "@/hooks/hook";
 
 const Criteria: FC = () => {
   const isTablet = useIsTabletDevice();
+  const { path } = useAppSelector((state) => state.menu);
+
+  const scrollCallback = useCallback((e: MouseEvent) => {
+    handleDraw(e);
+  }, []);
+
+  useEffect(() => {
+    canvasCreate("canvas-net");
+  }, []);
+
+  useEffect(() => {
+    if (path === paths.criteria) {
+      document.body.addEventListener("mousemove", scrollCallback);
+    } else {
+      document.body.removeEventListener("mousemove", scrollCallback);
+    }
+
+    // canvasNet("canvas-net");
+  }, [path, scrollCallback]);
+
   return (
     <section id={paths.criteria} className={clsx(style.criteria, "panel")}>
       <div className={clsx(style.criteria__inner)}>
@@ -17,6 +39,10 @@ const Criteria: FC = () => {
             <span>оценки</span>
             <span>работ</span>
           </h2>
+
+          <figure className={clsx(style.net, "js-net")}>
+            <canvas id="canvas-net"></canvas>
+          </figure>
         </div>
 
         <div className={clsx(style.content)}>

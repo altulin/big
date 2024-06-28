@@ -2,11 +2,11 @@
 import clsx from "clsx";
 import style from "./Program.module.scss";
 import { FC, useRef } from "react";
-import SvgPlanet from "@/images/program/program.svg?react";
 import Content from "./Content";
 import { useIsTabletDevice } from "@/hooks/IsSmallDevice";
 import ContentMob from "./ContentMob";
 import { paths } from "@/service/paths";
+import Planet from "./Planet";
 
 const Program: FC = () => {
   const refContent = useRef<HTMLDivElement | null>(null);
@@ -24,7 +24,7 @@ const Program: FC = () => {
             <span>фестиваля</span>
           </h2>
 
-          <SvgPlanet />
+          <Planet />
         </div>
 
         {isTablet ? <ContentMob /> : <Content refParent={refContent} />}
