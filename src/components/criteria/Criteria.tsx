@@ -21,14 +21,14 @@ const Criteria: FC = () => {
   }, []);
 
   useEffect(() => {
+    if (isTablet) return;
+
     if (path === paths.criteria) {
       document.body.addEventListener("mousemove", scrollCallback);
     } else {
       document.body.removeEventListener("mousemove", scrollCallback);
     }
-
-    // canvasNet("canvas-net");
-  }, [path, scrollCallback]);
+  }, [isTablet, path, scrollCallback]);
 
   return (
     <section id={paths.criteria} className={clsx(style.criteria, "panel")}>

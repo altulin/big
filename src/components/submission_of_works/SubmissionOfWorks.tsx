@@ -6,14 +6,17 @@ import { paths } from "@/service/paths";
 const SubmissionOfWorks: FC = () => {
   return (
     <section
-      id={paths.submission_of_works}
+      id={paths.participants}
       className={clsx(style.submission, "panel")}
     >
       <div className={clsx(style.submission__inner)}>
         <h2 className={clsx(style.title)}>
-          <span>Подача</span>
-          <span>работ</span>
+          <span>Участникам</span>
         </h2>
+
+        <figure className={clsx(style.canvas)}>
+          <canvas id="canvas-eye"></canvas>
+        </figure>
       </div>
     </section>
   );

@@ -8,8 +8,14 @@ import Slide_1 from "./Slide_1";
 import Slide_2 from "./Slide_2";
 import { Navigation } from "swiper/modules";
 import imgInstructor from "@/images/promo/instructor.png";
+import { useIsTabletDevice } from "@/hooks/IsSmallDevice";
+import { useAppDispatch } from "@/hooks/hook";
+import { setClick, setPath } from "@/store/menu/menuSlice";
+import { paths } from "@/service/paths";
 
 const Slider: FC = () => {
+  const isTablet = useIsTabletDevice();
+  const dispatch = useAppDispatch();
   const slides = [
     <Slide_1 />,
     <Slide_2
@@ -19,6 +25,13 @@ const Slider: FC = () => {
     />,
     <Slide_2 name="Андрей Долгов" job="режиссер" img={imgInstructor} />,
   ];
+
+  const changeHandle = () => {
+    console.log(123);
+    if (isTablet) return;
+    dispatch(setClick(true));
+    dispatch(setPath(paths.promo));
+  };
 
   return (
     <Swiper
@@ -30,6 +43,7 @@ const Slider: FC = () => {
       }}
       speed={1000}
       allowTouchMove={false}
+      onSlideChangeTransitionStart={changeHandle}
     >
       {slides.map((slide, index) => (
         <SwiperSlide key={index} className={clsx(style.slide)}>

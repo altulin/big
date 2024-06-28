@@ -24,6 +24,7 @@
       margin-right: 0.56rem;
       border-left: var(--line) solid var(--basic-dark);
       border-right: var(--line) solid var(--basic-dark);
+      padding-top: 4rem;
     }
   }
 }
@@ -39,6 +40,7 @@
     padding-left: 0.5rem;
     padding-right: 0.5rem;
     padding-bottom: 2rem;
+    min-height: 35rem;
   }
 }
 
@@ -55,6 +57,10 @@
   @include mw($tb) {
     font-size: 1.75rem;
     line-height: 1;
+    flex-direction: row;
+    column-gap: 0.3rem;
+    flex-wrap: wrap;
+    width: 70%;
   }
 }
 

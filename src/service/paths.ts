@@ -7,7 +7,7 @@ export const paths = {
   registration: "registration",
   steps: "steps",
   nominations: "nominations",
-  submission_of_works: "submission_of_works",
+  participants: "participants",
   price: "price",
   requirements: "requirements",
   criteria: "criteria",

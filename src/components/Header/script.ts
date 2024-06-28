@@ -3,11 +3,11 @@ import { paths } from "@/service/paths";
 export const links = [
   { label: "Номинации", path: paths.nominations },
   {
-    label: "Подача работ",
-    path: paths.submission_of_works,
+    label: "Участникам",
+    path: paths.participants,
     submenu: [
-      { label: "Цены", path: paths.price },
-      { label: "Тех.требования", path: paths.requirements },
+      { label: "Стоимость", path: paths.price },
+      { label: "Требования", path: paths.requirements },
       { label: "Критерии оценки", path: paths.criteria },
     ],
   },
