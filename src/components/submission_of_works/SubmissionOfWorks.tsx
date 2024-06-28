@@ -1,9 +1,18 @@
 import clsx from "clsx";
-import { FC } from "react";
+import { FC, useEffect, useRef } from "react";
 import style from "./SubmissionOfWorks.module.scss";
 import { paths } from "@/service/paths";
+import useRoom from "@/service/canvasParticipants";
 
 const SubmissionOfWorks: FC = () => {
+  const refFigure = useRef<HTMLElement | null>(null);
+  const createCanvas = useRoom();
+
+  useEffect(() => {
+    if (!refFigure.current) return;
+    createCanvas(refFigure.current);
+  }, [createCanvas]);
+
   return (
     <section
       id={paths.participants}
@@ -14,7 +23,7 @@ const SubmissionOfWorks: FC = () => {
           <span>Участникам</span>
         </h2>
 
-        <figure className={clsx(style.canvas)}>
+        <figure ref={refFigure} id="room" className={clsx(style.canvas)}>
           <canvas id="canvas-eye"></canvas>
         </figure>
       </div>
