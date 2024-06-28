@@ -1,21 +1,37 @@
 import clsx from "clsx";
 import style from "./Contacts.module.scss";
-import { FC, useEffect } from "react";
+import { FC, useCallback, useEffect } from "react";
 
 import { useIsTabletDevice } from "@/hooks/IsSmallDevice";
 import IconMain from "@/images/header/logo.svg?react";
-import { canvasCursor } from "@/service/canvas";
 import { law } from "./data";
 import { paths } from "@/service/paths";
 import Soc from "./Soc";
+import { useAppSelector } from "@/hooks/hook";
+import { canvasCreate, handleDraw } from "@/service/canvasContact";
 
 const Contacts: FC = () => {
   const isTablet = useIsTabletDevice();
 
+  const { path } = useAppSelector((state) => state.menu);
+
+  const scrollCallback = useCallback((e: MouseEvent) => {
+    handleDraw(e);
+  }, []);
+
+  useEffect(() => {
+    canvasCreate("canvas-contacts");
+  }, []);
+
   useEffect(() => {
     if (isTablet) return;
-    canvasCursor("canvas-contacts");
-  }, [isTablet]);
+
+    if (path === paths.contacts) {
+      document.body.addEventListener("mousemove", scrollCallback);
+    } else {
+      document.body.removeEventListener("mousemove", scrollCallback);
+    }
+  }, [isTablet, path, scrollCallback]);
 
   return (
     <section

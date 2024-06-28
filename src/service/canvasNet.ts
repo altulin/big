@@ -146,7 +146,6 @@ function redraw(event: any) {
 }
 
 export const handleDraw = (e: any) => {
-  console.log(132131);
   if (
     /Android|webOS|iPhone|iPad|iPod|BlackBerry|BB|PlayBook|IEMobile|Windows Phone|Kindle|Silk|Opera Mini/i.test(
       navigator.userAgent,
