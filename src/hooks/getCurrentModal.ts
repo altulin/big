@@ -12,6 +12,10 @@ const useGetCurrentModal = (modalState: IModalState | null) => {
       modal = key;
       break;
 
+    case "speaker":
+      modal = key;
+      break;
+
     default:
       modal = `${key}-${modalState[key]["step"]}`;
   }

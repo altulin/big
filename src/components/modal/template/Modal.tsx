@@ -10,9 +10,10 @@ import { useAppDispatch } from "@/hooks/hook";
 interface IModal {
   children: ReactNode;
   title?: string;
+  modifier?: string;
 }
 
-const Modal: FC<IModal> = ({ children, title }) => {
+const Modal: FC<IModal> = ({ children, title, modifier }) => {
   const dispatch = useAppDispatch();
 
   const clearModal = useCallback(
@@ -45,12 +46,30 @@ const Modal: FC<IModal> = ({ children, title }) => {
       <div className={clsx(style.modal)}>
         <div
           ref={ref as RefObject<HTMLDivElement>}
-          className={clsx(style.modal__inner)}
+          className={clsx(
+            style.modal__inner,
+            modifier && style[`${modifier}__inner`],
+          )}
         >
-          <div className={clsx(style.modal__head)}>
-            <h2 className={clsx(style.modal__title)}>{title}</h2>
+          <div
+            className={clsx(
+              style.modal__head,
+              modifier && style[`${modifier}__head`],
+            )}
+          >
+            <h2
+              className={clsx(
+                style.modal__title,
+                modifier && style[`${modifier}__title`],
+              )}
+            >
+              {title}
+            </h2>
             <button
-              className={clsx(style.modal__close)}
+              className={clsx(
+                style.modal__close,
+                modifier && style[`${modifier}__close`],
+              )}
               onClick={() => dispatch(clearAllStep())}
             >
               <Icon />

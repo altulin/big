@@ -1,12 +1,33 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import clsx from "clsx";
-import { FC, useEffect, useRef } from "react";
+import { FC, useCallback, useEffect, useRef } from "react";
 import style from "./SubmissionOfWorks.module.scss";
 import { paths } from "@/service/paths";
 import useRoom from "@/service/canvasParticipants";
+import { useIsTabletDevice } from "@/hooks/IsSmallDevice";
+import { useAppSelector } from "@/hooks/hook";
 
 const SubmissionOfWorks: FC = () => {
   const refFigure = useRef<HTMLElement | null>(null);
-  const createCanvas = useRoom();
+  const { createCanvas, handleDraw } = useRoom();
+  const isTablet = useIsTabletDevice();
+  const { path } = useAppSelector((state) => state.menu);
+
+  const scrollCallback = useCallback(() => {
+    handleDraw();
+  }, [handleDraw]);
+
+  useEffect(() => {
+    if (isTablet) return;
+
+    // console.log(path === paths.participants);
+
+    // if (path === paths.participants) {
+    // document.body.addEventListener("wheel", scrollCallback);
+    // } else {
+    //   document.body.removeEventListener("wheel", scrollCallback);
+    // }
+  }, [isTablet, path, scrollCallback]);
 
   useEffect(() => {
     if (!refFigure.current) return;

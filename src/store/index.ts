@@ -5,6 +5,8 @@ import { rtkQueryErrorLogger } from "./errorLogger";
 import menuSlice from "./menu/menuSlice";
 import programSlice from "./program/programSlice";
 import regSlice from "./reg/regSlice";
+import swiperSlice from "./swiper/swiperSlice";
+import speakerSlice from "./speaker/speakerSlice";
 
 const store = configureStore({
   reducer: {
@@ -12,6 +14,8 @@ const store = configureStore({
     menu: menuSlice,
     program: programSlice,
     reg: regSlice,
+    swiper: swiperSlice,
+    speaker: speakerSlice,
     [emptyApi.reducerPath]: emptyApi.reducer,
   },
   devTools: process.env.NODE_ENV === "development",

@@ -8,10 +8,17 @@ import { useIsTabletDevice } from "@/hooks/IsSmallDevice";
 import ProgramBtn from "./ProgramBtn";
 import { Link } from "react-router-dom";
 import { paths } from "@/service/paths";
+import { useAppDispatch } from "@/hooks/hook";
+import { stepTo } from "@/store/modal/modalSlice";
 
 const ContentItem: FC<{ item: IProgram; i: number }> = ({ item, i }) => {
   const { date, title, time, speakers, description } = item;
   const isTablet = useIsTabletDevice();
+  const dispatch = useAppDispatch();
+
+  const handleSpeaker = () => {
+    dispatch(stepTo({ speaker: {} }));
+  };
 
   return (
     <div className={clsx(style.item)}>
@@ -31,18 +38,28 @@ const ContentItem: FC<{ item: IProgram; i: number }> = ({ item, i }) => {
             <p className={clsx(style.speakers__title)}>Спикеры:</p>
             <div className={clsx(style.speakers__content)}>
               <div className={clsx(style.speakers__pictures)}>
-                {speakers.map(({ avatar }, i) => (
-                  <figure key={i} className={clsx(style.speakers__figure)}>
-                    <img src={avatar} alt="" />
-                  </figure>
+                {speakers.map(({ avatar, name }, i) => (
+                  <div key={i} className={clsx(style.speakers__item)}>
+                    <figure key={i} className={clsx(style.speakers__figure)}>
+                      <img src={avatar} alt="" />
+                    </figure>
+
+                    <span className={clsx(style.speakers__name)}>{name}</span>
+                    <button
+                      onClick={handleSpeaker}
+                      className={clsx(style.speakers__btn)}
+                    >
+                      Подробнее
+                    </button>
+                  </div>
                 ))}
               </div>
 
-              <div className={clsx(style.speakers__names)}>
+              {/* <div className={clsx(style.speakers__names)}>
                 {speakers.map(({ name }, i) => (
                   <span key={i}>{name}</span>
                 ))}
-              </div>
+              </div> */}
             </div>
           </div>
 

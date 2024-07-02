@@ -11,11 +11,20 @@
   border-left: var(--line) solid var(--basic-dark);
   display: flex;
   flex-direction: column;
+  background-color: #fff;
+
+  &--hidden {
+    display: none;
+  }
 }
 
 .thumb {
   background-color: var(--basic-dark);
   width: 1.5rem !important;
+
+  &--hidden {
+    display: none;
+  }
 }
 
 .button {
@@ -27,6 +36,10 @@
   cursor: pointer;
   // border: var(--line) solid var(--basic-dark);
   // border-bottom: none;
+
+  &--hidden {
+    display: none;
+  }
 
   @include mw($tb) {
     display: none;

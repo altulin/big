@@ -26,6 +26,7 @@ interface IMyTextInput {
   multiple?: boolean;
   className?: string;
   autoComplete?: "on" | "off";
+  accept?: string;
 }
 
 const TextInput: FC<IMyTextInput> = ({ children, ...props }) => {

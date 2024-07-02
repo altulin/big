@@ -41,6 +41,10 @@ const Links: FC = () => {
               className={clsx(
                 style.link,
                 path === item.path && style["link--active"],
+
+                item.submenu &&
+                  item.submenu?.filter((el) => el.path === path).length > 0 &&
+                  style["link--active"],
               )}
               to={isTablet ? `#${item.path}` : `${item.path}`}
               onClick={handleClick}

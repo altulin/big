@@ -11,6 +11,11 @@
       margin-top: 0;
     }
   }
+  &--checkbox {
+    & + .container--checkbox {
+      margin-top: 1rem;
+    }
+  }
 }
 
 .label {
@@ -22,6 +27,30 @@
     column-gap: 0.5rem;
     align-items: center;
     border: 0;
+  }
+
+  &--file {
+    &:before {
+      content: "";
+      width: 1.5rem;
+      height: 1.5rem;
+      background-image: url("@/images/svg/upload.svg");
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: cover;
+    }
+  }
+
+  &--checkbox {
+    .checkbox__icon {
+      &:hover {
+        border-color: var(--color-green);
+
+        svg {
+          stroke: var(--color-green);
+        }
+      }
+    }
   }
 
   &__text {
@@ -40,6 +69,12 @@
     left: 0;
     top: 0;
     height: 100%;
+
+    &--file {
+      position: static;
+      border: 0;
+      width: auto;
+    }
 
     &--error {
       border-color: var(--error);
@@ -70,6 +105,10 @@
 
   &--password {
     padding-right: 4.5rem;
+  }
+
+  &--file {
+    @include vh();
   }
 
   &:hover {
@@ -126,6 +165,11 @@
     left: 0;
     top: 0;
   }
+
+  &--checkbox {
+    position: static;
+    display: inline-block;
+  }
 }
 
 .checkbox {
@@ -144,6 +188,7 @@
     svg {
       width: 0.56rem;
       height: 0.37rem;
+      stroke: var(--basic-dark);
     }
   }
 

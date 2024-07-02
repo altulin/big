@@ -2,6 +2,7 @@ import { paths } from "@/service/paths";
 
 export const links = [
   { label: "Номинации", path: paths.nominations },
+  { label: "Бренд питчи", path: paths.pitch },
   {
     label: "Участникам",
     path: paths.participants,
@@ -13,8 +14,11 @@ export const links = [
   },
   {
     label: "Жюри",
-    path: paths.jury,
-    // submenu: [{ label: "Спикеры", path: "speakers" }],
+    path: paths.jury_main,
+    submenu: [
+      { label: "Основное жюри", path: paths.jury_main },
+      { label: "Специальное жюри", path: paths.jury_special },
+    ],
   },
   {
     label: "Программа",

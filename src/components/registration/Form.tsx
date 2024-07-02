@@ -1,7 +1,7 @@
 import { getValidationSchema } from "@/service/form/validation";
 import clsx from "clsx";
 import { Form, Formik } from "formik";
-import { FC, useState } from "react";
+import { FC } from "react";
 import style from "./Registration.module.scss";
 import Radio from "./Radio";
 import TextInput from "../form/TextInput";
@@ -13,24 +13,25 @@ import Button from "../modal/template/Button";
 import { useAppDispatch, useAppSelector } from "@/hooks/hook";
 import { stepTo } from "@/store/modal/modalSlice";
 import CompanyReg from "./Company";
-import Add from "@/UI/add/Add";
+// import Add from "@/UI/add/Add";
+import { onPhoneInput } from "@/service/form/masks/phone";
 
 const FormRegistration: FC = () => {
   const dispatch = useAppDispatch();
   const { status } = useAppSelector((state) => state.reg);
 
-  const [count, setCount] = useState(1);
-  const [array, setArray] = useState<string[]>([""]);
+  // const [count, setCount] = useState(1);
+  // const [array, setArray] = useState<string[]>([""]);
 
   const clickHandle = () => {
     dispatch(stepTo({ auth: { step: 1 } }));
   };
 
-  const addHandle = () => {
-    if (count > 3) return;
-    setCount(count + 1);
-    setArray([...array, ""]);
-  };
+  // const addHandle = () => {
+  //   if (count > 3) return;
+  //   setCount(count + 1);
+  //   setArray([...array, ""]);
+  // };
   return (
     <Formik
       initialValues={{
@@ -41,12 +42,17 @@ const FormRegistration: FC = () => {
         name: "",
         company_name: "",
         rule: true,
+        offer: true,
+        phone: "",
       }}
       validationSchema={getValidationSchema([
         "mail",
         "password",
         "confirm_password",
         "name",
+        "phone",
+        "rule",
+        "offer",
       ])}
       onSubmit={async (values, { resetForm }) => {
         resetForm();
@@ -70,6 +76,21 @@ const FormRegistration: FC = () => {
               </div>
 
               <TextInput
+                name="name"
+                label="Ф.И."
+                placeholder="Укажите Имя и Фамилию"
+                onInput={onNameInput}
+              />
+
+              <TextInput
+                name="phone"
+                label="Телефон"
+                placeholder="(+7__)___-__-__"
+                type="tel"
+                onInput={onPhoneInput}
+              />
+
+              <TextInput
                 type="email"
                 name="mail"
                 label="E-mail"
@@ -88,27 +109,29 @@ const FormRegistration: FC = () => {
                 placeholder="Повторите пароль"
               />
 
-              <TextInput
-                name="name"
-                label="Ф.И."
-                placeholder="Укажите Имя и Фамилию"
-                onInput={onNameInput}
-              />
-
               {status === "individual" && <CompanyReg />}
 
-              {status === "entity" &&
-                array.map((item, i) => <Entity key={i} count={i} />)}
+              {status === "entity" && <Entity />}
+
+              <Checkbox name="rule" isChecked={formik.values.rule}>
+                <a
+                  className={clsx(style.form__rule_link)}
+                  href={import.meta.env.VITE_APP_PERSONAL_OFFER}
+                >
+                  Оферту
+                </a>
+              </Checkbox>
 
               {status === "entity" && (
-                <Add
-                  className={clsx(style.add)}
-                  label="Добавить еще компанию"
-                  onClick={addHandle}
-                />
+                <Checkbox name="offer" isChecked={formik.values.offer}>
+                  <a
+                    className={clsx(style.form__rule_link)}
+                    href={import.meta.env.VITE_APP_PERSONAL_DATA}
+                  >
+                    Обработку персональных данных
+                  </a>
+                </Checkbox>
               )}
-
-              <Checkbox isChecked={formik.values.rule} />
 
               <div className={clsx(style.control)}>
                 <Button

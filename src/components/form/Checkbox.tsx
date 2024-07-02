@@ -8,20 +8,20 @@ interface ICheckbox {
   className?: string;
   href?: string;
   isChecked?: boolean;
+  children?: JSX.Element;
+  name: string;
 }
 
-const Checkbox: FC<ICheckbox> = ({ className, href, isChecked }) => {
+const Checkbox: FC<ICheckbox> = ({ className, isChecked, children, name }) => {
   return (
-    <TextInput name="rule" type="checkbox" modifier="checkbox">
+    <TextInput name={name} type="checkbox" modifier="checkbox">
       <div className={clsx(style.checkbox, className)}>
         <span className={clsx(style.checkbox__icon)}>
           {isChecked && <IconRule />}
         </span>
         <span className={clsx(style.checkbox__text)}>
-          Я даю свое согласие на
-          <a className={clsx(style.checkbox__link)} href={href} target="_blank">
-            Обработку персональных данных
-          </a>
+          <span>Я даю свое согласие на </span>
+          {children}
         </span>
       </div>
     </TextInput>

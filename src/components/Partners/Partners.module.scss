@@ -1,0 +1,46 @@
+@import "@/sass/helpers/variables";
+@import "@/sass/helpers/mixins.scss";
+
+.partners {
+  height: var(--heigh);
+  border-right: var(--line) solid var(--basic-dark);
+  &__inner {
+  }
+}
+
+.title {
+  padding-top: 3rem;
+  padding-left: 2rem;
+  font-weight: 400;
+  font-size: 3.75rem;
+  line-height: 110%;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: #141414;
+  margin-bottom: 3rem;
+}
+
+.item {
+  padding: 2rem;
+
+  &:not(:last-child) {
+    border-bottom: var(--line) solid var(--basic-dark);
+  }
+
+  &__title {
+    margin-bottom: 2rem;
+    font-weight: 400;
+    font-size: 1.12rem;
+    line-height: 110%;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    color: #141414;
+  }
+
+  &__list {
+    display: flex;
+    align-items: center;
+    gap: 4rem;
+    flex-wrap: wrap;
+  }
+}

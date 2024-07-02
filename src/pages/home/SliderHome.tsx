@@ -8,6 +8,8 @@ import { pages } from "./HomePage";
 import { useAppDispatch, useAppSelector } from "@/hooks/hook";
 import { checkArr } from "@/service/checkArr";
 import { setClick, setPath } from "@/store/menu/menuSlice";
+import { setSwiperProgress } from "@/store/swiper/swiperSlice";
+import { paths } from "@/service/paths";
 
 const SliderHome: FC = () => {
   const { path, isClick } = useAppSelector((state) => state.menu);
@@ -44,6 +46,7 @@ const SliderHome: FC = () => {
           el: `.${style.scrollbar}`,
           dragClass: `${style.scrollbar__drag}`,
         }}
+        initialSlide={12}
         preventInteractionOnTransition={true}
         onSlideChange={(s) => {
           if (isClick) return;
@@ -53,6 +56,9 @@ const SliderHome: FC = () => {
             listSlides[s.activeIndex].querySelector(".panel");
           const path = panelElement ? panelElement.id : null;
           dispatch(setPath(path));
+        }}
+        onProgress={(_, p) => {
+          if (path === paths.participants) dispatch(setSwiperProgress(p));
         }}
       >
         {pages.map((slide: any, index: number) => (

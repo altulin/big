@@ -62,11 +62,17 @@
   padding-bottom: 1rem;
   padding-top: 4rem;
   padding-right: 3rem;
+  max-height: 100%;
 
   @include mw($tb) {
     row-gap: 0.5rem;
     padding-right: 0;
     padding-top: 0;
+  }
+
+  &__inner {
+    display: flex;
+    flex-direction: column;
   }
 
   &__block {
@@ -118,6 +124,16 @@
     font-size: 1.13rem;
     padding: 2rem;
     border-top: var(--line) solid var(--basic-dark);
+  }
+
+  &__special {
+    margin-left: auto;
+    font-weight: 400;
+    font-size: 0.88rem;
+    line-height: 120%;
+    color: var(--color-green);
+    padding: 0.5rem 1rem;
+    background-color: var(--basic-dark);
   }
 }
 

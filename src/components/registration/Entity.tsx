@@ -2,14 +2,26 @@ import clsx from "clsx";
 import { FC } from "react";
 import style from "./Registration.module.scss";
 import Company from "./Company";
-import TextInput from "../form/TextInput";
+import Upload from "../form/Upload";
+// import TextInput from "../form/TextInput";
 
-const Entity: FC<{ count: number }> = ({ count }) => {
+const Entity: FC<{ count?: number }> = ({ count = 0 }) => {
   return (
     <>
       <h3 className={clsx(style.entity__title)}>Реквизиты организации</h3>
       <Company />
-      <TextInput
+      <h3
+        className={clsx(
+          style.entity__title,
+          style["entity__title--requisites"],
+        )}
+      >
+        Прикрепите реквизиты организации
+      </h3>
+
+      <Upload name="file" label="Прикрепить файл .doc" accept=".doc" />
+
+      {/* <TextInput
         name={`order-${count}`}
         label="№ счета"
         placeholder="Введите номер"
@@ -29,7 +41,7 @@ const Entity: FC<{ count: number }> = ({ count }) => {
         name={`bik-${count}`}
         label="БИК"
         placeholder="Введите номер"
-      />
+      /> */}
     </>
   );
 };

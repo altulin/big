@@ -42,7 +42,7 @@ const Content: FC<{ refParent: any }> = ({ refParent }) => {
           .fromTo(
             item.querySelector(`.${styleProgram.info}`),
             { display: "none", width: "0" },
-            { display: "block", width: "100%", direction: 0.01 },
+            { display: "flex", width: "100%", direction: 0.01 },
             "<",
           )
           .fromTo(
@@ -64,11 +64,13 @@ const Content: FC<{ refParent: any }> = ({ refParent }) => {
           { autoAlpha: 1 },
           { autoAlpha: 0, duration: 0.01, ease },
         )
+
         .fromTo(
           q(`.${styleProgram.program__main}`),
           { display: "flex" },
           { display: "none", duration: 0.01, ease },
         )
+
         .fromTo(
           refContent.current,
           { width: "56%" },

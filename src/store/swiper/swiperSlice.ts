@@ -4,15 +4,15 @@ const swiperSlice = createSlice({
   name: "swiper",
 
   initialState: {
-    swiper: null,
+    progress: null,
   },
 
   reducers: {
-    setSwiper(state, action) {
-      state.swiper = action.payload;
+    setSwiperProgress(state, action) {
+      state.progress = action.payload;
     },
   },
 });
 
-export const { setSwiper } = swiperSlice.actions;
+export const { setSwiperProgress } = swiperSlice.actions;
 export default swiperSlice.reducer;

@@ -25,7 +25,7 @@ const ModalAuth1: FC = () => {
       <div className={clsx(style.modal__form)}>
         <Formik
           initialValues={{}}
-          validationSchema={getValidationSchema(["code"])}
+          validationSchema={getValidationSchema(["mail", "password"])}
           onSubmit={(values, { resetForm }) => {
             resetForm();
           }}

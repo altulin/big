@@ -1,4 +1,4 @@
-import { FC, ReactNode, useRef } from "react";
+import { FC, ReactNode, useEffect, useRef, useState } from "react";
 import { Scrollbars } from "react-custom-scrollbars";
 import style from "./ScrollBarComponent.module.scss";
 import clsx from "clsx";
@@ -7,27 +7,41 @@ import IconArr from "@/images/scroll/arr-scroll.svg?react";
 const ScrollBarComponent: FC<{ children: ReactNode }> = ({ children }) => {
   const refScroll = useRef<Scrollbars>(null);
 
+  const [isScroll, setIsScroll] = useState(false);
+
+  useEffect(() => {
+    if (!refScroll.current) return;
+
+    setIsScroll(refScroll.current.getThumbVerticalHeight() === 0);
+  });
+
   return (
     <>
       <Scrollbars
+        hideTracksWhenNotNeeded={true}
+        className={clsx(!isScroll && "swiper-no-mousewheel")}
         ref={refScroll}
         renderTrackVertical={(props) => (
           <div {...props} className={clsx(style.track)}></div>
         )}
-        renderThumbVertical={(props) => (
-          <div {...props} className={clsx(style.thumb)}></div>
-        )}
+        renderThumbVertical={(props) => {
+          return <div {...props} className={clsx(style.thumb)}></div>;
+        }}
       >
         {children}
       </Scrollbars>
       <button
-        className={clsx(style.button)}
+        className={clsx(style.button, isScroll && style["button--hidden"])}
         onClick={() => refScroll.current?.scrollToTop()}
       >
         <IconArr />
       </button>
       <button
-        className={clsx(style.button, style["button--down"])}
+        className={clsx(
+          style.button,
+          style["button--down"],
+          isScroll && style["button--hidden"],
+        )}
         onClick={() => refScroll.current?.scrollToBottom()}
       >
         <IconArr />

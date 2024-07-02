@@ -17,6 +17,31 @@
   padding-right: 2rem;
   padding-left: 2rem;
   padding-bottom: 4rem;
+
+  &__rule_link {
+    color: #141414;
+    position: relative;
+    transition: 0.3s;
+
+    &:after {
+      position: absolute;
+      content: "";
+      width: 100%;
+      height: 0.06rem;
+      background-color: var(--basic-dark);
+      left: 0;
+      bottom: 0;
+      transition: 0.3s;
+    }
+
+    &:hover {
+      color: var(--color-green);
+
+      &:after {
+        background-color: var(--color-green);
+      }
+    }
+  }
 }
 
 .radio {
@@ -70,6 +95,11 @@
     color: #141414;
     margin-top: 3rem;
     margin-bottom: 2rem;
+
+    &--requisites {
+      margin-top: 2rem;
+      margin-bottom: 1rem;
+    }
   }
 }
 

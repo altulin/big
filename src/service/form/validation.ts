@@ -58,6 +58,7 @@ export const object: any = {
     .oneOf([yup.ref("password")], confrmPasswordMatch),
 
   rule: yup.boolean().oneOf([true], requiredCeck),
+  offer: yup.boolean().oneOf([true], requiredCeck),
 
   select: yup.string().required(required),
   login: yup.string().required(required),

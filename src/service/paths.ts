@@ -11,12 +11,15 @@ export const paths = {
   price: "price",
   requirements: "requirements",
   criteria: "criteria",
-  jury: "jury",
+  jury_main: "jury_main",
+  jury_special: "jury_special",
   program: "program",
   speakers: "speakers",
   festival: "about_the_festival",
   faq: "faq",
   contacts: "contacts",
+  pitch: "pitch",
+  partners: "partners",
 
   private: "private",
 };

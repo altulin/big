@@ -6,15 +6,16 @@ import { speakers } from "./script";
 import Head from "./Head";
 import { useIsTabletDevice } from "@/hooks/IsSmallDevice";
 import SpeakersItem from "./SpeakersItem";
+import { paths } from "@/service/paths";
 
 const Speakers: FC = () => {
   const isTablet = useIsTabletDevice();
 
   return (
-    <section className={clsx(style.speakers, "speakers")}>
+    <section id={paths.jury_main} className={clsx(style.speakers, "panel")}>
       <div className={clsx(style.speakers__inner)}>
         <h2 className={clsx(style.title)}>
-          <span>Спикеры</span>
+          <span>Жюри</span>
         </h2>
 
         <div className={clsx(style.content)}>

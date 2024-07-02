@@ -16,18 +16,24 @@ import { useIsTabletDevice } from "@/hooks/IsSmallDevice";
 import Festival from "@/components/Festival/Festival";
 import Contacts from "@/components/Contacts/Contacts";
 import Faq from "@/components/Faq/Faq";
+import Pitch from "@/components/Pitch/Pitch";
+import JuryMain from "@/components/JuryMain/JuryMain";
+import Partners from "@/components/Partners/Partners";
 
 export const pages: any = [
   <Promo />,
   <Steps />,
   <Nominations />,
+  <Pitch />,
   <SubmissionOfWorks />,
   <Price />,
   <Requirements />,
   <Criteria />,
+  <JuryMain />,
   <Jury />,
   <Program />,
   <Festival />,
+  <Partners />,
   <Faq />,
   <Contacts />,
 ];

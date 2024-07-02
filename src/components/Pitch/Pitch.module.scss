@@ -1,0 +1,151 @@
+@import "@/sass/helpers/variables";
+@import "@/sass/helpers/mixins.scss";
+
+.pitch {
+  height: var(--heigh);
+  border-right: var(--line) solid var(--basic-dark);
+  display: flex;
+  flex-direction: column;
+
+  &__inner {
+    display: flex;
+    flex-grow: 1;
+  }
+  &__item {
+    width: 50%;
+    padding: 4rem 2rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+
+    & + .pitch__item {
+      border-left: var(--line) solid var(--basic-dark);
+    }
+  }
+
+  &__text {
+    font-weight: 400;
+    font-size: 1.12rem;
+    line-height: 140%;
+    color: #141414;
+    margin-bottom: 1.5rem;
+  }
+
+  &__bottom {
+    margin-top: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  &__button {
+    font-weight: 400;
+    font-size: 1rem;
+    line-height: 100%;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    text-align: right;
+    color: #141414;
+    transition: 0.3s;
+    background-color: var(--color-green);
+    cursor: pointer;
+    padding: 1.5rem 3rem;
+
+    &:hover {
+      background-color: var(--color-green-hover);
+    }
+  }
+
+  &__deadline {
+    font-weight: 400;
+    font-size: 1.12rem;
+    line-height: 140%;
+    color: #141414;
+  }
+}
+
+.head {
+  display: flex;
+  align-items: center;
+  column-gap: 0.5rem;
+  margin-bottom: 4rem;
+
+  &--nuum {
+    svg {
+      width: 15.75rem;
+      height: 3rem;
+    }
+  }
+
+  &--mega {
+    svg {
+      width: 9.88rem;
+      height: 3.69rem;
+    }
+  }
+}
+
+.title {
+  font-weight: 400;
+  font-size: 5.25rem;
+  line-height: 100%;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  color: #141414;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  row-gap: 1rem;
+  font-weight: 400;
+  font-size: 1.12rem;
+  line-height: 140%;
+  color: #141414;
+
+  &__item {
+    padding-left: 0.5rem;
+    display: flex;
+    column-gap: 1rem;
+
+    &::before {
+      content: "";
+      width: 0.5rem;
+      height: 0.5rem;
+      background-color: var(--color-green);
+      border-radius: 50%;
+      margin-top: 0.5rem;
+      flex-shrink: 0;
+    }
+
+    &_inner {
+      display: flex;
+      column-gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+  }
+
+  &__link {
+    color: #141414;
+    position: relative;
+    transition: 0.3s;
+
+    &:hover {
+      color: var(--color-green);
+
+      &::after {
+        background-color: var(--color-green);
+      }
+    }
+
+    &::after {
+      content: "";
+      position: absolute;
+      width: 100%;
+      height: 0.06rem;
+      left: 0;
+      bottom: 0;
+      background-color: #141414;
+      transition: 0.3s;
+    }
+  }
+}

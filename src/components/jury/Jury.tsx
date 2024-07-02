@@ -18,7 +18,7 @@ const Jury: FC = () => {
   };
 
   return (
-    <section id={paths.jury} className={clsx(style.jury, "panel")}>
+    <section id={paths.jury_special} className={clsx(style.jury, "panel")}>
       <div className={clsx(style.jury__inner)}>
         <div className={clsx(style.jury__head)}>
           <h2 className={clsx(style.title)}>Жюри</h2>

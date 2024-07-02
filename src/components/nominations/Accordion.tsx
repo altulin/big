@@ -46,11 +46,17 @@ const AccordionComonent: FC<{
               className={clsx(style.accordion__item)}
               header={<Head label={question} />}
             >
-              <p className={clsx(style.accordion__answer)}>
-                {getAnswer(answer).map((el, i) => (
-                  <span key={i}>{el}</span>
-                ))}
-              </p>
+              <div className={clsx(style.accordion__inner)}>
+                <p className={clsx(style.accordion__answer)}>
+                  {getAnswer(answer).map((el, i) => (
+                    <span key={i}>{el}</span>
+                  ))}
+                </p>
+
+                <span className={clsx(style.accordion__special)}>
+                  Специальная награда
+                </span>
+              </div>
             </AccordionItem>
           </div>
         ),
