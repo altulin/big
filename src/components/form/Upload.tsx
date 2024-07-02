@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { FC } from "react";
 import TextInput from "./TextInput";
 
@@ -6,9 +7,16 @@ interface IUpload {
   label?: string;
   placeholder?: string;
   accept?: string;
+  children?: any;
 }
 
-const Upload: FC<IUpload> = ({ name, label, placeholder, accept }) => {
+const Upload: FC<IUpload> = ({
+  name,
+  label,
+  placeholder,
+  accept,
+  children,
+}) => {
   return (
     <TextInput
       type="file"
@@ -18,7 +26,7 @@ const Upload: FC<IUpload> = ({ name, label, placeholder, accept }) => {
       modifier="file"
       accept={accept}
     >
-      {/* <ButtonEye isTypeText={isTypeText} setType={setType} /> */}
+      {children}
     </TextInput>
   );
 };

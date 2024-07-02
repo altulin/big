@@ -17,8 +17,18 @@ const modalSlice = createSlice({
     setErrorModal(state, action: PayloadAction<string>) {
       state.modalState = { error: { text: action.payload } };
     },
+
+    setSuccessModal(
+      state,
+      action: PayloadAction<{ text: string; comein: boolean }>,
+    ) {
+      state.modalState = {
+        success: { text: action.payload.text, comein: action.payload.comein },
+      };
+    },
   },
 });
 
-export const { stepTo, clearAllStep, setErrorModal } = modalSlice.actions;
+export const { stepTo, clearAllStep, setErrorModal, setSuccessModal } =
+  modalSlice.actions;
 export default modalSlice.reducer;

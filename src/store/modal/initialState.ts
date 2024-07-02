@@ -1,5 +1,5 @@
 export interface IModalState {
-  [key: string]: { step?: number; text?: string };
+  [key: string]: { step?: number; text?: string; comein?: boolean };
 }
 
 interface IInitialState {

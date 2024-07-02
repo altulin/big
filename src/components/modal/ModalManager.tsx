@@ -6,6 +6,7 @@ import { FC } from "react";
 import { IModalState } from "@/store/modal/initialState";
 import ModalJury1 from "./jury/ModalJury";
 import ModalSpeaker from "./speaker/ModalSpeaker";
+import ModalSuccess from "./success/ModalSuccess";
 
 interface IModalElements {
   modalState: IModalState;
@@ -20,6 +21,7 @@ const ModalElements: FC<IModalElements> = ({ modalState }) => {
       {modal === "error" && <ModalError />}
       {modal === "jury-1" && <ModalJury1 />}
       {modal === "speaker" && <ModalSpeaker />}
+      {modal === "success" && <ModalSuccess />}
     </>
   );
 };

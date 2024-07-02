@@ -11,7 +11,7 @@ import Entity from "./Entity";
 import Checkbox from "../form/Checkbox";
 import Button from "../modal/template/Button";
 import { useAppDispatch, useAppSelector } from "@/hooks/hook";
-import { stepTo } from "@/store/modal/modalSlice";
+import { setSuccessModal, stepTo } from "@/store/modal/modalSlice";
 import CompanyReg from "./Company";
 // import Add from "@/UI/add/Add";
 import { onPhoneInput } from "@/service/form/masks/phone";
@@ -20,18 +20,10 @@ const FormRegistration: FC = () => {
   const dispatch = useAppDispatch();
   const { status } = useAppSelector((state) => state.reg);
 
-  // const [count, setCount] = useState(1);
-  // const [array, setArray] = useState<string[]>([""]);
-
   const clickHandle = () => {
     dispatch(stepTo({ auth: { step: 1 } }));
   };
 
-  // const addHandle = () => {
-  //   if (count > 3) return;
-  //   setCount(count + 1);
-  //   setArray([...array, ""]);
-  // };
   return (
     <Formik
       initialValues={{
@@ -44,6 +36,7 @@ const FormRegistration: FC = () => {
         rule: true,
         offer: true,
         phone: "",
+        file: "",
       }}
       validationSchema={getValidationSchema([
         "mail",
@@ -53,8 +46,15 @@ const FormRegistration: FC = () => {
         "phone",
         "rule",
         "offer",
+        "file",
       ])}
       onSubmit={async (values, { resetForm }) => {
+        dispatch(
+          setSuccessModal({
+            text: "Поздравляем с успешной регистрацией!",
+            comein: true,
+          }),
+        );
         resetForm();
       }}
     >
@@ -111,7 +111,7 @@ const FormRegistration: FC = () => {
 
               {status === "individual" && <CompanyReg />}
 
-              {status === "entity" && <Entity />}
+              {status === "entity" && <Entity formik={formik} />}
 
               <Checkbox name="rule" isChecked={formik.values.rule}>
                 <a
