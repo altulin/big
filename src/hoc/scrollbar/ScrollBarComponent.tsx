@@ -3,8 +3,11 @@ import { Scrollbars } from "react-custom-scrollbars";
 import style from "./ScrollBarComponent.module.scss";
 import clsx from "clsx";
 import IconArr from "@/images/scroll/arr-scroll.svg?react";
+import { useIsTabletDevice } from "@/hooks/IsSmallDevice";
 
 const ScrollBarComponent: FC<{ children: ReactNode }> = ({ children }) => {
+  const isTablet = useIsTabletDevice();
+
   const refScroll = useRef<Scrollbars>(null);
 
   const [isScroll, setIsScroll] = useState(false);
@@ -15,11 +18,16 @@ const ScrollBarComponent: FC<{ children: ReactNode }> = ({ children }) => {
     setIsScroll(refScroll.current.getThumbVerticalHeight() === 0);
   });
 
+  if (isTablet) return <>{children}</>;
+
   return (
     <>
       <Scrollbars
         hideTracksWhenNotNeeded={true}
-        className={clsx(!isScroll && "swiper-no-mousewheel")}
+        className={clsx(
+          !isScroll && "swiper-no-mousewheel",
+          !isScroll && "scrollbar",
+        )}
         ref={refScroll}
         renderTrackVertical={(props) => (
           <div {...props} className={clsx(style.track)}></div>

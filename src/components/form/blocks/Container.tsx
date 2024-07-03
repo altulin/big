@@ -42,7 +42,14 @@ const Container: FC<{
         <div
           className={clsx(style.error, style[`error--${props.modifier}`] || "")}
         >
-          {meta.error}
+          <p
+            className={clsx(
+              style.error__text,
+              style[`error__text--${props.modifier}`] || "",
+            )}
+          >
+            {meta.error}
+          </p>
         </div>
       ) : null}
     </div>

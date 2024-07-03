@@ -17,10 +17,30 @@ const SliderHome: FC = () => {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
+    // при переходе с других страниц
+    if (!swiper) return;
+
+    const listSlides = swiper.slides;
+
+    if (!checkArr(listSlides)) return;
+
+    const slide = listSlides.filter(
+      (slide: any) => slide.querySelector(".panel").id === path,
+    )[0];
+
+    const index = listSlides.indexOf(slide);
+
+    swiper.slideTo(index, 1000);
+
+    console.log(path);
+  }, [swiper]);
+
+  useEffect(() => {
     if (!swiper) return;
     if (!isClick) return;
 
     const listSlides = swiper.slides;
+
     if (!checkArr(listSlides)) return;
 
     const slide = listSlides.filter(
@@ -46,7 +66,7 @@ const SliderHome: FC = () => {
           el: `.${style.scrollbar}`,
           dragClass: `${style.scrollbar__drag}`,
         }}
-        initialSlide={12}
+        // initialSlide={12}
         preventInteractionOnTransition={true}
         onSlideChange={(s) => {
           if (isClick) return;

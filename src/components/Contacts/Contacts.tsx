@@ -77,7 +77,7 @@ const Contacts: FC = () => {
         </div>
 
         <div className={clsx(style.canvas)}>
-          <figure className={clsx(style.canvas__figure, "js-logo-placemove")}>
+          <figure className={clsx(style.canvas__figure, "js-contacts-figure")}>
             <canvas id="canvas-contacts"></canvas>
           </figure>
         </div>

@@ -258,6 +258,12 @@ img {
   z-index: 100;
 }
 
+.scrollbar {
+  .scroll-content {
+    padding-right: 2rem;
+  }
+}
+
 * {
   // outline: 1px solid #ff6347;
 }

@@ -20,6 +20,8 @@ export const paths = {
   contacts: "contacts",
   pitch: "pitch",
   partners: "partners",
-
   private: "private",
+  young_talent: "young_talent",
+
+  profile: "profile",
 };

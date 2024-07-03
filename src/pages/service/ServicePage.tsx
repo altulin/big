@@ -1,10 +1,10 @@
 import clsx from "clsx";
-import { FC, ReactNode, useEffect } from "react";
+import { FC, ReactNode, useCallback, useEffect } from "react";
 import style from "./ServicePage.module.scss";
 import { useIsTabletDevice } from "@/hooks/IsSmallDevice";
 import { setPath } from "@/store/menu/menuSlice";
 import { useAppDispatch } from "@/hooks/hook";
-// import { canvasCursor } from "@/service/canvas";
+// import { canvasCreate, handleDraw } from "@/service/canvasContact";
 
 const ServicePage: FC<{ children: ReactNode; title: string }> = ({
   children,
@@ -13,10 +13,21 @@ const ServicePage: FC<{ children: ReactNode; title: string }> = ({
   const isTablet = useIsTabletDevice();
   const dispatch = useAppDispatch();
 
+  const scrollCallback = useCallback((e: MouseEvent) => {
+    // handleDraw(e);
+  }, []);
+
+  useEffect(() => {
+    // canvasCreate("canvas-contacts");
+  }, []);
+
   useEffect(() => {
     if (isTablet) return;
-    // canvasCursor("service-canvas");
-  }, [isTablet]);
+    document.body.addEventListener("mousemove", scrollCallback);
+    return () => {
+      document.body.removeEventListener("mousemove", scrollCallback);
+    };
+  }, [isTablet, scrollCallback]);
 
   useEffect(() => {
     dispatch(setPath(null));
@@ -28,7 +39,7 @@ const ServicePage: FC<{ children: ReactNode; title: string }> = ({
         <div className={clsx(style.service__canvas)}>
           <h2 className={clsx(style.service__title)}>{title}</h2>
           <figure className={clsx(style.service__figure, "js-logo-placemove")}>
-            <canvas id="service-canvas"></canvas>
+            <canvas id="canvas-contacts"></canvas>
           </figure>
         </div>
         {children}

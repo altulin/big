@@ -66,6 +66,8 @@ export const object: any = {
   text: yup.mixed().required(required),
   card: yup.mixed().required(required),
 
+  company_name: yup.mixed().required(required),
+
   file: yup.mixed().required(file),
   // .test("fileFormat", "Only PDF files are allowed", (value) => {
   //   if (value) {

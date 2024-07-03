@@ -51,6 +51,7 @@
   border-right: var(--line) solid var(--basic-dark);
   display: flex;
   flex-direction: column;
+  flex-shrink: 0;
 
   @include mw($tb) {
     width: 100%;
@@ -175,6 +176,7 @@
 
 .canvas {
   flex-grow: 1;
+  width: 43%;
 
   @include mw($tb) {
     display: none;

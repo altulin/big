@@ -8,6 +8,8 @@ interface IUpload {
   placeholder?: string;
   accept?: string;
   children?: any;
+  modifier?: string;
+  disabled?: boolean;
 }
 
 const Upload: FC<IUpload> = ({
@@ -16,6 +18,8 @@ const Upload: FC<IUpload> = ({
   placeholder,
   accept,
   children,
+  modifier = "file",
+  disabled = false,
 }) => {
   return (
     <TextInput
@@ -23,8 +27,9 @@ const Upload: FC<IUpload> = ({
       name={name}
       placeholder={placeholder}
       label={label}
-      modifier="file"
+      modifier={modifier}
       accept={accept}
+      disabled={disabled}
     >
       {children}
     </TextInput>

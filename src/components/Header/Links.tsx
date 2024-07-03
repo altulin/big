@@ -20,6 +20,7 @@ const Links: FC = () => {
       dispatch(setMenuControl(false));
     } else {
       e.preventDefault();
+
       const href = (e.target as HTMLAnchorElement).href.split("/").pop();
       dispatch(setClick(true));
       dispatch(setPath(href));
@@ -49,7 +50,8 @@ const Links: FC = () => {
               to={isTablet ? `#${item.path}` : `${item.path}`}
               onClick={handleClick}
             >
-              {item.label}
+              <span>{item.label}</span>
+              {item.logo && <item.logo />}
             </HashLink>
           </div>
         );

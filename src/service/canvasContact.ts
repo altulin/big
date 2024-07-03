@@ -15,14 +15,14 @@ const rem = +window
 export const canvasCreate = (id: string) => {
   const body = document.body as HTMLBodyElement;
   const parentBlock = body.querySelector(
-    ".js-logo-placemove",
+    ".js-contacts-figure",
   ) as HTMLDivElement;
 
-  canvasHeight =
-    id === "canvas-contacts"
-      ? parentBlock.offsetHeight - 7 * rem
-      : parentBlock.offsetHeight - 7 * rem;
-  canvasWidth = parentBlock.offsetWidth - 2 * rem;
+  console.log(parentBlock.offsetHeight);
+
+  canvasHeight = parentBlock.offsetHeight - 7 * rem;
+
+  canvasWidth = parentBlock.offsetWidth - 4 * rem;
 
   const img = new Image();
   img.src = new URL("./assets/canvas_logo.svg", import.meta.url).href;
