@@ -6,23 +6,23 @@ import TextInput from "../form/TextInput";
 
 interface IRadio {
   label: string;
-
+  name?: string;
   value: string;
   formik?: any;
 }
 
-const Radio: FC<IRadio> = ({ label, value, formik }) => {
+const Radio: FC<IRadio> = ({ label, value, formik, name = "status" }) => {
   return (
     <TextInput
       className={clsx(style.radio__item)}
-      name="status"
+      name={name}
       type="radio"
       modifier="radio"
       value={value}
     >
       <>
         <div className={clsx(style.radio__icon)}>
-          {formik && formik.values.status === value && (
+          {formik && formik.values[`${name}`] === value && (
             <div className={clsx(style.radio__active)}></div>
           )}
         </div>

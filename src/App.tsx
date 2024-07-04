@@ -12,6 +12,7 @@ import HomePage from "./pages/home/HomePage";
 import ServicePage from "./pages/service/ServicePage";
 import Registration from "@/components/registration/Registration";
 import Profile from "./components/profile/Profile";
+import Pass from "./components/Pass/Pass";
 
 const App: FC = () => {
   const title = import.meta.env.VITE_APP_TITLE;
@@ -38,6 +39,15 @@ const App: FC = () => {
             element={
               <RequireAuth>
                 {<ServicePage children={<Profile />} title="Профиль" />}
+              </RequireAuth>
+            }
+          />
+
+          <Route
+            path={paths.pass}
+            element={
+              <RequireAuth>
+                {<ServicePage children={<Pass />} title="Подача работы" />}
               </RequireAuth>
             }
           />

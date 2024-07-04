@@ -1,0 +1,19 @@
+import { categories } from "@/components/Pass/script";
+import { createSlice } from "@reduxjs/toolkit";
+
+const categorySlice = createSlice({
+  name: "menu",
+
+  initialState: {
+    category: categories.main_category,
+  },
+
+  reducers: {
+    setCategory(state, action) {
+      state.category = action.payload;
+    },
+  },
+});
+
+export const { setCategory } = categorySlice.actions;
+export default categorySlice.reducer;

@@ -1,0 +1,70 @@
+@import "@/sass/helpers/variables";
+@import "@/sass/helpers/mixins.scss";
+
+.pass {
+  flex-grow: 1;
+  &__inner {
+    padding-top: 4rem;
+  }
+}
+
+.box {
+  &__inner {
+    padding: 3rem 2rem;
+  }
+}
+
+.radio {
+  display: flex;
+  column-gap: 3rem;
+}
+
+.sub {
+  position: relative;
+  border-top: var(--line) solid var(--basic-dark);
+  padding: 4.5rem 2rem 3rem;
+}
+
+.discount {
+  padding: 0.68rem 2rem;
+  background-color: var(--color-green);
+  font-weight: 400;
+  font-size: 1.12rem;
+  line-height: 140%;
+  color: #141414;
+  display: inline-flex;
+  column-gap: 0.5rem;
+  align-items: center;
+  position: absolute;
+  left: 0;
+  top: 0;
+
+  &__value {
+    font-size: 0.88rem;
+    line-height: 120%;
+    text-decoration: line-through;
+    transform: translateY(0.1rem);
+  }
+}
+
+.delete {
+  position: absolute;
+  background-color: rgba(#131313, 0.06);
+  width: 3rem;
+  height: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  top: 0;
+  right: 0;
+  transition: 0.3s;
+
+  &:hover {
+    background-color: var(--color-green);
+  }
+
+  svg {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+}

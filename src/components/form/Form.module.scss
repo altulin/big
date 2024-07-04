@@ -83,6 +83,10 @@
       background-position: center;
       background-size: cover;
     }
+
+    @include mw($tb) {
+      flex-direction: row;
+    }
   }
 
   &--checkbox {

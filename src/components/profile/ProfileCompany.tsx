@@ -10,7 +10,7 @@ import Upload from "../form/Upload";
 const ProfileCompany: FC = () => {
   const [btnData, setBtnData] = useState<any>({
     type: "edit",
-    title: "Мои данные",
+    title: "Мои компании",
     disabled: true,
     btnDisablred: false,
   });

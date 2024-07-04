@@ -22,6 +22,7 @@ export const paths = {
   partners: "partners",
   private: "private",
   young_talent: "young_talent",
+  pass: "pass",
 
   profile: "profile",
 };
