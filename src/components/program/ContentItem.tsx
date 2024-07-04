@@ -12,7 +12,7 @@ import { useAppDispatch } from "@/hooks/hook";
 import { stepTo } from "@/store/modal/modalSlice";
 
 const ContentItem: FC<{ item: IProgram; i: number }> = ({ item, i }) => {
-  const { date, title, time, speakers, description } = item;
+  const { date, title, place, speakers, description } = item;
   const isTablet = useIsTabletDevice();
   const dispatch = useAppDispatch();
 
@@ -28,10 +28,21 @@ const ContentItem: FC<{ item: IProgram; i: number }> = ({ item, i }) => {
         <div className={clsx(style.info__inner)}>
           <div className={clsx(style.info__head)}>
             <h3 className={clsx(style.info__title)}>
-              <span>{title}</span>
-              <span>{date}</span>
+              <span className={clsx(style.info__date)}>{date}</span>
+              <span className={clsx(style.info__sub_title)}>
+                {title.map((item, i) => (
+                  <span key={i}>{item}</span>
+                ))}
+              </span>
             </h3>
-            <p className={clsx(style.info__time)}>{time}</p>
+            <p className={clsx(style.place)}>
+              <span className={clsx(style.place__info)}>{place.info}</span>
+              <span className={clsx(style.place__time)}>{place.time},</span>
+
+              <span className={clsx(style.place__address)}>
+                {place.address}
+              </span>
+            </p>
           </div>
 
           <div className={clsx(style.speakers)}>
@@ -54,12 +65,6 @@ const ContentItem: FC<{ item: IProgram; i: number }> = ({ item, i }) => {
                   </div>
                 ))}
               </div>
-
-              {/* <div className={clsx(style.speakers__names)}>
-                {speakers.map(({ name }, i) => (
-                  <span key={i}>{name}</span>
-                ))}
-              </div> */}
             </div>
           </div>
 
@@ -68,9 +73,20 @@ const ContentItem: FC<{ item: IProgram; i: number }> = ({ item, i }) => {
             <p className={clsx(style.description__text)}>{description}</p>
           </div>
 
-          <Link to={paths.registration} className={clsx(style.registration)}>
-            Регистрация
-          </Link>
+          <div className={clsx(style.footer)}>
+            <Link to={paths.registration} className={clsx(style.registration)}>
+              Регистрация
+            </Link>
+
+            {item.logo && (
+              <div className={clsx(style.support)}>
+                <span className={clsx(style.support__text)}>При поддержке</span>
+                <a className={clsx(style.support__link)} href="#">
+                  <item.logo />
+                </a>
+              </div>
+            )}
+          </div>
         </div>
       </div>
     </div>

@@ -8,6 +8,7 @@
   height: var(--heigh);
   border-right: var(--line) solid var(--basic-dark);
   box-sizing: border-box;
+  width: var(--width);
 
   @include mw($tb) {
     height: auto;

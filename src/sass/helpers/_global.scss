@@ -231,6 +231,12 @@ img {
   .szh-accordion__item {
     border-top: 0;
   }
+
+  @include mw($tb) {
+    .szh-accordion__item--expanded svg {
+      transform: rotate(90deg);
+    }
+  }
 }
 
 .szh-accordion__item svg {

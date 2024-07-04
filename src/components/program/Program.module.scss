@@ -33,7 +33,7 @@
     padding-left: 2rem;
     padding-top: 4rem;
     padding-right: 2rem;
-    width: 44%;
+    // width: 44%;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -85,7 +85,7 @@
 
 .content {
   display: flex;
-  width: 56%;
+  // width: 56%;
   margin-left: auto;
   justify-content: flex-end;
 
@@ -98,9 +98,10 @@
 }
 
 .item {
-  flex: 0 0 0px;
+  // flex: 0 0 0px;
   display: flex;
   border-left: var(--line) solid var(--basic-dark);
+  flex-grow: 0;
 
   @include mw($tb) {
     border: 0;
@@ -111,12 +112,7 @@
   background-color: var(--basic-light);
   display: flex;
   flex-direction: column;
-  align-items: center;
-  gap: 3rem;
-  padding-top: 1.5rem;
-  padding-bottom: 4.5rem;
-  transform: rotate(180deg);
-  position: relative;
+  padding: 1.5rem 1rem;
   flex-shrink: 0;
 
   @include mw($tb) {
@@ -125,10 +121,10 @@
     gap: 1.5rem;
     padding: 1rem 0.5rem;
     width: 100%;
+    position: relative;
   }
 
   &__date {
-    writing-mode: vertical-rl;
     pointer-events: none;
     text-orientation: mixed;
     font-weight: 400;
@@ -136,6 +132,7 @@
     line-height: 130%;
     text-align: center;
     color: #141414;
+    margin-bottom: 1rem;
 
     @include mw($tb) {
       writing-mode: inherit;
@@ -144,13 +141,14 @@
   }
 
   &__title {
-    writing-mode: vertical-rl;
     pointer-events: none;
     font-weight: 400;
     font-size: 1.5rem;
     line-height: 130%;
     color: #141414;
     text-align: left;
+    display: flex;
+    flex-direction: column;
 
     @include mw($tb) {
       writing-mode: inherit;
@@ -159,23 +157,34 @@
   }
 
   &__icon {
-    position: absolute;
-    bottom: 1.5rem;
-    @include centered("x");
     cursor: pointer;
     transition: 0.3s;
+    width: 3rem;
+    height: 3rem;
+    background-color: rgba(#131313, 0.06);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: auto;
+    pointer-events: none;
+
+    svg {
+      width: 1.5rem;
+      height: 1.5rem;
+
+      @include mw($tb) {
+        transform: rotate(-90deg);
+      }
+    }
 
     @include mw($tb) {
-      display: none;
+      position: absolute;
+      right: 0;
+      bottom: 0;
     }
 
     &:hover {
       opacity: 0.6;
-    }
-
-    svg {
-      width: 3rem;
-      height: 3rem;
     }
   }
 }
@@ -189,7 +198,7 @@
 
   @include mw($tb) {
     display: flex;
-    padding-top: 0;
+    padding-top: 1.5;
   }
 
   &_active {
@@ -200,10 +209,9 @@
 
   &__inner {
     flex-grow: 1;
-    padding-left: 3rem;
+    padding-left: 1.5rem;
     padding-right: 1.25rem;
-    padding-top: 0.6rem;
-    padding-bottom: 0.6rem;
+
     display: flex;
     flex-direction: column;
 
@@ -216,6 +224,10 @@
   &__head {
     margin-bottom: 3rem;
 
+    @include mw($ldt) {
+      margin-bottom: 1rem;
+    }
+
     @include mw($tb) {
       margin-bottom: 1rem;
     }
@@ -223,12 +235,18 @@
 
   &__title {
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
+    row-gap: 1rem;
+    column-gap: 0.5rem;
     font-weight: 400;
     font-size: 1.5rem;
     line-height: 130%;
     color: #141414;
     margin-bottom: 1rem;
+
+    span {
+      flex-shrink: 0;
+    }
 
     @include mw($tb) {
       display: none;
@@ -246,10 +264,20 @@
       font-size: 1rem;
     }
   }
+
+  &__sub_title {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
 }
 
 .speakers {
   margin-bottom: 3rem;
+
+  @include mw($ldt) {
+    margin-bottom: 1rem;
+  }
 
   @include mw($tb) {
     margin-bottom: 1rem;
@@ -378,7 +406,6 @@
   text-align: center;
   transition: 0.3s;
   cursor: pointer;
-  align-self: flex-start;
   margin-top: auto;
 
   &:hover {
@@ -437,6 +464,44 @@ $base-angle: calc(180deg / $n);
           transform: translateZ($r * sin($next-angle)) scale(cos($next-angle));
         }
       }
+    }
+  }
+}
+
+.place {
+  display: flex;
+  gap: 0.5rem;
+  font-weight: 400;
+  font-size: 1.12rem;
+  line-height: 140%;
+  color: #141414;
+
+  @include mw($tb) {
+    font-size: 1rem;
+  }
+}
+
+.footer {
+  margin-top: auto;
+  display: flex;
+  justify-content: space-between;
+}
+
+.support {
+  display: flex;
+  align-items: center;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  column-gap: 1rem;
+  background-color: rgba(#131313, 0.06);
+
+  &__link {
+    display: flex;
+    align-items: center;
+
+    svg {
+      width: 5rem;
+      height: 2.5rem;
     }
   }
 }

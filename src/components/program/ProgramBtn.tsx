@@ -3,29 +3,33 @@ import { useAppDispatch, useAppSelector } from "@/hooks/hook";
 import { setProgramItem } from "@/store/program/programSlice";
 import { FC } from "react";
 import style from "./Program.module.scss";
-import IconBtn from "@/images/program/btn_icon.svg?react";
 import clsx from "clsx";
 import { useIsTabletDevice } from "@/hooks/IsSmallDevice";
+import IconArr from "@/images/step/iconStepArr.svg?react";
 
-const ProgramBtnInner: FC<{ date: string; title: string }> = ({
+const ProgramBtnInner: FC<{ date: string; title: string[] }> = ({
   date,
   title,
 }) => {
   return (
     <>
-      <span className={clsx(style.button__icon)}>
-        <IconBtn />
+      <span className={clsx(style.button__date)}>{date}</span>
+      <span className={clsx(style.button__title)}>
+        {title.map((item, i) => (
+          <span key={i}>{item}</span>
+        ))}
       </span>
 
-      <span className={clsx(style.button__date)}>{date}</span>
-      <span className={clsx(style.button__title)}>{title}</span>
+      <span className={clsx(style.button__icon)}>
+        <IconArr />
+      </span>
     </>
   );
 };
 
 export const ProgramBtn: FC<{
   date: string;
-  title: string;
+  title: string[];
   i: number;
 }> = ({ date, title, i }) => {
   const dispatch = useAppDispatch();

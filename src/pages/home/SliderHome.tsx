@@ -31,8 +31,6 @@ const SliderHome: FC = () => {
     const index = listSlides.indexOf(slide);
 
     swiper.slideTo(index, 1000);
-
-    console.log(path);
   }, [swiper]);
 
   useEffect(() => {
@@ -53,6 +51,8 @@ const SliderHome: FC = () => {
     dispatch(setClick(false));
   }, [dispatch, isClick, path, swiper]);
 
+  // console.log(pages[0]._source.fileName);
+
   return (
     <>
       <Swiper
@@ -66,8 +66,9 @@ const SliderHome: FC = () => {
           el: `.${style.scrollbar}`,
           dragClass: `${style.scrollbar__drag}`,
         }}
+        allowTouchMove={false}
         // initialSlide={12}
-        slidesPerView={"auto"}
+        slidesPerView="auto"
         preventInteractionOnTransition={true}
         onSlideChange={(s) => {
           if (isClick) return;

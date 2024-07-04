@@ -1,4 +1,6 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import img from "@/images/program/img_program.png";
+import IconMega from "@/images/profile/mega.svg?react";
 
 const speakers = [
   {
@@ -15,12 +17,24 @@ const speakers = [
   },
 ];
 
+const place = {
+  info: "Место и время проведения:",
+  address: "Плюс Дача",
+  time: "21:00",
+};
+
 export interface IProgram {
-  title: string;
+  title: string[];
   date: string;
-  time: string;
+
   speakers: { avatar: string; name: string }[];
   description: string;
+  logo?: any;
+  place: {
+    info: string;
+    address: string;
+    time: string;
+  };
 }
 
 const description =
@@ -30,72 +44,79 @@ const time = "21:00-22:00";
 
 export const program: IProgram[] = [
   {
-    title: "Big Battle: AI или крафт?",
+    title: ["Big Battle:", "AI или крафт?"],
     date: "04/07",
-    time,
+    place,
     speakers,
     description,
   },
   {
-    title: "Наболело: препродакшен.",
+    title: ["Наболело:", "препродакшен."],
     date: "11/07",
-    time,
+    place,
     speakers,
     description,
   },
   {
-    title: "Big Pic: 'не будем называть бренд.'",
+    title: ["Big Pic:", "не будем", "называть", "бренд."],
     date: "18/07",
-    time,
+    place,
     speakers,
     description,
   },
   {
-    title: "ШОУ Угадай сколько? квн",
+    title: ["ШОУ Угадай", "сколько?", "квн"],
     date: "25/07",
-    time,
+    place,
     speakers,
     description,
   },
   {
-    title: "Big Battle: Супер техника или достаточно базы?",
+    title: ["Big Battle:", "Супер", "техника или", "достаточно", "базы?"],
     date: "01/08",
-    time,
+    place,
     speakers,
     description,
   },
   {
-    title: "Музыка",
+    title: ["Музыка"],
     date: "08/08",
-    time,
+    place,
     speakers,
     description,
   },
   {
-    title: "Big Battle: Inhouse продакшен vs independent продакшен",
+    title: [
+      "Big Battle:",
+      "Inhouse",
+      "продакшен vs",
+      "independent",
+      "продакшен",
+    ],
     date: "15/08",
-    time,
+    place,
     speakers,
     description,
   },
   {
-    title: "Брендированный толк",
+    title: ["Брендированный", "толк"],
     date: "22/08",
-    time,
+    place,
     speakers,
     description,
   },
   {
-    title: "Производство контента на МегаСкоростях.",
+    title: ["Производство", "контента на", "МегаСкоростях."],
     date: "29/08",
-    time,
+    place,
     speakers,
     description,
+    logo: IconMega,
   },
   {
-    title: "Иммерсивный особняк + награждение",
+    title: ["Иммерсивный", "особняк +", "награждение"],
     date: "12/09",
-    time,
+    place,
     speakers,
     description,
   },
