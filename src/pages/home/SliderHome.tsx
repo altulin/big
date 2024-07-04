@@ -67,6 +67,7 @@ const SliderHome: FC = () => {
           dragClass: `${style.scrollbar__drag}`,
         }}
         // initialSlide={12}
+        slidesPerView={"auto"}
         preventInteractionOnTransition={true}
         onSlideChange={(s) => {
           if (isClick) return;
