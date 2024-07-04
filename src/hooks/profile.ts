@@ -6,7 +6,7 @@ const useProfile = () => {
   const [isIndividual, setIsIndividual] = useState<boolean | null>(null);
 
   useEffect(() => {
-    setIsIndividual(true);
+    setIsIndividual(false);
   }, [location.pathname]);
 
   return { isIndividual };

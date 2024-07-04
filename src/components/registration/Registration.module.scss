@@ -18,6 +18,12 @@
   padding-left: 2rem;
   padding-bottom: 4rem;
 
+  @include mw($tb) {
+    padding-top: 0;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+  }
+
   &__rule_link {
     color: #141414;
     position: relative;
@@ -48,6 +54,13 @@
   display: flex;
   column-gap: 4rem;
   margin-bottom: 4rem;
+
+  @include mw($tb) {
+    margin-bottom: 3rem;
+    flex-direction: column;
+    align-items: self-start;
+    row-gap: 0.5rem;
+  }
 
   &__item {
     &:hover {
@@ -111,5 +124,12 @@
 .upload {
   &__file {
     color: red;
+  }
+}
+
+.button {
+  @include mw($tb) {
+    width: 100%;
+    text-align: center;
   }
 }

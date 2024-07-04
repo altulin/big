@@ -113,22 +113,22 @@ const FormRegistration: FC = () => {
 
               {status === "entity" && <Entity formik={formik} />}
 
-              <Checkbox name="rule" isChecked={formik.values.rule}>
+              <Checkbox name="offer" isChecked={formik.values.offer}>
                 <a
                   className={clsx(style.form__rule_link)}
-                  href={import.meta.env.VITE_APP_PERSONAL_OFFER}
+                  href={import.meta.env.VITE_APP_PERSONAL_DATA}
                 >
-                  Оферту
+                  Обработку персональных данных
                 </a>
               </Checkbox>
 
               {status === "entity" && (
-                <Checkbox name="offer" isChecked={formik.values.offer}>
+                <Checkbox name="rule" isChecked={formik.values.rule}>
                   <a
                     className={clsx(style.form__rule_link)}
-                    href={import.meta.env.VITE_APP_PERSONAL_DATA}
+                    href={import.meta.env.VITE_APP_PERSONAL_OFFER}
                   >
-                    Обработку персональных данных
+                    Оферту
                   </a>
                 </Checkbox>
               )}
@@ -136,16 +136,18 @@ const FormRegistration: FC = () => {
               <div className={clsx(style.control)}>
                 <Button
                   type="submit"
-                  label="Отправить"
+                  label="Зарегистрироваться"
                   modifier="green"
                   disabled={!(formik.isValid && formik.dirty)}
+                  onClick={clickHandle}
+                  className={clsx(style.button)}
                 />
-                <Button
+                {/* <Button
                   type="button"
                   label="Вход"
                   modifier="black"
                   onClick={clickHandle}
-                />
+                /> */}
               </div>
             </Form>
           </>

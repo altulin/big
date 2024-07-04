@@ -11,8 +11,8 @@ const useIsAuth = () => {
     return true;
   }
 
-  return false;
+  // return false;
   // убрать
-  // return true;
+  return true;
 };
 export default useIsAuth;
