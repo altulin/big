@@ -6,9 +6,24 @@
   display: flex;
   flex-direction: column;
   border-right: var(--line) solid var(--basic-dark);
+
+  @include mw($tb) {
+    border-right: 0;
+    height: auto;
+  }
+
   &__inner {
     flex-grow: 1;
     display: flex;
+
+    @include mw($tb) {
+      margin-left: 0.56rem;
+      margin-right: 0.56rem;
+      border-left: var(--line) solid var(--basic-dark);
+      border-right: var(--line) solid var(--basic-dark);
+
+      flex-direction: column;
+    }
   }
 }
 
@@ -43,12 +58,31 @@
   text-transform: uppercase;
   color: #141414;
   border-right: var(--line) solid var(--basic-dark);
+
+  @include mw($tb) {
+    border: 0;
+    font-weight: 400;
+    font-size: 2.25rem;
+    line-height: 100%;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    color: #141414;
+    padding-top: 5rem;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    margin-bottom: 3rem;
+  }
 }
 
 .item {
   display: flex;
   border-bottom: var(--line) solid var(--basic-dark);
   border-right: var(--line) solid var(--basic-dark);
+
+  @include mw($tb) {
+    width: 100%;
+    border: 0;
+  }
 
   &__title {
     font-weight: 400;
@@ -57,28 +91,41 @@
     color: #141414;
     padding: 1rem 1.5rem;
     flex-grow: 1;
+
+    @include mw($tb) {
+      padding: 0.75rem 0.5rem;
+      font-weight: 400;
+      font-size: 1.12rem;
+      line-height: 130%;
+      color: #141414;
+      text-align: left;
+    }
   }
 
   &__button {
-    background-color: var(--color-green);
+    background-color: rgba(#131313, 0.06);
     transition: 0.3s;
     display: flex;
     align-items: center;
     justify-content: center;
     width: 4rem;
-
     transform: rotate(180deg);
     cursor: pointer;
     flex-shrink: 0;
 
     &:hover {
-      background-color: var(--color-green-hover);
+      background-color: var(--color-green);
     }
 
     svg {
       width: 2rem;
       height: 2rem;
       pointer-events: none;
+    }
+
+    @include mw($tb) {
+      width: 3rem;
+      transform: rotate(-90deg);
     }
   }
 }
@@ -91,10 +138,15 @@
     top: 0;
     width: 100%;
     left: 0;
-    // padding-right: calc(1.5rem + 0.05rem);
     box-sizing: border-box;
     opacity: 0;
     visibility: hidden;
+
+    @include mw($tb) {
+      position: static;
+      opacity: 1;
+      visibility: visible;
+    }
 
     &--visible {
       opacity: 1;
@@ -110,6 +162,10 @@
     text-transform: uppercase;
     color: #141414;
     margin-bottom: 0.25rem;
+
+    @include mw($tb) {
+      font-size: 2rem;
+    }
   }
 
   &__job {
@@ -124,6 +180,10 @@
   padding-top: 4rem;
   padding-left: 2rem;
   padding-bottom: 3rem;
+
+  @include mw($tb) {
+    padding: 2rem 0.5rem;
+  }
 }
 
 .info {
@@ -132,12 +192,20 @@
   border-top: var(--line) solid var(--basic-dark);
   border-bottom: var(--line) solid var(--basic-dark);
 
+  @include mw($tb) {
+    flex-direction: column;
+  }
+
   &__figure {
     flex-shrink: 0;
     width: 38%;
     align-self: stretch;
-    // aspect-ratio: 1 / 1.2;
+    aspect-ratio: 1 / 1.2;
     position: relative;
+
+    @include mw($tb) {
+      width: 100%;
+    }
 
     img {
       position: absolute;
@@ -155,6 +223,10 @@
     font-size: 1rem;
     line-height: 130%;
     color: #141414;
+
+    @include mw($tb) {
+      padding: 1.5rem 0.5rem;
+    }
   }
 
   &__bottom {
@@ -166,5 +238,9 @@
     padding-left: 2rem;
     padding-right: 2rem;
     padding-bottom: 2rem;
+
+    @include mw($tb) {
+      padding: 1.5rem 0.5rem;
+    }
   }
 }

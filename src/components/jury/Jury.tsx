@@ -21,7 +21,7 @@ const Jury: FC = () => {
     <section id={paths.jury_special} className={clsx(style.jury, "panel")}>
       <div className={clsx(style.jury__inner)}>
         <div className={clsx(style.jury__head)}>
-          <h2 className={clsx(style.title)}>Жюри</h2>
+          <h2 className={clsx(style.title)}>Специальное Жюри</h2>
         </div>
 
         <div className={clsx(style.marquee)}>
@@ -49,6 +49,9 @@ const Jury: FC = () => {
                   <p className={clsx(style.marquee__text)}>
                     <span className={clsx(style.marquee__name)}>
                       {item.name}
+                    </span>
+                    <span className={clsx(style.marquee__company)}>
+                      {item.company}
                     </span>
                     <span className={clsx(style.marquee__job)}>{item.job}</span>
                   </p>

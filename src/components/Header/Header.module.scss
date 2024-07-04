@@ -221,8 +221,8 @@
 
   @include mw($tb) {
     border-left: 0;
-    padding-top: 2.2rem;
-    padding-bottom: 1.8rem;
+    padding-top: 1.4rem;
+    padding-bottom: 1.3rem;
   }
 }
 
@@ -249,8 +249,8 @@
 
   @include mw($tb) {
     border-left: 0;
-    padding-top: 2.2rem;
-    padding-bottom: 1.8rem;
+    padding-top: 1.4rem;
+    padding-bottom: 1.3rem;
   }
 }
 
@@ -407,5 +407,66 @@
   svg {
     width: 1rem;
     height: 1rem;
+  }
+}
+
+.footer {
+  display: none;
+
+  @include mw($tb) {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    border-bottom: var(--line) solid var(--basic-dark);
+
+    &__auth {
+      // grid-template-columns: 43% 43% 14%;
+    }
+
+    &__registration {
+      border-top: var(--line) solid var(--basic-dark);
+      border-bottom: var(--line) solid var(--basic-dark);
+      grid-column: 1 / 3;
+      grid-row: 1 / 2;
+
+      &__auth {
+        // grid-column: 1 / 4;
+      }
+    }
+
+    &__submit {
+      grid-column: 1 / 2;
+      grid-row: 2 / 3;
+      width: 100%;
+
+      &__auth {
+        grid-column: 1 / 3;
+      }
+    }
+
+    &__come {
+      grid-column: 2 / 3;
+      grid-row: 2 / 3;
+      width: 100%;
+      border-bottom: var(--line) solid var(--basic-dark);
+      margin: 0;
+    }
+
+    &__profile {
+      &__auth {
+        grid-column: 1 / 2;
+        grid-row: 3 / 4;
+        justify-self: stretch;
+        padding-top: 1.3rem;
+        padding-bottom: 1.3rem;
+        width: 100%;
+      }
+    }
+
+    &__exit {
+      &__auth {
+        grid-column: 2 / 3;
+        grid-row: 3 / 4;
+      }
+    }
   }
 }

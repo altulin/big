@@ -282,7 +282,7 @@
   width: 16%;
 
   @include mw($tb) {
-    grid-row: 3 / 4;
+    grid-row: 4 / 5;
     grid-column: 1 / 4;
     width: auto;
     padding: 2rem 0.5rem;
@@ -309,9 +309,46 @@
   &__link {
     display: flex;
     justify-content: center;
+
+    @include mw($tb) {
+      svg {
+        max-width: 100%;
+      }
+    }
   }
 }
 
 .soc {
   margin-bottom: auto;
+}
+
+.buttons {
+  @include mw($tb) {
+    grid-column: 2 / 3;
+    grid-row: 3 / 4;
+    border-left: var(--line) solid var(--basic-dark);
+    border-right: var(--line) solid var(--basic-dark);
+    border-top: var(--line) solid var(--basic-dark);
+
+    &__submitJob {
+      width: 100%;
+    }
+  }
+}
+
+.all_partners {
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 100%;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  text-align: center;
+  color: #141414;
+  background-color: transparent;
+  border: var(--line) solid var(--basic-dark);
+  padding: 1.5rem;
+  margin-left: 0.56rem;
+  margin-right: 0.56rem;
+  margin-bottom: 2rem;
+  display: block;
 }

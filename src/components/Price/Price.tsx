@@ -32,7 +32,7 @@ const Price: FC = () => {
         <div className={clsx(style.price__inner)}>
           <h2 className={clsx(style.title)}>
             <span>стоимость Участия </span>
-            <span>в премии Big Picture</span>
+            {/* <span>в премии Big Picture</span> */}
           </h2>
 
           <div className={clsx(style.price__content)}>
@@ -72,6 +72,10 @@ const Price: FC = () => {
               ))}
             </div>
           </div>
+
+          <p className={clsx(style.price__text)}>
+            *цены в рублях за одну работу в категории опытных талантов
+          </p>
         </div>
       </div>
     </section>

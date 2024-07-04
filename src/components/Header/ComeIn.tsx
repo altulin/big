@@ -5,14 +5,14 @@ import IconCome from "@/images/header/come.svg?react";
 import { useAppDispatch } from "@/hooks/hook";
 import { stepTo } from "@/store/modal/modalSlice";
 
-const ComeIn: FC = () => {
+const ComeIn: FC<{ className?: string }> = ({ className }) => {
   const dispatch = useAppDispatch();
 
   const clickHandle = () => {
     dispatch(stepTo({ auth: { step: 1 } }));
   };
   return (
-    <div className={clsx(style.comeIn_wrap)}>
+    <div className={clsx(style.comeIn_wrap, className)}>
       <button onClick={clickHandle} className={clsx(style.comeIn)}>
         <IconCome />
         <span>Войти</span>

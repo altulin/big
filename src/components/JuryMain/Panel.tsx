@@ -7,7 +7,7 @@ const Panel: FC<{
   img: string;
   info_1: string;
   info_2: string;
-  visible: boolean;
+  visible?: boolean;
 }> = ({ name, img, info_1, info_2, visible }) => {
   return (
     <div

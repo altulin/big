@@ -7,8 +7,13 @@ import Slider from "./Slider";
 import Controls from "./Controls";
 import Marquee from "react-fast-marquee";
 import { paths } from "@/service/paths";
+import Registration from "../Header/Registration";
+import SubmitJob from "../Header/SubmitJob";
+import { useIsTabletDevice } from "@/hooks/IsSmallDevice";
+import { HashLink } from "react-router-hash-link";
 
 const Promo: FC = () => {
+  const isTablet = useIsTabletDevice();
   return (
     <section id={paths.promo} className={clsx(style.promo, "panel")}>
       <div className={clsx(style.promo__inner)}>
@@ -20,7 +25,24 @@ const Promo: FC = () => {
             </>
           </div>
           <Controls />
+
+          {isTablet && (
+            <div className={clsx(style.buttons)}>
+              <Registration />
+              <SubmitJob className={clsx(style.buttons__submitJob)} />
+            </div>
+          )}
         </div>
+
+        {isTablet && (
+          <HashLink
+            smooth
+            className={clsx(style.all_partners)}
+            to={paths.partners}
+          >
+            Все партнеры
+          </HashLink>
+        )}
 
         <Marquee className={clsx(style.marquee)} autoFill={true} speed={100}>
           <p className={clsx(style.marquee__inner)}>

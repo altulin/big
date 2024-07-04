@@ -9,6 +9,7 @@ import Profile from "./Profile";
 
 const Submit: FC = () => {
   const isAuth = useIsAuth();
+
   return (
     <div className={clsx(style.submit)}>
       <SubmitJob />

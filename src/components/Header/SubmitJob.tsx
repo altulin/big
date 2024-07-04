@@ -4,11 +4,11 @@ import { FC } from "react";
 import style from "./Header.module.scss";
 import useIsAuth from "@/hooks/isAuth";
 
-const SubmitJob: FC = () => {
+const SubmitJob: FC<{ className?: string }> = ({ className }) => {
   const isAuth = useIsAuth();
   return (
     <a
-      className={clsx(style.job, isAuth && style.job__auth)}
+      className={clsx(style.job, isAuth && style.job__auth, className)}
       href={paths.submit_job}
     >
       Подать работу

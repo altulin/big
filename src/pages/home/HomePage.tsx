@@ -33,7 +33,7 @@ export const pages: any = [
   <Jury />,
   <Program />,
   <Festival />,
-  <Partners />,
+  // <Partners />,
   <Faq />,
   <Contacts />,
 ];

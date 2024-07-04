@@ -31,7 +31,7 @@ const SubmissionOfWorks: FC = () => {
 
   useEffect(() => {
     if (!refFigure.current) return;
-    createCanvas(refFigure.current);
+    // createCanvas(refFigure.current);
   }, [createCanvas]);
 
   return (

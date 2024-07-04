@@ -27,7 +27,6 @@
       border-left: var(--line) solid var(--basic-dark);
       border-right: var(--line) solid var(--basic-dark);
       margin: 0 0.56rem;
-      padding-bottom: 5rem;
     }
   }
 
@@ -68,6 +67,7 @@
     row-gap: 0.5rem;
     padding-right: 0;
     padding-top: 0;
+    padding-bottom: 0;
   }
 
   &__inner {
@@ -99,6 +99,10 @@
     color: var(--basic-dark);
     text-align: left;
     padding: 1rem 0;
+
+    @include mw($tb) {
+      padding-right: 0.5rem;
+    }
   }
 
   &__icon {

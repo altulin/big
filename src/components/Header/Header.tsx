@@ -117,7 +117,11 @@ const Header = () => {
             </>
           )}
         </div>
-        {path === paths.promo ? <Logo parent={"header"} /> : <LogoAnime />}
+        {path === paths.promo || path === null ? (
+          <Logo parent={"header"} />
+        ) : (
+          <LogoAnime />
+        )}
 
         <Nav />
 

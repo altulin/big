@@ -17,17 +17,16 @@ const Criteria: FC = () => {
   }, []);
 
   useEffect(() => {
-    canvasCreate("canvas-net");
+    // canvasCreate("canvas-net");
   }, []);
 
   useEffect(() => {
-    if (isTablet) return;
-
-    if (path === paths.criteria) {
-      document.body.addEventListener("mousemove", scrollCallback);
-    } else {
-      document.body.removeEventListener("mousemove", scrollCallback);
-    }
+    // if (isTablet) return;
+    // if (path === paths.criteria) {
+    //   document.body.addEventListener("mousemove", scrollCallback);
+    // } else {
+    //   document.body.removeEventListener("mousemove", scrollCallback);
+    // }
   }, [isTablet, path, scrollCallback]);
 
   return (
