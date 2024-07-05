@@ -6,14 +6,19 @@ const categorySlice = createSlice({
 
   initialState: {
     category: categories.main_category,
+    categoryPitch: null,
   },
 
   reducers: {
     setCategory(state, action) {
       state.category = action.payload;
     },
+
+    setCategoryPitch(state, action) {
+      state.categoryPitch = action.payload;
+    },
   },
 });
 
-export const { setCategory } = categorySlice.actions;
+export const { setCategory, setCategoryPitch } = categorySlice.actions;
 export default categorySlice.reducer;

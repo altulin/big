@@ -9,9 +9,16 @@ interface IRadio {
   name?: string;
   value: string;
   formik?: any;
+  icon?: any;
 }
 
-const Radio: FC<IRadio> = ({ label, value, formik, name = "status" }) => {
+const Radio: FC<IRadio> = ({
+  label,
+  value,
+  formik,
+  name = "status",
+  icon = null,
+}) => {
   return (
     <TextInput
       className={clsx(style.radio__item)}
@@ -26,7 +33,11 @@ const Radio: FC<IRadio> = ({ label, value, formik, name = "status" }) => {
             <div className={clsx(style.radio__active)}></div>
           )}
         </div>
-        <div className={clsx(style.radio__text)}>{label}</div>
+        <div className={clsx(style.radio__text)}>
+          {label}
+
+          {icon && icon}
+        </div>
       </>
     </TextInput>
   );

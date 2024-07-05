@@ -4,6 +4,7 @@ import * as yup from "yup";
 import {
   confrmPasswordMatch,
   file,
+  fileMax,
   nameMax,
   nameMin,
   passwordMax,
@@ -19,6 +20,22 @@ import {
 //   required,
 //   valid,
 // } from "../../form/input/js/errText";
+
+// const MAX_FILE_SIZE = 5; //100KB
+const MAX_FILE_SIZE = 5242880; //5Mb
+
+// const validFileExtensions = {
+//   image: ["jpg", "gif", "png", "jpeg", "svg", "webp"],
+// };
+
+// function isValidFileType(fileName: any, fileType: any) {
+//   return (
+//     fileName &&
+//     validFileExtensions[fileType as keyof typeof validFileExtensions].indexOf(
+//       fileName.split(".").pop(),
+//     ) > -1
+//   );
+// }
 
 export const object: any = {
   name: yup
@@ -68,17 +85,30 @@ export const object: any = {
 
   company_name: yup.mixed().required(required),
 
-  file: yup.mixed().required(file),
-  // .test("fileFormat", "Only PDF files are allowed", (value) => {
-  //   if (value) {
-  //     const supportedFormats = ["pdf"];
-  //     console.log(value);
-  //     return supportedFormats.includes(value.split(".").pop());
-  //   }
-  //   return true;
-  // }),
+  file: yup.mixed().required(required),
 
-  // rule: yup.boolean().oneOf([true], requiredCeck),
+  brand: yup.string().required(required),
+  name_work: yup.string().required(required),
+  nomination: yup.string().required(required),
+  deadlines: yup.string().required(required),
+  targets: yup.string().required(required),
+  target_audience: yup.string().required(required),
+  insight_and_idea: yup.string().required(required),
+  about_the_project: yup.string().required(required),
+  link: yup.string().required(required),
+  credits: yup.string().required(required),
+
+  project_image: yup
+    .mixed()
+    .required(file)
+
+    .test("fileSize", fileMax, (value) => {
+      return value && value.size <= MAX_FILE_SIZE;
+      // if (value instanceof File) {
+      //   return value.size <= MAX_FILE_SIZE;
+      // }
+      // return false;
+    }),
 };
 
 export const getValidationSchema = (arr: string[]) => {

@@ -75,6 +75,9 @@
     font-size: 1.12rem;
     line-height: 140%;
     color: #141414;
+    display: flex;
+    align-items: center;
+    column-gap: 0.3rem;
   }
   &__icon {
     width: 1rem;

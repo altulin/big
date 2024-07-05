@@ -1,52 +1,58 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { useGetUsersQuery } from "@/store/rtk/user/userApi";
-import { FC, useEffect, useState } from "react";
+// import { useGetUsersQuery } from "@/store/rtk/user/userApi";
+import { FC } from "react";
 import Select from "react-select";
 
 interface ISelectField {
   placeholder?: string;
-  field: {
+  field?: {
     name: string;
     value: string | number;
     onBlur: () => void;
   };
   form: any;
   id?: string;
+  options?: any;
+  name?: string;
+  label?: string;
+  prefix?: string;
 }
 
-const SelectField: FC<ISelectField> = ({ field, form, placeholder, id }) => {
-  const resp = useGetUsersQuery("users", {});
-  const [options, setOptions] = useState([]);
-
-  useEffect(() => {
-    if (!resp.data) return;
-
-    setOptions(
-      resp.data.map((user: any) => ({
-        value: user.id,
-        label: user.name,
-      })) || [],
-    );
-  }, [resp.data]);
-
+const SelectField: FC<ISelectField> = ({
+  field,
+  form,
+  id,
+  options,
+  name,
+  label = null,
+  prefix,
+  placeholder,
+}) => {
   return (
-    <Select
-      options={options}
-      name={field.name}
-      value={
-        options
-          ? options.find(
-              (option: { value: number }) => option.value === field.value,
-            )
-          : ""
-      }
-      onChange={(option: any) => {
-        form.setFieldValue(field.name, option ? option["label"] : "");
-      }}
-      onBlur={field.onBlur}
-      placeholder={placeholder}
-      id={id}
-    />
+    <div className={prefix}>
+      {label && <span className={`${prefix}__label`}>{label}</span>}
+
+      <Select
+        className={`${prefix}__container`}
+        classNamePrefix={prefix}
+        placeholder={placeholder}
+        options={options}
+        name={name}
+        value={
+          options
+            ? options.find(
+                (option: { value: number }) => option.value === field?.value,
+              )
+            : ""
+        }
+        onChange={(option: any) => {
+          form.setFieldValue(field?.name, option ? option["label"] : "");
+        }}
+        onBlur={field?.onBlur}
+        placeholder={placeholder}
+        id={id}
+      />
+    </div>
   );
 };
 

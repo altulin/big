@@ -8,7 +8,7 @@ const Pass: FC = () => {
   return (
     <section className={clsx(style.pass)}>
       <ScrollBarComponent>
-        <div className={clsx(style.pass__inner)}>
+        <div className={clsx(style.pass__inner, "scroll-content")}>
           <PassForm />
         </div>
       </ScrollBarComponent>
