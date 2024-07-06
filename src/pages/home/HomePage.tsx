@@ -26,7 +26,7 @@ export const pages: any = [
   <Nominations />,
   <Pitch />,
   <SubmissionOfWorks />,
-  <Price />,
+  // <Price />,
   <Requirements />,
   <Criteria />,
   <JuryMain />,

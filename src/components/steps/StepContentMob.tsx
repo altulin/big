@@ -3,13 +3,16 @@ import { FC, useEffect, useState } from "react";
 import style from "./Steps.module.scss";
 import clsx from "clsx";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { getLengthMob, head } from "./script";
+import useControlDate from "./script";
 import ControlBtn from "./Control";
 import { Navigation } from "swiper/modules";
 import { v4 as uuidv4 } from "uuid";
+import { useIntermediateStageQuery } from "@/store/rtk/stage/intermediateStage";
 
 const StepContentMob: FC = () => {
   const [swiper, setSwiper] = useState<any>(null);
+  const { data } = useIntermediateStageQuery(undefined);
+  const { getLengthMob, head } = useControlDate(data);
 
   useEffect(() => {
     if (!swiper) return;

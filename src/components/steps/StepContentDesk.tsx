@@ -1,18 +1,31 @@
 import { FC, useEffect, useState } from "react";
 import style from "./Steps.module.scss";
 import clsx from "clsx";
-import { getLength, head, schedule } from "./script";
-// import { formatInTimeZone } from "date-fns-tz";
+import useControlDate from "./script";
+import { useIntermediateStageQuery } from "@/store/rtk/stage/intermediateStage";
+// import { zonedTimeToUtc } from "date-fns-tz";
 
 const StepContentDesk: FC = () => {
   const [width, setWidth] = useState(0);
+  const data = useIntermediateStageQuery(undefined);
+
+  const content = useControlDate(data);
 
   useEffect(() => {
+    if (!content) return;
+
     setTimeout(() => {
-      setWidth(getLength(new Date()));
-      // setWidth(getLength(new Date(2024, 8, 19, 22, 0, 1, 0))); test
+      setWidth(content.getLength(new Date()));
+      // console.log(new Date());
+      // const current = zonedTimeToUtc(new Date(), "Europe/Moscow");
+      // console.log(current);
+      // setWidth(content.getLength(new Date(2024, 9, 1, 22, 0, 1, 0)));
     }, 500);
-  }, []);
+  }, [content]);
+
+  if (!content) return null;
+
+  const { head, schedule } = content;
 
   return (
     <div className={clsx(style.steps__content)}>
