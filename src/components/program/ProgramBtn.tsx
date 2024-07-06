@@ -7,13 +7,22 @@ import clsx from "clsx";
 import { useIsTabletDevice } from "@/hooks/IsSmallDevice";
 import IconArr from "@/images/step/iconStepArr.svg?react";
 
-const ProgramBtnInner: FC<{ date: string; title: string[] }> = ({
-  date,
-  title,
-}) => {
+const ProgramBtnInner: FC<{ date: string; title: string[]; logo?: any }> = (
+  props,
+) => {
+  const isTablet = useIsTabletDevice();
+
+  const { date, title } = props;
+
   return (
     <>
-      <span className={clsx(style.button__date)}>{date}</span>
+      <span className={clsx(style.button__date)}>
+        <>
+          {date}
+
+          {props.logo && isTablet && <props.logo />}
+        </>
+      </span>
       <span className={clsx(style.button__title)}>
         {title.map((item, i) => (
           <span key={i}>{item}</span>
@@ -31,7 +40,8 @@ export const ProgramBtn: FC<{
   date: string;
   title: string[];
   i: number;
-}> = ({ date, title, i }) => {
+  logo?: any;
+}> = ({ date, title, i, logo }) => {
   const dispatch = useAppDispatch();
   const isTablet = useIsTabletDevice();
   const { current } = useAppSelector((state) => state.program);
@@ -56,7 +66,7 @@ export const ProgramBtn: FC<{
         </button>
       ) : (
         <div className={clsx(style.button)}>
-          <ProgramBtnInner date={date} title={title} />
+          <ProgramBtnInner date={date} title={title} logo={logo} />
         </div>
       )}
     </>

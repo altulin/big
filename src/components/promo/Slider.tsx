@@ -44,6 +44,7 @@ const Slider: FC = () => {
       speed={1000}
       allowTouchMove={false}
       onSlideChangeTransitionStart={changeHandle}
+      // autoHeight={true}
     >
       {slides.map((slide, index) => (
         <SwiperSlide key={index} className={clsx(style.slide)}>

@@ -12,7 +12,14 @@ const ContentMob: FC = () => {
       {program.map((item, i) => (
         <AccordionItem
           className={clsx(style.accordion__item)}
-          header={<ProgramBtn date={item.date} title={item.title} i={i} />}
+          header={
+            <ProgramBtn
+              date={item.date}
+              title={item.title}
+              i={i}
+              logo={item.logo}
+            />
+          }
           key={i}
         >
           <ContentItem item={item} i={i} />

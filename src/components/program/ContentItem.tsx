@@ -78,7 +78,7 @@ const ContentItem: FC<{ item: IProgram; i: number }> = ({ item, i }) => {
               Регистрация
             </Link>
 
-            {item.logo && (
+            {item.logo && !isTablet && (
               <div className={clsx(style.support)}>
                 <span className={clsx(style.support__text)}>При поддержке</span>
                 <a className={clsx(style.support__link)} href="#">

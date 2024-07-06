@@ -40,14 +40,17 @@ const AsideBrands: FC = () => {
           </li>
         ))}
       </ul>
-      <HashLink
-        smooth
-        to={paths.partners}
-        className={clsx(style.aside__button)}
-        onClick={handle}
-      >
-        Все партнеры
-      </HashLink>
+
+      {!isTablet && (
+        <HashLink
+          smooth
+          to={paths.partners}
+          className={clsx(style.aside__button)}
+          onClick={handle}
+        >
+          Все партнеры
+        </HashLink>
+      )}
     </div>
   );
 };

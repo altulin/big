@@ -20,4 +20,8 @@
   font-size: 3.75rem;
   display: flex;
   flex-direction: column;
+
+  @include mw($tb) {
+    font-size: 1.75rem;
+  }
 }

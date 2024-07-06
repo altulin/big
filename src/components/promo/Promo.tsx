@@ -40,7 +40,7 @@ const Promo: FC = () => {
           <HashLink
             smooth
             className={clsx(style.all_partners)}
-            to={paths.partners}
+            to={`/#${paths.partners}`}
           >
             Все партнеры
           </HashLink>
