@@ -27,6 +27,7 @@ const Entity: FC<{ formik: any }> = ({ formik }) => {
           !formik.values.file ? "Прикрепить файл .doc" : formik.values.file
         }
         accept=".doc, .docx"
+        modifier="file-profile"
       ></Upload>
     </>
   );

@@ -1,7 +1,7 @@
 import { getValidationSchema } from "@/service/form/validation";
 import clsx from "clsx";
 import { Form, Formik } from "formik";
-import { FC } from "react";
+import { FC, useEffect } from "react";
 import style from "./Registration.module.scss";
 import Radio from "./Radio";
 import TextInput from "../form/TextInput";
@@ -13,12 +13,17 @@ import Button from "../modal/template/Button";
 import { useAppDispatch, useAppSelector } from "@/hooks/hook";
 import { setSuccessModal, stepTo } from "@/store/modal/modalSlice";
 import CompanyReg from "./Company";
-// import Add from "@/UI/add/Add";
 import { onPhoneInput } from "@/service/form/masks/phone";
+import { useSettigsQuery } from "@/store/rtk/main/settings";
 
 const FormRegistration: FC = () => {
   const dispatch = useAppDispatch();
   const { status } = useAppSelector((state) => state.reg);
+  const { data } = useSettigsQuery(undefined);
+
+  useEffect(() => {
+    console.log(data);
+  }, [data]);
 
   const clickHandle = () => {
     dispatch(stepTo({ auth: { step: 1 } }));
@@ -116,7 +121,8 @@ const FormRegistration: FC = () => {
               <Checkbox name="offer" isChecked={formik.values.offer}>
                 <a
                   className={clsx(style.form__rule_link)}
-                  href={import.meta.env.VITE_APP_PERSONAL_DATA}
+                  href={data?.policy}
+                  target="_blank"
                 >
                   Обработку персональных данных
                 </a>
@@ -126,7 +132,8 @@ const FormRegistration: FC = () => {
                 <Checkbox name="rule" isChecked={formik.values.rule}>
                   <a
                     className={clsx(style.form__rule_link)}
-                    href={import.meta.env.VITE_APP_PERSONAL_OFFER}
+                    href={data?.offer}
+                    target="_blank"
                   >
                     Оферту
                   </a>

@@ -9,9 +9,11 @@ import { paths } from "@/service/paths";
 import Soc from "./Soc";
 import { useAppSelector } from "@/hooks/hook";
 import { canvasCreate, handleDraw } from "@/service/canvasContact";
+import { useSettigsQuery } from "@/store/rtk/main/settings";
 
 const Contacts: FC = () => {
   const isTablet = useIsTabletDevice();
+  const { data } = useSettigsQuery(undefined);
 
   const { path } = useAppSelector((state) => state.menu);
 
@@ -52,9 +54,9 @@ const Contacts: FC = () => {
                 <a
                   className={clsx(style.footer__link)}
                   target="_blank"
-                  href="mailto:info@bigpicturefestival.ru"
+                  href={`mailto:${data?.contact_email}`}
                 >
-                  info@bigpicturefestival.ru
+                  {data?.contact_email}
                 </a>
               </div>
 

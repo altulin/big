@@ -11,6 +11,7 @@ import Registration from "../Header/Registration";
 import SubmitJob from "../Header/SubmitJob";
 import { useIsTabletDevice } from "@/hooks/IsSmallDevice";
 import { HashLink } from "react-router-hash-link";
+import { canvasCreate } from "@/service/canvas";
 
 const Promo: FC = () => {
   const isTablet = useIsTabletDevice();
@@ -19,6 +20,7 @@ const Promo: FC = () => {
       <div className={clsx(style.promo__inner)}>
         <div className={clsx(style.promo__content)}>
           <AsideBrands />
+
           <div className={clsx(style.promo__slider)}>
             <>
               <Slider />
@@ -44,7 +46,14 @@ const Promo: FC = () => {
           </HashLink>
         )}
 
-        <Marquee className={clsx(style.marquee)} autoFill={true} speed={100}>
+        <Marquee
+          className={clsx(style.marquee)}
+          autoFill={true}
+          speed={100}
+          onMount={() => {
+            canvasCreate("canvas-sm");
+          }}
+        >
           <p className={clsx(style.marquee__inner)}>
             <span className={clsx(style.marquee__text)}>лето</span>
             <span className={clsx(style.marquee__year)}>2024</span>

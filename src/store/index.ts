@@ -1,6 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
 import modalSlice from "./modal/modalSlice";
-import { emptyApi } from "./rtk/emptyApi";
+import { api } from "./rtk/emptyApi";
 import { rtkQueryErrorLogger } from "./errorLogger";
 import menuSlice from "./menu/menuSlice";
 import programSlice from "./program/programSlice";
@@ -18,12 +18,12 @@ const store = configureStore({
     swiper: swiperSlice,
     speaker: speakerSlice,
     category: categorySlice,
-    [emptyApi.reducerPath]: emptyApi.reducer,
+    [api.reducerPath]: api.reducer,
   },
   devTools: process.env.NODE_ENV === "development",
 
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat([emptyApi.middleware, rtkQueryErrorLogger]),
+    getDefaultMiddleware().concat([api.middleware, rtkQueryErrorLogger]),
 });
 
 export default store;

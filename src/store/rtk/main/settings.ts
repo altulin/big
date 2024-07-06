@@ -1,6 +1,6 @@
-import { emptyApi } from "../emptyApi";
+import { api } from "../emptyApi";
 
-export const settigsApi = emptyApi.injectEndpoints({
+export const settigsApi = api.injectEndpoints({
   endpoints: (build) => ({
     settigs: build.query({
       query: () => ({
@@ -11,4 +11,4 @@ export const settigsApi = emptyApi.injectEndpoints({
   overrideExisting: false,
 });
 
-export const { useLazySettigsQuery } = settigsApi;
+export const { useSettigsQuery } = settigsApi;

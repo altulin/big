@@ -1,6 +1,6 @@
-import { emptyApi } from "../emptyApi";
+import { api } from "../emptyApi";
 
-export const faqApi = emptyApi.injectEndpoints({
+export const faqApi = api.injectEndpoints({
   endpoints: (build) => ({
     getFaq: build.query({
       query: () => ({

@@ -49,7 +49,6 @@ const SelectField: FC<ISelectField> = ({
           form.setFieldValue(field?.name, option ? option["label"] : "");
         }}
         onBlur={field?.onBlur}
-        placeholder={placeholder}
         id={id}
       />
     </div>

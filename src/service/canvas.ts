@@ -18,10 +18,8 @@ export const canvasCreate = (id: string) => {
     ".js-logo-placemove",
   ) as HTMLDivElement;
 
-  canvasHeight =
-    id === "canvas-contacts"
-      ? parentBlock.offsetHeight - 7 * rem
-      : parentBlock.offsetHeight - 7 * rem;
+  canvasHeight = parentBlock.offsetHeight - 2 * rem;
+
   canvasWidth = parentBlock.offsetWidth - 2 * rem;
 
   const img = new Image();
