@@ -11,8 +11,8 @@ import { useIntermediateStageQuery } from "@/store/rtk/stage/intermediateStage";
 
 const StepContentMob: FC = () => {
   const [swiper, setSwiper] = useState<any>(null);
-  const { data } = useIntermediateStageQuery(undefined);
-  const { getLengthMob, head } = useControlDate(data);
+  const data = useIntermediateStageQuery(undefined);
+  const content = useControlDate(data);
 
   useEffect(() => {
     if (!swiper) return;
@@ -22,6 +22,9 @@ const StepContentMob: FC = () => {
       getLengthMob(new Date(), swiper);
     }, 500);
   }, [swiper]);
+
+  if (!content) return null;
+  const { getLengthMob, head } = content;
 
   return (
     <div className={clsx(style.steps_mob)}>

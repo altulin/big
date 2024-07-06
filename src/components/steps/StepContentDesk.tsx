@@ -8,7 +8,6 @@ import { useIntermediateStageQuery } from "@/store/rtk/stage/intermediateStage";
 const StepContentDesk: FC = () => {
   const [width, setWidth] = useState(0);
   const data = useIntermediateStageQuery(undefined);
-
   const content = useControlDate(data);
 
   useEffect(() => {
