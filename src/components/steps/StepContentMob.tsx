@@ -8,6 +8,7 @@ import ControlBtn from "./Control";
 import { Navigation } from "swiper/modules";
 import { v4 as uuidv4 } from "uuid";
 import { useIntermediateStageQuery } from "@/store/rtk/stage/intermediateStage";
+import { toZonedTime } from "date-fns-tz";
 
 const StepContentMob: FC = () => {
   const [swiper, setSwiper] = useState<any>(null);
@@ -18,8 +19,9 @@ const StepContentMob: FC = () => {
     if (!swiper) return;
     if (swiper.destroyed) return;
     setTimeout(() => {
-      // getLengthMob(new Date(2024, 8, 18, 12, 0, 1, 0), swiper);
-      getLengthMob(new Date(), swiper);
+      // getLengthMob(new Date(2024, 9, 1, 22, 0, 1, 0), swiper);
+      // getLengthMob(new Date(), swiper);
+      getLengthMob(toZonedTime(new Date(), "Europe/Moscow"), swiper);
     }, 500);
   }, [swiper]);
 

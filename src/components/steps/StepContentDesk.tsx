@@ -4,6 +4,7 @@ import clsx from "clsx";
 import useControlDate from "./script";
 import { useIntermediateStageQuery } from "@/store/rtk/stage/intermediateStage";
 // import { zonedTimeToUtc } from "date-fns-tz";
+import { toZonedTime } from "date-fns-tz";
 
 const StepContentDesk: FC = () => {
   const [width, setWidth] = useState(0);
@@ -14,9 +15,9 @@ const StepContentDesk: FC = () => {
     if (!content) return;
 
     setTimeout(() => {
-      setWidth(content.getLength(new Date()));
+      setWidth(content.getLength(toZonedTime(new Date(), "Europe/Moscow")));
       // console.log(new Date());
-      // const current = zonedTimeToUtc(new Date(), "Europe/Moscow");
+      // const current = toZonedTime(new Date(), "Europe/Moscow");
       // console.log(current);
       // setWidth(content.getLength(new Date(2024, 9, 1, 22, 0, 1, 0)));
     }, 500);
