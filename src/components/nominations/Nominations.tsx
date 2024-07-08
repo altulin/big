@@ -7,6 +7,7 @@ import { useIsTabletDevice } from "@/hooks/IsSmallDevice";
 import { paths } from "@/service/paths";
 import { useLazyNominationsQuery } from "@/store/rtk/nominations/nominations";
 import { initGLTor } from "@/service/twgl/tor";
+import { throttle } from "@/service/throttle";
 
 const Nominations: FC = () => {
   const [getNomination, results] = useLazyNominationsQuery(undefined);
@@ -26,6 +27,14 @@ const Nominations: FC = () => {
     // console.log(results.data.count);
     getNomination({ offset: 0, limit: 10 });
   };
+
+  // const handleWheel = () => {
+  //   console.log(32132132);
+  // };
+
+  // useEffect(() => {
+  //   window.addEventListener("wheel", throttle(handleWheel, 50));
+  // }, []);
 
   return (
     <section

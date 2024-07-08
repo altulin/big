@@ -166,7 +166,7 @@ export function initGLTunnel(id: string, imgContainer: HTMLDivElement) {
 
       requestAnimationFrame(render);
     }
-    requestAnimationFrame(render);
+    // requestAnimationFrame(render);
   }
 
   setupTunnel();

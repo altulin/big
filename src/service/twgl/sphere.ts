@@ -107,7 +107,7 @@ export function initGLSphere(id: string) {
     });
     twgl.drawBufferInfo(gl, bufferInfo, gl.LINES);
 
-    requestAnimationFrame(render);
+    // requestAnimationFrame(render);
   }
   requestAnimationFrame(render);
 }
