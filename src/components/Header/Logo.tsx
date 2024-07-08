@@ -8,13 +8,17 @@ import { useIsTabletDevice } from "@/hooks/IsSmallDevice";
 import { useAppDispatch } from "@/hooks/hook";
 import { setClick, setPath } from "@/store/menu/menuSlice";
 import { paths } from "@/service/paths";
+import { useLocation } from "react-router-dom";
 
 const Logo: FC<{ parent: string }> = ({ parent }) => {
   const isTablet = useIsTabletDevice();
   const dispatch = useAppDispatch();
+  const location = useLocation();
 
   const handleClick = (e: MouseEvent<HTMLAnchorElement>) => {
     if (isTablet) return;
+
+    if (location.pathname !== "/") return;
 
     e.preventDefault();
     dispatch(setClick(true));

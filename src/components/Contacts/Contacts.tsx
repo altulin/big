@@ -1,10 +1,10 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import clsx from "clsx";
 import style from "./Contacts.module.scss";
 import { FC, useCallback, useEffect } from "react";
 
 import { useIsTabletDevice } from "@/hooks/IsSmallDevice";
 import IconMain from "@/images/header/logo.svg?react";
-import { law } from "./data";
 import { paths } from "@/service/paths";
 import Soc from "./Soc";
 import { useAppSelector } from "@/hooks/hook";
@@ -64,16 +64,27 @@ const Contacts: FC = () => {
             </div>
 
             <div className={clsx(style.law)}>
-              {law.map((item, i) => (
-                <a
-                  key={i}
-                  className={clsx(style.law__link)}
-                  href={item.href}
-                  target="_blank"
-                >
-                  {item.label}
-                </a>
-              ))}
+              <a
+                className={clsx(style.law__link)}
+                href={data?.policy}
+                target="_blank"
+              >
+                Политика использования персональных данных
+              </a>
+              <a
+                className={clsx(style.law__link)}
+                href={data?.cookies}
+                target="_blank"
+              >
+                Политика использования Cookie
+              </a>
+              <a
+                className={clsx(style.law__link)}
+                href={data?.festival_regulations}
+                target="_blank"
+              >
+                Регламент фестиваля
+              </a>
             </div>
           </div>
         </div>

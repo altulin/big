@@ -208,7 +208,8 @@
   }
 }
 
-.success {
+.success,
+.modal_error {
   padding: 5rem;
 
   &__inner {

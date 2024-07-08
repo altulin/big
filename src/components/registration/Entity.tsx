@@ -6,8 +6,6 @@ import Company from "./Company";
 import Upload from "../form/Upload";
 
 const Entity: FC<{ formik: any }> = ({ formik }) => {
-  console.log(formik.values.file);
-
   return (
     <>
       <h3 className={clsx(style.entity__title)}>Реквизиты организации</h3>

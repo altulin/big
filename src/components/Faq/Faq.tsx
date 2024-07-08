@@ -10,23 +10,18 @@ import { paths } from "@/service/paths";
 import { initGLGrid } from "@/service/twgl/grid";
 
 const Faq: FC = () => {
-  const [getNominations, result] = useLazyGetFaqQuery();
   const isTablet = useIsTabletDevice();
-
-  const [listResults, setListResults] = useState<[] | null>(null);
-  const [isBtn, setIsBtn] = useState<boolean>(false);
+  const [getFaq, results] = useLazyGetFaqQuery();
 
   useEffect(() => {
-    if (!isTablet) return;
-    if (!result.isSuccess) return;
+    getFaq({ offset: 0, limit: isTablet ? 5 : 100 }).unwrap();
+  }, [getFaq, isTablet]);
 
-    setListResults(result.data.results.slice(0, 5));
-    setIsBtn(true);
-  }, [isTablet, result]);
-
-  useEffect(() => {
-    // getNominations(undefined, true).unwrap();
-  }, [getNominations]);
+  const handleAdd = () => {
+    // console.log(results.data.results);
+    // console.log(results.data.count);
+    getNomination({ offset: 0, limit: 10 });
+  };
 
   useEffect(() => {
     initGLGrid("canvas-faq");
@@ -52,25 +47,14 @@ const Faq: FC = () => {
         </div>
 
         <div className={clsx(style.accordion_wrap, "swiper-no-mousewheel")}>
-          {isTablet ? (
-            <>
-              {listResults && <AccordionComonent data={listResults} />}
-              {isBtn && (
-                <button
-                  onClick={() => {
-                    setListResults(result.data?.results);
-                    setIsBtn(false);
-                  }}
-                  className={clsx(style.button_add)}
-                >
-                  Показать еще
-                </button>
-              )}
-            </>
-          ) : (
-            <ScrollBarComponent>
-              <AccordionComonent data={result.data?.results} />
-            </ScrollBarComponent>
+          <ScrollBarComponent>
+            {results.data && <AccordionComonent data={results.data?.results} />}
+          </ScrollBarComponent>
+
+          {isTablet && (
+            <button onClick={handleAdd} className={clsx(style.button_add)}>
+              Показать еще
+            </button>
           )}
         </div>
       </div>

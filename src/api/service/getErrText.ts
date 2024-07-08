@@ -50,10 +50,10 @@ export const getErrText = (error: number) => {
       errorText = "Восстановите пароль к вашему профилю";
       break;
     case 443:
-      errorText = "Пользователь с указанным e-mail уже есть в базе";
+      errorText = "Пользователь с такой почтой уже зарегистрирован";
       break;
     case 445:
-      errorText = "Невалидный формат номера телефона";
+      errorText = "Неверный формат номера телефона";
       break;
     case 461:
       errorText =

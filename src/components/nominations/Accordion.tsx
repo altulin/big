@@ -47,7 +47,13 @@ const AccordionComonent: FC<{
       transitionTimeout={500}
     >
       {data.map((data, i: number) => (
-        <div key={i} className={clsx(style.accordion__block)}>
+        <div
+          key={i}
+          className={clsx(
+            style.accordion__block,
+            !data?.partner && style["accordion__block--support"],
+          )}
+        >
           {data.partner && (
             <a
               className={clsx(style.support)}
@@ -66,7 +72,6 @@ const AccordionComonent: FC<{
           )}
 
           <AccordionItem
-            className={clsx(style.accordion__item)}
             header={<Head label={(data.question ?? data.title) as string} />}
           >
             <div className={clsx(style.accordion__inner)}>
