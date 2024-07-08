@@ -1,15 +1,20 @@
 import clsx from "clsx";
-import { FC } from "react";
+import { FC, useEffect } from "react";
 import style from "./Program.module.scss";
+import { initGLSphere } from "@/service/twgl/sphere";
 const Planet: FC = () => {
-  const arr = new Array(12).fill("");
+  useEffect(() => {
+    initGLSphere("canvas-planet");
+  }, []);
+
   return (
     <div className={clsx(style.planet)}>
-      <div className={clsx(style.sphere)}>
-        {arr.map((_, i) => (
-          <div key={i} className={clsx(style.ring)}></div>
-        ))}
-      </div>
+      <figure className={clsx(style.planet__figure)}>
+        <canvas
+          id="canvas-planet"
+          className={clsx(style.planet__canvas)}
+        ></canvas>
+      </figure>
     </div>
   );
 };

@@ -9,7 +9,6 @@ import { useAppDispatch, useAppSelector } from "@/hooks/hook";
 import { checkArr } from "@/service/checkArr";
 import { setClick, setPath } from "@/store/menu/menuSlice";
 import { setSwiperProgress } from "@/store/swiper/swiperSlice";
-import { paths } from "@/service/paths";
 
 const SliderHome: FC = () => {
   const { path, isClick } = useAppSelector((state) => state.menu);
@@ -59,7 +58,7 @@ const SliderHome: FC = () => {
         onSwiper={setSwiper}
         className={clsx(style.home__slider)}
         modules={[Scrollbar, Mousewheel, FreeMode]}
-        mousewheel={{ enabled: true, releaseOnEdges: true, sensitivity: 6 }}
+        mousewheel={{ enabled: true, releaseOnEdges: true, sensitivity: 3 }}
         freeMode={{ enabled: true }}
         scrollbar={{
           draggable: true,
@@ -71,6 +70,7 @@ const SliderHome: FC = () => {
         slidesPerView="auto"
         preventInteractionOnTransition={true}
         onSlideChange={(s) => {
+          dispatch(setSwiperProgress(s.progress));
           if (isClick) return;
 
           const listSlides = s.slides;
@@ -79,8 +79,11 @@ const SliderHome: FC = () => {
           const path = panelElement ? panelElement.id : null;
           dispatch(setPath(path));
         }}
-        onProgress={(_, p) => {
-          if (path === paths.participants) dispatch(setSwiperProgress(p));
+        // onProgress={(_, p) => {
+        //   if (path === paths.participants) dispatch(setSwiperProgress(p));
+        // }}
+        onScroll={(s) => {
+          dispatch(setSwiperProgress(s.progress));
         }}
       >
         {pages.map((slide: any, index: number) => (

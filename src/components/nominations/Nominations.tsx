@@ -1,30 +1,31 @@
 import clsx from "clsx";
 import style from "./Nominations.module.scss";
-import { FC, useEffect, useState } from "react";
+import { FC, useEffect } from "react";
 import AccordionComonent from "./Accordion";
-import { useLazyGetFaqQuery } from "@/store/rtk/feedback/faq";
 import ScrollBarComponent from "@/hoc/scrollbar/ScrollBarComponent";
 import { useIsTabletDevice } from "@/hooks/IsSmallDevice";
 import { paths } from "@/service/paths";
+import { useLazyNominationsQuery } from "@/store/rtk/nominations/nominations";
+import { initGLTor } from "@/service/twgl/tor";
 
 const Nominations: FC = () => {
-  const [getNominations, result] = useLazyGetFaqQuery();
+  const [getNomination, results] = useLazyNominationsQuery(undefined);
+
   const isTablet = useIsTabletDevice();
 
-  const [listResults, setListResults] = useState<[] | null>(null);
-  const [isBtn, setIsBtn] = useState<boolean>(false);
+  useEffect(() => {
+    initGLTor("gl-tor");
+  }, []);
 
   useEffect(() => {
-    if (!isTablet) return;
-    if (!result.isSuccess) return;
+    getNomination({ offset: 0, limit: isTablet ? 5 : 100 }).unwrap();
+  }, [getNomination, isTablet]);
 
-    setListResults(result.data.results.slice(0, 5));
-    setIsBtn(true);
-  }, [isTablet, result]);
-
-  useEffect(() => {
-    getNominations(undefined, true).unwrap();
-  }, [getNominations]);
+  const handleAdd = () => {
+    // console.log(results.data.results);
+    // console.log(results.data.count);
+    getNomination({ offset: 0, limit: 10 });
+  };
 
   return (
     <section
@@ -33,30 +34,33 @@ const Nominations: FC = () => {
     >
       <div className={clsx(style.nominations__inner)}>
         <div className={clsx(style.content)}>
-          <h2 className={clsx(style.nominations__title)}>Номинации</h2>
-          <div className={clsx(style.torus)}></div>
+          <div className={clsx(style.content__head)}>
+            <h2 className={clsx(style.nominations__title)}>Номинации</h2>
+            <p className={clsx(style.content__text)}>
+              Если ты опытный продакшен/специалист — оставайся тут! Если ты
+              молод, свеж или твоему продакшену до 2 лет — тебе в
+              <a className={clsx(style.content__link)} href="#">
+                Young Talent
+              </a>
+            </p>
+          </div>
+
+          <div className={clsx(style.torus)}>
+            <div className={clsx(style.torus__inner)}>
+              <canvas className={clsx(style.canvas)} id="gl-tor"></canvas>
+            </div>
+          </div>
         </div>
 
         <div className={clsx(style.accordion_wrap, "swiper-no-mousewheel")}>
-          {isTablet ? (
-            <>
-              {listResults && <AccordionComonent data={listResults} />}
-              {isBtn && (
-                <button
-                  onClick={() => {
-                    setListResults(result.data?.results);
-                    setIsBtn(false);
-                  }}
-                  className={clsx(style.button_add)}
-                >
-                  Показать еще
-                </button>
-              )}
-            </>
-          ) : (
-            <ScrollBarComponent>
-              <AccordionComonent data={result.data?.results} />
-            </ScrollBarComponent>
+          <ScrollBarComponent>
+            <AccordionComonent data={results.data?.results} />
+          </ScrollBarComponent>
+
+          {isTablet && (
+            <button onClick={handleAdd} className={clsx(style.button_add)}>
+              Показать еще
+            </button>
           )}
         </div>
       </div>

@@ -1,38 +1,20 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import clsx from "clsx";
-import { FC, useCallback, useEffect, useRef } from "react";
+import { FC, useEffect, useRef } from "react";
 import style from "./SubmissionOfWorks.module.scss";
 import { paths } from "@/service/paths";
-import useRoom from "@/service/canvasParticipants";
-import { useIsTabletDevice } from "@/hooks/IsSmallDevice";
-import { useAppSelector } from "@/hooks/hook";
+import { initGLTunnel } from "@/service/twgl/tunnel";
 
 const SubmissionOfWorks: FC = () => {
-  const refFigure = useRef<HTMLElement | null>(null);
-  const { createCanvas, handleDraw } = useRoom();
-  const isTablet = useIsTabletDevice();
-  const { path } = useAppSelector((state) => state.menu);
-
-  const scrollCallback = useCallback(() => {
-    handleDraw();
-  }, [handleDraw]);
+  const refContainer = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
-    if (isTablet) return;
+    if (!refContainer.current) {
+      return;
+    }
 
-    // console.log(path === paths.participants);
-
-    // if (path === paths.participants) {
-    // document.body.addEventListener("wheel", scrollCallback);
-    // } else {
-    //   document.body.removeEventListener("wheel", scrollCallback);
-    // }
-  }, [isTablet, path, scrollCallback]);
-
-  useEffect(() => {
-    if (!refFigure.current) return;
-    // createCanvas(refFigure.current);
-  }, [createCanvas]);
+    initGLTunnel("gl-tunnel", refContainer.current);
+  }, []);
 
   return (
     <section
@@ -44,8 +26,15 @@ const SubmissionOfWorks: FC = () => {
           <span>Участникам</span>
         </h2>
 
-        <figure ref={refFigure} id="room" className={clsx(style.canvas)}>
-          <canvas id="canvas-eye"></canvas>
+        <figure
+          ref={refContainer}
+          id="room"
+          className={clsx(style.submission__figure)}
+        >
+          <canvas
+            className={clsx(style.submission__canvas)}
+            id="gl-tunnel"
+          ></canvas>
         </figure>
       </div>
     </section>

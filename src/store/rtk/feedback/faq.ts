@@ -3,9 +3,11 @@ import { api } from "../emptyApi";
 export const faqApi = api.injectEndpoints({
   endpoints: (build) => ({
     getFaq: build.query({
-      query: () => ({
-        url: "/api/feedback/faq",
-      }),
+      query: ({ limit, offset }) => {
+        return {
+          url: `/api/feedback/faq?limit=10&offset=${offset}&limit=${limit}`,
+        };
+      },
     }),
   }),
   overrideExisting: false,

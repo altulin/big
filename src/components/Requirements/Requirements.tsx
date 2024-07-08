@@ -25,8 +25,9 @@ const Requirements: FC = () => {
       <div className={clsx(style.requirements__inner)}>
         <div className={clsx(style.presents)}>
           <h2 className={clsx(style.title)}>
-            <span className={clsx(style.title__text)}>Технические</span>
             <span className={clsx(style.title__text)}>требования</span>
+            <span className={clsx(style.title__text)}>к подаче</span>
+            <span className={clsx(style.title__text)}>работ </span>
           </h2>
         </div>
 

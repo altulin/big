@@ -3,7 +3,6 @@ import { FC } from "react";
 import style from "./Nominations.module.scss";
 import { Accordion, AccordionItem } from "@szhsin/react-accordion";
 import IconArr from "@/images/nominations/arr.svg?react";
-import img from "@/images/nominations/konda.png";
 
 const Head: FC<{ label: string }> = ({ label }) => {
   return (
@@ -17,8 +16,23 @@ const Head: FC<{ label: string }> = ({ label }) => {
   );
 };
 
+interface IAccordionItem {
+  answer?: string;
+  question?: string;
+  title?: string;
+  description?: string;
+  category?: string;
+  partner?: {
+    id: number;
+    logo: string;
+    title: string;
+    type: string;
+    url: string;
+  };
+}
+
 const AccordionComonent: FC<{
-  data: { answer: string; question: string }[];
+  data: IAccordionItem[];
 }> = ({ data }) => {
   const getAnswer = (answer: string) => {
     return answer.split("\r").map((el) => el.replace(/\n+/g, ""));
@@ -32,35 +46,47 @@ const AccordionComonent: FC<{
       transition
       transitionTimeout={500}
     >
-      {data.map(
-        (
-          { question, answer }: { answer: string; question: string },
-          i: number,
-        ) => (
-          <div key={i} className={clsx(style.accordion__block)}>
-            <div className={clsx(style.support)}>
-              <p className={clsx(style.support__text)}>При поддержке </p>
-              <img src={img} alt="support" width={78} height={13} />
-            </div>
-            <AccordionItem
-              className={clsx(style.accordion__item)}
-              header={<Head label={question} />}
+      {data.map((data, i: number) => (
+        <div key={i} className={clsx(style.accordion__block)}>
+          {data.partner && (
+            <a
+              className={clsx(style.support)}
+              target="_blank"
+              href={data.partner.url}
             >
-              <div className={clsx(style.accordion__inner)}>
-                <p className={clsx(style.accordion__answer)}>
-                  {getAnswer(answer).map((el, i) => (
-                    <span key={i}>{el}</span>
-                  ))}
-                </p>
+              <p className={clsx(style.support__text)}>При поддержке </p>
+              <img
+                className={clsx(style.support__logo)}
+                src={data.partner.logo}
+                alt="support"
+                width={78}
+                height={13}
+              />
+            </a>
+          )}
 
+          <AccordionItem
+            className={clsx(style.accordion__item)}
+            header={<Head label={(data.question ?? data.title) as string} />}
+          >
+            <div className={clsx(style.accordion__inner)}>
+              <p className={clsx(style.accordion__answer)}>
+                {getAnswer((data.answer ?? data.description) as string).map(
+                  (el, i) => (
+                    <span key={i}>{el}</span>
+                  ),
+                )}
+              </p>
+
+              {data.category === "special_nomination" && (
                 <span className={clsx(style.accordion__special)}>
                   Специальная награда
                 </span>
-              </div>
-            </AccordionItem>
-          </div>
-        ),
-      )}
+              )}
+            </div>
+          </AccordionItem>
+        </div>
+      ))}
     </Accordion>
   );
 };

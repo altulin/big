@@ -7,6 +7,7 @@ import ScrollBarComponent from "@/hoc/scrollbar/ScrollBarComponent";
 import { useIsTabletDevice } from "@/hooks/IsSmallDevice";
 import styleFaq from "./Faq.module.scss";
 import { paths } from "@/service/paths";
+import { initGLGrid } from "@/service/twgl/grid";
 
 const Faq: FC = () => {
   const [getNominations, result] = useLazyGetFaqQuery();
@@ -24,8 +25,12 @@ const Faq: FC = () => {
   }, [isTablet, result]);
 
   useEffect(() => {
-    getNominations(undefined, true).unwrap();
+    // getNominations(undefined, true).unwrap();
   }, [getNominations]);
+
+  useEffect(() => {
+    initGLGrid("canvas-faq");
+  }, []);
 
   return (
     <section
@@ -33,12 +38,17 @@ const Faq: FC = () => {
       className={clsx(style.nominations, styleFaq.faq, "panel")}
     >
       <div className={clsx(style.nominations__inner)}>
-        <div className={clsx(style.content)}>
+        <div className={clsx(style.content, styleFaq.faq__content)}>
           <h2 className={clsx(style.nominations__title, styleFaq.title)}>
             <span>Вопросы</span>
             <span>и ответы</span>
           </h2>
-          <div className={clsx(style.torus)}></div>
+          <div className={clsx(styleFaq.faq__figure)}>
+            <canvas
+              className={clsx(styleFaq.faq__canvas)}
+              id="canvas-faq"
+            ></canvas>
+          </div>
         </div>
 
         <div className={clsx(style.accordion_wrap, "swiper-no-mousewheel")}>

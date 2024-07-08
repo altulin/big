@@ -1,75 +1,83 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import clsx from "clsx";
 import style from "./Price.module.scss";
 import { FC } from "react";
-import { dates, frmtDt } from "../steps/script";
+
 import { paths } from "@/service/paths";
+import { useIntermediateStageQuery } from "@/store/rtk/stage/intermediateStage";
+import format from "format-number";
 
 const Price: FC = () => {
-  const head = [
-    { label: "Кол-во работ", text: "" },
-    {
-      label: `${frmtDt(dates.early.start)} – ${frmtDt(dates.early.end)}`,
-      text: "Ранняя пташка",
-    },
-    {
-      label: `${frmtDt(dates.basic.start)} – ${frmtDt(dates.basic.end)}`,
-      text: "Основной этап",
-    },
-    {
-      label: `${frmtDt(dates.final.start)} – ${frmtDt(dates.final.end)}`,
-      text: "Финальный этап",
-    },
-  ];
+  const { data } = useIntermediateStageQuery(undefined);
 
-  const body = [
-    ["1 подача", "7 500 ₽", "9 000 ₽", "11 000 ₽"],
-    ["3 подачи", "18 000 ₽", "22 500 ₽", "27 000 ₽"],
-    ["5 подач", "30 000 ₽", "36 000 ₽", "44 000 ₽"],
-  ];
+  const body = [["до 2-х"], ["от 3-х до 4-х"], ["от 5-ти"]];
   return (
     <section id={paths.price} className={clsx(style.price, "panel")}>
       <div className={clsx(style.price__wrapper)}>
         <div className={clsx(style.price__inner)}>
           <h2 className={clsx(style.title)}>
             <span>стоимость Участия </span>
-            {/* <span>в премии Big Picture</span> */}
           </h2>
 
           <div className={clsx(style.price__content)}>
             <div className={clsx(style.table)}>
               <div className={clsx(style.row, style["row--head"])}>
-                {head.map((item, i) => (
-                  <div
-                    className={clsx(
-                      style.cell,
-                      style["cell--head"],
-                      i === 0 && style["cell--head-first"],
-                    )}
-                    key={i}
-                  >
-                    <span className={clsx(style.head__label)}>
-                      {item.label}
-                    </span>
-                    <span className={clsx(style.head__text)}>{item.text}</span>
-                  </div>
-                ))}
-              </div>
-              {body.map((item, i) => (
-                <div className={clsx(style.row, style["row--body"])} key={i}>
-                  {item.map((el, n) => (
+                <div
+                  className={clsx(
+                    style.cell,
+                    style["cell--head"],
+                    style["cell--head-first"],
+                  )}
+                >
+                  <span className={clsx(style.head__label)}>Кол-во подач</span>
+                </div>
+
+                {data &&
+                  data?.results.slice(0, 3).map((item: any, i: number) => (
                     <div
-                      className={clsx(
-                        style.cell,
-                        style["cell--body"],
-                        n === 0 && style["cell--first"],
-                      )}
-                      key={n}
+                      className={clsx(style.cell, style["cell--head"])}
+                      key={i}
                     >
-                      <span className={clsx(style.body__text)}>{el}</span>
+                      <span className={clsx(style.head__label)}>
+                        {item.title}
+                      </span>
+                      <span className={clsx(style.head__text)}>
+                        {item.displayed_stage}
+                      </span>
                     </div>
                   ))}
-                </div>
-              ))}
+              </div>
+
+              <div className={clsx(style.body)}>
+                <ul className={clsx(style.body__list)}>
+                  {body.map((item, i) => (
+                    <li
+                      className={clsx(
+                        style.body__item,
+                        style["body__item--head"],
+                      )}
+                      key={i}
+                    >
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+                {data &&
+                  data?.results.slice(0, 3).map((item: any, i: number) => (
+                    <ul className={clsx(style.body__list)} key={i}>
+                      {item.work_costs
+                        .filter((el: any) => el.category === "main")
+                        .map((elem: any, m: number) => (
+                          <li className={clsx(style.body__item)} key={m}>
+                            {format({
+                              suffix: " ₽",
+                              integerSeparator: " ",
+                            })(elem.price)}
+                          </li>
+                        ))}
+                    </ul>
+                  ))}
+              </div>
             </div>
           </div>
 
