@@ -58,7 +58,7 @@ const SliderHome: FC = () => {
         onSwiper={setSwiper}
         className={clsx(style.home__slider)}
         modules={[Scrollbar, Mousewheel, FreeMode]}
-        mousewheel={{ enabled: true, releaseOnEdges: true, sensitivity: 3 }}
+        mousewheel={{ enabled: true, releaseOnEdges: true, sensitivity: 6 }}
         freeMode={{ enabled: true }}
         scrollbar={{
           draggable: true,

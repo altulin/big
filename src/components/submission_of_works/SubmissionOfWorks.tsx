@@ -13,7 +13,7 @@ const SubmissionOfWorks: FC = () => {
       return;
     }
 
-    initGLTunnel("gl-tunnel", refContainer.current);
+    initGLTunnel("gl-tunnel");
   }, []);
 
   return (
@@ -35,6 +35,13 @@ const SubmissionOfWorks: FC = () => {
             className={clsx(style.submission__canvas)}
             id="gl-tunnel"
           ></canvas>
+
+          <div id="imageContainer">
+            <img
+              id="image"
+              src="http://imroma.com/themes/otentic/wp-content/uploads/2022/02/img_42-300x300.jpg"
+            />
+          </div>
         </figure>
       </div>
     </section>
