@@ -125,10 +125,16 @@
 }
 
 .steps_mob {
+  width: 100%;
   &__inner {
     display: flex;
     border-top: var(--line) solid var(--basic-dark);
     border-bottom: var(--line) solid var(--basic-dark);
+    width: 100%;
+  }
+
+  &__swiper {
+    flex-grow: 1;
   }
 }
 

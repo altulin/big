@@ -46,7 +46,7 @@ const HomePage: FC = () => {
       {isTablet &&
         pages.map((item: any, i: number) => <div key={i}>{item}</div>)}
 
-      {!isTablet && <SliderHome />}
+      {!isTablet && <SliderHome pages={pages} />}
     </div>
   );
 };

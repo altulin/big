@@ -2,10 +2,16 @@ import { FC } from "react";
 import Modal from "../template/Modal";
 import style from "../template/Modal.module.scss";
 import clsx from "clsx";
-import { useAppSelector } from "@/hooks/hook";
+import { useAppDispatch, useAppSelector } from "@/hooks/hook";
+import { stepTo } from "@/store/modal/modalSlice";
 
 const ModalSuccess: FC = () => {
   const { modalState } = useAppSelector((state) => state.modal);
+  const dispatch = useAppDispatch();
+
+  const handleExit = () => {
+    dispatch(stepTo({ auth: { step: 1 } }));
+  };
 
   return (
     <Modal>
@@ -15,7 +21,12 @@ const ModalSuccess: FC = () => {
             {modalState?.success?.text}
           </h2>
           {modalState?.success?.comein && (
-            <button className={clsx(style.success__button)}>Войти</button>
+            <button
+              onClick={handleExit}
+              className={clsx(style.success__button)}
+            >
+              Войти
+            </button>
           )}
         </div>
       </div>

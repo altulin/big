@@ -3,6 +3,7 @@ import { FC, useEffect, useState } from "react";
 import style from "./Steps.module.scss";
 import clsx from "clsx";
 import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
 import useControlDate from "./script";
 import ControlBtn from "./Control";
 import { Navigation } from "swiper/modules";
@@ -35,7 +36,7 @@ const StepContentMob: FC = () => {
         <Swiper
           modules={[Navigation]}
           onSwiper={setSwiper}
-          className="steps_mob__swiper"
+          className={clsx(style.steps_mob__swiper, "steps_mob__swiper")}
           navigation={{
             nextEl: `.${style[`button_slider--next`]}`,
             prevEl: `.${style[`button_slider--prev`]}`,

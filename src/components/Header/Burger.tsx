@@ -5,10 +5,12 @@ import { Squash as Hamburger } from "hamburger-react";
 import { useIsTabletDevice } from "@/hooks/IsSmallDevice";
 import { useAppDispatch, useAppSelector } from "@/hooks/hook";
 import { setMenuControl } from "@/store/menu/menuSlice";
+import useIsYang from "@/hooks/isYang";
 
 const Burger: FC = () => {
   const isTablet = useIsTabletDevice();
   const { isMenu } = useAppSelector((state) => state.menu);
+  const { isYang } = useIsYang();
   const dispatch = useAppDispatch();
   return (
     <button
@@ -24,7 +26,7 @@ const Burger: FC = () => {
       <Hamburger
         toggled={isMenu}
         toggle={() => dispatch(setMenuControl(!isMenu))}
-        color="#141414"
+        color={!isYang ? "#141414" : "#ffffff"}
         size={isTablet ? 20 : 32}
         duration={0.2}
       />

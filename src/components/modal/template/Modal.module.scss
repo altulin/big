@@ -76,6 +76,11 @@
   color: #141414;
   position: relative;
   background-color: transparent;
+  transition: 0.3s;
+
+  &:hover {
+    opacity: 0.5;
+  }
 
   &--right {
     align-self: flex-end;

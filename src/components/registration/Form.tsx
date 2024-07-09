@@ -81,9 +81,9 @@ const FormRegistration: FC = () => {
                 comein: true,
               }),
             );
-          });
-
-        resetForm();
+            resetForm();
+          })
+          .catch(() => {});
       }}
       enableReinitialize={true}
     >

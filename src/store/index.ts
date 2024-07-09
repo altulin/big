@@ -8,6 +8,7 @@ import regSlice from "./reg/regSlice";
 import swiperSlice from "./swiper/swiperSlice";
 import speakerSlice from "./speaker/speakerSlice";
 import categorySlice from "./category/categorySlice";
+import userSlice from "./user/userSlice";
 
 const store = configureStore({
   reducer: {
@@ -18,6 +19,7 @@ const store = configureStore({
     swiper: swiperSlice,
     speaker: speakerSlice,
     category: categorySlice,
+    user: userSlice,
     [api.reducerPath]: api.reducer,
   },
   devTools: process.env.NODE_ENV === "development",

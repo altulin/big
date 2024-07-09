@@ -11,6 +11,13 @@
   --width: 100vw;
   --error: #ee00ff;
 
+  .dark {
+    --basic-light: #141414;
+    --basic-dark: #ffffff;
+    --color-green: #552bef;
+    --color-green-hover: #552bef;
+  }
+
   @include mw($ldt) {
     --heigh: calc(100vh - 9.7rem);
   }

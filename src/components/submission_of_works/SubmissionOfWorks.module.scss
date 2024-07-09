@@ -28,6 +28,8 @@
       border-left: var(--line) solid var(--basic-dark);
       border-right: var(--line) solid var(--basic-dark);
       padding-left: 0.5rem;
+      min-height: 30rem;
+      align-items: flex-end;
     }
   }
 
@@ -55,8 +57,32 @@
   text-transform: uppercase;
   letter-spacing: 0.01rem;
   color: var(--basic-dark);
+  margin-bottom: 5rem;
+
+  &__inner {
+    display: flex;
+
+    svg {
+      align-self: flex-end;
+      transform: translateY(32%);
+
+      @include mw($tb) {
+        width: 6.8rem;
+        height: 3.5rem;
+      }
+    }
+  }
+
+  &__text {
+    display: flex;
+    flex-direction: column;
+
+    &__by {
+      align-self: flex-end;
+    }
+  }
 
   @include mw($tb) {
-    font-size: 2.38rem;
+    font-size: 2.25rem;
   }
 }

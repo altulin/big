@@ -1,6 +1,7 @@
 export const paths = {
   login: "/login",
   promo: "promo",
+  home: "/",
 
   reg_event: "/",
   submit_job: "/",

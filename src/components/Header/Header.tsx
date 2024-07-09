@@ -16,6 +16,7 @@ import useStickyHead from "@/hooks/stickyHead";
 import Submit from "./Submit";
 import { paths } from "@/service/paths";
 import LogoAnime from "./LogoAnime";
+import useIsYang from "@/hooks/isYang";
 
 const Header = () => {
   const { isMenu } = useAppSelector((state) => state.menu);
@@ -25,6 +26,7 @@ const Header = () => {
   const q = gsap.utils.selector(itemRef);
   const sticky = useStickyHead();
   const { path } = useAppSelector((state) => state.menu);
+  const { isYang } = useIsYang();
 
   const location = useLocation();
   const [subMenu, setSubMenu] = useState<
@@ -91,7 +93,13 @@ const Header = () => {
     <header
       className={clsx(style.header, sticky && style[`header--${sticky}`])}
     >
-      <div ref={itemRef} className={clsx(style.header__inner)}>
+      <div
+        ref={itemRef}
+        className={clsx(
+          style.header__inner,
+          isYang && style[`header__inner--dark`],
+        )}
+      >
         <div className={clsx(style.header__empty)}></div>
         <div className={clsx(style.header__empty_big)}>
           {!isTablet && (

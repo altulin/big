@@ -4,13 +4,13 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Scrollbar, Mousewheel, FreeMode } from "swiper/modules";
 import clsx from "clsx";
 import style from "./HomePage.module.scss";
-import { pages } from "./HomePage";
+// import { pages } from "./HomePage";
 import { useAppDispatch, useAppSelector } from "@/hooks/hook";
 import { checkArr } from "@/service/checkArr";
 import { setClick, setPath } from "@/store/menu/menuSlice";
 import { setSwiperProgress } from "@/store/swiper/swiperSlice";
 
-const SliderHome: FC = () => {
+const SliderHome: FC<{ pages: any }> = ({ pages }) => {
   const { path, isClick } = useAppSelector((state) => state.menu);
   const [swiper, setSwiper] = useState<any>(null);
   const dispatch = useAppDispatch();

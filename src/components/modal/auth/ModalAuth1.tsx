@@ -2,42 +2,99 @@ import { Form, Formik } from "formik";
 import Modal from "../template/Modal";
 import style from "../template/Modal.module.scss";
 import clsx from "clsx";
-import { FC } from "react";
+import { FC, useEffect } from "react";
 import { getValidationSchema } from "@/service/form/validation";
 import TextInput from "@/components/form/TextInput";
 import Button from "../template/Button";
 import PasswordField from "@/components/form/Password";
 import { useNavigate } from "react-router-dom";
 import { paths } from "@/service/paths";
-import { useAppDispatch } from "@/hooks/hook";
+import { useAppDispatch, useAppSelector } from "@/hooks/hook";
 import { clearAllStep } from "@/store/modal/modalSlice";
+import { useAuthorizationMutation } from "@/store/rtk/user/authorization";
+import { onPhoneInput } from "@/service/form/masks/phone";
+import { TOKEN } from "@/service/const";
+import { useGetMeMutation } from "@/store/rtk/user/me";
+import { setUserData } from "@/store/user/userSlice";
 
 const ModalAuth1: FC = () => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
+  const [authorization, authData] = useAuthorizationMutation();
+  const [getMe, meData] = useGetMeMutation();
+  const { phone_number } = useAppSelector((state) => state.user.dataMe);
+
   const handleClickReg = () => {
     navigate(paths.registration);
     dispatch(clearAllStep());
   };
 
+  useEffect(() => {
+    const { isSuccess, status } = authData;
+
+    if (status !== "fulfilled") return;
+    if (isSuccess) {
+      localStorage.clear();
+      localStorage.setItem(TOKEN, authData.data.access);
+      getMe(undefined).unwrap();
+    } else {
+      console.log("error");
+      localStorage.clear();
+      dispatch(clearAllStep());
+    }
+  }, [authData, dispatch, getMe]);
+
+  useEffect(() => {
+    const { isSuccess, data, status } = meData;
+
+    if (status !== "fulfilled") return;
+    if (isSuccess) {
+      dispatch(setUserData(data));
+    } else {
+      localStorage.clear();
+      dispatch(clearAllStep());
+    }
+  }, [dispatch, meData]);
+
+  useEffect(() => {
+    if (!phone_number) return;
+
+    dispatch(clearAllStep());
+    navigate(paths.private);
+  }, [dispatch, navigate, phone_number]);
+
   return (
     <Modal title="Вход">
       <div className={clsx(style.modal__form)}>
         <Formik
-          initialValues={{}}
-          validationSchema={getValidationSchema(["mail", "password"])}
+          initialValues={{
+            phone: "",
+            password: "",
+          }}
+          validationSchema={getValidationSchema(["phone", "password"])}
           onSubmit={(values, { resetForm }) => {
-            resetForm();
+            const { phone, password } = values;
+
+            const dataObj: {
+              password: string;
+              phone_number: string;
+            } = {
+              password,
+              phone_number: phone,
+            };
+
+            authorization(dataObj).unwrap();
           }}
         >
           {(formik) => {
             return (
               <Form className={clsx(style.form)}>
                 <TextInput
-                  name="mail"
-                  placeholder="example@gmail.com"
-                  type="text"
-                  label="E-mail"
+                  name="phone"
+                  placeholder="+7(___)___-__-__"
+                  type="tel"
+                  label="Логин"
+                  onInput={onPhoneInput}
                 />
                 <PasswordField
                   name="password"

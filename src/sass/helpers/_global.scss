@@ -12,6 +12,10 @@ html {
   // font-size: 16px;
   font-size: 0.83vw;
 
+  @media screen and (max-width: 1920px) {
+    font-size: 1vw;
+  }
+
   @include mw($ldt) {
     font-size: 1.12vw;
   }
@@ -52,7 +56,7 @@ body {
   @include font("NeueMachina");
   font-weight: 400;
   color: $text-dark;
-  background-color: $bg;
+  background-color: var(--basic-light);
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -256,6 +260,12 @@ img {
   background-color: rgba(#141414, 0.04);
   div {
     border-radius: 5px;
+  }
+}
+
+.dark {
+  .hamburger-react {
+    background-color: rgba(#fff, 0.5);
   }
 }
 

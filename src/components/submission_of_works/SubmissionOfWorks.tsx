@@ -4,16 +4,22 @@ import { FC, useEffect, useRef } from "react";
 import style from "./SubmissionOfWorks.module.scss";
 import { paths } from "@/service/paths";
 import { initGLTunnel } from "@/service/twgl/tunnel";
+import useIsYang from "@/hooks/isYang";
+import IconLogo from "@/images/participants/logo.svg?react";
 
 const SubmissionOfWorks: FC = () => {
   const refContainer = useRef<HTMLDivElement | null>(null);
+  const { isYang } = useIsYang();
 
   useEffect(() => {
     if (!refContainer.current) {
       return;
     }
 
-    initGLTunnel("gl-tunnel");
+    initGLTunnel(
+      "gl-tunnel",
+      isYang ? "0.333,0.169,0.937,0.0" : "0.0, 1.0, 0.0, 1.0",
+    );
   }, []);
 
   return (
@@ -23,7 +29,18 @@ const SubmissionOfWorks: FC = () => {
     >
       <div className={clsx(style.submission__inner)}>
         <h2 className={clsx(style.title)}>
-          <span>Участникам</span>
+          {isYang ? (
+            <div className={clsx(style.title__inner)}>
+              <span className={clsx(style.title__text)}>
+                <span>YOUNG</span>
+                <span>TALENT</span>
+                <span className={clsx(style.title__text__by)}>by</span>
+              </span>
+              <IconLogo />
+            </div>
+          ) : (
+            <span>Участникам</span>
+          )}
         </h2>
 
         <figure

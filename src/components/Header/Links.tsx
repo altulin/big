@@ -7,6 +7,7 @@ import { useAppDispatch, useAppSelector } from "@/hooks/hook";
 import { HashLink } from "react-router-hash-link";
 import { useIsTabletDevice } from "@/hooks/IsSmallDevice";
 import { useLocation, useNavigate } from "react-router-dom";
+import { paths } from "@/service/paths";
 
 const Links: FC = () => {
   const dispatch = useAppDispatch();
@@ -19,9 +20,16 @@ const Links: FC = () => {
     if (isTablet) {
       dispatch(setMenuControl(false));
     } else {
-      e.preventDefault();
-
       const href = (e.target as HTMLAnchorElement).href.split("/").pop();
+
+      if (href === paths.young_talent) {
+        e.preventDefault();
+        navigate(`/${paths.young_talent}`);
+        dispatch(setPath(href));
+        return;
+      }
+
+      e.preventDefault();
       dispatch(setClick(true));
       dispatch(setPath(href));
 

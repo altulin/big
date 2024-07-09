@@ -2,6 +2,7 @@ import clsx from "clsx";
 import { HashLink } from "react-router-hash-link";
 import { FC, MouseEvent } from "react";
 import IconLogo from "@/images/header/logo.svg?react";
+import IconLogoDark from "@/images/header/logo-dark.svg?react";
 import style from "./Header.module.scss";
 import Burger from "./Burger";
 import { useIsTabletDevice } from "@/hooks/IsSmallDevice";
@@ -9,11 +10,13 @@ import { useAppDispatch } from "@/hooks/hook";
 import { setClick, setPath } from "@/store/menu/menuSlice";
 import { paths } from "@/service/paths";
 import { useLocation } from "react-router-dom";
+import useIsYang from "@/hooks/isYang";
 
 const Logo: FC<{ parent: string }> = ({ parent }) => {
   const isTablet = useIsTabletDevice();
   const dispatch = useAppDispatch();
   const location = useLocation();
+  const { isYang } = useIsYang();
 
   const handleClick = (e: MouseEvent<HTMLAnchorElement>) => {
     if (isTablet) return;
@@ -34,7 +37,7 @@ const Logo: FC<{ parent: string }> = ({ parent }) => {
         smooth
         onClick={handleClick}
       >
-        <IconLogo />
+        {isYang ? <IconLogoDark /> : <IconLogo />}
       </HashLink>
       <Burger />
     </div>

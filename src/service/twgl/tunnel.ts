@@ -2,7 +2,7 @@ import * as twgl from "twgl.js";
 import { calculateVisibility } from "./calculateVisibility";
 import { projectToScreen } from "./projectToScreen";
 
-export function initGLTunnel(id) {
+export function initGLTunnel(id: string, color: string) {
   const canvas = document.getElementById(id);
 
   if (!canvas) {
@@ -27,7 +27,8 @@ export function initGLTunnel(id) {
       precision mediump float;
   
       void main() {
-          gl_FragColor = vec4(0.0, 1.0, 0.0, 1.0);  // Green color
+          
+          gl_FragColor = vec4(${color});  // Green color
       }
   `;
 

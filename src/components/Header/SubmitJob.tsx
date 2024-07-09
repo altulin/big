@@ -7,11 +7,13 @@ import { HashLink } from "react-router-hash-link";
 import { useIsTabletDevice } from "@/hooks/IsSmallDevice";
 import { setMenuControl } from "@/store/menu/menuSlice";
 import { useAppDispatch } from "@/hooks/hook";
+import useIsYang from "@/hooks/isYang";
 
 const SubmitJob: FC<{ className?: string }> = ({ className }) => {
   const isAuth = useIsAuth();
   const isTablet = useIsTabletDevice();
   const dispatch = useAppDispatch();
+  const { isYang } = useIsYang();
 
   const handleClick = () => {
     if (isTablet) {
@@ -21,7 +23,12 @@ const SubmitJob: FC<{ className?: string }> = ({ className }) => {
   return (
     <HashLink
       smooth
-      className={clsx(style.job, isAuth && style.job__auth, className)}
+      className={clsx(
+        style.job,
+        isAuth && style.job__auth,
+        className,
+        isYang && style["job--dark"],
+      )}
       to={isAuth ? paths.registration : paths.registration}
       onClick={handleClick}
     >

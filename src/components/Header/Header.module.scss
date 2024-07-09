@@ -25,8 +25,12 @@
     grid-template-rows: 1rem 1fr 1fr;
     border-bottom: var(--line) solid var(--basic-dark);
 
+    &--dark {
+      border-right: var(--line) solid var(--basic-dark);
+    }
+
     @include mw($tb) {
-      grid-template-columns: 0.56rem auto 0.56rem;
+      grid-template-columns: 0.56rem auto 0.54rem;
       grid-template-rows: 1rem auto;
     }
   }
@@ -152,6 +156,10 @@
   width: 100%;
   padding: 1rem;
 
+  svg {
+    stroke: var(--basic-dark);
+  }
+
   @include mw($tb) {
     justify-content: center;
     padding: 1rem;
@@ -215,6 +223,10 @@
   transition: 0.3s;
   padding: 0.5rem;
 
+  &--dark {
+    border-bottom: var(--line) solid var(--basic-dark);
+  }
+
   &:hover {
     background-color: var(--color-green-hover);
   }
@@ -238,6 +250,10 @@
   width: 50%;
   transition: 0.3s;
   padding: 0.5rem;
+
+  &--dark {
+    color: #141414;
+  }
 
   &__auth {
     width: 43%;
@@ -269,6 +285,7 @@
   svg {
     margin-left: 0.25rem;
     pointer-events: none;
+    fill: var(--basic-dark);
   }
 
   &:after {
@@ -322,6 +339,7 @@
 
 .burger {
   display: none;
+  background-color: transparent;
 
   @include mw($tb) {
     display: block;
