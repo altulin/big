@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import clsx from "clsx";
-import { FC, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import style from "./Profile.module.scss";
 import { Form, Formik } from "formik";
 import { getValidationSchema } from "@/service/form/validation";
@@ -9,8 +9,11 @@ import ProfileBoxHead from "./ProfileBoxHead";
 import { onNameInput } from "@/service/form/masks/name";
 import { onPhoneInput } from "@/service/form/masks/phone";
 import useProfile from "@/hooks/profile";
+import { useAppSelector } from "@/hooks/hook";
+import StringMask from "string-mask";
 
 const ProfilePersonalForm: FC = () => {
+  const formatter = new StringMask("+0 (000) 000-00-000");
   const { isIndividual } = useProfile();
   const [btnData, setBtnData] = useState<any>({
     type: "edit",
@@ -18,6 +21,14 @@ const ProfilePersonalForm: FC = () => {
     disabled: true,
     btnDisablred: false,
   });
+
+  const { phone_number, name, email, company_name } = useAppSelector(
+    (state) => state.user.dataMe,
+  );
+
+  const formatPhone = (num: string) => {
+    return formatter.apply(num.replace(/^[^0-9]+/gm, ""));
+  };
 
   const handleBtn = (e: any, formik: any) => {
     const { type } = btnData;
@@ -49,10 +60,10 @@ const ProfilePersonalForm: FC = () => {
   return (
     <Formik
       initialValues={{
-        mail: "al.t@gm.com",
-        name: "alen",
-        phone: "+7 (902) 515-96-32",
-        company_name: "Google",
+        mail: email,
+        name: name,
+        phone: phone_number ? formatPhone(phone_number) : "",
+        company_name: company_name,
       }}
       validationSchema={getValidationSchema([
         "mail",
@@ -70,6 +81,7 @@ const ProfilePersonalForm: FC = () => {
           disabled: true,
         });
       }}
+      enableReinitialize={true}
     >
       {(formik) => {
         return (

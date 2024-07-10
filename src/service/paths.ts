@@ -21,7 +21,7 @@ export const paths = {
   contacts: "contacts",
   pitch: "pitch",
   partners: "partners",
-  private: "private",
+  private: "profile",
   young_talent: "young_talent",
   pass: "pass",
 

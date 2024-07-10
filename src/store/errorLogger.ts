@@ -10,6 +10,11 @@ export const rtkQueryErrorLogger: Middleware =
   (api: MiddlewareAPI) => (next) => (action) => {
     if (isRejectedWithValue(action)) {
       const code = (action.payload as { status: number }).status;
+
+      if (code === 401) {
+        return next(action);
+      }
+
       api.dispatch(setErrorModal(getErrText(code)));
     }
 

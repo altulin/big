@@ -37,10 +37,6 @@ const ModalAuth1: FC = () => {
       localStorage.clear();
       localStorage.setItem(TOKEN, authData.data.access);
       getMe(undefined).unwrap();
-    } else {
-      console.log("error");
-      localStorage.clear();
-      dispatch(clearAllStep());
     }
   }, [authData, dispatch, getMe]);
 
@@ -50,9 +46,6 @@ const ModalAuth1: FC = () => {
     if (status !== "fulfilled") return;
     if (isSuccess) {
       dispatch(setUserData(data));
-    } else {
-      localStorage.clear();
-      dispatch(clearAllStep());
     }
   }, [dispatch, meData]);
 
@@ -72,7 +65,7 @@ const ModalAuth1: FC = () => {
             password: "",
           }}
           validationSchema={getValidationSchema(["phone", "password"])}
-          onSubmit={(values, { resetForm }) => {
+          onSubmit={(values) => {
             const { phone, password } = values;
 
             const dataObj: {

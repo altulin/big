@@ -1,4 +1,4 @@
-import { FC, useCallback, useEffect } from "react";
+import { FC, useEffect } from "react";
 import { Route, Routes, useLocation, useNavigate } from "react-router-dom";
 import Template from "./templates_pages/Template";
 import RequireAuth from "./hoc/RequireAuth";
@@ -17,10 +17,10 @@ import YoungTalentPage from "./pages/young_talent/YoungTalentPage";
 import useIsYang from "./hooks/isYang";
 import useIsAuth from "./hooks/isAuth";
 import { useAppDispatch } from "./hooks/hook";
-import { setMenuControl } from "./store/menu/menuSlice";
 import { setUserData } from "./store/user/userSlice";
 import { token } from "./service/token";
 import { useGetMeMutation } from "./store/rtk/user/me";
+import useSignOut from "./hooks/signOut";
 
 const App: FC = () => {
   const title = import.meta.env.VITE_APP_TITLE;
@@ -31,7 +31,8 @@ const App: FC = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
-  const [getMe] = useGetMeMutation();
+  const [getMe, meData] = useGetMeMutation();
+  const { handleSignOut } = useSignOut();
 
   // dark theme
   useEffect(() => {
@@ -52,28 +53,25 @@ const App: FC = () => {
     }
   }, [isAuth, location.pathname, location.state, navigate]);
 
-  const handleSignOut = useCallback(() => {
-    localStorage.clear();
-    dispatch(setUserData({}));
-    dispatch(setMenuControl(false));
-    navigate(paths.home);
-  }, [dispatch, navigate]);
-
+  // check valid token
   useEffect(() => {
-    if (isAuth) return;
+    // if (isAuth) return;
     const myToken = token();
     if (myToken) {
-      getMe(undefined)
-        .unwrap()
-        .then((res) => {
-          if (!res) {
-            handleSignOut();
-            return;
-          }
-          dispatch(setUserData(res));
-        });
+      getMe(undefined).unwrap();
     }
-  }, [dispatch, getMe, handleSignOut, isAuth]);
+  }, [dispatch, getMe]);
+
+  // handle valid token
+  useEffect(() => {
+    if (meData.status === "rejected") {
+      handleSignOut();
+    }
+
+    if (meData.status === "fulfilled") {
+      dispatch(setUserData(meData.data));
+    }
+  }, [dispatch, handleSignOut, meData]);
 
   return (
     <HelmetProvider>
@@ -106,11 +104,6 @@ const App: FC = () => {
                 {<ServicePage children={<Pass />} title="Подача работы" />}
               </RequireAuth>
             }
-          />
-
-          <Route
-            path={paths.private}
-            element={<RequireAuth>{/* <Private /> */ <h1>лк</h1>}</RequireAuth>}
           />
 
           {/* <Route path="*" element={<HomePage />} /> */}

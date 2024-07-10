@@ -72,8 +72,15 @@
     }
   }
   &__list_item {
+    width: 6rem;
     @include mw($tb) {
       width: calc(100% / 3);
     }
+  }
+
+  &__list_link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 }

@@ -43,6 +43,7 @@
     "react-router-hash-link": "^2.4.3",
     "react-select": "^5.8.0",
     "sass": "^1.69.5",
+    "string-mask": "^0.3.0",
     "swiper": "^11.1.4",
     "twgl.js": "^5.5.4",
     "uuid": "^10.0.0",

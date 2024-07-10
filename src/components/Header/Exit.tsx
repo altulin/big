@@ -2,13 +2,13 @@ import clsx from "clsx";
 import { FC } from "react";
 import style from "./Header.module.scss";
 import IconExit from "@/images/header/exit.svg?react";
-import useExit from "@/hooks/exit";
+import useSignOut from "@/hooks/signOut";
 
 const Exit: FC<{ className?: string }> = ({ className }) => {
-  const handleExit = useExit();
+  const { handleSignOut } = useSignOut();
 
   return (
-    <button onClick={handleExit} className={clsx(style.exit, className)}>
+    <button onClick={handleSignOut} className={clsx(style.exit, className)}>
       <IconExit />
     </button>
   );

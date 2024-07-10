@@ -3,8 +3,13 @@ import clsx from "clsx";
 import { FC } from "react";
 import { HashLink } from "react-router-hash-link";
 import style from "./Header.module.scss";
+import { useAppSelector } from "@/hooks/hook";
 
 const Profile: FC<{ className?: string }> = ({ className }) => {
+  const { name } = useAppSelector((state) => state.user.dataMe);
+
+  if (!name) return null;
+
   return (
     <HashLink
       className={clsx(style.profile, className)}
@@ -12,7 +17,7 @@ const Profile: FC<{ className?: string }> = ({ className }) => {
       to={paths.profile}
     >
       <span className={clsx(style.profile__icon)}></span>
-      <span className={clsx(style.profile__name)}>Петр</span>
+      <span className={clsx(style.profile__name)}>{name}</span>
     </HashLink>
   );
 };
