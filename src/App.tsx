@@ -60,7 +60,7 @@ const App: FC = () => {
     if (myToken) {
       getMe(undefined).unwrap();
     }
-  }, [dispatch, getMe]);
+  }, [dispatch, getMe, isAuth]);
 
   // handle valid token
   useEffect(() => {
@@ -71,7 +71,7 @@ const App: FC = () => {
     if (meData.status === "fulfilled") {
       dispatch(setUserData(meData.data));
     }
-  }, [dispatch, handleSignOut, meData]);
+  }, [dispatch, meData]); // eslint-disable-line
 
   return (
     <HelmetProvider>
