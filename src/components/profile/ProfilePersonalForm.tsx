@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import clsx from "clsx";
-import { FC, useEffect, useState } from "react";
+import { FC, useState } from "react";
 import style from "./Profile.module.scss";
 import { Form, Formik } from "formik";
 import { getValidationSchema } from "@/service/form/validation";

@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { FC, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import ProfileBoxHead from "../profile/ProfileBoxHead";
 import clsx from "clsx";
 import style from "./Pass.module.scss";
@@ -9,10 +9,17 @@ import Add from "@/UI/add/Add";
 import PassFormRadioPitch from "./PassFormRadioPitch";
 import { useAppSelector } from "@/hooks/hook";
 import { categories } from "./script";
+import { useLazyGetPriceQuery } from "@/store/rtk/orders/price";
 
 const PassFormSubmission: FC<{ formik?: any }> = ({ formik }) => {
   const [listCount, setListCount] = useState(1);
   const { category } = useAppSelector((state) => state.category);
+  const { works_amount } = useAppSelector((state) => state.pass);
+  // const [getPrice, { data }] = useLazyGetPriceQuery();
+
+  useEffect(() => {
+    // getPrice({ category: "brand_pitches", tickets_amount: 1, works_amount: 1 });
+  }, []);
 
   return (
     <div className={clsx(style.box)}>
@@ -23,7 +30,7 @@ const PassFormSubmission: FC<{ formik?: any }> = ({ formik }) => {
           <PassFormRadioPitch formik={formik} name="categoryPitch" />
         )}
 
-        {[...Array(listCount)].map((_, i) => (
+        {[...Array(works_amount)].map((_, i) => (
           <SubmissionBox key={i}>
             <SubmissionContent formik={formik} />
           </SubmissionBox>

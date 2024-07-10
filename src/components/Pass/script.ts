@@ -2,8 +2,8 @@ import IconNuum from "@/images/form/nuum.svg?react";
 import IconMega from "@/images/form/mega.svg?react";
 
 export const categories = {
-  main_category: "main_category",
-  young_talent: "young_talent",
+  main_category: "main",
+  young_talent: "young",
   brand_pitches: "brand_pitches",
 };
 

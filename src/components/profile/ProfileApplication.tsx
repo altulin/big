@@ -1,4 +1,5 @@
-import { FC } from "react";
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { FC, useEffect } from "react";
 import ProfileBoxHead from "./ProfileBoxHead";
 import clsx from "clsx";
 import style from "./Profile.module.scss";
@@ -8,30 +9,44 @@ import { paths } from "@/service/paths";
 import { setPath } from "@/store/menu/menuSlice";
 import { list } from "./script";
 import ProfileApplicationItem from "./ProfileApplicationItem";
+import { useLazyGetListQuery } from "@/store/rtk/orders/list";
+import { checkArr } from "@/service/checkArr";
 
 const ProfileApplication: FC = () => {
   const dispatch = useAppDispatch();
   const application = true;
+  const [getListApp, { data }] = useLazyGetListQuery();
 
   const handleRefusal = () => {
     dispatch(setPath(paths.contacts));
   };
 
+  useEffect(() => {
+    getListApp({ limit: 100, offset: 0 });
+  }, [getListApp]);
+
   return (
     <div className={clsx(style.application)}>
       <ProfileBoxHead isBtn={false} title={"Мои заявки"} />
       <div className={clsx(style.box, style["box--application"])}>
-        {!application && (
+        {!checkArr(data?.results) && (
           <p className={clsx(style.application__empty)}>
             У вас еще нет заявок!
           </p>
         )}
 
-        {list.map((item, i) => (
-          <ProfileApplicationItem key={i} {...item} />
-        ))}
+        {checkArr(data?.results) &&
+          data?.results.map((item: any, i: number) => (
+            <ProfileApplicationItem key={i} {...item} />
+          ))}
 
-        <button className={clsx(style.application__btn)}>Подать работу</button>
+        <HashLink
+          smooth
+          className={clsx(style.application__btn)}
+          to={`/${paths.pass}`}
+        >
+          Подать работу
+        </HashLink>
       </div>
 
       {application && (

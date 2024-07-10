@@ -1,14 +1,8 @@
-import { useLocation } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useAppSelector } from "./hook";
 
 const useProfile = () => {
-  const location = useLocation();
-  const [isIndividual, setIsIndividual] = useState<boolean | null>(null);
-
-  useEffect(() => {
-    setIsIndividual(false);
-  }, [location.pathname]);
-
+  const { type } = useAppSelector((state) => state.user.dataMe);
+  const isIndividual = type === "individual";
   return { isIndividual };
 };
 

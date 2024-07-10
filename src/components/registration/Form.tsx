@@ -1,7 +1,8 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { getValidationSchema } from "@/service/form/validation";
 import clsx from "clsx";
 import { Form, Formik } from "formik";
-import { FC, useEffect } from "react";
+import { FC } from "react";
 import style from "./Registration.module.scss";
 import Radio from "./Radio";
 import TextInput from "../form/TextInput";
@@ -23,21 +24,24 @@ const FormRegistration: FC = () => {
   const { data } = useSettigsQuery(undefined);
   const [registration] = useRegistrationMutation();
 
-  const validList = [
-    "mail",
-    "password",
-    "confirm_password",
-    "name",
-    "phone",
-    "rule",
-    "offer",
-  ];
+  const makeArr = () => {
+    const arr: any = [
+      "mail",
+      "password",
+      "confirm_password",
+      "name",
+      "phone",
+      "rule",
+      "offer",
+      "company_name",
+    ];
 
-  useEffect(() => {
     if (status === "entity") {
-      validList.push("file");
+      arr.push("file");
     }
-  }, [status, validList]);
+
+    return arr;
+  };
 
   return (
     <Formik
@@ -51,9 +55,9 @@ const FormRegistration: FC = () => {
         rule: true,
         offer: true,
         phone: "",
-        file: "",
+        file: undefined,
       }}
-      validationSchema={getValidationSchema(validList)}
+      validationSchema={getValidationSchema(makeArr())}
       onSubmit={async (values, { resetForm }) => {
         const body = {
           phone_number: values.phone,
@@ -69,7 +73,7 @@ const FormRegistration: FC = () => {
           formData.append(key, body[key as keyof typeof body]);
 
         if (status === "entity") {
-          formData.append("company_details_file", values.file);
+          formData.append("company_details_file", (values as any).file);
         }
 
         registration(formData)

@@ -9,6 +9,7 @@ import swiperSlice from "./swiper/swiperSlice";
 import speakerSlice from "./speaker/speakerSlice";
 import categorySlice from "./category/categorySlice";
 import userSlice from "./user/userSlice";
+import passSlice from "./pass/passSlice";
 
 const store = configureStore({
   reducer: {
@@ -19,6 +20,7 @@ const store = configureStore({
     swiper: swiperSlice,
     speaker: speakerSlice,
     category: categorySlice,
+    pass: passSlice,
     user: userSlice,
     [api.reducerPath]: api.reducer,
   },

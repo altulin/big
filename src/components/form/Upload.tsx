@@ -10,6 +10,7 @@ interface IUpload {
   children?: any;
   modifier?: string;
   disabled?: boolean;
+  formik?: any;
 }
 
 const Upload: FC<IUpload> = ({
@@ -20,6 +21,7 @@ const Upload: FC<IUpload> = ({
   children,
   modifier = "file",
   disabled = false,
+  formik,
 }) => {
   return (
     <TextInput
@@ -30,6 +32,12 @@ const Upload: FC<IUpload> = ({
       modifier={modifier}
       accept={accept}
       disabled={disabled}
+      onChange={(e: any) => {
+        if (e.currentTarget.files) {
+          formik.setFieldValue(name, e.currentTarget.files[0]);
+        }
+      }}
+      value={undefined}
     >
       {children}
     </TextInput>
