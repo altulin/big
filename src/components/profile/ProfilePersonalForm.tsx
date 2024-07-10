@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import clsx from "clsx";
-import { FC, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import style from "./Profile.module.scss";
 import { Form, Formik } from "formik";
 import { getValidationSchema } from "@/service/form/validation";
@@ -11,10 +11,12 @@ import { onPhoneInput } from "@/service/form/masks/phone";
 import useProfile from "@/hooks/profile";
 import { useAppSelector } from "@/hooks/hook";
 import StringMask from "string-mask";
+import { useEditMeMutation } from "@/store/rtk/user/editMe";
 
 const ProfilePersonalForm: FC = () => {
   const formatter = new StringMask("+0 (000) 000-00-000");
   const { isIndividual } = useProfile();
+  const [putUserData, { status }] = useEditMeMutation();
   const [btnData, setBtnData] = useState<any>({
     type: "edit",
     title: "Мои данные",
@@ -57,13 +59,17 @@ const ProfilePersonalForm: FC = () => {
     }
   };
 
+  // useEffect(() => {
+  //   console.log(status);
+  // }, [status]);
+
   return (
     <Formik
       initialValues={{
-        mail: email,
-        name: name,
+        mail: email || "",
+        name: name || "",
         phone: phone_number ? formatPhone(phone_number) : "",
-        company_name: company_name,
+        company_name: company_name || "",
       }}
       validationSchema={getValidationSchema([
         "mail",
@@ -73,6 +79,15 @@ const ProfilePersonalForm: FC = () => {
       ])}
       onSubmit={(values) => {
         console.log(values);
+        const { company_name, mail, name, phone } = values;
+        const body = {
+          phone_number: phone,
+          name: name,
+          email: mail,
+          company_name: company_name,
+        };
+
+        putUserData(body);
         // resetForm();
 
         setBtnData({

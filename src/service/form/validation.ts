@@ -86,6 +86,11 @@ export const object: any = {
   company_name: yup.mixed().required(required),
 
   file: yup.mixed().required(required),
+  // file: yup.mixed().test("fileSize", required, (value) => {
+  //   if (value === undefined || value === null || value.length === 0) {
+  //     return true; // attachment is optional
+  //   }
+  // }),
 
   brand: yup.string().required(required),
   name_work: yup.string().required(required),

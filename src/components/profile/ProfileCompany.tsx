@@ -2,12 +2,17 @@
 import { getValidationSchema } from "@/service/form/validation";
 import clsx from "clsx";
 import { Form, Formik } from "formik";
-import { FC, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import style from "./Profile.module.scss";
 import ProfileBoxHead from "./ProfileBoxHead";
 import Upload from "../form/Upload";
+import { useAppSelector } from "@/hooks/hook";
+import IconResset from "@/images/profile/resset.svg?react";
 
 const ProfileCompany: FC = () => {
+  const { company_name, company_details_file } = useAppSelector(
+    (state) => state.user.dataMe,
+  );
   const [btnData, setBtnData] = useState<any>({
     type: "edit",
     title: "Мои компании",
@@ -42,6 +47,16 @@ const ProfileCompany: FC = () => {
     }
   };
 
+  const handleReset = (formik: any) => {
+    console.log(formik);
+    formik.resetForm();
+    formik.validateForm();
+  };
+
+  // useEffect(() => {
+  //   console.log(btnData.disabled);
+  // }, [btnData]);
+
   return (
     <Formik
       initialValues={{
@@ -60,6 +75,9 @@ const ProfileCompany: FC = () => {
       }}
     >
       {(formik) => {
+        // console.log(formik.errors.file + " err");
+        // console.log(formik.values.file + " value");
+
         return (
           <Form className={clsx(style.form)}>
             <ProfileBoxHead
@@ -71,17 +89,49 @@ const ProfileCompany: FC = () => {
             />
 
             <div className={clsx(style.box)}>
-              <Upload
-                name="file"
-                label={
-                  !formik.values.file
-                    ? "Прикрепить файл .doc"
-                    : formik.values.file
-                }
-                accept=".doc, .docx"
-                modifier="file-profile"
-                disabled={btnData.disabled}
-              ></Upload>
+              <h3 className={clsx(style.box__title)}>{company_name}</h3>
+
+              {btnData.disabled && (
+                <a
+                  className={clsx(style.box__download)}
+                  href={`${
+                    import.meta.env.VITE_APP_API_HOST
+                  }${company_details_file}`}
+                  download
+                >
+                  {typeof company_details_file === "string" &&
+                    (company_details_file as string).split("/").pop()}
+                </a>
+              )}
+
+              {!btnData.disabled && (
+                <>
+                  <Upload
+                    formik={formik}
+                    name="file"
+                    label={
+                      !formik.values.file
+                        ? "Прикрепить файл .doc"
+                        : "Файл прикреплен"
+                    }
+                    accept=".doc, .docx"
+                    modifier="file-profile"
+                    disabled={btnData.disabled}
+                  ></Upload>
+
+                  {formik.values.file && (
+                    <button
+                      type="button"
+                      onClick={() => handleReset(formik)}
+                      className={clsx(style.box__btn_reset)}
+                    >
+                      {(formik.values.file as any).name}
+
+                      <IconResset />
+                    </button>
+                  )}
+                </>
+              )}
             </div>
           </Form>
         );
