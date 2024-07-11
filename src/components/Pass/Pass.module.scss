@@ -47,12 +47,6 @@
   border: var(--line) solid var(--basic-dark);
   padding: 4.5rem 2rem 3rem;
 
-  &:first-child {
-    .delete {
-      display: none;
-    }
-  }
-
   & + .sub {
     margin-top: 1.5rem;
   }

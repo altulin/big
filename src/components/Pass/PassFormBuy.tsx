@@ -8,6 +8,7 @@ import IconPlus from "@/images/form/plus.svg?react";
 import { useIsTabletDevice } from "@/hooks/IsSmallDevice";
 import { useAppDispatch, useAppSelector } from "@/hooks/hook";
 import { setTicketsAmount } from "@/store/pass/passSlice";
+import { useSettigsQuery } from "@/store/rtk/main/settings";
 
 const Button: FC<{ type: "add" | "remove"; onClick?: any }> = ({
   type,
@@ -30,8 +31,7 @@ const PassFormBuy: FC<{ formik?: any }> = () => {
   const isTablet = useIsTabletDevice();
   const { tickets_amount } = useAppSelector((state) => state.pass);
   const dispatch = useAppDispatch();
-
-  const price = 15000;
+  const { data } = useSettigsQuery(undefined);
 
   return (
     <div className={clsx(style.box, style.buy)}>
@@ -70,7 +70,9 @@ const PassFormBuy: FC<{ formik?: any }> = () => {
                 style.counter__body_num,
               )}
             >
-              <span className={clsx(style.counter__body_val)}>{price}</span>
+              <span className={clsx(style.counter__body_val)}>
+                {data?.ticket_price && data?.ticket_price}
+              </span>
               <span>₽</span>
             </p>
             {isTablet && (
@@ -107,7 +109,10 @@ const PassFormBuy: FC<{ formik?: any }> = () => {
                 style.counter__body_input,
               )}
             >
-              <span>{tickets_amount * price}</span>
+              {data?.ticket_price && (
+                <span>{tickets_amount * data?.ticket_price}</span>
+              )}
+
               <span>₽</span>
             </p>
           </div>

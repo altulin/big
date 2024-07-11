@@ -5,6 +5,7 @@ import { object } from "@/service/form/validation";
 
 export const useInitialValues = () => {
   const { category, categoryPitch } = useAppSelector((state) => state.category);
+  const { forms } = useAppSelector((state) => state.form);
   const template: any = {
     brand: "",
     name_work: "",
@@ -25,22 +26,29 @@ export const useInitialValues = () => {
     // categoryPitch: categoryPitch,
   };
 
-  const createInitialValues = (works_amount: number) => {
-    const values: { [key: string]: any } = {
+  const createInitialValues = () => {
+    let values: { [key: string]: any } = {
       category: category || "",
       categoryPitch: categoryPitch || "",
     };
-    const keys = Object.keys(template);
 
-    let n = 0;
+    forms.forEach((item: any) => {
+      const id = item.id;
+      const data = { ...item.data };
+      const keys = Object.keys(template);
 
-    while (n < works_amount) {
       keys.forEach((item) => {
-        return (values[`${item}_${n}`] = template[item]);
+        if (!data[`${item}_${id}`]) {
+          data[`${item}_${id}`] = template[item];
+        }
       });
 
-      n = n + 1;
-    }
+      values = { ...values, ...data };
+    });
+
+    // values = { category: category || "", categoryPitch: categoryPitch || "" };
+
+    // console.log(values);
 
     return values;
   };

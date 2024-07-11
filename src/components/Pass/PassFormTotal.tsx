@@ -25,7 +25,7 @@ const PassFormTotal: FC<{ formik: any }> = ({ formik }) => {
         <button
           type="submit"
           className={clsx(style.total__btn)}
-          disabled={formik.isValid && formik.dirty}
+          disabled={!(formik.isValid && formik.dirty)}
         >
           {isIndividual ? "Перейти к оплате" : "Далее"}
         </button>

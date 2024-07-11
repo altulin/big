@@ -1,30 +1,32 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import clsx from "clsx";
-import { FC, ReactNode, useState } from "react";
+import { FC, ReactNode, useRef } from "react";
 import style from "./Pass.module.scss";
 import IconDelete from "@/images/pass/basket.svg?react";
 import { useAppDispatch, useAppSelector } from "@/hooks/hook";
 import { categories } from "./script";
 import { useIsTabletDevice } from "@/hooks/IsSmallDevice";
 import usePrice from "@/hooks/price";
-import { setWorksAmount } from "@/store/pass/passSlice";
+import { setRemoveForm } from "@/store/forms/formsSlice";
 
-const SubmissionBox: FC<{ children?: ReactNode }> = ({ children }) => {
-  const [isVisible, setVisible] = useState(true);
+const SubmissionBox: FC<{ children?: ReactNode; id?: number }> = ({
+  children,
+  id,
+}) => {
   const { category } = useAppSelector((state) => state.category);
   const isTablet = useIsTabletDevice();
-  const { works_amount } = useAppSelector((state) => state.pass);
   const { data } = usePrice();
   const dispatch = useAppDispatch();
+  const refBox = useRef<any>(null);
+  const { forms } = useAppSelector((state) => state.form);
 
   const handleDelete = () => {
-    dispatch(setWorksAmount(works_amount - 1));
-    setVisible(false);
+    const index = refBox.current.dataset.id;
+    dispatch(setRemoveForm(index));
   };
 
-  if (!isVisible) return null;
-
   return (
-    <div className={clsx(style.sub)}>
+    <div ref={refBox} className={clsx(style.sub)} data-id={id}>
       <div className={clsx(style.sub__inner)}>
         {category !== categories.brand_pitches && (
           <div className={clsx(style.discount)}>
@@ -52,9 +54,15 @@ const SubmissionBox: FC<{ children?: ReactNode }> = ({ children }) => {
           </div>
         )}
 
-        <button onClick={handleDelete} className={clsx(style.delete)}>
-          <IconDelete />
-        </button>
+        {forms.length > 1 && (
+          <button
+            type="button"
+            onClick={handleDelete}
+            className={clsx(style.delete)}
+          >
+            <IconDelete />
+          </button>
+        )}
       </div>
 
       {children}

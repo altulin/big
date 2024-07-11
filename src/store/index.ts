@@ -10,6 +10,7 @@ import speakerSlice from "./speaker/speakerSlice";
 import categorySlice from "./category/categorySlice";
 import userSlice from "./user/userSlice";
 import passSlice from "./pass/passSlice";
+import formsSlice from "./forms/formsSlice";
 
 const store = configureStore({
   reducer: {
@@ -22,6 +23,7 @@ const store = configureStore({
     category: categorySlice,
     pass: passSlice,
     user: userSlice,
+    form: formsSlice,
     [api.reducerPath]: api.reducer,
   },
   devTools: process.env.NODE_ENV === "development",

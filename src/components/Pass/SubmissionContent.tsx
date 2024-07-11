@@ -12,12 +12,16 @@ import { useLazyNominationsQuery } from "@/store/rtk/nominations/nominations";
 
 const SubmissionContent: FC<{ formik: any; id: number }> = ({ formik, id }) => {
   const { category, categoryPitch } = useAppSelector((state) => state.category);
-  const [getNomination] = useLazyNominationsQuery(undefined);
+  const [getNomination, { data }] = useLazyNominationsQuery(undefined);
 
   useEffect(() => {
     category !== categories.brand_pitches &&
       getNomination({ offset: 0, limit: 100 }).unwrap();
   }, [category, getNomination]);
+
+  const options = data?.results.map((item: any) => {
+    return { value: item.id, label: item.title };
+  });
 
   return (
     <>
@@ -49,6 +53,7 @@ const SubmissionContent: FC<{ formik: any; id: number }> = ({ formik, id }) => {
           label="Номинация"
           prefix="pass"
           placeholder="Не выбрано"
+          options={options}
         />
       )}
 

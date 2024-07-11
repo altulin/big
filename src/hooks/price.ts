@@ -7,9 +7,8 @@ import useSignOut from "./signOut";
 
 const usePrice = () => {
   const { category } = useAppSelector((state) => state.category);
-  const { works_amount, tickets_amount } = useAppSelector(
-    (state) => state.pass,
-  );
+  const { tickets_amount } = useAppSelector((state) => state.pass);
+  const { forms } = useAppSelector((state) => state.form);
   const [getPrice, { data, status, error }] = useLazyGetPriceQuery();
   const dispatch = useAppDispatch();
   const { handleSignOut } = useSignOut();
@@ -29,8 +28,8 @@ const usePrice = () => {
   }, [data, status]); // eslint-disable-line
 
   useEffect(() => {
-    getPrice({ category, tickets_amount, works_amount });
-  }, [category, getPrice, tickets_amount, works_amount]);
+    getPrice({ category, tickets_amount, works_amount: forms.length });
+  }, [category, forms.length, getPrice, tickets_amount]);
 
   return { data };
 };

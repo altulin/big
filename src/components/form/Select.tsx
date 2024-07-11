@@ -2,6 +2,8 @@
 // import { useGetUsersQuery } from "@/store/rtk/user/userApi";
 import { FC } from "react";
 import Select from "react-select";
+import style from "./Form.module.scss";
+import clsx from "clsx";
 
 interface ISelectField {
   placeholder?: string;
@@ -46,11 +48,19 @@ const SelectField: FC<ISelectField> = ({
             : ""
         }
         onChange={(option: any) => {
-          form.setFieldValue(field?.name, option ? option["label"] : "");
+          form.setFieldValue(name, option ? option["label"] : "");
         }}
-        onBlur={field?.onBlur}
+        onBlur={() => {
+          form.setFieldTouched(name, true);
+        }}
         id={id}
       />
+
+      {form.touched[`${name}`] && form.errors[`${name}`] ? (
+        <div className={clsx(style.error)}>
+          <p className={clsx(style.error__text)}>{form.errors[`${name}`]}</p>
+        </div>
+      ) : null}
     </div>
   );
 };
