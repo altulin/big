@@ -12,16 +12,12 @@ import { useLazyNominationsQuery } from "@/store/rtk/nominations/nominations";
 
 const SubmissionContent: FC<{ formik: any; id: number }> = ({ formik, id }) => {
   const { category, categoryPitch } = useAppSelector((state) => state.category);
-  const [getNomination, results] = useLazyNominationsQuery(undefined);
+  const [getNomination] = useLazyNominationsQuery(undefined);
 
   useEffect(() => {
     category !== categories.brand_pitches &&
       getNomination({ offset: 0, limit: 100 }).unwrap();
   }, [category, getNomination]);
-
-  // useEffect(() => {
-  //   console.log(results.data?.results);
-  // }, [results.data?.results]);
 
   return (
     <>

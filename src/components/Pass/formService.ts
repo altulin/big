@@ -1,10 +1,10 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useAppSelector } from "@/hooks/hook";
-import { useCallback } from "react";
+import * as yup from "yup";
+import { object } from "@/service/form/validation";
 
 export const useInitialValues = () => {
   const { category, categoryPitch } = useAppSelector((state) => state.category);
-  //   const { works_amount } = useAppSelector((state) => state.pass);
   const template: any = {
     brand: "",
     name_work: "",
@@ -42,10 +42,28 @@ export const useInitialValues = () => {
       n = n + 1;
     }
 
-    //   console.log(values);
-
-    return { ...values, fake: Date.now() };
+    return values;
   };
 
-  return { createInitialValues };
+  const createValidationSchema = (works_amount: number) => {
+    const schema: any = {};
+
+    const keys = Object.keys(template);
+
+    let n = 0;
+
+    while (n < works_amount) {
+      keys.forEach((item) => {
+        return (schema[`${item}_${n}`] = object[`${item}`]);
+      });
+
+      n = n + 1;
+    }
+
+    // console.log(schema);
+
+    return yup.object().shape(schema);
+  };
+
+  return { createInitialValues, createValidationSchema };
 };

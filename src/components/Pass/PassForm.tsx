@@ -12,34 +12,21 @@ import { useInitialValues } from "./formService";
 
 const PassForm: FC = () => {
   const { works_amount } = useAppSelector((state) => state.pass);
-  const { createInitialValues } = useInitialValues();
+  const { createInitialValues, createValidationSchema } = useInitialValues();
 
   // const makePayLoad = (values: any) => {
   //   const obj = { category, tickets_amount };
   // };
 
-  // useEffect(() => {
-  //   console.log(createInitialValues(works_amount));
-  // }, [createInitialValues, works_amount]);
+  useEffect(() => {
+    createValidationSchema(works_amount);
+  }, [works_amount]);
 
   return (
     <Formik
       initialValues={createInitialValues(works_amount)}
-      validationSchema={getValidationSchema([
-        // "project_image",
-        // "brand",
-        // "name_work",
-        // "nomination",
-        // "deadlines",
-        // "targets",
-        // "insight_and_idea",
-        // "target_audience",
-        // "about_the_project",
-        // "link",
-        // "credits",
-        // "file",
-      ])}
-      onSubmit={async (values) => {
+      validationSchema={createValidationSchema(works_amount)}
+      onSubmit={async () => {
         // console.log(makePayLoad(values));
         // dispatch(
         //   setSuccessModal({
@@ -53,7 +40,7 @@ const PassForm: FC = () => {
       enableReinitialize
     >
       {(formik) => {
-        console.log(formik.values);
+        // console.log(formik.values);
         // console.log(formik.isValid && formik.dirty);
         return (
           <>

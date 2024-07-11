@@ -86,11 +86,6 @@ export const object: any = {
   company_name: yup.mixed().required(required),
 
   file: yup.mixed().required(required),
-  // file: yup.mixed().test("fileSize", required, (value) => {
-  //   if (value === undefined || value === null || value.length === 0) {
-  //     return true; // attachment is optional
-  //   }
-  // }),
 
   brand: yup.string().required(required),
   name_work: yup.string().required(required),
@@ -106,13 +101,8 @@ export const object: any = {
   project_image: yup
     .mixed()
     .required(file)
-
     .test("fileSize", fileMax, (value) => {
-      return value && value.size <= MAX_FILE_SIZE;
-      // if (value instanceof File) {
-      //   return value.size <= MAX_FILE_SIZE;
-      // }
-      // return false;
+      return value && (value as any).size <= MAX_FILE_SIZE;
     }),
 };
 
