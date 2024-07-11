@@ -2,14 +2,20 @@
 import { getValidationSchema } from "@/service/form/validation";
 import clsx from "clsx";
 import { Form, Formik } from "formik";
-import { FC, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import style from "./Profile.module.scss";
 import ProfileBoxHead from "./ProfileBoxHead";
 import Upload from "../form/Upload";
-import { useAppSelector } from "@/hooks/hook";
+import { useAppDispatch, useAppSelector } from "@/hooks/hook";
 import IconResset from "@/images/profile/resset.svg?react";
+import { useEditMeMutation } from "@/store/rtk/user/editMe";
+import useMe from "@/hooks/me";
+import { setErrorModal, setSuccessModal } from "@/store/modal/modalSlice";
 
 const ProfileCompany: FC = () => {
+  const [putUserData, { status }] = useEditMeMutation();
+  const dispatch = useAppDispatch();
+  const { getMeData } = useMe();
   const { company_name, company_details_file, phone_number, name, email } =
     useAppSelector((state) => state.user.dataMe);
 
@@ -51,6 +57,27 @@ const ProfileCompany: FC = () => {
     formik.setFieldValue("file", "");
   };
 
+  useEffect(() => {
+    if (status === "rejected") {
+      dispatch(
+        setErrorModal(
+          "Произошла ошибка при обновлении профиля. Необходимо авторизоваться",
+        ),
+      );
+      getMeData();
+    }
+
+    if (status === "fulfilled") {
+      dispatch(
+        setSuccessModal({
+          text: "Данные успешно обновлены",
+          comein: false,
+        }),
+      );
+      getMeData();
+    }
+  }, [dispatch, status]); // eslint-disable-line
+
   return (
     <Formik
       initialValues={{
@@ -58,9 +85,6 @@ const ProfileCompany: FC = () => {
       }}
       validationSchema={getValidationSchema(["file"])}
       onSubmit={(values) => {
-        console.log(values);
-
-        const {} = values;
         const body = {
           phone_number: phone_number,
           name: name,
@@ -68,7 +92,13 @@ const ProfileCompany: FC = () => {
           company_name: company_name,
         };
 
-        // putUserData(body);
+        const formData = new FormData();
+        for (const key in body)
+          formData.append(key, body[key as keyof typeof body]);
+
+        formData.append("company_details_file", (values as any).file);
+
+        putUserData(formData);
 
         setBtnData({
           ...btnData,
