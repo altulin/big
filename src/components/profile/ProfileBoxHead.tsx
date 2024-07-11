@@ -33,19 +33,29 @@ interface IProfileBoxHead {
 const ProfileBoxHead: FC<IProfileBoxHead> = ({
   title,
   isBtn = false,
-  btnType = "submit",
   onClick,
   type,
   btnDisabled,
 }) => {
+  const getType = (str: string) => {
+    switch (str) {
+      case "edit":
+        return "button";
+      case "save":
+        return "submit";
+      default:
+        return "button";
+    }
+  };
+
   return (
     <div className={clsx(style.head)}>
       <h3 className={clsx(style.head__title)}>{title}</h3>
 
-      {isBtn && (
+      {isBtn && type && (
         <button
           onClick={onClick}
-          type={btnType}
+          type={getType(type)}
           className={clsx(style.head__button)}
           disabled={btnDisabled}
         >

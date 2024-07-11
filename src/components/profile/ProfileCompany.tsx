@@ -2,7 +2,7 @@
 import { getValidationSchema } from "@/service/form/validation";
 import clsx from "clsx";
 import { Form, Formik } from "formik";
-import { FC, useEffect, useState } from "react";
+import { FC, useState } from "react";
 import style from "./Profile.module.scss";
 import ProfileBoxHead from "./ProfileBoxHead";
 import Upload from "../form/Upload";
@@ -10,9 +10,9 @@ import { useAppSelector } from "@/hooks/hook";
 import IconResset from "@/images/profile/resset.svg?react";
 
 const ProfileCompany: FC = () => {
-  const { company_name, company_details_file } = useAppSelector(
-    (state) => state.user.dataMe,
-  );
+  const { company_name, company_details_file, phone_number, name, email } =
+    useAppSelector((state) => state.user.dataMe);
+
   const [btnData, setBtnData] = useState<any>({
     type: "edit",
     title: "Мои компании",
@@ -48,14 +48,8 @@ const ProfileCompany: FC = () => {
   };
 
   const handleReset = (formik: any) => {
-    console.log(formik);
-    formik.resetForm();
-    formik.validateForm();
+    formik.setFieldValue("file", "");
   };
-
-  // useEffect(() => {
-  //   console.log(btnData.disabled);
-  // }, [btnData]);
 
   return (
     <Formik
@@ -65,7 +59,16 @@ const ProfileCompany: FC = () => {
       validationSchema={getValidationSchema(["file"])}
       onSubmit={(values) => {
         console.log(values);
-        // resetForm();
+
+        const {} = values;
+        const body = {
+          phone_number: phone_number,
+          name: name,
+          email: email,
+          company_name: company_name,
+        };
+
+        // putUserData(body);
 
         setBtnData({
           ...btnData,
@@ -76,7 +79,7 @@ const ProfileCompany: FC = () => {
     >
       {(formik) => {
         // console.log(formik.errors.file + " err");
-        // console.log(formik.values.file + " value");
+        // console.log(formik.values.file + ": value");
 
         return (
           <Form className={clsx(style.form)}>

@@ -9,9 +9,11 @@ import ProfileBoxHead from "./ProfileBoxHead";
 import { onNameInput } from "@/service/form/masks/name";
 import { onPhoneInput } from "@/service/form/masks/phone";
 import useProfile from "@/hooks/profile";
-import { useAppSelector } from "@/hooks/hook";
+import { useAppDispatch, useAppSelector } from "@/hooks/hook";
 import StringMask from "string-mask";
 import { useEditMeMutation } from "@/store/rtk/user/editMe";
+import { setErrorModal, setSuccessModal } from "@/store/modal/modalSlice";
+import useMe from "@/hooks/me";
 
 const ProfilePersonalForm: FC = () => {
   const formatter = new StringMask("+0 (000) 000-00-000");
@@ -23,6 +25,8 @@ const ProfilePersonalForm: FC = () => {
     disabled: true,
     btnDisablred: false,
   });
+  const dispatch = useAppDispatch();
+  const { getMeData } = useMe();
 
   const { phone_number, name, email, company_name } = useAppSelector(
     (state) => state.user.dataMe,
@@ -59,9 +63,26 @@ const ProfilePersonalForm: FC = () => {
     }
   };
 
-  // useEffect(() => {
-  //   console.log(status);
-  // }, [status]);
+  useEffect(() => {
+    if (status === "rejected") {
+      dispatch(
+        setErrorModal(
+          "Произошла ошибка при обновлении профиля. Необходимо авторизоваться",
+        ),
+      );
+      getMeData();
+    }
+
+    if (status === "fulfilled") {
+      dispatch(
+        setSuccessModal({
+          text: "Данные успешно обновлены",
+          comein: false,
+        }),
+      );
+      getMeData();
+    }
+  }, [dispatch, status]); // eslint-disable-line
 
   return (
     <Formik
@@ -78,7 +99,6 @@ const ProfilePersonalForm: FC = () => {
         "company_name",
       ])}
       onSubmit={(values) => {
-        console.log(values);
         const { company_name, mail, name, phone } = values;
         const body = {
           phone_number: phone,

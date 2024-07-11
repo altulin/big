@@ -16,11 +16,8 @@ import Pass from "./components/Pass/Pass";
 import YoungTalentPage from "./pages/young_talent/YoungTalentPage";
 import useIsYang from "./hooks/isYang";
 import useIsAuth from "./hooks/isAuth";
-import { useAppDispatch } from "./hooks/hook";
-import { setUserData } from "./store/user/userSlice";
 import { token } from "./service/token";
-import { useGetMeMutation } from "./store/rtk/user/me";
-import useSignOut from "./hooks/signOut";
+import useMe from "./hooks/me";
 
 const App: FC = () => {
   const title = import.meta.env.VITE_APP_TITLE;
@@ -30,9 +27,7 @@ const App: FC = () => {
   const isAuth = useIsAuth();
   const location = useLocation();
   const navigate = useNavigate();
-  const dispatch = useAppDispatch();
-  const [getMe, meData] = useGetMeMutation();
-  const { handleSignOut } = useSignOut();
+  const { getMeData } = useMe();
 
   // dark theme
   useEffect(() => {
@@ -58,20 +53,9 @@ const App: FC = () => {
     // if (isAuth) return;
     const myToken = token();
     if (myToken) {
-      getMe(undefined).unwrap();
+      getMeData();
     }
-  }, [dispatch, getMe, isAuth]);
-
-  // handle valid token
-  useEffect(() => {
-    if (meData.status === "rejected") {
-      handleSignOut();
-    }
-
-    if (meData.status === "fulfilled") {
-      dispatch(setUserData(meData.data));
-    }
-  }, [dispatch, meData]); // eslint-disable-line
+  }, []); // eslint-disable-line
 
   return (
     <HelmetProvider>

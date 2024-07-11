@@ -20,6 +20,7 @@
 
   &__inner {
     min-width: 36rem;
+    max-width: 40%;
     background-color: var(--basic-light);
     border: var(--line) solid var(--basic-dark);
     margin-top: auto;
@@ -27,6 +28,7 @@
 
     @include mw($tb) {
       min-width: auto;
+      max-width: none;
       width: 100%;
     }
   }
@@ -228,6 +230,7 @@
     font-size: 1.12rem;
     line-height: 140%;
     color: #141414;
+    text-align: center;
   }
 
   &__button {
