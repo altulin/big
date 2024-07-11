@@ -47,6 +47,16 @@
   border: var(--line) solid var(--basic-dark);
   padding: 4.5rem 2rem 3rem;
 
+  &:first-child {
+    .delete {
+      display: none;
+    }
+  }
+
+  & + .sub {
+    margin-top: 1.5rem;
+  }
+
   @include mw($tb) {
     padding-top: 5rem;
     padding-left: 1rem;
@@ -281,6 +291,7 @@
       display: flex;
       column-gap: 0.5rem;
       justify-content: center;
+      align-items: center;
     }
 
     &_val {
@@ -347,10 +358,6 @@
     letter-spacing: 0.04em;
     text-transform: uppercase;
     color: #141414;
-    border: 0;
-    padding: 0;
-    max-width: 100%;
-    text-align: right;
 
     @include mw($tb) {
       font-size: 1.25rem;

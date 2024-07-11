@@ -22,8 +22,6 @@ const Nominations: FC = () => {
   }, [getNomination, isTablet]);
 
   const handleAdd = () => {
-    // console.log(results.data.results);
-    // console.log(results.data.count);
     getNomination({ offset: 0, limit: 10 });
   };
 

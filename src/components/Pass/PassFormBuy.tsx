@@ -1,14 +1,15 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import clsx from "clsx";
-import { FC, useEffect, useState } from "react";
+import { FC } from "react";
 import style from "./Pass.module.scss";
 import ProfileBoxHead from "../profile/ProfileBoxHead";
 import IconMinus from "@/images/form/minus.svg?react";
 import IconPlus from "@/images/form/plus.svg?react";
-import { Field, useField } from "formik";
 import { useIsTabletDevice } from "@/hooks/IsSmallDevice";
+import { useAppDispatch, useAppSelector } from "@/hooks/hook";
+import { setTicketsAmount } from "@/store/pass/passSlice";
 
-const Button: FC<{ type: "add" | "remove"; onClick: any }> = ({
+const Button: FC<{ type: "add" | "remove"; onClick?: any }> = ({
   type,
   onClick,
 }) => {
@@ -24,16 +25,13 @@ const Button: FC<{ type: "add" | "remove"; onClick: any }> = ({
   );
 };
 
-const PassFormBuy: FC<{ formik: any }> = ({ formik }) => {
-  const [counter, setCounter] = useState(0);
+const PassFormBuy: FC<{ formik?: any }> = () => {
+  // const [counter, setCounter] = useState(0);
   const isTablet = useIsTabletDevice();
+  const { tickets_amount } = useAppSelector((state) => state.pass);
+  const dispatch = useAppDispatch();
 
   const price = 15000;
-  const [meta] = useField({ name: "buy" });
-
-  useEffect(() => {
-    formik.setFieldValue("buy", price * counter);
-  }, [counter]);
 
   return (
     <div className={clsx(style.box, style.buy)}>
@@ -86,19 +84,19 @@ const PassFormBuy: FC<{ formik: any }> = ({ formik }) => {
             >
               <Button
                 type="remove"
-                onClick={() =>
-                  setCounter((prev) => {
-                    if (prev === 0) return 0;
-                    return prev - 1;
-                  })
-                }
+                onClick={() => {
+                  if (tickets_amount === 0) return 0;
+                  dispatch(setTicketsAmount(tickets_amount - 1));
+                }}
               />
 
-              <span className={clsx(style.counter__body_value)}>{counter}</span>
+              <span className={clsx(style.counter__body_value)}>
+                {tickets_amount}
+              </span>
 
               <Button
                 type="add"
-                onClick={() => setCounter((prev) => prev + 1)}
+                onClick={() => dispatch(setTicketsAmount(tickets_amount + 1))}
               />
             </div>
             {isTablet && <p className={clsx(style.counter__title)}>Итог</p>}
@@ -109,13 +107,8 @@ const PassFormBuy: FC<{ formik: any }> = ({ formik }) => {
                 style.counter__body_input,
               )}
             >
-              <Field
-                className={clsx(style.buy__input)}
-                type="text"
-                name="buy"
-                value={meta.value + " ₽"}
-                readOnly
-              />
+              <span>{tickets_amount * price}</span>
+              <span>₽</span>
             </p>
           </div>
         </div>

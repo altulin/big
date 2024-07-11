@@ -2,74 +2,59 @@ import { useAppSelector } from "@/hooks/hook";
 import { getValidationSchema } from "@/service/form/validation";
 import clsx from "clsx";
 import { Form, Formik } from "formik";
-import { FC } from "react";
+import { FC, useEffect } from "react";
 import style from "./Pass.module.scss";
 import PassFormRadio from "./PassFormRadio";
 import PassFormSubmission from "./PassFormSubmission";
 import PassFormBuy from "./PassFormBuy";
 import PassFormTotal from "./PassFormTotal";
+import { useInitialValues } from "./formService";
 
 const PassForm: FC = () => {
-  // const dispatch = useAppDispatch();
-  const { category, categoryPitch } = useAppSelector((state) => state.category);
+  const { works_amount } = useAppSelector((state) => state.pass);
+  const { createInitialValues } = useInitialValues();
+
+  // const makePayLoad = (values: any) => {
+  //   const obj = { category, tickets_amount };
+  // };
+
+  // useEffect(() => {
+  //   console.log(createInitialValues(works_amount));
+  // }, [createInitialValues, works_amount]);
 
   return (
     <Formik
-      initialValues={{
-        project_image: null,
-        buy: 0,
-        total: 0,
-        category: category,
-        categoryPitch: categoryPitch,
-        brand: "",
-        name_work: "",
-        nomination: "",
-        // mail: "",
-        // password: "",
-        // confirm_password: "",
-        // name: "",
-        // company_name: "",
-        // rule: true,
-        // offer: true,
-        // phone: "",
-        // file: "",
-      }}
+      initialValues={createInitialValues(works_amount)}
       validationSchema={getValidationSchema([
-        "project_image",
-        "brand",
-        "name_work",
-        "nomination",
-        "deadlines",
-        "targets",
-        "insight_and_idea",
-        "target_audience",
-        "about_the_project",
-        "link",
-        "credits",
-        "file",
-        // "mail",
-        // "password",
-        // "confirm_password",
-        // "name",
-        // "phone",
-        // "rule",
-        // "offer",
+        // "project_image",
+        // "brand",
+        // "name_work",
+        // "nomination",
+        // "deadlines",
+        // "targets",
+        // "insight_and_idea",
+        // "target_audience",
+        // "about_the_project",
+        // "link",
+        // "credits",
         // "file",
       ])}
       onSubmit={async (values) => {
+        // console.log(makePayLoad(values));
         // dispatch(
         //   setSuccessModal({
         //     text: "Поздравляем с успешной регистрацией!",
         //     comein: true,
         //   }),
         // );
-
-        console.log(values);
+        // console.log(values);
         // resetForm();
       }}
-      enableReinitialize:true
+      enableReinitialize
     >
       {(formik) => {
+        console.log(formik.values);
+        // console.log(formik.isValid && formik.dirty);
         return (
           <>
             <Form className={clsx(style.form)}>

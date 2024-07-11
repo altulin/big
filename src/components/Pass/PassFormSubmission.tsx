@@ -7,19 +7,21 @@ import SubmissionBox from "./SubmissionBox";
 import SubmissionContent from "./SubmissionContent";
 import Add from "@/UI/add/Add";
 import PassFormRadioPitch from "./PassFormRadioPitch";
-import { useAppSelector } from "@/hooks/hook";
+import { useAppDispatch, useAppSelector } from "@/hooks/hook";
 import { categories } from "./script";
-import { useLazyGetPriceQuery } from "@/store/rtk/orders/price";
+import { setWorksAmount } from "@/store/pass/passSlice";
 
 const PassFormSubmission: FC<{ formik?: any }> = ({ formik }) => {
-  const [listCount, setListCount] = useState(1);
   const { category } = useAppSelector((state) => state.category);
   const { works_amount } = useAppSelector((state) => state.pass);
-  // const [getPrice, { data }] = useLazyGetPriceQuery();
+  const dispatch = useAppDispatch();
+  const [array, setArray] = useState<any>([""]);
 
   useEffect(() => {
-    // getPrice({ category: "brand_pitches", tickets_amount: 1, works_amount: 1 });
-  }, []);
+    setTimeout(() => {
+      setArray(new Array(works_amount).fill(""));
+    }, 300);
+  }, [works_amount]);
 
   return (
     <div className={clsx(style.box)}>
@@ -30,16 +32,16 @@ const PassFormSubmission: FC<{ formik?: any }> = ({ formik }) => {
           <PassFormRadioPitch formik={formik} name="categoryPitch" />
         )}
 
-        {[...Array(works_amount)].map((_, i) => (
+        {array.map((item: any, i: any) => (
           <SubmissionBox key={i}>
-            <SubmissionContent formik={formik} />
+            <SubmissionContent formik={formik} id={i} />
           </SubmissionBox>
         ))}
 
         <Add
           label="Добавить еще работу"
           className={clsx(style.box__add)}
-          onClick={() => setListCount(listCount + 1)}
+          onClick={() => dispatch(setWorksAmount(works_amount + 1))}
         />
       </div>
     </div>
