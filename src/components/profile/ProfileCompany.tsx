@@ -85,6 +85,10 @@ const ProfileCompany: FC = () => {
       }}
       validationSchema={getValidationSchema(["file"])}
       onSubmit={(values) => {
+        if (!phone_number || !name || !email || !company_name) {
+          return;
+        }
+
         const body = {
           phone_number: phone_number,
           name: name,
@@ -108,9 +112,6 @@ const ProfileCompany: FC = () => {
       }}
     >
       {(formik) => {
-        // console.log(formik.errors.file + " err");
-        // console.log(formik.values.file + ": value");
-
         return (
           <Form className={clsx(style.form)}>
             <ProfileBoxHead
