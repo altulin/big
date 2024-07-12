@@ -51,7 +51,7 @@ const SelectField: FC<ISelectField> = ({
             : ""
         }
         onChange={(option: any) => {
-          form.setFieldValue(name, option ? option["label"] : "");
+          form.setFieldValue(name, option ? option["value"] : "");
         }}
         onBlur={() => {
           form.setFieldTouched(name, true);

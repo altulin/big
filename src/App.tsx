@@ -3,7 +3,8 @@ import { Route, Routes, useLocation, useNavigate } from "react-router-dom";
 import Template from "./templates_pages/Template";
 import RequireAuth from "./hoc/RequireAuth";
 import ModalManager from "./components/modal/ModalManager";
-import Seo from "./hoc/Seo";
+import Seo from "./hoc/seo/Seo";
+
 // import Cursor from "./hoc/AnimatedCursor";
 import { HelmetProvider } from "react-helmet-async";
 

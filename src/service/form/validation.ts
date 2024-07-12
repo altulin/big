@@ -11,6 +11,7 @@ import {
   passwordMin,
   required,
   requiredCeck,
+  url,
   valid,
 } from "./errText";
 
@@ -75,7 +76,14 @@ export const object: any = {
   target_audience: yup.string().required(required),
   insight_and_idea: yup.string().required(required),
   about_the_project: yup.string().required(required),
-  link: yup.string().required(required),
+  // link: yup.string().required(required),
+  link: yup
+    .string()
+    .matches(
+      /((https?):\/\/)?(www.)?[a-z0-9]+(\.[a-z]{2,}){1,3}(#?\/?[a-zA-Z0-9#]+)*\/?(\?[a-zA-Z0-9-_]+=[a-zA-Z0-9-%]+&?)?$/,
+      url,
+    )
+    .required(required),
   credits: yup.string().required(required),
 
   project_image: yup

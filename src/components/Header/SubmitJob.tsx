@@ -29,7 +29,7 @@ const SubmitJob: FC<{ className?: string }> = ({ className }) => {
         className,
         isYang && style["job--dark"],
       )}
-      to={isAuth ? paths.pass : paths.registration}
+      to={isAuth ? `/${paths.pass}` : `/${paths.registration}`}
       onClick={handleClick}
     >
       Подать работу

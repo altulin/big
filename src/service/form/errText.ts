@@ -8,4 +8,5 @@ export const required = "обязательное поле",
   passwordMin = "минимальное количество 8 символов",
   confrmPasswordMatch = "пароли не совпадают",
   file = "файл не выбран",
-  fileMax = "превышен размер 5MB";
+  fileMax = "превышен размер 5MB",
+  url = "Введите правильный URL.";
