@@ -12,7 +12,7 @@ import { useInitialValues } from "./formService";
 import { useSendWorkMutation } from "@/store/rtk/orders/send_work";
 import useWidget from "./widget";
 import makeArrayPayLoad from "./payLoadServise";
-import { categoriesPitshes } from "./script";
+import { categories, categoriesPitshes } from "./script";
 import useProfile from "@/hooks/profile";
 import { setSuccessModal } from "@/store/modal/modalSlice";
 import { useDispatch } from "react-redux";
@@ -43,6 +43,17 @@ const PassForm: FC = () => {
 
   useEffect(() => {
     if (status === "fulfilled") {
+      if (category === categories.brand_pitches) {
+        dispatch(
+          setSuccessModal({
+            text: "Ваша работа принята на рассмотрение!",
+            title: "Подача работы",
+            profile: true,
+          }),
+        );
+
+        return;
+      }
       if (isIndividual) {
         runWidget();
       } else {
