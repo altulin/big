@@ -36,10 +36,10 @@ const UploadImage: FC<IUploadFile> = ({
   });
 
   useEffect(() => {
-    if (data.values[`${name}`] instanceof File) {
+    if (field.value instanceof File) {
       setUpload({
         isFile: true,
-        fileName: data.values[`${name}`].name,
+        fileName: field.value.name,
         text: "Файл загружен:",
       });
     } else {
@@ -49,7 +49,7 @@ const UploadImage: FC<IUploadFile> = ({
         text: "Нажмите или перетащите сюда файл, чтобы загрузить",
       });
     }
-  }, [data, name]);
+  }, [data, field?.value, field?.value?.name, name]);
 
   return (
     <div className={clsx(style[`${prefix}__box`])}>
@@ -66,7 +66,7 @@ const UploadImage: FC<IUploadFile> = ({
             }
           }}
           onBlur={() => {
-            data.setTouched({ ...data.touched, [`${name}`]: true });
+            data.setFieldTouched(name, true);
           }}
         />
 

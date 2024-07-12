@@ -9,20 +9,21 @@ import { useIsTabletDevice } from "@/hooks/IsSmallDevice";
 import usePrice from "@/hooks/price";
 import { setRemoveForm } from "@/store/forms/formsSlice";
 
-const SubmissionBox: FC<{ children?: ReactNode; id?: number }> = ({
-  children,
-  id,
-}) => {
+const SubmissionBox: FC<{
+  children?: ReactNode;
+  id?: number;
+  remove?: any;
+}> = ({ children, id, remove }) => {
   const { category } = useAppSelector((state) => state.category);
   const isTablet = useIsTabletDevice();
   const { data } = usePrice();
-  const dispatch = useAppDispatch();
   const refBox = useRef<any>(null);
   const { forms } = useAppSelector((state) => state.form);
+  const dispatch = useAppDispatch();
 
   const handleDelete = () => {
-    const index = refBox.current.dataset.id;
-    dispatch(setRemoveForm(index));
+    dispatch(setRemoveForm());
+    remove(id);
   };
 
   return (

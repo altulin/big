@@ -10,8 +10,7 @@ import PassFormTotal from "./PassFormTotal";
 import { useInitialValues } from "./formService";
 
 const PassForm: FC = () => {
-  const { works_amount } = useAppSelector((state) => state.pass);
-  const { createInitialValues, createValidationSchema } = useInitialValues();
+  const { createValidationSchema } = useInitialValues();
   const { category, categoryPitch } = useAppSelector((state) => state.category);
 
   // const makePayLoad = (values: any) => {
@@ -20,8 +19,26 @@ const PassForm: FC = () => {
 
   return (
     <Formik
-      initialValues={createInitialValues()}
-      validationSchema={createValidationSchema(works_amount)}
+      initialValues={{
+        category: category || "",
+        categoryPitch: categoryPitch || "",
+        fields: [
+          {
+            brand: "",
+            name_work: "",
+            nomination: "",
+            deadlines: "",
+            targets: "",
+            target_audience: "",
+            insight_and_idea: "",
+            about_the_project: "",
+            link: "",
+            credits: "",
+            project_image: "",
+          },
+        ],
+      }}
+      validationSchema={createValidationSchema()}
       onSubmit={async () => {
         // console.log(makePayLoad(values));
         // dispatch(
@@ -36,8 +53,7 @@ const PassForm: FC = () => {
       enableReinitialize
     >
       {(formik) => {
-        console.log(formik.initialValues);
-        // console.log(formik.isValid && formik.dirty);
+        // console.log(formik.values.fields[0]);
         return (
           <>
             <Form className={clsx(style.form)}>

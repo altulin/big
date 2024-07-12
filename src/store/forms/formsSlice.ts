@@ -1,31 +1,19 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const formsSlice = createSlice({
-  name: "menu",
+  name: "forms",
 
   initialState: {
-    forms: [{ id: 0, data: {} }],
+    forms: [""],
   },
 
   reducers: {
     setAddForm(state) {
-      const index = Math.max(...state.forms.map((item) => item.id));
-      state.forms = state.forms.concat({ id: index + 1, data: {} });
+      state.forms = state.forms.concat([""]);
     },
 
-    setRemoveForm(state, action) {
-      // console.log(
-      //   state.forms.filter((item) => {
-      //     console.log(typeof item.id, typeof action.payload);
-      //     item.id === action.payload;
-      //   }),
-      // );
-      // console.log(
-      //   state.forms.filter((item) => item.id === Number(action.payload)),
-      // );
-      state.forms = state.forms.filter(
-        (item) => item.id !== Number(action.payload),
-      );
+    setRemoveForm(state) {
+      state.forms = state.forms.slice(0, -1);
     },
   },
 });

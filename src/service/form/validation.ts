@@ -13,29 +13,9 @@ import {
   requiredCeck,
   valid,
 } from "./errText";
-// import {
-//   file,
-//   nameMax,
-//   nameMin,
-//   required,
-//   valid,
-// } from "../../form/input/js/errText";
 
 // const MAX_FILE_SIZE = 5; //100KB
 const MAX_FILE_SIZE = 5242880; //5Mb
-
-// const validFileExtensions = {
-//   image: ["jpg", "gif", "png", "jpeg", "svg", "webp"],
-// };
-
-// function isValidFileType(fileName: any, fileType: any) {
-//   return (
-//     fileName &&
-//     validFileExtensions[fileType as keyof typeof validFileExtensions].indexOf(
-//       fileName.split(".").pop(),
-//     ) > -1
-//   );
-// }
 
 export const object: any = {
   name: yup
@@ -100,10 +80,10 @@ export const object: any = {
 
   project_image: yup
     .mixed()
-    .required(file)
     .test("fileSize", fileMax, (value) => {
       return value && (value as any).size <= MAX_FILE_SIZE;
-    }),
+    })
+    .required(file),
 };
 
 export const getValidationSchema = (arr: string[]) => {

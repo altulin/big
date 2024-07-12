@@ -9,13 +9,16 @@ import Add from "@/UI/add/Add";
 import PassFormRadioPitch from "./PassFormRadioPitch";
 import { useAppDispatch, useAppSelector } from "@/hooks/hook";
 import { categories } from "./script";
-import { checkArr } from "@/service/checkArr";
 import { setAddForm } from "@/store/forms/formsSlice";
+import { FieldArray } from "formik";
+import { useInitialValues } from "./formService";
 
 const PassFormSubmission: FC<{ formik?: any }> = ({ formik }) => {
   const { category } = useAppSelector((state) => state.category);
   const dispatch = useAppDispatch();
-  const { forms } = useAppSelector((state) => state.form);
+  const { getProperties } = useInitialValues();
+
+  const { values } = formik;
 
   return (
     <div className={clsx(style.box)}>
@@ -26,23 +29,31 @@ const PassFormSubmission: FC<{ formik?: any }> = ({ formik }) => {
           <PassFormRadioPitch formik={formik} name="categoryPitch" />
         )}
 
-        {checkArr(forms) &&
-          forms &&
-          forms.map((item: any, i: any) => {
+        <FieldArray name="fields">
+          {({ push, remove }) => {
             return (
-              <SubmissionBox key={i} id={item.id}>
-                <SubmissionContent formik={formik} id={i} />
-              </SubmissionBox>
-            );
-          })}
+              <>
+                {values.fields.length > 0 &&
+                  values.fields.map((item: any, i: any) => {
+                    return (
+                      <SubmissionBox key={i} id={i} remove={remove}>
+                        <SubmissionContent formik={formik} id={i} />
+                      </SubmissionBox>
+                    );
+                  })}
 
-        <Add
-          label="Добавить еще работу"
-          className={clsx(style.box__add)}
-          onClick={() => {
-            dispatch(setAddForm());
+                <Add
+                  label="Добавить еще работу"
+                  className={clsx(style.box__add)}
+                  onClick={() => {
+                    dispatch(setAddForm());
+                    push(getProperties());
+                  }}
+                />
+              </>
+            );
           }}
-        />
+        </FieldArray>
       </div>
     </div>
   );

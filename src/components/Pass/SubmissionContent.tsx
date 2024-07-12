@@ -7,8 +7,8 @@ import style from "./Pass.module.scss";
 import SelectField from "../form/Select";
 import UploadImage from "../form/UploadImage";
 import { categories, categoriesPitshes } from "./script";
-import Upload from "../form/Upload";
 import { useLazyNominationsQuery } from "@/store/rtk/nominations/nominations";
+import UploadPass from "../form/UploadPass";
 
 const SubmissionContent: FC<{ formik: any; id: number }> = ({ formik, id }) => {
   const { category, categoryPitch } = useAppSelector((state) => state.category);
@@ -27,14 +27,14 @@ const SubmissionContent: FC<{ formik: any; id: number }> = ({ formik, id }) => {
     <>
       {category !== categories.brand_pitches && (
         <TextInput
-          name={`brand_${id}`}
+          name={`fields.${id}.brand`}
           label="Бренд"
           placeholder="Введите название бренда"
         />
       )}
 
       <TextInput
-        name={`name_work_${id}`}
+        name={`fields.${id}.name_work`}
         label="Название"
         placeholder="Введите название работы"
       />
@@ -49,7 +49,7 @@ const SubmissionContent: FC<{ formik: any; id: number }> = ({ formik, id }) => {
       {category !== categories.brand_pitches && (
         <SelectField
           form={formik}
-          name={`nomination_${id}`}
+          name={`fields.${id}.nomination`}
           label="Номинация"
           prefix="pass"
           placeholder="Не выбрано"
@@ -59,7 +59,7 @@ const SubmissionContent: FC<{ formik: any; id: number }> = ({ formik, id }) => {
 
       {categoryPitch !== categoriesPitshes.mega && (
         <TextInput
-          name={`deadlines_${id}`}
+          name={`fields.${id}.deadlines`}
           label="Сроки"
           placeholder="Введите период реализации компании"
         />
@@ -68,14 +68,14 @@ const SubmissionContent: FC<{ formik: any; id: number }> = ({ formik, id }) => {
       {category !== categories.brand_pitches && (
         <>
           <TextInput
-            name={`targets_${id}`}
+            name={`fields.${id}.targets`}
             label="Цели и задачи"
             placeholder="Опишите, какая перед вами стояла задача, как был поставлен бриф"
             as="textarea"
           />
 
           <TextInput
-            name={`target_audience_${id}`}
+            name={`fields.${id}.target_audience`}
             label="ЦА"
             placeholder="Опишите, для какой целевой аудитории создавался проект"
             as="textarea"
@@ -84,7 +84,7 @@ const SubmissionContent: FC<{ formik: any; id: number }> = ({ formik, id }) => {
       )}
 
       <TextInput
-        name={`insight_and_idea_${id}`}
+        name={`fields.${id}.insight_and_idea`}
         label="Инсайт и идея"
         placeholder="Опишите, как вы пришли к идее, в чем ее уникальность"
         as="textarea"
@@ -93,17 +93,21 @@ const SubmissionContent: FC<{ formik: any; id: number }> = ({ formik, id }) => {
       {categoryPitch !== categoriesPitshes.mega && (
         <>
           <TextInput
-            name={`about_the_project_${id}`}
+            name={`fields.${id}.about_the_project`}
             label="О проекте"
             placeholder="Расскажите, в чем уникальность проекта с точки зрения его реализации"
             as="textarea"
           />
 
-          <TextInput name={`link_${id}`} label="Ссылка" placeholder="http://" />
+          <TextInput
+            name={`fields.${id}.link`}
+            label="Ссылка"
+            placeholder="http://"
+          />
         </>
       )}
 
-      {category !== categories.brand_pitches && (
+      {category == categories.main_category && (
         <>
           <p className={clsx(style.big__text)}>
             Cсылка на одну из видеоплатформ: Vimeo / Youtube или ссылка на
@@ -115,7 +119,7 @@ const SubmissionContent: FC<{ formik: any; id: number }> = ({ formik, id }) => {
           </p>
 
           <TextInput
-            name={`credits_${id}`}
+            name={`fields.${id}.credits`}
             label="Кредитсы"
             placeholder="Опишите команду"
             as="textarea"
@@ -130,7 +134,7 @@ const SubmissionContent: FC<{ formik: any; id: number }> = ({ formik, id }) => {
             Пропорции 16:9, .jpeg, .png до 5 МБ
           </p>
           <UploadImage
-            name={`project_image_${id}`}
+            name={`fields.${id}.project_image`}
             data={formik}
             prefix="upload_image"
           />
@@ -138,14 +142,17 @@ const SubmissionContent: FC<{ formik: any; id: number }> = ({ formik, id }) => {
       )}
 
       {categoryPitch === categoriesPitshes.mega && (
-        <Upload
-          name={`file_${id}`}
+        <UploadPass
+          name={`fields.${id}.file`}
           label={
-            !formik.values.file ? "Прикрепить сценарий" : formik.values.file
+            !formik.values?.fields[`${id}`]?.file?.name
+              ? "Прикрепить сценарий"
+              : formik.values.fields[`${id}`].file.name
           }
           accept=".doc, .docx"
           modifier="file-profile"
-        ></Upload>
+          formik={formik}
+        ></UploadPass>
       )}
     </>
   );
