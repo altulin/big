@@ -26,4 +26,5 @@ export const paths = {
   pass: "pass",
 
   profile: "profile",
+  recovery: "recovery",
 };

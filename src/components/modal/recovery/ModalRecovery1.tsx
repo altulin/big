@@ -20,6 +20,7 @@ const ModalRecovery1: FC = () => {
         setSuccessModal({
           text: "Ссылка успешно отправлена на Вашу почту",
           comein: false,
+          title: "Восстановление пароля",
         }),
       );
     }

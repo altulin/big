@@ -1,0 +1,46 @@
+@import "@/sass/helpers/variables";
+@import "@/sass/helpers/mixins.scss";
+
+.recovery {
+  flex-grow: 1;
+
+  @include mw($tb) {
+    flex-grow: 0;
+  }
+
+  &__inner {
+    padding: 4rem 2rem;
+
+    @include mw($tb) {
+      padding-left: 0.5rem;
+      padding-right: 0.5rem;
+      padding-top: 0;
+      padding-bottom: 2rem;
+    }
+  }
+
+  &__title {
+    font-weight: 400;
+    font-size: 1.5rem;
+    line-height: 130%;
+    color: #141414;
+    margin-bottom: 2rem;
+
+    @include mw($tb) {
+      font-weight: 400;
+      font-size: 1.12rem;
+      line-height: 130%;
+      color: #141414;
+      margin-bottom: 2.5rem;
+    }
+  }
+}
+
+.button {
+  margin-top: 3rem;
+
+  @include mw($tb) {
+    width: 100%;
+    text-align: center;
+  }
+}

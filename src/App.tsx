@@ -19,6 +19,7 @@ import useIsYang from "./hooks/isYang";
 import useIsAuth from "./hooks/isAuth";
 import { token } from "./service/token";
 import useMe from "./hooks/me";
+import Recovery from "./components/Recovery/Recovery";
 
 const App: FC = () => {
   const title = import.meta.env.VITE_APP_TITLE;
@@ -70,6 +71,16 @@ const App: FC = () => {
             path={paths.registration}
             element={
               <ServicePage children={<Registration />} title="Регистрация" />
+            }
+          />
+
+          <Route
+            path={`${paths.recovery}/:id`}
+            element={
+              <ServicePage
+                children={<Recovery />}
+                title="Восстановление пароля"
+              />
             }
           />
 
