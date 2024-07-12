@@ -11,61 +11,51 @@ import PassFormTotal from "./PassFormTotal";
 import { useInitialValues } from "./formService";
 import { useSendWorkMutation } from "@/store/rtk/orders/send_work";
 import useWidget from "./widget";
+import makeArrayPayLoad from "./payLoadServise";
+import { categoriesPitshes } from "./script";
+import useProfile from "@/hooks/profile";
+import { setSuccessModal } from "@/store/modal/modalSlice";
+import { useDispatch } from "react-redux";
 
 const PassForm: FC = () => {
   const { createValidationSchema, getProperties } = useInitialValues();
   const { category, categoryPitch } = useAppSelector((state) => state.category);
   const [sendWork, { status }] = useSendWorkMutation();
+  const { isIndividual } = useProfile();
+  const dispatch = useDispatch();
   const { runWidget } = useWidget();
 
   const makePayLoad = (values: any) => {
     const { category, fields } = values;
-    // const obj = { category };
-    const works: any = [];
+    const { works } = makeArrayPayLoad(category, categoryPitch, fields);
+    const body: any = { category, works };
 
-    fields.forEach((el: any) => {
-      const {
-        name_work,
-        brand,
-        nomination,
-        deadlines,
-        targets,
-        insight_and_idea,
-        credits,
-        about_the_project,
-        link,
-        target_audience,
-        project_image,
-      } = el;
+    if (categoryPitch === categoriesPitshes.mega) {
+      body.pitch_brand = "mega_market";
+    }
 
-      const formData = new FormData();
-      formData.append("project_image", project_image);
+    if (categoryPitch === categoriesPitshes.nuum) {
+      body.pitch_brand = "nuum";
+    }
 
-      const work = {
-        title: name_work,
-        brand,
-        nomination,
-        deadlines,
-        goals: targets,
-        idea: insight_and_idea,
-        about_project: about_the_project,
-        work_link: link,
-        credits,
-        target_audience,
-        formData,
-      };
-
-      works.push(work);
-    });
-
-    return { category, works };
+    return body;
   };
 
   useEffect(() => {
     if (status === "fulfilled") {
-      runWidget();
+      if (isIndividual) {
+        runWidget();
+      } else {
+        dispatch(
+          setSuccessModal({
+            text: "Ваша работа принята, на вашу почту будет отправлен счет-оферта для оплаты!",
+            title: "Подача работы",
+            profile: true,
+          }),
+        );
+      }
     }
-  }, [runWidget, status]);
+  }, [status]);
 
   return (
     <Formik
@@ -76,7 +66,6 @@ const PassForm: FC = () => {
       }}
       validationSchema={createValidationSchema()}
       onSubmit={async (values, { resetForm }) => {
-        // console.log(makePayLoad(values));
         sendWork(makePayLoad(values))
           .unwrap()
           .then(() => {

@@ -3,7 +3,9 @@ import Modal from "../template/Modal";
 import style from "../template/Modal.module.scss";
 import clsx from "clsx";
 import { useAppDispatch, useAppSelector } from "@/hooks/hook";
-import { stepTo } from "@/store/modal/modalSlice";
+import { clearAllStep, stepTo } from "@/store/modal/modalSlice";
+import { HashLink } from "react-router-hash-link";
+import { paths } from "@/service/paths";
 
 const ModalSuccess: FC = () => {
   const { modalState } = useAppSelector((state) => state.modal);
@@ -14,7 +16,7 @@ const ModalSuccess: FC = () => {
   };
 
   return (
-    <Modal>
+    <Modal title={modalState?.success?.title}>
       <div className={clsx(style.success)}>
         <div className={clsx(style.success__inner)}>
           <h2 className={clsx(style.success__title)}>
@@ -27,6 +29,16 @@ const ModalSuccess: FC = () => {
             >
               Войти
             </button>
+          )}
+
+          {modalState?.success?.profile && (
+            <HashLink
+              to={`/${paths.profile}`}
+              className={clsx(style.success__button)}
+              onClick={() => dispatch(clearAllStep())}
+            >
+              Вернуться в профиль
+            </HashLink>
           )}
         </div>
       </div>

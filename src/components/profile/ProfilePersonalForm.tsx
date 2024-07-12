@@ -77,7 +77,8 @@ const ProfilePersonalForm: FC = () => {
       dispatch(
         setSuccessModal({
           text: "Данные успешно обновлены",
-          comein: false,
+          profile: true,
+          title: "Профиль",
         }),
       );
       getMeData();

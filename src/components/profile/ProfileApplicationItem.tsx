@@ -42,6 +42,8 @@ const ProfileApplicationItem: FC<IProfileApplicationItem> = ({ ...props }) => {
   const { category, name, status, href, nomination, credits, about, insight } =
     props;
 
+  console.log(props);
+
   const [isVisible, setIsVisible] = useState(false);
   const checkCategory = (name: string) => {
     switch (name) {

@@ -107,7 +107,7 @@ const SubmissionContent: FC<{ formik: any; id: number }> = ({ formik, id }) => {
         </>
       )}
 
-      {category == categories.main_category && (
+      {category === categories.main_category && (
         <>
           <p className={clsx(style.big__text)}>
             Cсылка на одну из видеоплатформ: Vimeo / Youtube или ссылка на
@@ -117,14 +117,16 @@ const SubmissionContent: FC<{ formik: any; id: number }> = ({ formik, id }) => {
             Напоминаем, что канал не должен называться именем продакшена. Мы
             рекомендуем создать специальный фестивальный аккаунт.
           </p>
-
-          <TextInput
-            name={`fields.${id}.credits`}
-            label="Кредитсы"
-            placeholder="Опишите команду"
-            as="textarea"
-          />
         </>
+      )}
+
+      {category !== categories.brand_pitches && (
+        <TextInput
+          name={`fields.${id}.credits`}
+          label="Кредитсы"
+          placeholder="Опишите команду"
+          as="textarea"
+        />
       )}
 
       {categoryPitch !== categoriesPitshes.mega && (

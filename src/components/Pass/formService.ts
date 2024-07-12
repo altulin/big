@@ -28,6 +28,7 @@ const young = {
   insight_and_idea: "",
   about_the_project: "",
   link: "",
+  credits: "",
   project_image: "",
 };
 const brand_pitches_nuum = {

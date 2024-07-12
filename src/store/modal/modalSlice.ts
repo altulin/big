@@ -18,12 +18,14 @@ const modalSlice = createSlice({
       state.modalState = { error: { text: action.payload } };
     },
 
-    setSuccessModal(
-      state,
-      action: PayloadAction<{ text: string; comein: boolean }>,
-    ) {
+    setSuccessModal(state, action) {
       state.modalState = {
-        success: { text: action.payload.text, comein: action.payload.comein },
+        success: {
+          text: action.payload.text,
+          comein: action.payload.comein,
+          profile: action.payload.profile,
+          title: action.payload.title,
+        },
       };
     },
   },
