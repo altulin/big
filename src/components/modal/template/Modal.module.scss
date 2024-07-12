@@ -252,3 +252,13 @@
     }
   }
 }
+
+.recovery {
+  &__text {
+    font-weight: 400;
+    font-size: 1.12rem;
+    line-height: 140%;
+    color: #141414;
+    margin-bottom: 1.5rem;
+  }
+}

@@ -10,7 +10,7 @@ import PasswordField from "@/components/form/Password";
 import { useNavigate } from "react-router-dom";
 import { paths } from "@/service/paths";
 import { useAppDispatch, useAppSelector } from "@/hooks/hook";
-import { clearAllStep } from "@/store/modal/modalSlice";
+import { clearAllStep, stepTo } from "@/store/modal/modalSlice";
 import { useAuthorizationMutation } from "@/store/rtk/user/authorization";
 import { onPhoneInput } from "@/service/form/masks/phone";
 import { TOKEN } from "@/service/const";
@@ -100,6 +100,8 @@ const ModalAuth1: FC = () => {
                     style["button_service--right"],
                     style["button_service--top"],
                   )}
+                  type="button"
+                  onClick={() => dispatch(stepTo({ recovery: { step: 1 } }))}
                 >
                   Забыл пароль
                 </button>
@@ -114,6 +116,7 @@ const ModalAuth1: FC = () => {
                 <p className={clsx(style.acc)}>
                   <span>Ещё нет аккаунта?</span>
                   <button
+                    type="button"
                     className={clsx(style.button_service)}
                     onClick={handleClickReg}
                   >
