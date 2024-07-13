@@ -20,6 +20,7 @@ import useIsAuth from "./hooks/isAuth";
 import { token } from "./service/token";
 import useMe from "./hooks/me";
 import Recovery from "./components/Recovery/Recovery";
+import Edit from "./components/Edit/Edit";
 
 const App: FC = () => {
   const title = import.meta.env.VITE_APP_TITLE;
@@ -81,6 +82,20 @@ const App: FC = () => {
                 children={<Recovery />}
                 title="Восстановление пароля"
               />
+            }
+          />
+
+          <Route
+            path={`${paths.edit}/:id`}
+            element={
+              <RequireAuth>
+                {
+                  <ServicePage
+                    children={<Edit />}
+                    title="Редактирование работы"
+                  />
+                }
+              </RequireAuth>
             }
           />
 

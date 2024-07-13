@@ -23,6 +23,11 @@ const SubmissionContent: FC<{ formik: any; id: number }> = ({ formik, id }) => {
     return { value: item.id, label: item.title };
   });
 
+  // useEffect(() => {
+  //   console.log("category :" + category);
+  //   console.log("categoryPitch :" + categoryPitch);
+  // }, [category, categoryPitch]);
+
   return (
     <>
       {category !== categories.brand_pitches && (

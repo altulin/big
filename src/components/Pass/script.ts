@@ -8,8 +8,10 @@ export const categories = {
 };
 
 export const categoriesPitshes = {
-  nuum: "nuum_category",
-  mega: "mega_category",
+  // nuum: "nuum_category",
+  nuum: "nuum",
+  // mega: "mega_category",
+  mega: "mega_market",
 };
 
 export const radioList = [

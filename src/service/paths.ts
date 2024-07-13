@@ -24,7 +24,7 @@ export const paths = {
   private: "profile",
   young_talent: "young_talent",
   pass: "pass",
-
   profile: "profile",
   recovery: "recovery",
+  edit: "edit",
 };

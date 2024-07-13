@@ -33,11 +33,11 @@ const PassForm: FC = () => {
     const body: any = { category, works };
 
     if (categoryPitch === categoriesPitshes.mega) {
-      body.pitch_brand = "mega_market";
+      body.pitch_brand = categoriesPitshes.mega;
     }
 
     if (categoryPitch === categoriesPitshes.nuum) {
-      body.pitch_brand = "nuum";
+      body.pitch_brand = categoriesPitshes.nuum;
     }
 
     return body;

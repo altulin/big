@@ -1,0 +1,21 @@
+@import "@/sass/helpers/variables";
+@import "@/sass/helpers/mixins.scss";
+
+.edit {
+  &__inner {
+  }
+}
+
+.text {
+  font-weight: 400;
+  font-size: 1.12rem;
+  line-height: 140%;
+  color: #141414;
+
+  @include mw($tb) {
+    font-weight: 400;
+    font-size: 1rem;
+    line-height: 140%;
+    color: #141414;
+  }
+}

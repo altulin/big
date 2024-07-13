@@ -7,6 +7,8 @@ import IconEdit from "@/images/profile/edit.svg?react";
 import { checkArr } from "@/service/checkArr";
 import { getCategory, getNominationValue } from "./service";
 import { useLazyNominationsQuery } from "@/store/rtk/nominations/nominations";
+import { useNavigate } from "react-router-dom";
+import { paths } from "@/service/paths";
 
 export interface IProfileApplicationItem {
   status: string;
@@ -20,11 +22,12 @@ export interface IProfileApplicationItem {
   file?: string;
   about_project?: string;
   num: number;
+  id: number;
+  title?: string;
 }
 
 const ProfileApplicationItem: FC<IProfileApplicationItem> = ({
   num,
-
   ...props
 }) => {
   const [getNomination, { data: results }] = useLazyNominationsQuery(undefined);
@@ -36,16 +39,18 @@ const ProfileApplicationItem: FC<IProfileApplicationItem> = ({
     credits,
     about_project,
     idea,
+    id,
+    title,
   } = props;
+  const navigate = useNavigate();
 
   useEffect(() => {
     getNomination({ offset: 0, limit: 100 }).unwrap();
   }, []); // eslint-disable-line
 
-  useEffect(() => {
-    console.log(props);
-    // getNomination();
-  }, [props]);
+  const handleEdit = () => {
+    navigate(`/${paths.edit}/${id}`);
+  };
 
   return (
     <div className={clsx(style.item)}>
@@ -55,13 +60,13 @@ const ProfileApplicationItem: FC<IProfileApplicationItem> = ({
           <span>{`№${num + 1}`}</span>
         </p>
 
-        <button className={clsx(style.edit)}>
+        <button className={clsx(style.edit)} onClick={handleEdit}>
           <IconEdit />
         </button>
       </div>
 
       <div className={clsx(style.item__inner)}>
-        <h3 className={clsx(style.name)}>{brand}</h3>
+        <h3 className={clsx(style.name)}>{title}</h3>
 
         <div className={clsx(style.content)}>
           {work_link && (

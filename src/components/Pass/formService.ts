@@ -45,12 +45,25 @@ const brand_pitches_mega = {
   file: "",
 };
 
+const getVal = (template: any, values: any) => {
+  const obj: any = {};
+  console.log(template);
+  Object.keys(template).forEach((key) => {
+    obj[key] = values[key];
+  });
+
+  return obj;
+};
+
 export const useInitialValues = () => {
   const { category, categoryPitch } = useAppSelector((state) => state.category);
 
-  const getProperties = () => {
+  const getProperties = (values: any = null) => {
     switch (category) {
       case categories.main_category:
+        if (values) {
+          return getVal(main, values);
+        }
         return main;
       case categories.young_talent:
         return young;
@@ -79,5 +92,8 @@ export const useInitialValues = () => {
     });
   };
 
-  return { createValidationSchema, getProperties };
+  return {
+    createValidationSchema,
+    getProperties,
+  };
 };
