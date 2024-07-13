@@ -33,7 +33,6 @@ const ProfileApplicationItem: FC<IProfileApplicationItem> = ({
   const [getNomination, { data: results }] = useLazyNominationsQuery(undefined);
   const {
     category,
-    brand,
     work_link,
     nomination,
     credits,

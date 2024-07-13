@@ -13,15 +13,15 @@ const makeArrayPayLoad = (
   ) {
     fields.forEach((el: any) => {
       const {
-        name_work,
+        title,
         brand,
         nomination,
         deadlines,
         targets,
-        insight_and_idea,
+        idea,
         credits,
-        about_the_project,
-        link,
+        about_project,
+        work_link,
         target_audience,
         project_image,
       } = el;
@@ -30,14 +30,14 @@ const makeArrayPayLoad = (
       formData.append("project_image", project_image);
 
       const work = {
-        title: name_work,
+        title: title,
         brand,
         nomination,
         deadlines,
         goals: targets,
-        idea: insight_and_idea,
-        about_project: about_the_project,
-        work_link: link,
+        idea: idea,
+        about_project: about_project,
+        work_link: work_link,
         credits,
         target_audience,
         formData,
@@ -51,11 +51,11 @@ const makeArrayPayLoad = (
     if (categoryPitch === categoriesPitshes.nuum) {
       fields.forEach((el: any) => {
         const {
-          name_work,
+          title,
           deadlines,
-          insight_and_idea,
-          about_the_project,
-          link,
+          idea,
+          about_project,
+          work_link,
           project_image,
         } = el;
 
@@ -63,11 +63,11 @@ const makeArrayPayLoad = (
         formData.append("project_image", project_image);
 
         const work = {
-          title: name_work,
+          title: title,
           deadlines,
-          idea: insight_and_idea,
-          about_project: about_the_project,
-          work_link: link,
+          idea: idea,
+          about_project: about_project,
+          work_link: work_link,
           formData,
         };
 
@@ -78,14 +78,14 @@ const makeArrayPayLoad = (
     if (categoryPitch === categoriesPitshes.mega) {
       fields.forEach((el: any) => {
         console.log(el.file);
-        const { name_work, insight_and_idea, file } = el;
+        const { title, idea, file } = el;
 
         const formData = new FormData();
         formData.append("script", file);
 
         const work = {
-          title: name_work,
-          idea: insight_and_idea,
+          title: title,
+          idea: idea,
           //   formData,
         };
 

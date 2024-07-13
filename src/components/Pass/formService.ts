@@ -6,13 +6,13 @@ import { categories, categoriesPitshes } from "./script";
 
 const main = {
   brand: "",
-  name_work: "",
+  title: "",
   nomination: "",
   deadlines: "",
   targets: "",
   target_audience: "",
-  insight_and_idea: "",
-  about_the_project: "",
+  idea: "",
+  about_project: "",
   link: "",
   credits: "",
   project_image: "",
@@ -20,28 +20,28 @@ const main = {
 
 const young = {
   brand: "",
-  name_work: "",
+  title: "",
   nomination: "",
   deadlines: "",
   targets: "",
   target_audience: "",
-  insight_and_idea: "",
-  about_the_project: "",
+  idea: "",
+  about_project: "",
   link: "",
   credits: "",
   project_image: "",
 };
 const brand_pitches_nuum = {
-  name_work: "",
+  title: "",
   deadlines: "",
-  insight_and_idea: "",
-  about_the_project: "",
+  idea: "",
+  about_project: "",
   link: "",
   project_image: "",
 };
 const brand_pitches_mega = {
-  name_work: "",
-  insight_and_idea: "",
+  title: "",
+  idea: "",
   file: "",
 };
 

@@ -39,7 +39,7 @@ const SubmissionContent: FC<{ formik: any; id: number }> = ({ formik, id }) => {
       )}
 
       <TextInput
-        name={`fields.${id}.name_work`}
+        name={`fields.${id}.title`}
         label="Название"
         placeholder="Введите название работы"
       />
@@ -89,7 +89,7 @@ const SubmissionContent: FC<{ formik: any; id: number }> = ({ formik, id }) => {
       )}
 
       <TextInput
-        name={`fields.${id}.insight_and_idea`}
+        name={`fields.${id}.idea`}
         label="Инсайт и идея"
         placeholder="Опишите, как вы пришли к идее, в чем ее уникальность"
         as="textarea"
@@ -98,14 +98,14 @@ const SubmissionContent: FC<{ formik: any; id: number }> = ({ formik, id }) => {
       {categoryPitch !== categoriesPitshes.mega && (
         <>
           <TextInput
-            name={`fields.${id}.about_the_project`}
+            name={`fields.${id}.about_project`}
             label="О проекте"
             placeholder="Расскажите, в чем уникальность проекта с точки зрения его реализации"
             as="textarea"
           />
 
           <TextInput
-            name={`fields.${id}.link`}
+            name={`fields.${id}.work_link`}
             label="Ссылка"
             placeholder="http://"
           />

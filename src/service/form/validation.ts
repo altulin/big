@@ -69,15 +69,15 @@ export const object: any = {
   file: yup.mixed().required(required),
 
   brand: yup.string().required(required),
-  name_work: yup.string().required(required),
+  title: yup.string().required(required),
   nomination: yup.string().required(required),
   deadlines: yup.string().required(required),
   targets: yup.string().required(required),
   target_audience: yup.string().required(required),
-  insight_and_idea: yup.string().required(required),
-  about_the_project: yup.string().required(required),
+  idea: yup.string().required(required),
+  about_project: yup.string().required(required),
   // link: yup.string().required(required),
-  link: yup
+  work_link: yup
     .string()
     .matches(
       /((https?):\/\/)?(www.)?[a-z0-9]+(\.[a-z]{2,}){1,3}(#?\/?[a-zA-Z0-9#]+)*\/?(\?[a-zA-Z0-9-_]+=[a-zA-Z0-9-%]+&?)?$/,
