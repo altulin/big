@@ -174,6 +174,7 @@
     font-size: 1.12rem;
     line-height: 140%;
     color: #141414;
+    margin-bottom: 3rem;
   }
 
   &__btn {
@@ -187,7 +188,7 @@
     transition: 0.3s;
     cursor: pointer;
     padding: 1.5rem;
-    margin-top: 3rem;
+    margin-bottom: 3rem;
     width: 22rem;
     display: block;
     text-align: center;
@@ -245,24 +246,29 @@
 .item {
   display: flex;
   flex-direction: column;
-  position: relative;
-  border: var(--line) solid var(--basic-dark);
-  padding-top: 4rem;
-  padding-left: 2rem;
-  padding-right: 2rem;
   padding-bottom: 1rem;
 
   @include mw($tb) {
-    padding-top: 3rem;
   }
 
-  & + .item {
-    margin-top: 1rem;
+  &__inner {
+    padding: 1.5rem 2rem;
+
+    @include mw($tb) {
+      padding: 1rem 1rem;
+    }
   }
 
   &__block {
-    margin-top: 1.5rem;
     display: flex;
+
+    &:not(:first-child) {
+      margin-top: 1.5rem;
+
+      @include mw($tb) {
+        margin-top: 1rem;
+      }
+    }
 
     @include mw($tb) {
       flex-direction: column;
@@ -308,7 +314,7 @@
   column-gap: 0.25rem;
   padding: 0.25rem 0.5rem;
 
-  &--awaiting {
+  &--created {
     color: rgba(#131313, 0.48);
     background-color: rgba(#131313, 0.06);
   }
@@ -320,6 +326,16 @@
     width: 1rem;
     height: 1rem;
   }
+
+  &--payment_error {
+    background-color: #ee00ff;
+    color: var(--basic-light);
+    svg {
+      width: torem(6.33);
+      height: torem(6.33);
+      transform: translateY(30%);
+    }
+  }
 }
 
 .name {
@@ -327,11 +343,11 @@
   font-size: 1.5rem;
   line-height: 130%;
   color: #141414;
-  margin-bottom: 2rem;
+  margin-bottom: 1.5rem;
 
   @include mw($tb) {
     font-size: 1.12rem;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1rem;
   }
 }
 
@@ -365,9 +381,12 @@
   cursor: pointer;
   align-self: flex-start;
   background-color: transparent;
+  margin-left: 2rem;
+  margin-bottom: 1.5rem;
 
   @include mw($tb) {
     font-size: 0.88rem;
+    margin-left: 1.5rem;
   }
 
   &:after {
@@ -399,9 +418,6 @@
   background-color: rgba(#131313, 0.06);
   transition: 0.3s;
   cursor: pointer;
-  position: absolute;
-  right: 0;
-  bottom: 0;
 
   &:hover {
     background-color: var(--color-green);
@@ -415,5 +431,65 @@
 }
 
 .content {
-  margin-bottom: 2rem;
+  // margin-bottom: 2rem;
+}
+
+.list {
+  border: var(--line) solid var(--basic-dark);
+  padding-top: 3rem;
+  position: relative;
+
+  & + .list {
+    margin-top: 2rem;
+
+    @include mw($tb) {
+      margin-top: 1rem;
+    }
+  }
+
+  &__title {
+    font-weight: 400;
+    font-size: 2rem;
+    line-height: 100%;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: #141414;
+    padding: 0 2rem;
+    margin-bottom: 3rem;
+    display: flex;
+    column-gap: 0.5rem;
+
+    @include mw($tb) {
+      flex-direction: column;
+      font-size: 1.25rem;
+      margin-bottom: 1rem;
+      padding: 0 1.5rem;
+    }
+  }
+}
+
+.header {
+  background-color: var(--color-green);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5rem 0.5rem 0.5rem 2rem;
+
+  @include mw($tb) {
+    padding: 0 0 0 1.5rem;
+  }
+
+  &__text {
+    font-weight: 400;
+    font-size: 1.5rem;
+    line-height: 130%;
+    color: #141414;
+
+    @include mw($tb) {
+      font-weight: 400;
+      font-size: 1.12rem;
+      line-height: 130%;
+      color: #141414;
+    }
+  }
 }

@@ -7,10 +7,9 @@ import { HashLink } from "react-router-hash-link";
 import { useAppDispatch } from "@/hooks/hook";
 import { paths } from "@/service/paths";
 import { setPath } from "@/store/menu/menuSlice";
-import { list } from "./script";
-import ProfileApplicationItem from "./ProfileApplicationItem";
 import { useLazyGetListQuery } from "@/store/rtk/orders/list";
 import { checkArr } from "@/service/checkArr";
+import ProfileApplicationList from "./ProfileApplicationList";
 
 const ProfileApplication: FC = () => {
   const dispatch = useAppDispatch();
@@ -35,11 +34,6 @@ const ProfileApplication: FC = () => {
           </p>
         )}
 
-        {checkArr(data?.results) &&
-          data?.results.map((item: any, i: number) => (
-            <ProfileApplicationItem key={i} {...item} />
-          ))}
-
         <HashLink
           smooth
           className={clsx(style.application__btn)}
@@ -47,6 +41,11 @@ const ProfileApplication: FC = () => {
         >
           Подать работу
         </HashLink>
+
+        {checkArr(data?.results) &&
+          data.results.map((item: any, i: number) => (
+            <ProfileApplicationList key={i} results={item} />
+          ))}
       </div>
 
       {application && (

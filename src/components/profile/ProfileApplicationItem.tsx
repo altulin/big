@@ -1,88 +1,80 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import clsx from "clsx";
-import { FC, useState } from "react";
+import { FC, useEffect } from "react";
 import style from "./Profile.module.scss";
-import IconAwaiting from "@/images/profile/awaiting.svg?react";
-import IconPaid from "@/images/profile/paid.svg?react";
+
 import IconEdit from "@/images/profile/edit.svg?react";
 import { checkArr } from "@/service/checkArr";
+import { getCategory, getNominationValue } from "./service";
+import { useLazyNominationsQuery } from "@/store/rtk/nominations/nominations";
 
-interface IProfileApplicationItem {
+export interface IProfileApplicationItem {
   status: string;
-  name: string;
+  brand: string;
   category: string;
   img_category?: any;
-  href?: string;
+  work_link?: string;
   nomination?: string;
   credits?: string[];
-  insight?: string;
+  idea?: string;
   file?: string;
-  about?: string;
+  about_project?: string;
+  num: number;
 }
 
-const Awaiting: FC = () => {
-  return (
-    <>
-      <IconAwaiting />
-      <span>ожидает оплаты</span>
-    </>
-  );
-};
+const ProfileApplicationItem: FC<IProfileApplicationItem> = ({
+  num,
 
-const Paid: FC = () => {
-  return (
-    <>
-      <IconPaid />
-      <span>оплачено</span>
-    </>
-  );
-};
+  ...props
+}) => {
+  const [getNomination, { data: results }] = useLazyNominationsQuery(undefined);
+  const {
+    category,
+    brand,
+    work_link,
+    nomination,
+    credits,
+    about_project,
+    idea,
+  } = props;
 
-const ProfileApplicationItem: FC<IProfileApplicationItem> = ({ ...props }) => {
-  const { category, name, status, href, nomination, credits, about, insight } =
-    props;
+  useEffect(() => {
+    getNomination({ offset: 0, limit: 100 }).unwrap();
+  }, []); // eslint-disable-line
 
-  console.log(props);
-
-  const [isVisible, setIsVisible] = useState(false);
-  const checkCategory = (name: string) => {
-    switch (name) {
-      case "awaiting":
-        return <Awaiting />;
-
-      case "paid":
-        return <Paid />;
-
-      default:
-        return style["item__awaiting"];
-    }
-  };
-
-  const toggleVisible = () => {
-    setIsVisible(!isVisible);
-  };
+  useEffect(() => {
+    console.log(props);
+    // getNomination();
+  }, [props]);
 
   return (
     <div className={clsx(style.item)}>
-      <div className={clsx(style.status, style[`status--${status}`])}>
-        {checkCategory(status)}
+      <div className={clsx(style.header)}>
+        <p className={clsx(style.header__text)}>
+          <span>Работа </span>
+          <span>{`№${num + 1}`}</span>
+        </p>
+
+        <button className={clsx(style.edit)}>
+          <IconEdit />
+        </button>
       </div>
 
-      <h3 className={clsx(style.name)}>{name}</h3>
+      <div className={clsx(style.item__inner)}>
+        <h3 className={clsx(style.name)}>{brand}</h3>
 
-      {isVisible && (
         <div className={clsx(style.content)}>
-          {href && (
+          {work_link && (
             <p className={clsx(style.href, style.item__block)}>
               <span className={clsx(style.item__subtitle)}>Ссылка:</span>
-              <span className={clsx(style.item__value)}>{href}</span>
+              <span className={clsx(style.item__value)}>{work_link}</span>
             </p>
           )}
 
           <div className={clsx(style.category, style.item__block)}>
             <span className={clsx(style.item__subtitle)}>Категория:</span>
             <span className={clsx(style.category__box, style.item__value)}>
-              {category}
+              {getCategory(category)}
               {props.img_category && <props.img_category />}
             </span>
           </div>
@@ -90,11 +82,14 @@ const ProfileApplicationItem: FC<IProfileApplicationItem> = ({ ...props }) => {
           {nomination && (
             <div className={clsx(style.nomination, style.item__block)}>
               <span className={clsx(style.item__subtitle)}>Номинация:</span>
-              <span className={clsx(style.item__value)}>{nomination}</span>
+              <span className={clsx(style.item__value)}>
+                {results?.results &&
+                  getNominationValue(nomination, results?.results)}
+              </span>
             </div>
           )}
 
-          {checkArr(credits) && (
+          {credits && (
             <div className={clsx(style.credits, style.item__block)}>
               <span
                 className={clsx(style.credits__title, style.item__subtitle)}
@@ -103,27 +98,31 @@ const ProfileApplicationItem: FC<IProfileApplicationItem> = ({ ...props }) => {
               </span>
 
               <div className={clsx(style.credits__box, style.item__value)}>
-                {credits?.map((item, i) => (
-                  <span key={i} className={clsx(style.credits__item)}>
-                    {item}
-                  </span>
-                ))}
+                {checkArr(credits) ? (
+                  credits?.map((item, i) => (
+                    <span key={i} className={clsx(style.credits__item)}>
+                      {item}
+                    </span>
+                  ))
+                ) : (
+                  <span className={clsx(style.credits__item)}>{credits}</span>
+                )}
               </div>
             </div>
           )}
 
-          {about && (
+          {about_project && (
             <div className={clsx(style.about, style.item__block)}>
               <span className={clsx(style.about__title, style.item__subtitle)}>
                 О проекте:
               </span>
               <span className={clsx(style.about__text, style.item__value)}>
-                {about}
+                {about_project}
               </span>
             </div>
           )}
 
-          {insight && (
+          {idea && (
             <div className={clsx(style.insight, style.item__block)}>
               <span
                 className={clsx(style.insight__title, style.item__subtitle)}
@@ -131,22 +130,12 @@ const ProfileApplicationItem: FC<IProfileApplicationItem> = ({ ...props }) => {
                 Инсайт:
               </span>
               <span className={clsx(style.insight__text, style.item__value)}>
-                {insight}
+                {idea}
               </span>
             </div>
           )}
         </div>
-      )}
-
-      <button onClick={toggleVisible} className={clsx(style.visible)}>
-        {isVisible ? "Свернуть" : "Показать больше"}
-      </button>
-
-      {isVisible && (
-        <button className={clsx(style.edit)}>
-          <IconEdit />
-        </button>
-      )}
+      </div>
     </div>
   );
 };
