@@ -18,6 +18,10 @@
     --color-green-hover: #552bef;
   }
 
+  @media screen and (max-width: 1920px) {
+    --heigh: calc(100vh - 10.5rem);
+  }
+
   @include mw($ldt) {
     --heigh: calc(100vh - 9.7rem);
   }

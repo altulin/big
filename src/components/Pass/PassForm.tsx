@@ -10,20 +10,22 @@ import PassFormBuy from "./PassFormBuy";
 import PassFormTotal from "./PassFormTotal";
 import { useInitialValues } from "./formService";
 import { useSendWorkMutation } from "@/store/rtk/orders/send_work";
-import useWidget from "./widget";
+// import useWidget from "./widget";
 import makeArrayPayLoad from "./payLoadServise";
 import { categories, categoriesPitshes } from "./script";
 import useProfile from "@/hooks/profile";
-import { setSuccessModal } from "@/store/modal/modalSlice";
+import { setErrorModal, setSuccessModal } from "@/store/modal/modalSlice";
 import { useDispatch } from "react-redux";
+import useSignOut from "@/hooks/signOut";
 
 const PassForm: FC = () => {
   const { createValidationSchema, getProperties } = useInitialValues();
   const { category, categoryPitch } = useAppSelector((state) => state.category);
-  const [sendWork, { status }] = useSendWorkMutation();
+  const [sendWork, { status, error }] = useSendWorkMutation();
   const { isIndividual } = useProfile();
   const dispatch = useDispatch();
-  const { runWidget } = useWidget();
+  const { handleSignOut } = useSignOut();
+  // const { runWidget } = useWidget();
 
   const makePayLoad = (values: any) => {
     const { category, fields } = values;
@@ -55,7 +57,7 @@ const PassForm: FC = () => {
         return;
       }
       if (isIndividual) {
-        runWidget();
+        // runWidget();
       } else {
         dispatch(
           setSuccessModal({
@@ -67,6 +69,15 @@ const PassForm: FC = () => {
       }
     }
   }, [status]);
+
+  useEffect(() => {
+    if (status === "rejected") {
+      if ((error as any)?.status === 401) {
+        dispatch(setErrorModal("Произошла ошибка. Необходимо авторизоваться"));
+        handleSignOut();
+      }
+    }
+  }, [dispatch, error, status]); // eslint-disable-line
 
   return (
     <Formik
@@ -80,7 +91,10 @@ const PassForm: FC = () => {
         sendWork(makePayLoad(values))
           .unwrap()
           .then(() => {
-            resetForm();
+            // resetForm();
+          })
+          .catch((e) => {
+            console.log(2);
           });
       }}
       enableReinitialize
