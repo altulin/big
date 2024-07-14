@@ -23,11 +23,6 @@ const SubmissionContent: FC<{ formik: any; id: number }> = ({ formik, id }) => {
     return { value: item.id, label: item.title };
   });
 
-  // useEffect(() => {
-  //   console.log("category :" + category);
-  //   console.log("categoryPitch :" + categoryPitch);
-  // }, [category, categoryPitch]);
-
   return (
     <>
       {category !== categories.brand_pitches && (
@@ -73,7 +68,7 @@ const SubmissionContent: FC<{ formik: any; id: number }> = ({ formik, id }) => {
       {category !== categories.brand_pitches && (
         <>
           <TextInput
-            name={`fields.${id}.targets`}
+            name={`fields.${id}.goals`}
             label="Цели и задачи"
             placeholder="Опишите, какая перед вами стояла задача, как был поставлен бриф"
             as="textarea"
@@ -147,7 +142,6 @@ const SubmissionContent: FC<{ formik: any; id: number }> = ({ formik, id }) => {
           />
         </div>
       )}
-
       {categoryPitch === categoriesPitshes.mega && (
         <UploadPass
           name={`fields.${id}.file`}

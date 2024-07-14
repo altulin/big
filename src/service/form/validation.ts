@@ -72,7 +72,7 @@ export const object: any = {
   title: yup.string().required(required),
   nomination: yup.string().required(required),
   deadlines: yup.string().required(required),
-  targets: yup.string().required(required),
+  goals: yup.string().required(required),
   target_audience: yup.string().required(required),
   idea: yup.string().required(required),
   about_project: yup.string().required(required),
