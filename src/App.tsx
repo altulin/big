@@ -86,7 +86,7 @@ const App: FC = () => {
           />
 
           <Route
-            path={`${paths.edit}/:id`}
+            path={`${paths.edit}/:id_work`}
             element={
               <RequireAuth>
                 {

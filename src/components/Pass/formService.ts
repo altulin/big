@@ -47,7 +47,7 @@ const brand_pitches_mega = {
 
 const getVal = (template: any, values: any) => {
   const obj: any = {};
-  console.log(template);
+
   Object.keys(template).forEach((key) => {
     obj[key] = values[key];
   });
@@ -66,6 +66,9 @@ export const useInitialValues = () => {
         }
         return main;
       case categories.young_talent:
+        if (values) {
+          return getVal(young, values);
+        }
         return young;
       case categories.brand_pitches:
         if (categoryPitch === categoriesPitshes.nuum) {
@@ -78,12 +81,18 @@ export const useInitialValues = () => {
     return {};
   };
 
-  const createValidationSchema = () => {
+  const createValidationSchema = (page) => {
     const schema: any = {};
 
     const keys = Object.keys(getProperties());
 
     keys.forEach((item) => {
+      if (page === "edit") {
+        if (item === "project_image") {
+          return;
+        }
+      }
+
       return (schema[`${item}`] = object[`${item}`]);
     });
 

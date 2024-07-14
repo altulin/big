@@ -9,10 +9,10 @@ import EditContent from "./EditContent";
 import EditForm from "./EditForm";
 import { useAppDispatch } from "@/hooks/hook";
 import { setCategory, setCategoryPitch } from "@/store/category/categorySlice";
-import { categories, categoriesPitshes } from "../Pass/script";
+// import { categories, categoriesPitshes } from "../Pass/script";
 
 const Edit: FC = () => {
-  const { id } = useParams();
+  const { id_work } = useParams();
   const [getWork, { data, status }] = useLazyGetWorkQuery();
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
@@ -25,8 +25,8 @@ const Edit: FC = () => {
   }, [data?.category, data?.pitch_brand, dispatch, status]);
 
   useEffect(() => {
-    getWork({ id });
-  }, [getWork, id]);
+    getWork({ id_work });
+  }, [getWork, id_work]);
 
   useEffect(() => {
     if (status === "rejected") {

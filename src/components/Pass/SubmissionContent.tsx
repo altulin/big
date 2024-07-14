@@ -9,10 +9,12 @@ import UploadImage from "../form/UploadImage";
 import { categories, categoriesPitshes } from "./script";
 import { useLazyNominationsQuery } from "@/store/rtk/nominations/nominations";
 import UploadPass from "../form/UploadPass";
+import { useParams } from "react-router-dom";
 
 const SubmissionContent: FC<{ formik: any; id: number }> = ({ formik, id }) => {
   const { category, categoryPitch } = useAppSelector((state) => state.category);
   const [getNomination, { data }] = useLazyNominationsQuery(undefined);
+  const params = useParams();
 
   useEffect(() => {
     category !== categories.brand_pitches &&
@@ -22,6 +24,10 @@ const SubmissionContent: FC<{ formik: any; id: number }> = ({ formik, id }) => {
   const options = data?.results.map((item: any) => {
     return { value: item.id, label: item.title };
   });
+
+  useEffect(() => {
+    // console.log(params.id_work);
+  }, [params]);
 
   return (
     <>
@@ -139,6 +145,7 @@ const SubmissionContent: FC<{ formik: any; id: number }> = ({ formik, id }) => {
             name={`fields.${id}.project_image`}
             data={formik}
             prefix="upload_image"
+            modifier={params.id_work && "edit"}
           />
         </div>
       )}

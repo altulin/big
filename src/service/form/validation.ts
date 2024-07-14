@@ -89,7 +89,11 @@ export const object: any = {
   project_image: yup
     .mixed()
     .test("fileSize", fileMax, (value) => {
-      return value && (value as any).size <= MAX_FILE_SIZE;
+      if (typeof value === "string") return true;
+
+      return (
+        value && (value as any).size && (value as any).size <= MAX_FILE_SIZE
+      );
     })
     .required(file),
 };

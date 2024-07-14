@@ -7,7 +7,7 @@ import clsx from "clsx";
 const EditContent: FC<{ children: any }> = ({ children }) => {
   return (
     <div className={clsx(style.box)}>
-      <ProfileBoxHead title="Редакирование работы" isBtn={false} />
+      <ProfileBoxHead title="Редактирование работы" isBtn={false} />
 
       <div className={clsx(style.box__inner)}>
         <div className={clsx(style.sub)}>{children}</div>

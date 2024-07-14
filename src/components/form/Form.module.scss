@@ -412,6 +412,10 @@
 .upload_image {
   &__box {
     position: relative;
+
+    &--edit {
+      width: 38%;
+    }
   }
 
   &__label {
@@ -420,6 +424,10 @@
     aspect-ratio: 5 / 1;
     position: relative;
     border: 1px dashed #141414;
+
+    &--edit {
+      aspect-ratio: 1.7 / 1;
+    }
 
     @include mw($tb) {
       aspect-ratio: 1.7 / 1;
@@ -443,6 +451,9 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    background-size: cover;
+    background-position: center;
+    padding: 1rem;
 
     &_text {
       font-weight: 400;
@@ -454,11 +465,29 @@
       display: flex;
       flex-wrap: wrap;
       gap: 0.25rem;
+      justify-content: center;
     }
 
     svg {
       width: 1.5rem;
       height: 1.5rem;
+    }
+  }
+
+  &__view_basket {
+    position: absolute;
+    width: 2rem;
+    height: 2rem;
+    top: var(--line);
+    right: var(--line);
+    background-color: rgba(#fff, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    svg {
+      width: 1rem;
+      height: 1rem;
     }
   }
 }

@@ -5,6 +5,7 @@ import Select from "react-select";
 import style from "./Form.module.scss";
 import clsx from "clsx";
 import useParse from "@/components/form/service/parse";
+import { useField } from "formik";
 
 interface ISelectField {
   placeholder?: string;
@@ -33,6 +34,10 @@ const SelectField: FC<ISelectField> = ({
 }) => {
   const { pref_parse, id_parse, name_parse } = useParse(name);
 
+  const [fieldData] = useField(name);
+
+  if (!options) return null;
+
   return (
     <div className={prefix}>
       {label && <span className={`${prefix}__label`}>{label}</span>}
@@ -43,6 +48,14 @@ const SelectField: FC<ISelectField> = ({
         placeholder={placeholder}
         options={options}
         name={name}
+        defaultValue={
+          options
+            ? options.find(
+                (option: { value: number }) =>
+                  option.value === fieldData?.value,
+              )
+            : ""
+        }
         value={
           options
             ? options.find(

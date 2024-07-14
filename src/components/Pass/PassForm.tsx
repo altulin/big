@@ -45,41 +45,41 @@ const PassForm: FC = () => {
     return body;
   };
 
-  // useEffect(() => {
-  //   if (status === "fulfilled") {
-  //     if (category === categories.brand_pitches) {
-  //       dispatch(
-  //         setSuccessModal({
-  //           text: "Ваша работа принята на рассмотрение!",
-  //           title: "Подача работы",
-  //           profile: true,
-  //         }),
-  //       );
+  useEffect(() => {
+    if (status === "fulfilled") {
+      if (category === categories.brand_pitches) {
+        dispatch(
+          setSuccessModal({
+            text: "Ваша работа принята на рассмотрение!",
+            title: "Подача работы",
+            profile: true,
+          }),
+        );
 
-  //       return;
-  //     }
-  //     if (isIndividual) {
-  //       // runWidget();
-  //     } else {
-  //       dispatch(
-  //         setSuccessModal({
-  //           text: "Ваша работа принята, на вашу почту будет отправлен счет-оферта для оплаты!",
-  //           title: "Подача работы",
-  //           profile: true,
-  //         }),
-  //       );
-  //     }
-  //   }
-  // }, [status]);
+        return;
+      }
+      if (isIndividual) {
+        // runWidget();
+      } else {
+        dispatch(
+          setSuccessModal({
+            text: "Ваша работа принята, на вашу почту будет отправлен счет-оферта для оплаты!",
+            title: "Подача работы",
+            profile: true,
+          }),
+        );
+      }
+    }
+  }, [status]);
 
-  // useEffect(() => {
-  //   if (status === "rejected") {
-  //     if ((error as any)?.status === 401) {
-  //       dispatch(setErrorModal("Произошла ошибка. Необходимо авторизоваться"));
-  //       handleSignOut();
-  //     }
-  //   }
-  // }, [dispatch, error, status]); // eslint-disable-line
+  useEffect(() => {
+    if (status === "rejected") {
+      if ((error as any)?.status === 401) {
+        dispatch(setErrorModal("Произошла ошибка. Необходимо авторизоваться"));
+        handleSignOut();
+      }
+    }
+  }, [dispatch, error, status]); // eslint-disable-line
 
   return (
     <Formik
@@ -88,7 +88,7 @@ const PassForm: FC = () => {
         categoryPitch: categoryPitch || "",
         fields: [getProperties()],
       }}
-      validationSchema={createValidationSchema()}
+      validationSchema={createValidationSchema("pass")}
       onSubmit={async (values) => {
         sendWork(makePayLoad(values))
           .unwrap()

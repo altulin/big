@@ -1,15 +1,18 @@
 import { token } from "@/service/token";
 import { api } from "../emptyApi";
 
-export const getWork = api.injectEndpoints({
+export const changeWork = api.injectEndpoints({
   endpoints: (build) => ({
-    getWork: build.query({
-      query: ({ id_work }) => {
+    changeWork: build.mutation({
+      query: ({ id_work, body }) => {
+        console.log(id_work);
         return {
           url: `/api/orders/works/${id_work}`,
+          method: "PUT",
           headers: {
             Authorization: `Bearer ${token()}`,
           },
+          body,
         };
       },
     }),
@@ -17,4 +20,4 @@ export const getWork = api.injectEndpoints({
   //   overrideExisting: false,
 });
 
-export const { useLazyGetWorkQuery } = getWork;
+export const { useChangeWorkMutation } = changeWork;
