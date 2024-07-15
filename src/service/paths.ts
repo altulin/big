@@ -28,4 +28,8 @@ export const paths = {
   recovery: "recovery",
   edit: "edit",
   cool: "cool",
+  nominations_young: "nominations_young",
+  price_young: "price_young",
+  requirements_young: "requirements_young",
+  criteria_young: "criteria_young",
 };

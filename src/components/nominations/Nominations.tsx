@@ -28,7 +28,7 @@ const Nominations: FC = () => {
 
   return (
     <section
-      id={paths.nominations}
+      id={isYang ? paths.nominations_young : paths.nominations}
       className={clsx(style.nominations, "panel")}
     >
       <div className={clsx(style.nominations__inner)}>

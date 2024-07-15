@@ -4,11 +4,13 @@ import { FC, useEffect, useState } from "react";
 import { useIsTabletDevice } from "@/hooks/IsSmallDevice";
 import { requirements } from "./script";
 import { paths } from "@/service/paths";
+import { useAppSelector } from "@/hooks/hook";
 
 const Requirements: FC = () => {
   const isTablet = useIsTabletDevice();
   const [isBtn, setIsBtn] = useState<boolean>(false);
   const [listResults, setListResults] = useState<string[]>(requirements);
+  const { isYang } = useAppSelector((state) => state.yang);
 
   useEffect(() => {
     if (!isTablet) return;
@@ -19,7 +21,7 @@ const Requirements: FC = () => {
 
   return (
     <section
-      id={paths.requirements}
+      id={isYang ? paths.requirements_young : paths.requirements}
       className={clsx(style.requirements, "panel")}
     >
       <div className={clsx(style.requirements__inner)}>

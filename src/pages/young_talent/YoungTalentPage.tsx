@@ -22,6 +22,8 @@ import Partners from "@/components/Partners/Partners";
 import Cool from "@/components/Cool/Cool";
 import { useAppDispatch } from "@/hooks/hook";
 import { setYang } from "@/store/yang/yangSlice";
+import { setPath } from "@/store/menu/menuSlice";
+import { paths } from "@/service/paths";
 
 export const pages: any = [
   // <Promo />,
@@ -51,6 +53,7 @@ const YoungTalentPage: FC = () => {
 
   useEffect(() => {
     dispatch(setYang(true));
+    dispatch(setPath(paths.young_talent));
 
     return () => {
       dispatch(setYang(false));

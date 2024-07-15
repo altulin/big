@@ -6,13 +6,18 @@ import { FC } from "react";
 import { paths } from "@/service/paths";
 import { useIntermediateStageQuery } from "@/store/rtk/stage/intermediateStage";
 import format from "format-number";
+import useIsYang from "@/hooks/isYang";
 
 const Price: FC = () => {
   const { data } = useIntermediateStageQuery(undefined);
+  const { isYang } = useIsYang();
 
   const body = [["до 2-х"], ["от 3-х до 4-х"], ["от 5-ти"]];
   return (
-    <section id={paths.price} className={clsx(style.price, "panel")}>
+    <section
+      id={isYang ? paths.price_young : paths.price}
+      className={clsx(style.price, "panel")}
+    >
       <div className={clsx(style.price__wrapper)}>
         <div className={clsx(style.price__inner)}>
           <h2 className={clsx(style.title)}>

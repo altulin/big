@@ -82,9 +82,9 @@ const SliderHome: FC<{ pages: any }> = ({ pages }) => {
         // onProgress={(_, p) => {
         //   if (path === paths.participants) dispatch(setSwiperProgress(p));
         // }}
-        onScroll={(s) => {
-          dispatch(setSwiperProgress(s.progress));
-        }}
+        // onScroll={(s) => {
+        //   dispatch(setSwiperProgress(s.progress));
+        // }}
       >
         {pages.map((slide: any, index: number) => (
           <SwiperSlide key={index} className={clsx(style.slide)}>

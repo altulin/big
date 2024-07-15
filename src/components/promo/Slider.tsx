@@ -27,7 +27,6 @@ const Slider: FC = () => {
   ];
 
   const changeHandle = () => {
-    console.log(123);
     if (isTablet) return;
     dispatch(setClick(true));
     dispatch(setPath(paths.promo));

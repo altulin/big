@@ -6,16 +6,21 @@ import { useIsTabletDevice } from "@/hooks/IsSmallDevice";
 import ContentMob from "./ContentMob";
 import { paths } from "@/service/paths";
 import { initGLGrid } from "@/service/twgl/grid";
+import { useAppSelector } from "@/hooks/hook";
 
 const Criteria: FC = () => {
   const isTablet = useIsTabletDevice();
+  const { isYang } = useAppSelector((state) => state.yang);
 
   useEffect(() => {
     initGLGrid("canvas-net");
   }, []);
 
   return (
-    <section id={paths.criteria} className={clsx(style.criteria, "panel")}>
+    <section
+      id={isYang ? paths.criteria_young : paths.criteria}
+      className={clsx(style.criteria, "panel")}
+    >
       <div className={clsx(style.criteria__inner)}>
         <div className={clsx(style.present)}>
           <h2 className={clsx(style.title)}>
