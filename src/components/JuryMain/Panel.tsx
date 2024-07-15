@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import clsx from "clsx";
 import { FC } from "react";
 import style from "./JuryMain.module.scss";
@@ -9,8 +10,8 @@ const Panel: FC<{
   info_2: string;
   visible?: boolean;
 }> = ({ name, img, info_1, info_2, visible }) => {
-  const getImg = (img) => {
-    return new URL(`${img}`, import.meta.url).href;
+  const getImg = (img: any) => {
+    return new URL(`./assets/${img}`, import.meta.url).href;
   };
 
   return (
