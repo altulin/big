@@ -9,6 +9,10 @@ const Panel: FC<{
   info_2: string;
   visible?: boolean;
 }> = ({ name, img, info_1, info_2, visible }) => {
+  const getImg = (img) => {
+    return new URL(`${img}`, import.meta.url).href;
+  };
+
   return (
     <div
       className={clsx(
@@ -24,7 +28,7 @@ const Panel: FC<{
 
         <div className={clsx(style.info)}>
           <figure className={clsx(style.info__figure)}>
-            <img src={img} alt="img" width={235} height={284} />
+            <img src={getImg(img)} alt="img" width={235} height={284} />
           </figure>
           <p className={clsx(style.info__text)}>{info_1}</p>
         </div>

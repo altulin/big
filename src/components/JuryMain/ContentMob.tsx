@@ -2,10 +2,10 @@ import { FC } from "react";
 import Title from "./Title";
 import { Accordion, AccordionItem } from "@szhsin/react-accordion";
 import style from "./JuryMain.module.scss";
-import { speakers } from "./script";
 import clsx from "clsx";
 import ContentHead from "./ContentItem";
 import Panel from "./Panel";
+import { juryList } from "./jury";
 
 const ContentMob: FC = () => {
   return (
@@ -13,7 +13,7 @@ const ContentMob: FC = () => {
       <Title />
 
       <Accordion className={clsx(style.content)}>
-        {speakers.map((item, i) => (
+        {juryList.map((item, i) => (
           <AccordionItem
             className={clsx(style.accordion__item)}
             header={<ContentHead {...item} />}

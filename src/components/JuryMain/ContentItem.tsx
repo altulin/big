@@ -4,18 +4,22 @@ import { FC } from "react";
 import style from "./JuryMain.module.scss";
 import IconArr from "@/images/step/iconStepArr.svg?react";
 
-const ContentHead: FC<{ name: string; handleClick?: any; id?: number }> = ({
-  name,
-  handleClick,
-  id,
-}) => {
+const ContentHead: FC<{
+  name: string;
+  handleClick?: any;
+  id?: number;
+  numActive: number;
+}> = ({ name, handleClick, id, numActive }) => {
   return (
     <li className={clsx(style.item)}>
       <span className={clsx(style.item__title)}>{name}</span>
       <div
         data-button={id}
         onClick={handleClick}
-        className={clsx(style.item__button)}
+        className={clsx(
+          style.item__button,
+          id === numActive && style["item__button--active"],
+        )}
       >
         <IconArr />
       </div>

@@ -40,7 +40,7 @@
     max-height: 100%;
     position: relative;
     flex-grow: 1;
-    padding-right: calc(1.5rem + 0.05rem);
+    padding-right: 2.4rem;
   }
 
   &__right {
@@ -113,6 +113,10 @@
     transform: rotate(180deg);
     cursor: pointer;
     flex-shrink: 0;
+
+    &--active {
+      background-color: var(--color-green);
+    }
 
     &:hover {
       background-color: var(--color-green);
@@ -236,7 +240,7 @@
     font-size: 1rem;
     line-height: 130%;
     color: #141414;
-    padding-top: 3rem;
+    padding-top: 2rem;
     padding-left: 2rem;
     padding-right: 2rem;
     padding-bottom: 2rem;
