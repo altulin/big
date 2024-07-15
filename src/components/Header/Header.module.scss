@@ -223,12 +223,17 @@
   transition: 0.3s;
   padding: 0.5rem;
 
-  &--dark {
-    border-bottom: var(--line) solid var(--basic-dark);
-  }
-
   &:hover {
     background-color: var(--color-green-hover);
+  }
+
+  &--dark {
+    border-bottom: var(--line) solid var(--basic-dark);
+    color: #141414;
+
+    &:hover {
+      background-color: #0bdb00;
+    }
   }
 
   @include mw($tb) {

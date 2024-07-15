@@ -3,7 +3,17 @@ import IconLogoYoung from "@/images/header/logo_link.svg?react";
 
 export const links = [
   { label: "Номинации", path: paths.nominations },
-  { label: "Young Talent by", path: paths.young_talent, logo: IconLogoYoung },
+  {
+    label: "Young Talent by",
+    path: paths.young_talent,
+    logo: IconLogoYoung,
+    submenu: [
+      { label: "Номинации", path: paths.nominations },
+      { label: "Стоимость", path: paths.price },
+      { label: "Требования", path: paths.requirements },
+      { label: "Критерии оценки", path: paths.criteria },
+    ],
+  },
   { label: "Бренд питчи", path: paths.pitch },
   {
     label: "Участникам",

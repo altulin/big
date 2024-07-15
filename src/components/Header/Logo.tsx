@@ -2,7 +2,7 @@ import clsx from "clsx";
 import { HashLink } from "react-router-hash-link";
 import { FC, MouseEvent } from "react";
 import IconLogo from "@/images/header/logo.svg?react";
-import IconLogoDark from "@/images/header/logo-dark.svg?react";
+import IconLogoGreen from "@/images/header/logogreen.svg?react";
 import style from "./Header.module.scss";
 import Burger from "./Burger";
 import { useIsTabletDevice } from "@/hooks/IsSmallDevice";
@@ -37,7 +37,7 @@ const Logo: FC<{ parent: string }> = ({ parent }) => {
         smooth
         onClick={handleClick}
       >
-        {isYang ? <IconLogoDark /> : <IconLogo />}
+        {isYang ? <IconLogoGreen /> : <IconLogo />}
       </HashLink>
       <Burger />
     </div>

@@ -27,4 +27,5 @@ export const paths = {
   profile: "profile",
   recovery: "recovery",
   edit: "edit",
+  cool: "cool",
 };

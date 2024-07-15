@@ -19,6 +19,7 @@ import Faq from "@/components/Faq/Faq";
 import Pitch from "@/components/Pitch/Pitch";
 import JuryMain from "@/components/JuryMain/JuryMain";
 import Partners from "@/components/Partners/Partners";
+import Cool from "@/components/Cool/Cool";
 
 export const pages: any = [
   // <Promo />,
@@ -26,6 +27,7 @@ export const pages: any = [
   // <Nominations />,
   // <Pitch />,
   <SubmissionOfWorks />,
+  <Cool />,
   // <Price />,
   // <Requirements />,
   // <Criteria />,

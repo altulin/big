@@ -5,7 +5,7 @@ import style from "./SubmissionOfWorks.module.scss";
 import { paths } from "@/service/paths";
 import { initGLTunnel } from "@/service/twgl/tunnel";
 import useIsYang from "@/hooks/isYang";
-import IconLogo from "@/images/participants/logo.svg?react";
+// import IconLogo from "@/images/participants/logo.svg?react";
 
 const SubmissionOfWorks: FC = () => {
   const refContainer = useRef<HTMLDivElement | null>(null);
@@ -18,7 +18,8 @@ const SubmissionOfWorks: FC = () => {
 
     initGLTunnel(
       "gl-tunnel",
-      isYang ? "0.333,0.169,0.937,0.0" : "0.0, 1.0, 0.0, 1.0",
+      "0.0, 1.0, 0.0, 1.0",
+      // isYang ? "0.333,0.169,0.937,0.0" : "0.0, 1.0, 0.0, 1.0",
     );
   }, []);
 
@@ -34,9 +35,9 @@ const SubmissionOfWorks: FC = () => {
               <span className={clsx(style.title__text)}>
                 <span>YOUNG</span>
                 <span>TALENT</span>
-                <span className={clsx(style.title__text__by)}>by</span>
+                {/* <span className={clsx(style.title__text__by)}>by</span> */}
               </span>
-              <IconLogo />
+              {/* <IconLogo /> */}
             </div>
           ) : (
             <span>Участникам</span>
