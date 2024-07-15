@@ -3,7 +3,6 @@ import Title from "./Title";
 import clsx from "clsx";
 import style from "./JuryMain.module.scss";
 import ScrollBarComponent from "@/hoc/scrollbar/ScrollBarComponent";
-import { speakers } from "./script";
 import ContentHead from "./ContentItem";
 import Panel from "./Panel";
 import { juryList } from "./jury";

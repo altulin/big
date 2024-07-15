@@ -9,10 +9,12 @@ const Panel: FC<{
   info_1: string;
   info_2: string;
   visible?: boolean;
-}> = ({ name, img, info_1, info_2, visible }) => {
+  job: string;
+}> = ({ name, img, info_1, info_2, visible, job }) => {
   const getImg = (img: any) => {
     return new URL(`./assets/${img}`, import.meta.url).href;
   };
+  console.log(job);
 
   return (
     <div
@@ -24,7 +26,7 @@ const Panel: FC<{
       <div className={clsx(style.panel__inner)}>
         <div className={clsx(style.top)}>
           <h3 className={clsx(style.panel__title)}>{name}</h3>
-          <p className={clsx(style.panel__job)}>оператор-постановщик, ЮАР</p>
+          <p className={clsx(style.panel__job)}>{job}</p>
         </div>
 
         <div className={clsx(style.info)}>
