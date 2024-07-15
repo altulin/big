@@ -1,12 +1,13 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import clsx from "clsx";
 import style from "./Jury.module.scss";
 import { FC } from "react";
 import Marquee from "react-fast-marquee";
-import { jury } from "./script";
 import { paths } from "@/service/paths";
 import { useAppDispatch, useAppSelector } from "@/hooks/hook";
 import useGetCurrentModal from "@/hooks/getCurrentModal";
 import { stepTo } from "@/store/modal/modalSlice";
+import { jury } from "./spec-jury";
 
 const Jury: FC = () => {
   const { modalState } = useAppSelector((state) => state.modal);
@@ -15,6 +16,10 @@ const Jury: FC = () => {
 
   const handleClick = () => {
     dispatch(stepTo({ jury: { step: 1 } }));
+  };
+
+  const getImg = (img: any) => {
+    return new URL(`./assets/${img}`, import.meta.url).href;
   };
 
   return (
@@ -43,7 +48,7 @@ const Jury: FC = () => {
                 >
                   <img
                     className={clsx(style.marquee__avatar)}
-                    src={item.avatar}
+                    src={getImg(item.avatar)}
                     alt={item.name}
                   />
                   <p className={clsx(style.marquee__text)}>
