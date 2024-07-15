@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { FC } from "react";
+import { FC, useEffect } from "react";
 import Promo from "@/components/promo/Promo";
 import Steps from "@/components/steps/Steps";
 import Nominations from "@/components/nominations/Nominations";
@@ -20,6 +20,8 @@ import Pitch from "@/components/Pitch/Pitch";
 import JuryMain from "@/components/JuryMain/JuryMain";
 import Partners from "@/components/Partners/Partners";
 import Cool from "@/components/Cool/Cool";
+import { useAppDispatch } from "@/hooks/hook";
+import { setYang } from "@/store/yang/yangSlice";
 
 export const pages: any = [
   // <Promo />,
@@ -45,6 +47,15 @@ export const pages: any = [
 
 const YoungTalentPage: FC = () => {
   const isTablet = useIsTabletDevice();
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(setYang(true));
+
+    return () => {
+      dispatch(setYang(false));
+    };
+  });
 
   return (
     <div className={clsx(style.home, "home")}>

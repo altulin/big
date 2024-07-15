@@ -10,12 +10,14 @@ import Soc from "./Soc";
 import { useAppSelector } from "@/hooks/hook";
 import { canvasCreate, handleDraw } from "@/service/canvasContact";
 import { useSettigsQuery } from "@/store/rtk/main/settings";
+import useIsYang from "@/hooks/isYang";
 
 const Contacts: FC = () => {
   const isTablet = useIsTabletDevice();
   const { data } = useSettigsQuery(undefined);
-
+  const { isYang } = useIsYang();
   const { path } = useAppSelector((state) => state.menu);
+  const yang = useAppSelector((state) => state.yang);
 
   const scrollCallback = useCallback((e: MouseEvent) => {
     handleDraw(e);
@@ -23,7 +25,7 @@ const Contacts: FC = () => {
 
   useEffect(() => {
     canvasCreate("canvas-contacts");
-  }, []);
+  }, [yang]);
 
   useEffect(() => {
     if (isTablet) return;
@@ -65,21 +67,30 @@ const Contacts: FC = () => {
 
             <div className={clsx(style.law)}>
               <a
-                className={clsx(style.law__link)}
+                className={clsx(
+                  style.law__link,
+                  isYang && style.law__link_yang,
+                )}
                 href={data?.policy}
                 target="_blank"
               >
                 Политика использования персональных данных
               </a>
               <a
-                className={clsx(style.law__link)}
+                className={clsx(
+                  style.law__link,
+                  isYang && style.law__link_yang,
+                )}
                 href={data?.cookies}
                 target="_blank"
               >
                 Политика использования Cookie
               </a>
               <a
-                className={clsx(style.law__link)}
+                className={clsx(
+                  style.law__link,
+                  isYang && style.law__link_yang,
+                )}
                 href={data?.festival_regulations}
                 target="_blank"
               >

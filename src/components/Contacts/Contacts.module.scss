@@ -35,7 +35,7 @@
     line-height: 100%;
     letter-spacing: 0.01em;
     text-transform: uppercase;
-    color: #141414;
+    color: var(--basic-dark);
     margin-bottom: auto;
 
     @include mw($tb) {
@@ -172,6 +172,10 @@
 
     &:hover {
       opacity: 0.6;
+    }
+
+    &_yang {
+      color: var(--basic-dark);
     }
   }
 }

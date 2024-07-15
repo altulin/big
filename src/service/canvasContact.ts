@@ -1,3 +1,5 @@
+import store from "@/store";
+
 /* eslint-disable @typescript-eslint/no-explicit-any */
 let canvas: HTMLCanvasElement | null = null;
 let smallSquare: any;
@@ -23,7 +25,14 @@ export const canvasCreate = (id: string) => {
   canvasWidth = parentBlock.offsetWidth - 4 * rem;
 
   const img = new Image();
-  img.src = new URL("./assets/canvas_logo.svg", import.meta.url).href;
+  if (store.getState().yang.isYang) {
+    console.log("true");
+    img.src = new URL("./assets/canvas_logo_yang.svg", import.meta.url).href;
+  } else {
+    console.log("false");
+    img.src = new URL("./assets/canvas_logo.svg", import.meta.url).href;
+  }
+  // img.src = new URL("./assets/canvas_logo.svg", import.meta.url).href;
 
   const scale = window.devicePixelRatio;
 

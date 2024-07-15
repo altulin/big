@@ -11,6 +11,7 @@ import categorySlice from "./category/categorySlice";
 import userSlice from "./user/userSlice";
 import passSlice from "./pass/passSlice";
 import formsSlice from "./forms/formsSlice";
+import yangSlice from "./yang/yangSlice";
 
 const store = configureStore({
   reducer: {
@@ -24,6 +25,7 @@ const store = configureStore({
     pass: passSlice,
     user: userSlice,
     form: formsSlice,
+    yang: yangSlice,
     [api.reducerPath]: api.reducer,
   },
   devTools: process.env.NODE_ENV === "development",
