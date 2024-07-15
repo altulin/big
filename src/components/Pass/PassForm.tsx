@@ -18,6 +18,7 @@ import { setErrorModal, setSuccessModal } from "@/store/modal/modalSlice";
 import { useDispatch } from "react-redux";
 import useSignOut from "@/hooks/signOut";
 import { useFileWorkMutation } from "@/store/rtk/orders/file_Work";
+import { serialize } from "object-to-formdata";
 
 const PassForm: FC = () => {
   const { createValidationSchema, getProperties } = useInitialValues();
@@ -33,6 +34,10 @@ const PassForm: FC = () => {
     const { category, fields } = values;
     const { works } = makeArrayPayLoad(category, categoryPitch, fields);
     const body: any = { category, works };
+
+    const formData = serialize(body, { indices: true });
+
+    console.log(formData);
 
     // if (categoryPitch === categoriesPitshes.mega) {
     //   body.pitch_brand = categoriesPitshes.mega;

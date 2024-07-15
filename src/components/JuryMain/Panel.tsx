@@ -14,7 +14,6 @@ const Panel: FC<{
   const getImg = (img: any) => {
     return new URL(`./assets/${img}`, import.meta.url).href;
   };
-  console.log(job);
 
   return (
     <div

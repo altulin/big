@@ -26,8 +26,8 @@ const makeArrayPayLoad = (
         project_image,
       } = el;
 
-      const formData = new FormData();
-      formData.append("project_image", project_image);
+      // const formData = new FormData();
+      // formData.append("project_image", project_image);
 
       const work = {
         title: title,
@@ -40,7 +40,7 @@ const makeArrayPayLoad = (
         work_link: work_link,
         credits,
         target_audience,
-        formData,
+        project_image,
       };
 
       works.push(work);
