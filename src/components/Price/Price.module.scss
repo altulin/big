@@ -43,7 +43,7 @@
     font-weight: 400;
     font-size: 0.88rem;
     line-height: 120%;
-    color: #141414;
+    color: var(--basic-dark);
     margin-top: 1rem;
     padding-left: 2rem;
 
@@ -163,6 +163,7 @@
 
 .body {
   display: flex;
+  color: var(--basic-dark);
 
   &__list {
     width: 25%;

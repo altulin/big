@@ -29,16 +29,18 @@ export const pages: any = [
   <SubmissionOfWorks />,
   <Cool />,
   <Nominations />,
-  // <Price />,
-  // <Requirements />,
-  // <Criteria />,
+
+  <Criteria />,
+  <Price />,
+  <Requirements />,
+
   // <JuryMain />,
   // <Jury />,
   // <Program />,
   // <Festival />,
   // <Partners />,
   // <Faq />,
-  // <Contacts />,
+  <Contacts />,
 ];
 
 const YoungTalentPage: FC = () => {

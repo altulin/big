@@ -122,6 +122,7 @@
       width: 2rem;
       height: 2rem;
       pointer-events: none;
+      stroke: var(--basic-dark);
     }
 
     @include mw($tb) {

@@ -67,6 +67,7 @@
   display: flex;
   flex-direction: column;
   pointer-events: none;
+  color: var(--basic-dark);
 
   @include mw($tb) {
     font-size: 1.75rem;
@@ -97,6 +98,7 @@
 
   &__head {
     display: flex;
+    color: var(--basic-dark);
 
     @include mw($tb) {
       position: relative;
@@ -148,6 +150,7 @@
     display: flex;
     flex-direction: column;
     row-gap: 1rem;
+    color: var(--basic-dark);
 
     &:first-child {
       border-right: var(--line) solid var(--basic-dark);
@@ -212,6 +215,7 @@
   svg {
     width: inherit;
     aspect-ratio: 1;
+    stroke: var(--basic-dark);
   }
 }
 

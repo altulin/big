@@ -185,6 +185,7 @@
     svg {
       width: 1.5rem;
       height: 1.5rem;
+      stroke: var(--basic-dark);
 
       @include mw($tb) {
         transform: rotate(-90deg);
