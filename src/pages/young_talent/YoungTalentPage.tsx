@@ -24,10 +24,11 @@ import Cool from "@/components/Cool/Cool";
 export const pages: any = [
   // <Promo />,
   // <Steps />,
-  // <Nominations />,
+
   // <Pitch />,
   <SubmissionOfWorks />,
   <Cool />,
+  <Nominations />,
   // <Price />,
   // <Requirements />,
   // <Criteria />,

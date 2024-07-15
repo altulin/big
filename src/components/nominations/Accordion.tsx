@@ -3,13 +3,13 @@ import { FC } from "react";
 import style from "./Nominations.module.scss";
 import { Accordion, AccordionItem } from "@szhsin/react-accordion";
 import IconArr from "@/images/nominations/arr.svg?react";
+import useIsYang from "@/hooks/isYang";
 
 const Head: FC<{ label: string }> = ({ label }) => {
   return (
     <>
       <p className={clsx(style.accordion__label)}>{label}</p>
       <div className={clsx(style.accordion__icon)}>
-        {" "}
         <IconArr />
       </div>
     </>
@@ -37,6 +37,7 @@ const AccordionComonent: FC<{
   const getAnswer = (answer: string) => {
     return answer.split("\r").map((el) => el.replace(/\n+/g, ""));
   };
+  const { isYang } = useIsYang();
 
   if (!data) return null;
 
@@ -54,7 +55,7 @@ const AccordionComonent: FC<{
             !data?.partner && style["accordion__block--support"],
           )}
         >
-          {data.partner && (
+          {data.partner && !isYang && (
             <a
               className={clsx(style.support)}
               target="_blank"

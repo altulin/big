@@ -7,10 +7,11 @@ import { useIsTabletDevice } from "@/hooks/IsSmallDevice";
 import { paths } from "@/service/paths";
 import { useLazyNominationsQuery } from "@/store/rtk/nominations/nominations";
 import { initGLTor } from "@/service/twgl/tor";
+import useIsYang from "@/hooks/isYang";
 
 const Nominations: FC = () => {
   const [getNomination, results] = useLazyNominationsQuery(undefined);
-
+  const { isYang } = useIsYang();
   const isTablet = useIsTabletDevice();
 
   useEffect(() => {
@@ -34,13 +35,15 @@ const Nominations: FC = () => {
         <div className={clsx(style.content)}>
           <div className={clsx(style.content__head)}>
             <h2 className={clsx(style.nominations__title)}>Номинации</h2>
-            <p className={clsx(style.content__text)}>
-              Если ты опытный продакшен/специалист — оставайся тут! Если ты
-              молод, свеж или твоему продакшену до 2 лет — тебе в
-              <a className={clsx(style.content__link)} href="#">
-                Young Talent
-              </a>
-            </p>
+            {!isYang && (
+              <p className={clsx(style.content__text)}>
+                Если ты опытный продакшен/специалист — оставайся тут! Если ты
+                молод, свеж или твоему продакшену до 2 лет — тебе в
+                <a className={clsx(style.content__link)} href="#">
+                  Young Talent
+                </a>
+              </p>
+            )}
           </div>
 
           <div className={clsx(style.torus)}>

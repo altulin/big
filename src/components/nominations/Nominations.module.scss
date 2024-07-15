@@ -37,6 +37,7 @@
     text-transform: uppercase;
     line-height: 1;
     margin-bottom: 3rem;
+    color: var(--basic-dark);
 
     @include mw($tb) {
       font-size: 2.38rem;
@@ -156,6 +157,7 @@
     align-self: stretch;
 
     svg {
+      stroke: var(--basic-light);
       width: 2rem;
       height: 2rem;
     }

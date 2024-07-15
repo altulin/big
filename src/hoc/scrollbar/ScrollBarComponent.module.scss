@@ -11,7 +11,7 @@
   border-left: var(--line) solid var(--basic-dark);
   display: flex;
   flex-direction: column;
-  background-color: #fff;
+  background-color: var(--basic-light);
 
   &--hidden {
     display: none;
