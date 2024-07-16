@@ -8,21 +8,27 @@ const useWidget = () => {
   const dispatch = useAppDispatch();
   const { isIndividual } = useProfile();
 
-  const runWidget = () => {
+  const runWidget = ({
+    amount,
+    accountId,
+    invoiceId,
+    email,
+    idempotence_key,
+  }: any) => {
     widget.pay(
       "charge", // или 'charge'
       {
         //options
         publicId: "pk_a3f1f232462173983749ca15b31f4", //id из личного кабинета
         description: "Оплата заявки", //назначение
-        amount: 17000, //сумма
+        amount, //сумма
         currency: "RUB", //валюта
-        accountId: 11, //идентификатор плательщика (необязательно)
-        invoiceId: 19, //номер заказа  (необязательно)
-        email: "kastiel427.nexus@gmail.com", //email плательщика (необязательно)
+        accountId, //идентификатор плательщика (необязательно)
+        invoiceId, //номер заказа  (необязательно)
+        email, //email плательщика (необязательно)
         skin: "mini", //дизайн виджета (необязательно)
         data: {
-          idempotence_key: "e7379fd1-2a23-4146-b61e-3f6d7efde1fe",
+          idempotence_key,
         },
       },
       {

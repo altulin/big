@@ -23,7 +23,7 @@ import { serialize } from "object-to-formdata";
 const PassForm: FC = () => {
   const { createValidationSchema, getProperties } = useInitialValues();
   const { category, categoryPitch } = useAppSelector((state) => state.category);
-  const [sendWork, { status, error }] = useSendWorkMutation();
+  const [sendWork, { status, error, data }] = useSendWorkMutation();
   const [sendFileWork] = useFileWorkMutation();
   const { isIndividual } = useProfile();
   const dispatch = useDispatch();
@@ -70,7 +70,13 @@ const PassForm: FC = () => {
         return;
       }
       if (isIndividual) {
-        runWidget();
+        const amount = data.transaction.amount;
+        const accountId = data.transaction.user.id;
+        const email = data.transaction.user.email;
+        const invoiceId = data.id;
+        const idempotence_key = data.transaction.idempotence_key;
+
+        runWidget({ amount, accountId, invoiceId, email, idempotence_key });
       } else {
         dispatch(
           setSuccessModal({

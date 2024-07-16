@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import clsx from "clsx";
-import { FC } from "react";
+import { FC, useEffect } from "react";
 import style from "./Pass.module.scss";
 import ProfileBoxHead from "../profile/ProfileBoxHead";
 import IconMinus from "@/images/form/minus.svg?react";
@@ -9,6 +9,7 @@ import { useIsTabletDevice } from "@/hooks/IsSmallDevice";
 import { useAppDispatch, useAppSelector } from "@/hooks/hook";
 import { setTicketsAmount } from "@/store/pass/passSlice";
 import { useSettigsQuery } from "@/store/rtk/main/settings";
+import { Field, useField } from "formik";
 
 const Button: FC<{ type: "add" | "remove"; onClick?: any }> = ({
   type,
@@ -32,6 +33,7 @@ const PassFormBuy: FC<{ formik?: any }> = () => {
   const { tickets_amount } = useAppSelector((state) => state.pass);
   const dispatch = useAppDispatch();
   const { data } = useSettigsQuery(undefined);
+  // const [meta, fields, helpers] = useField("tickets_amount");
 
   return (
     <div className={clsx(style.box, style.buy)}>
@@ -95,6 +97,8 @@ const PassFormBuy: FC<{ formik?: any }> = () => {
               <span className={clsx(style.counter__body_value)}>
                 {tickets_amount}
               </span>
+
+              <Field type="hidden" name="tickets_amount" />
 
               <Button
                 type="add"

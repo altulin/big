@@ -15,6 +15,7 @@ const main = {
   about_project: "",
   work_link: "",
   credits: "",
+  tickets_amount: "",
   // project_image: "",
 };
 

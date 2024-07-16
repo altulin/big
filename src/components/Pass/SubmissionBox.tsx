@@ -39,7 +39,7 @@ const SubmissionBox: FC<{
               <span
                 className={clsx(style.discount__value, style.discount__content)}
               >
-                <span>{data?.discounted_work_price}</span>
+                <span>{data?.work_price}</span>
                 <span> </span>
                 <span>₽</span>
               </span>
@@ -48,7 +48,7 @@ const SubmissionBox: FC<{
             <span
               className={clsx(style.discount__price, style.discount__content)}
             >
-              <span>{data?.work_price}</span>
+              <span>{data?.discounted_work_price}</span>
               <span> </span>
               <span>₽</span>
             </span>
