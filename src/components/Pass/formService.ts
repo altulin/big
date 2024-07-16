@@ -15,7 +15,7 @@ const main = {
   about_project: "",
   work_link: "",
   credits: "",
-  project_image: "",
+  // project_image: "",
 };
 
 const young = {
@@ -29,7 +29,7 @@ const young = {
   about_project: "",
   work_link: "",
   credits: "",
-  project_image: "",
+  // project_image: "",
 };
 const brand_pitches_nuum = {
   title: "",
@@ -37,12 +37,12 @@ const brand_pitches_nuum = {
   idea: "",
   about_project: "",
   work_link: "",
-  project_image: "",
+  // project_image: "",
 };
 const brand_pitches_mega = {
   title: "",
   idea: "",
-  file: "",
+  // file: "",
 };
 
 const getVal = (template: any, values: any) => {

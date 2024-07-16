@@ -10,7 +10,7 @@ import PassFormBuy from "./PassFormBuy";
 import PassFormTotal from "./PassFormTotal";
 import { useInitialValues } from "./formService";
 import { useSendWorkMutation } from "@/store/rtk/orders/send_work";
-// import useWidget from "./widget";
+import useWidget from "./widget";
 import makeArrayPayLoad from "./payLoadServise";
 import { categories, categoriesPitshes } from "./script";
 import useProfile from "@/hooks/profile";
@@ -28,20 +28,22 @@ const PassForm: FC = () => {
   const { isIndividual } = useProfile();
   const dispatch = useDispatch();
   const { handleSignOut } = useSignOut();
-  // const { runWidget } = useWidget();
+  const { runWidget } = useWidget();
 
   const makePayLoad = (values: any) => {
     const { category, fields } = values;
     const { works } = makeArrayPayLoad(category, categoryPitch, fields);
     const body: any = { category, works };
 
-    const formData = serialize(body, { indices: true });
+    // const formData = serialize(body, {
+    //   indices: true,
+    // });
 
     // console.log(formData);
 
-    for (const [key, value] of formData) {
-      // console.log("»", key, value);
-    }
+    // for (const [key, value] of formData) {
+    //   console.log("»", key, value);
+    // }
 
     // if (categoryPitch === categoriesPitshes.mega) {
     //   body.pitch_brand = categoriesPitshes.mega;
@@ -51,7 +53,7 @@ const PassForm: FC = () => {
     //   body.pitch_brand = categoriesPitshes.nuum;
     // }
 
-    return formData;
+    return body;
   };
 
   useEffect(() => {
@@ -68,7 +70,7 @@ const PassForm: FC = () => {
         return;
       }
       if (isIndividual) {
-        // runWidget();
+        runWidget();
       } else {
         dispatch(
           setSuccessModal({

@@ -40,7 +40,7 @@ const makeArrayPayLoad = (
         work_link: work_link,
         credits,
         target_audience,
-        project_image,
+        // project_image,
       };
 
       works.push(work);
