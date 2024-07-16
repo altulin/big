@@ -6,6 +6,7 @@ import ScrollBarComponent from "@/hoc/scrollbar/ScrollBarComponent";
 import ProfileApplication from "./ProfileApplication";
 import useProfile from "@/hooks/profile";
 import ProfileCompany from "./ProfileCompany";
+import ProfileDraft from "./ProfileDraft";
 
 const Profile: FC = () => {
   const { isIndividual } = useProfile();
@@ -16,6 +17,7 @@ const Profile: FC = () => {
           <ProfilePersonalForm />
           {!isIndividual && <ProfileCompany />}
           <ProfileApplication />
+          {isIndividual && <ProfileDraft />}
         </div>
       </ScrollBarComponent>
     </div>

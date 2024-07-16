@@ -6,6 +6,7 @@ import IconAwaiting from "@/images/profile/awaiting.svg?react";
 import IconPaid from "@/images/profile/paid.svg?react";
 import IconPaymentError from "@/images/profile/payment_error.svg?react";
 import ProfileApplicationItem from "./ProfileApplicationItem";
+import { statuses } from "./service";
 // import { IProfileApplicationItem } from "./ProfileApplicationItem";
 
 const ProfileApplicationList: FC<{ results: any }> = ({ results }) => {
@@ -41,13 +42,13 @@ const ProfileApplicationList: FC<{ results: any }> = ({ results }) => {
 
   const checkCategory = (name: string) => {
     switch (name) {
-      case "created":
+      case statuses.created:
         return <Awaiting />;
 
-      case "paid":
+      case statuses.paid:
         return <Paid />;
 
-      case "payment_error":
+      case statuses.payment_error:
         return <PaymentError />;
 
       default:
