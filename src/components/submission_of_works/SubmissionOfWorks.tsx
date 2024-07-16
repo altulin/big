@@ -23,6 +23,10 @@ const SubmissionOfWorks: FC = () => {
     );
   }, []);
 
+  const getImg = () => {
+    return new URL("./assets/eye.gif", import.meta.url).href;
+  };
+
   return (
     <section
       id={paths.participants}
@@ -55,10 +59,7 @@ const SubmissionOfWorks: FC = () => {
           ></canvas>
 
           <div id="imageContainer">
-            <img
-              id="image"
-              src="http://imroma.com/themes/otentic/wp-content/uploads/2022/02/img_42-300x300.jpg"
-            />
+            <img id="image" src={getImg()} />
           </div>
         </figure>
       </div>

@@ -386,6 +386,7 @@
   grid-row: 2 / 4;
   aspect-ratio: 2 / 1;
   position: relative;
+  border-right: var(--line) solid var(--basic-dark);
 
   &__item {
     position: absolute;

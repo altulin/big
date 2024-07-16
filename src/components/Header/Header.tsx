@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import style from "./Header.module.scss";
 import clsx from "clsx";
 import Nav from "./Nav";
@@ -72,6 +73,24 @@ const Header = () => {
       }
     });
   }, [isTablet, location.pathname, path]);
+
+  useEffect(() => {
+    if (isTablet) return;
+    const list: any = [];
+
+    links.forEach((item) => {
+      list.push(item.path);
+      if (item.submenu) {
+        item.submenu.forEach((subItem) => {
+          list.push(subItem.path);
+        });
+      }
+    });
+
+    if (!list.includes(path)) {
+      setSubMenu(undefined);
+    }
+  }, [isTablet, path]);
 
   useEffect(() => {
     if (!isTablet) return;

@@ -333,6 +333,20 @@ img {
   object-fit: cover;
 }
 
+.jury_spec {
+  .rfm-initial-child-container {
+    align-items: stretch;
+  }
+
+  .rfm-marquee {
+    align-items: stretch;
+  }
+
+  .rfm-child {
+    height: auto;
+  }
+}
+
 * {
   // outline: 1px solid #ff6347;
 }

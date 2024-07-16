@@ -10,7 +10,7 @@ export const postWorks = (body: any) => {
     {
       headers: {
         Authorization: `Bearer ${token()}`,
-        // "Content-Type": "multipart/form-data",
+        "Content-Type": "multipart/form-data",
       },
     },
   );

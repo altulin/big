@@ -4,7 +4,7 @@ export const partnersApi = api.injectEndpoints({
   endpoints: (build) => ({
     partners: build.query({
       query: () => ({
-        url: "/api/partners/",
+        url: "/api/partners/?limit=100",
       }),
     }),
   }),

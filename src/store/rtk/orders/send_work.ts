@@ -21,9 +21,10 @@ import { token } from "@/service/token";
 
 export const sendWork = createApi({
   baseQuery: fetchBaseQuery({
-    baseUrl: `${import.meta.env.VITE_APP_API_HOST}`,
+    baseUrl: `${import.meta.env.VITE_APP_API_HOSTT}`,
     prepareHeaders: (headers) => {
-      headers.set("Content-Type", "multipart/form-data");
+      headers.delete("Content-Type");
+      // headers.set("Content-Type", "multipart/form-data");
       headers.set("Authorization", `Bearer ${token()}`);
       return headers;
     },
