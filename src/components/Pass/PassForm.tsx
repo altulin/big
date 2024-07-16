@@ -37,7 +37,11 @@ const PassForm: FC = () => {
 
     const formData = serialize(body, { indices: true });
 
-    console.log(formData);
+    // console.log(formData);
+
+    for (const [key, value] of formData) {
+      // console.log("»", key, value);
+    }
 
     // if (categoryPitch === categoriesPitshes.mega) {
     //   body.pitch_brand = categoriesPitshes.mega;
@@ -47,7 +51,7 @@ const PassForm: FC = () => {
     //   body.pitch_brand = categoriesPitshes.nuum;
     // }
 
-    return body;
+    return formData;
   };
 
   useEffect(() => {
