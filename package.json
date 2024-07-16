@@ -30,6 +30,7 @@
     "formik": "^2.4.5",
     "gsap": "^3.12.5",
     "hamburger-react": "^2.5.1",
+    "image-to-base64": "^2.2.0",
     "normalize.css": "^8.0.1",
     "object-to-formdata": "^4.5.1",
     "rc-menu": "^9.14.0",

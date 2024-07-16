@@ -29,11 +29,12 @@ const PassForm: FC = () => {
   const dispatch = useDispatch();
   const { handleSignOut } = useSignOut();
   const { runWidget } = useWidget();
+  const { tickets_amount } = useAppSelector((state) => state.pass);
 
   const makePayLoad = (values: any) => {
     const { category, fields } = values;
     const { works } = makeArrayPayLoad(category, categoryPitch, fields);
-    const body: any = { category, works };
+    const body: any = { tickets_amount, category, works };
 
     // const formData = serialize(body, {
     //   indices: true,
@@ -103,6 +104,8 @@ const PassForm: FC = () => {
       initialValues={{
         category: category || "",
         categoryPitch: categoryPitch || "",
+        tickets_amount: "",
+
         fields: [getProperties()],
       }}
       validationSchema={createValidationSchema("pass")}
@@ -126,7 +129,7 @@ const PassForm: FC = () => {
       enableReinitialize
     >
       {(formik) => {
-        // console.log(formik.values.fields[0]);
+        // console.log(formik.values.tickets_amount);
         return (
           <>
             <Form className={clsx(style.form)}>
