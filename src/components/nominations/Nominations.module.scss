@@ -56,9 +56,16 @@
     border: 0;
     width: auto;
     padding-top: 5rem;
-    padding-bottom: 1.25rem;
-    padding-left: 0.5rem;
-    padding-right: 0.5rem;
+    padding-bottom: 0;
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  &__head {
+    @include mw($tb) {
+      padding-left: 0.5rem;
+      padding-right: 0.5rem;
+    }
   }
 
   &__text {
@@ -82,13 +89,27 @@
       }
     }
 
+    span {
+      position: relative;
+      &::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 0.07rem;
+        background-color: #141414;
+        transition: 0.3s;
+      }
+    }
+
     &::after {
       content: "";
       position: absolute;
       bottom: 0;
       left: 0;
       width: 100%;
-      height: 0.06rem;
+      height: 0.07rem;
       background-color: #141414;
       transition: 0.3s;
     }
@@ -155,6 +176,14 @@
     background-color: var(--basic-dark);
     flex-shrink: 0;
     align-self: stretch;
+    cursor: pointer;
+    transition: 0.3s;
+
+    &:hover {
+      svg {
+        stroke: var(--color-green);
+      }
+    }
 
     svg {
       stroke: var(--basic-light);
@@ -218,11 +247,21 @@
 .canvas {
   width: 100%;
   height: 100%;
+  transform: scale(1.3);
+
+  @include mw($tb) {
+    transform: scale(1.4);
+  }
 }
 
 .torus {
   flex-grow: 1;
   position: relative;
+
+  @include mw($tb) {
+    width: 100%;
+    padding-top: 100%;
+  }
 
   &__inner {
     position: absolute;
@@ -230,5 +269,6 @@
     left: 0;
     width: 100%;
     height: 100%;
+    overflow: hidden;
   }
 }

@@ -5,7 +5,7 @@ import { useIsTabletDevice } from "@/hooks/IsSmallDevice";
 import { setPath } from "@/store/menu/menuSlice";
 import { useAppDispatch } from "@/hooks/hook";
 import IconMain from "@/images/header/logo.svg?react";
-// import { canvasCreate, handleDraw } from "@/service/canvasContact";
+import { canvasCreate, handleDraw } from "@/service/canvasContact";
 
 const ServicePage: FC<{ children: ReactNode; title: string }> = ({
   children,
@@ -15,11 +15,11 @@ const ServicePage: FC<{ children: ReactNode; title: string }> = ({
   const dispatch = useAppDispatch();
 
   const scrollCallback = useCallback((e: MouseEvent) => {
-    // handleDraw(e);
+    handleDraw(e);
   }, []);
 
   useEffect(() => {
-    // canvasCreate("canvas-contacts");
+    canvasCreate("canvas-contacts");
   }, []);
 
   useEffect(() => {
@@ -39,7 +39,7 @@ const ServicePage: FC<{ children: ReactNode; title: string }> = ({
       <div className={clsx(style.service__inner)}>
         <div className={clsx(style.service__canvas)}>
           <h2 className={clsx(style.service__title)}>{title}</h2>
-          <figure className={clsx(style.service__figure, "js-logo-placemove")}>
+          <figure className={clsx(style.service__figure, "js-contacts-figure")}>
             <canvas id="canvas-contacts"></canvas>
           </figure>
         </div>

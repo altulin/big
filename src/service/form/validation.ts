@@ -18,6 +18,15 @@ import {
 // const MAX_FILE_SIZE = 5; //100KB
 const MAX_FILE_SIZE = 5242880; //5Mb
 
+const isValidUrl = (url: any) => {
+  try {
+    new URL(url);
+  } catch (e) {
+    return false;
+  }
+  return true;
+};
+
 export const object: any = {
   name: yup
     .string()
@@ -79,10 +88,12 @@ export const object: any = {
   // link: yup.string().required(required),
   work_link: yup
     .string()
-    .matches(
-      /((https?):\/\/)?(www.)?[a-z0-9]+(\.[a-z]{2,}){1,3}(#?\/?[a-zA-Z0-9#]+)*\/?(\?[a-zA-Z0-9-_]+=[a-zA-Z0-9-%]+&?)?$/,
-      url,
-    )
+    // .matches(
+    //   /((https?):\/\/)?(www.)?[a-z0-9]+(\.[a-z]{2,}){1,3}(#?\/?[a-zA-Z0-9#]+)*\/?(\?[a-zA-Z0-9-_]+=[a-zA-Z0-9-%]+&?)?$/,
+    //   url,
+    // )
+    .test("is-url-valid", url, (value) => isValidUrl(value))
+
     .required(required),
   credits: yup.string().required(required),
 

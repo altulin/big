@@ -43,11 +43,11 @@ html {
   flex-direction: column;
 
   @include mw($tb) {
-    padding-top: 7.8rem;
+    padding-top: 6rem;
   }
 
   @include mw($ph) {
-    padding-top: 7rem;
+    padding-top: 6rem;
   }
 }
 
@@ -260,6 +260,29 @@ img {
   background-color: rgba(#141414, 0.04);
   div {
     border-radius: 5px;
+    height: 1px !important;
+  }
+
+  &[aria-expanded="true"] {
+    & div:nth-child(1) {
+      transform: translateY(10px) !important;
+
+      div {
+        transform: rotate(45deg) !important;
+      }
+
+      //  rotate(45deg) !important;
+    }
+
+    & div:nth-child(3) {
+      transform: translateY(-11px) !important;
+
+      div {
+        transform: rotate(-45deg) !important;
+      }
+
+      //  rotate(45deg) !important;
+    }
   }
 }
 

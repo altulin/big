@@ -367,6 +367,11 @@
     color: #141414;
     display: block;
     border-top: var(--line) solid var(--basic-dark);
+    transition: 0.3s;
+
+    &:hover {
+      background-color: var(--color-green);
+    }
   }
 }
 

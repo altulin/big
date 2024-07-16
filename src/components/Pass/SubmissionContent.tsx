@@ -63,7 +63,7 @@ const SubmissionContent: FC<{ formik: any; id: number }> = ({ formik, id }) => {
         />
       )}
 
-      {categoryPitch !== categoriesPitshes.mega && (
+      {!categoryPitch && (
         <TextInput
           name={`fields.${id}.deadlines`}
           label="Сроки"
@@ -130,7 +130,7 @@ const SubmissionContent: FC<{ formik: any; id: number }> = ({ formik, id }) => {
         <TextInput
           name={`fields.${id}.credits`}
           label="Кредитсы"
-          placeholder="Опишите команду"
+          placeholder="Опишите всю команду, работавшую над проектом. Не забывайте ваших партнеров, агентство, продакшн, клиента."
           as="textarea"
         />
       )}

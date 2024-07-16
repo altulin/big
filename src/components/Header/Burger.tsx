@@ -27,7 +27,7 @@ const Burger: FC = () => {
         toggled={isMenu}
         toggle={() => dispatch(setMenuControl(!isMenu))}
         color={!isYang ? "#141414" : "#ffffff"}
-        size={isTablet ? 20 : 32}
+        size={isTablet ? 32 : 32}
         duration={0.2}
       />
     </button>

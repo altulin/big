@@ -104,6 +104,15 @@
     font-size: 1.12rem;
     line-height: 140%;
     color: #141414;
+
+    @include mw($tb) {
+      display: flex;
+      justify-content: center;
+
+      span {
+        text-align: center;
+      }
+    }
   }
 }
 

@@ -2,6 +2,9 @@
 @import "@/sass/helpers/mixins.scss";
 
 .header {
+  // padding-left: var(--line);
+  border-left: var(--line) solid transparent;
+
   @include mw($tb) {
     position: fixed;
     width: 100%;
@@ -10,6 +13,7 @@
     z-index: 10;
     transition: 0.3s;
     background-color: var(--basic-light);
+    border-left: 0;
 
     &--down {
       transform: translateY(-100%);
@@ -30,7 +34,7 @@
     }
 
     @include mw($tb) {
-      grid-template-columns: 0.56rem auto 0.54rem;
+      grid-template-columns: 0.56rem auto 0.56rem;
       grid-template-rows: 1rem auto;
     }
   }
@@ -45,7 +49,7 @@
     grid-column: 2 / 3;
     grid-row: 3 / 4;
     border-top: var(--line) solid var(--basic-dark);
-    border-left: var(--line) solid var(--basic-dark);
+    // border-left: var(--line) solid var(--basic-dark);
     padding: 0 0.75rem;
     display: flex;
 
@@ -62,11 +66,17 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  border-right: var(--line) solid var(--basic-dark);
 
   &__link {
     svg {
       width: 8.1rem;
       height: 5.6rem;
+
+      @include mw($tb) {
+        width: 5.4rem;
+        height: 3.8rem;
+      }
     }
   }
 
@@ -83,7 +93,7 @@
 
 .nav {
   display: flex;
-  border-left: var(--line) solid var(--basic-dark);
+  // border-left: var(--line) solid var(--basic-dark);
   grid-column: 2 / 3;
   grid-row: 2 / 3;
 
@@ -92,7 +102,7 @@
     width: 100%;
     height: 100%;
     border-left: 0;
-    top: 7.9rem;
+    top: calc(6rem + var(--line));
     right: 100%;
     background-color: var(--basic-light);
     z-index: 10;
@@ -155,6 +165,9 @@
   background-color: transparent;
   width: 100%;
   padding: 1rem;
+  transition: 0.3s;
+  border-top: var(--line) solid var(--basic-dark);
+  border-color: transparent;
 
   svg {
     stroke: var(--basic-dark);
@@ -178,6 +191,8 @@
   }
 
   &:hover {
+    background-color: var(--color-green);
+    border-color: var(--basic-dark);
   }
 
   svg {

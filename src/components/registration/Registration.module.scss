@@ -33,7 +33,7 @@
       position: absolute;
       content: "";
       width: 100%;
-      height: 0.06rem;
+      height: 0.07rem;
       background-color: var(--basic-dark);
       left: 0;
       bottom: 0;
@@ -84,16 +84,16 @@
     height: 1rem;
     border-radius: 50%;
     border: var(--line) solid var(--basic-dark);
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    position: relative;
   }
 
   &__active {
-    width: 0.625rem;
-    height: 0.625rem;
+    width: 0.6rem;
+    height: 0.6rem;
     background-color: var(--basic-dark);
     border-radius: 50%;
+    position: absolute;
+    @include centered();
   }
 }
 

@@ -119,7 +119,7 @@ const FormRegistration: FC = () => {
                 <TextInput
                   name="phone"
                   label="Телефон"
-                  placeholder="(+7__)___-__-__"
+                  placeholder="+7 (___) ___-__-__"
                   type="tel"
                   onInput={onPhoneInput}
                 />

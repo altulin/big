@@ -8,6 +8,7 @@ import { paths } from "@/service/paths";
 import { useLazyNominationsQuery } from "@/store/rtk/nominations/nominations";
 import { initGLTor } from "@/service/twgl/tor";
 import useIsYang from "@/hooks/isYang";
+import { HashLink } from "react-router-hash-link";
 
 const Nominations: FC = () => {
   const [getNomination, results] = useLazyNominationsQuery(undefined);
@@ -37,11 +38,16 @@ const Nominations: FC = () => {
             <h2 className={clsx(style.nominations__title)}>Номинации</h2>
             {!isYang && (
               <p className={clsx(style.content__text)}>
-                Если ты опытный продакшен/специалист — оставайся тут! Если ты
-                молод, свеж или твоему продакшену до 2 лет — тебе в
-                <a className={clsx(style.content__link)} href="#">
-                  Young Talent
-                </a>
+                Если ты опытный продакшен — оставайся тут! Если ты молод, свеж и
+                твоему продакшену до двух лет — тебе сюда
+                <HashLink
+                  to={`/${paths.young_talent}`}
+                  className={clsx(style.content__link)}
+                >
+                  <span>Young</span> <span>Talent</span>
+                </HashLink>
+                . Бренд-питчи — для тех, кто хочет попробовать свои силы в
+                работе с реальным брендом
               </p>
             )}
           </div>

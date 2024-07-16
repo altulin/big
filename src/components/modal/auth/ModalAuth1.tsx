@@ -84,7 +84,7 @@ const ModalAuth1: FC = () => {
               <Form className={clsx(style.form)}>
                 <TextInput
                   name="phone"
-                  placeholder="+7(___)___-__-__"
+                  placeholder="+7 (___) ___-__-__"
                   type="tel"
                   label="Логин"
                   onInput={onPhoneInput}

@@ -17,7 +17,7 @@ const Profile: FC<{ className?: string }> = ({ className }) => {
       to={paths.profile}
     >
       <span className={clsx(style.profile__icon)}></span>
-      <span className={clsx(style.profile__name)}>{name}</span>
+      <span className={clsx(style.profile__name)}>Профиль</span>
     </HashLink>
   );
 };

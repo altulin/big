@@ -133,8 +133,7 @@ const ProfileCompany: FC = () => {
                   }${company_details_file}`}
                   download
                 >
-                  {typeof company_details_file === "string" &&
-                    (company_details_file as string).split("/").pop()}
+                  Реквизиты компании
                 </a>
               )}
 
