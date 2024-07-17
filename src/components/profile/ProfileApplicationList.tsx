@@ -7,11 +7,30 @@ import IconPaid from "@/images/profile/paid.svg?react";
 import IconPaymentError from "@/images/profile/payment_error.svg?react";
 import ProfileApplicationItem from "./ProfileApplicationItem";
 import { statuses } from "./service";
-// import { IProfileApplicationItem } from "./ProfileApplicationItem";
+import Button from "../modal/template/Button";
+import useWidget from "../Pass/widget";
+import { format } from "date-fns";
 
-const ProfileApplicationList: FC<{ results: any }> = ({ results }) => {
+const ProfileApplicationList: FC<{ results: any; isDraft?: boolean }> = ({
+  results,
+  isDraft,
+}) => {
   const { status, works } = results;
   const [isVisible, setIsVisible] = useState(false);
+  const { runWidget } = useWidget();
+
+  const handlePay = () => {
+    const {
+      transaction: {
+        amount,
+        user: { id, email },
+        idempotence_key,
+      },
+    } = results;
+
+    const invoiceId = results.id;
+    runWidget({ amount, accountId: id, invoiceId, email, idempotence_key });
+  };
 
   const Awaiting: FC = () => {
     return (
@@ -68,18 +87,28 @@ const ProfileApplicationList: FC<{ results: any }> = ({ results }) => {
 
       <h3 className={clsx(style.list__title)}>
         <span>Заявка от</span>
-        <span>01.08.2024</span>
+        <span>{format(results.created_at, "dd.MM.yyyy")}</span>
       </h3>
 
       {isVisible &&
         works &&
         works.map((item: any, i: number) => (
-          <ProfileApplicationItem key={i} {...item} num={i} />
+          <ProfileApplicationItem isDraft={isDraft} key={i} {...item} num={i} />
         ))}
 
       <button onClick={toggleVisible} className={clsx(style.visible)}>
         {isVisible ? "Свернуть" : "Показать больше"}
       </button>
+
+      {isVisible && isDraft && (
+        <Button
+          className={clsx(style.pay)}
+          type="button"
+          label="Оплатить"
+          modifier="green"
+          onClick={handlePay}
+        />
+      )}
     </div>
   );
 };

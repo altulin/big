@@ -15,7 +15,7 @@ const main = {
   about_project: "",
   work_link: "",
   credits: "",
-  // project_image: "",
+  project_image: "",
 };
 
 const young = {
@@ -29,26 +29,29 @@ const young = {
   about_project: "",
   work_link: "",
   credits: "",
-  // project_image: "",
+  project_image: "",
 };
 const brand_pitches_nuum = {
   title: "",
-  deadlines: "",
   idea: "",
   about_project: "",
   work_link: "",
-  // project_image: "",
+  project_image: "",
 };
 const brand_pitches_mega = {
   title: "",
   idea: "",
-  // file: "",
+  file: "",
 };
 
 const getVal = (template: any, values: any) => {
   const obj: any = {};
 
   Object.keys(template).forEach((key) => {
+    if (key === "project_image") {
+      obj[key] = values.project_image_url;
+      return;
+    }
     obj[key] = values[key];
   });
 
@@ -81,7 +84,7 @@ export const useInitialValues = () => {
     return {};
   };
 
-  const createValidationSchema = (page) => {
+  const createValidationSchema = (page: any) => {
     const schema: any = {};
 
     const keys = Object.keys(getProperties());

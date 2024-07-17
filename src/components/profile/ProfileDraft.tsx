@@ -20,7 +20,7 @@ const ProfileDraft: FC = () => {
       />
       <div className={clsx(style.box, style["box--application"])}>
         {draftList.map((item: any, i: number) => (
-          <ProfileApplicationList key={i} results={item} />
+          <ProfileApplicationList key={i} results={item} isDraft={true} />
         ))}
       </div>
     </div>

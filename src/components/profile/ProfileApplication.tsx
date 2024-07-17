@@ -53,7 +53,7 @@ const ProfileApplication: FC = () => {
         )}
         {isIndividual && !checkArr(paidList) && (
           <p className={clsx(style.application__empty)}>
-            У вас еще нет заявок!
+            У вас еще нет оплаченных заявок!
           </p>
         )}
 

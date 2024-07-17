@@ -9,6 +9,8 @@ import { getCategory, getNominationValue } from "./service";
 import { useLazyNominationsQuery } from "@/store/rtk/nominations/nominations";
 import { useNavigate } from "react-router-dom";
 import { paths } from "@/service/paths";
+import IconBasket from "@/images/pass/basket.svg?react";
+import { useLazyDeleteWorkQuery } from "@/store/rtk/orders/delete_work";
 
 export interface IProfileApplicationItem {
   status: string;
@@ -24,9 +26,11 @@ export interface IProfileApplicationItem {
   num: number;
   id: number;
   title?: string;
+  isDraft?: boolean;
 }
 
 const ProfileApplicationItem: FC<IProfileApplicationItem> = ({
+  isDraft,
   num,
   ...props
 }) => {
@@ -42,6 +46,7 @@ const ProfileApplicationItem: FC<IProfileApplicationItem> = ({
     title,
   } = props;
   const navigate = useNavigate();
+  const [deletWork] = useLazyDeleteWorkQuery();
 
   useEffect(() => {
     getNomination({ offset: 0, limit: 100 }).unwrap();
@@ -49,6 +54,11 @@ const ProfileApplicationItem: FC<IProfileApplicationItem> = ({
 
   const handleEdit = () => {
     navigate(`/${paths.edit}/${id}`);
+  };
+
+  const handleDelete = () => {
+    deletWork({ id });
+    // console.log(id);
   };
 
   return (
@@ -59,9 +69,23 @@ const ProfileApplicationItem: FC<IProfileApplicationItem> = ({
           <span>{`№${num + 1}`}</span>
         </p>
 
-        <button className={clsx(style.edit)} onClick={handleEdit}>
+        <button
+          type="button"
+          className={clsx(style.edit, style["edit--left"])}
+          onClick={handleEdit}
+        >
           <IconEdit />
         </button>
+
+        {isDraft && (
+          <button
+            onClick={handleDelete}
+            type="button"
+            className={clsx(style.edit)}
+          >
+            <IconBasket />
+          </button>
+        )}
       </div>
 
       <div className={clsx(style.item__inner)}>

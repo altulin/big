@@ -100,7 +100,7 @@ const UploadImage: FC<IUploadFile> = ({
           </div>
         )}
 
-        {modifier === "edit" && field.value !== null && (
+        {modifier === "edit" && field.value && (
           <>
             {field?.value.length === 0 || field?.value instanceof File ? (
               <div className={clsx(style[`${prefix}__view`])}>
@@ -123,9 +123,7 @@ const UploadImage: FC<IUploadFile> = ({
                   style[`${prefix}__view--edit`],
                 )}
                 style={{
-                  backgroundImage: `url(${
-                    import.meta.env.VITE_APP_API_HOST
-                  }${field?.value})`,
+                  backgroundImage: `url(${field?.value})`,
                 }}
               >
                 <button

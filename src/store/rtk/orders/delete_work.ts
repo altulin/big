@@ -1,17 +1,16 @@
 import { token } from "@/service/token";
 import { api } from "../emptyApi";
 
-export const changeWork = api.injectEndpoints({
+export const deleteWork = api.injectEndpoints({
   endpoints: (build) => ({
-    changeWork: build.mutation({
-      query: ({ id_work, body }) => {
+    deleteWork: build.query({
+      query: ({ id }) => {
         return {
-          url: `/api/orders/works/${id_work}`,
-          method: "PUT",
+          url: `/api/orders/list/${id}`,
+          method: "DELETE",
           headers: {
             Authorization: `Bearer ${token()}`,
           },
-          body,
         };
       },
     }),
@@ -19,4 +18,4 @@ export const changeWork = api.injectEndpoints({
   //   overrideExisting: false,
 });
 
-export const { useChangeWorkMutation } = changeWork;
+export const { useLazyDeleteWorkQuery } = deleteWork;

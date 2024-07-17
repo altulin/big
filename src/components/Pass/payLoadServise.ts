@@ -1,7 +1,19 @@
 import { categories, categoriesPitshes } from "./script";
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
-const makeArrayPayLoad = (
+
+export const getBase64 = async (file: any) => {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => {
+      resolve(reader.result);
+    };
+    reader.onerror = reject;
+  });
+};
+
+const makeArrayPayLoad = async (
   category: string,
   categoryPitch: string | null,
   fields: any,
@@ -11,7 +23,7 @@ const makeArrayPayLoad = (
     category === categories.main_category ||
     category === categories.young_talent
   ) {
-    fields.forEach((el: any) => {
+    fields.forEach(async (el: any) => {
       const {
         title,
         brand,
@@ -26,21 +38,18 @@ const makeArrayPayLoad = (
         project_image,
       } = el;
 
-      // const formData = new FormData();
-      // formData.append("project_image", project_image);
-
       const work = {
-        title: title,
+        title,
         brand,
         nomination,
         deadlines,
         goals,
         idea: idea,
-        about_project: about_project,
-        work_link: work_link,
+        about_project,
+        work_link,
         credits,
         target_audience,
-        // project_image,
+        project_image,
       };
 
       works.push(work);
@@ -59,16 +68,13 @@ const makeArrayPayLoad = (
           project_image,
         } = el;
 
-        const formData = new FormData();
-        formData.append("project_image", project_image);
-
         const work = {
           title: title,
           deadlines,
           idea: idea,
           about_project: about_project,
           work_link: work_link,
-          formData,
+          project_image,
         };
 
         works.push(work);
@@ -77,16 +83,12 @@ const makeArrayPayLoad = (
 
     if (categoryPitch === categoriesPitshes.mega) {
       fields.forEach((el: any) => {
-        console.log(el.file);
         const { title, idea, file } = el;
-
-        const formData = new FormData();
-        formData.append("script", file);
 
         const work = {
           title: title,
           idea: idea,
-          //   formData,
+          file,
         };
 
         works.push(work);

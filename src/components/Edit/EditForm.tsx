@@ -10,6 +10,7 @@ import { useChangeWorkMutation } from "@/store/rtk/orders/change_work";
 import { useParams } from "react-router-dom";
 import { setSuccessModal } from "@/store/modal/modalSlice";
 import { useAppDispatch } from "@/hooks/hook";
+import { getBase64 } from "../Pass/payLoadServise";
 
 const EditForm: FC<{ data?: any }> = ({ data }) => {
   const { createValidationSchema, getProperties } = useInitialValues();
@@ -29,23 +30,31 @@ const EditForm: FC<{ data?: any }> = ({ data }) => {
     }
   }, [dispatch, status]);
 
+  const convertBase = async (values: any) => {
+    const body: any = {};
+    Object.keys(values.fields[0]).forEach(async (key) => {
+      if (key === "project_image") {
+        body[key] = await getBase64(values.fields[0].project_image);
+        return;
+      }
+      body[key] = values.fields[0][key];
+    });
+
+    return body;
+  };
+
   return (
     <Formik
       initialValues={{ fields: [getProperties(data)] }}
       validationSchema={createValidationSchema("edit")}
-      onSubmit={(values) => {
-        const formData = new FormData();
-        Object.keys(values.fields[0]).forEach((key) => {
-          if (key === "project_image") {
-            if (values.fields[0][key] instanceof File) {
-              formData.append(key, values.fields[0][key]);
-            } else {
-              return;
-            }
-          }
-          formData.append(key, values.fields[0][key]);
+      onSubmit={async (values) => {
+        convertBase(values).then((res) => {
+          setTimeout(() => {
+            changeWork({ id_work, body: res });
+          }, 500);
         });
-        changeWork({ id_work, body: formData });
+
+        // changeWork({ id_work, body });
       }}
     >
       {(formik) => {
