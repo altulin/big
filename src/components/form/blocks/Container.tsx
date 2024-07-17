@@ -28,7 +28,7 @@ const Container: FC<{
             className={clsx(
               style.label__text,
               style[`label__text--${props.modifier}`] || "",
-              meta.touched && meta.error && style["label__text--error"],
+              meta.error && style["label__text--error"],
             )}
           >
             {props.label}
@@ -38,7 +38,7 @@ const Container: FC<{
         {children}
       </label>
 
-      {meta.touched && meta.error ? (
+      {meta.error ? (
         <div
           className={clsx(style.error, style[`error--${props.modifier}`] || "")}
         >

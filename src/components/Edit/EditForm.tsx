@@ -56,6 +56,7 @@ const EditForm: FC<{ data?: any }> = ({ data }) => {
 
         // changeWork({ id_work, body });
       }}
+      enableReinitialize
     >
       {(formik) => {
         return (

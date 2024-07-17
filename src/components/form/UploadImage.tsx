@@ -139,7 +139,7 @@ const UploadImage: FC<IUploadFile> = ({
         )}
       </label>
 
-      {field.touched && field.error && (
+      {field.error && (
         <span className={clsx(style.error)}>
           <span className={clsx(style.error__text)}>{field.error}</span>
         </span>

@@ -72,11 +72,8 @@ const SelectField: FC<ISelectField> = ({
         id={id}
       />
 
-      {form.touched[`${pref_parse}`] &&
-      form.touched[`${pref_parse}`][`${id_parse}`] &&
-      form.errors[`${pref_parse}`] &&
+      {form.errors[`${pref_parse}`] &&
       form.errors[`${pref_parse}`][`${id_parse}`] &&
-      form.touched[`${pref_parse}`][`${id_parse}`][`${name_parse}`] &&
       form.errors[`${pref_parse}`][`${id_parse}`][`${name_parse}`] ? (
         <div className={clsx(style.error)}>
           <p className={clsx(style.error__text)}>
