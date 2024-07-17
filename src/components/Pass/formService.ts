@@ -75,9 +75,15 @@ export const useInitialValues = () => {
         return young;
       case categories.brand_pitches:
         if (categoryPitch === categoriesPitshes.nuum) {
+          if (values) {
+            return getVal(brand_pitches_nuum, values);
+          }
           return brand_pitches_nuum;
         }
         if (categoryPitch === categoriesPitshes.mega) {
+          if (values) {
+            return getVal(brand_pitches_mega, values);
+          }
           return brand_pitches_mega;
         }
     }

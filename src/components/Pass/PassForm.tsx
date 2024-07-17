@@ -32,6 +32,9 @@ const PassForm: FC = () => {
     const { category, fields } = values;
     const { works } = await makeArrayPayLoad(category, categoryPitch, fields);
     const body: any = { tickets_amount, category, works };
+    if (categoryPitch) {
+      body.pitch_brand = categoryPitch;
+    }
     return body;
   };
 
@@ -39,6 +42,10 @@ const PassForm: FC = () => {
     body.works.forEach(async (item: any) => {
       if (item.project_image) {
         item.project_image = await getBase64(item.project_image);
+      }
+
+      if (item.file) {
+        item.script = await getBase64(item.file);
       }
     });
 
@@ -109,7 +116,7 @@ const PassForm: FC = () => {
       enableReinitialize
     >
       {(formik) => {
-        console.log(formik.errors);
+        // console.log(formik.values.fields);
         return (
           <>
             <Form className={clsx(style.form)}>
