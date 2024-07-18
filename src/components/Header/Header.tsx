@@ -3,7 +3,6 @@ import style from "./Header.module.scss";
 import clsx from "clsx";
 import Nav from "./Nav";
 import Registration from "./Registration";
-import Logo from "./Logo";
 import { useIsTabletDevice } from "@/hooks/IsSmallDevice";
 import { useAppDispatch, useAppSelector } from "@/hooks/hook";
 import gsap from "gsap";
@@ -15,9 +14,9 @@ import { HashLink } from "react-router-hash-link";
 import { setClick, setMenuControl, setPath } from "@/store/menu/menuSlice";
 import useStickyHead from "@/hooks/stickyHead";
 import Submit from "./Submit";
-import { paths } from "@/service/paths";
-import LogoAnime from "./LogoAnime";
 import useIsYang from "@/hooks/isYang";
+import LogoBoxHome from "./LogoBoxHome";
+import Logo from "./Logo";
 
 const Header = () => {
   const { isMenu } = useAppSelector((state) => state.menu);
@@ -144,11 +143,8 @@ const Header = () => {
             </>
           )}
         </div>
-        {path === paths.promo || path === null ? (
-          <Logo parent={"header"} />
-        ) : (
-          <LogoAnime />
-        )}
+
+        {isYang ? <Logo parent={"header"} /> : <LogoBoxHome />}
 
         <Nav />
 

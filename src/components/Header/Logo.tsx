@@ -1,6 +1,6 @@
 import clsx from "clsx";
 import { HashLink } from "react-router-hash-link";
-import { FC, MouseEvent } from "react";
+import { FC } from "react";
 import IconLogo from "@/images/header/logo.svg?react";
 import IconLogoGreen from "@/images/header/logogreen.svg?react";
 import style from "./Header.module.scss";
@@ -9,21 +9,16 @@ import { useIsTabletDevice } from "@/hooks/IsSmallDevice";
 import { useAppDispatch } from "@/hooks/hook";
 import { setClick, setPath } from "@/store/menu/menuSlice";
 import { paths } from "@/service/paths";
-import { useLocation } from "react-router-dom";
 import useIsYang from "@/hooks/isYang";
 
 const Logo: FC<{ parent: string }> = ({ parent }) => {
   const isTablet = useIsTabletDevice();
   const dispatch = useAppDispatch();
-  const location = useLocation();
   const { isYang } = useIsYang();
 
-  const handleClick = (e: MouseEvent<HTMLAnchorElement>) => {
+  const handleClick = () => {
     if (isTablet) return;
 
-    if (location.pathname !== "/") return;
-
-    e.preventDefault();
     dispatch(setClick(true));
     dispatch(setPath(paths.promo));
   };
@@ -32,7 +27,7 @@ const Logo: FC<{ parent: string }> = ({ parent }) => {
     <div className={clsx(style.logo)}>
       <HashLink
         className={clsx(style.logo__link, style[`logo--${parent}`])}
-        to={"/"}
+        to={"/#top"}
         aria-label="logo"
         smooth
         onClick={handleClick}

@@ -148,6 +148,7 @@
       flex-grow: 0;
       row-gap: 0.4rem;
       grid-column: 2 / 3;
+      padding-bottom: 0.4rem;
     }
   }
 }
@@ -332,7 +333,6 @@
   }
 
   @include mw($tb) {
-    width: 100%;
     justify-content: center;
     padding: 1rem;
   }
@@ -398,6 +398,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    pointer-events: none;
 
     svg {
       height: 100%;
@@ -430,7 +431,7 @@
     font-weight: 400;
     font-size: 1rem;
     line-height: 100%;
-    color: #141414;
+    color: var(--basic-dark);
   }
 }
 
@@ -446,6 +447,7 @@
   svg {
     width: 1rem;
     height: 1rem;
+    stroke: var(--basic-dark);
   }
 }
 

@@ -14,7 +14,7 @@ const Profile: FC<{ className?: string }> = ({ className }) => {
     <HashLink
       className={clsx(style.profile, className)}
       smooth
-      to={paths.profile}
+      to={`/${paths.profile}`}
     >
       <span className={clsx(style.profile__icon)}></span>
       <span className={clsx(style.profile__name)}>Профиль</span>

@@ -11,8 +11,8 @@ import useIsYang from "@/hooks/isYang";
 const Price: FC = () => {
   const { data } = useIntermediateStageQuery(undefined);
   const { isYang } = useIsYang();
-
   const body = [["до 2-х"], ["от 3-х до 4-х"], ["от 5-ти"]];
+
   return (
     <section
       id={isYang ? paths.price_young : paths.price}
@@ -71,7 +71,11 @@ const Price: FC = () => {
                   data?.results.slice(0, 3).map((item: any, i: number) => (
                     <ul className={clsx(style.body__list)} key={i}>
                       {item.work_costs
-                        .filter((el: any) => el.category === "main")
+                        .filter((el: any) =>
+                          isYang
+                            ? el.category === "young"
+                            : el.category === "main",
+                        )
                         .map((elem: any, m: number) => (
                           <li className={clsx(style.body__item)} key={m}>
                             {format({

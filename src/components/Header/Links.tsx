@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import style from "./Header.module.scss";
 import clsx from "clsx";
 import { FC, MouseEvent } from "react";
@@ -16,9 +17,23 @@ const Links: FC = () => {
   const { pathname } = useLocation();
   const navigate = useNavigate();
 
+  const getLink = (item: any) => {
+    if (isTablet) {
+      if (item.path === paths.young_talent) {
+        return `/${item.path}#top`;
+      }
+
+      return `/#${item.path}`;
+    } else {
+      return `${item.path}`;
+    }
+  };
+
   const handleClick = (e: MouseEvent<HTMLAnchorElement>) => {
     if (isTablet) {
+      const href = (e.target as HTMLAnchorElement).href.split("/").pop();
       dispatch(setMenuControl(false));
+      dispatch(setPath(href?.split("#")[1]));
     } else {
       const href = (e.target as HTMLAnchorElement).href.split("/").pop();
 
@@ -55,11 +70,10 @@ const Links: FC = () => {
                   item.submenu?.filter((el) => el.path === path).length > 0 &&
                   style["link--active"],
               )}
-              to={isTablet ? `#${item.path}` : `${item.path}`}
+              to={getLink(item)}
               onClick={handleClick}
             >
               <span>{item.label}</span>
-              {item.logo && <item.logo />}
             </HashLink>
           </div>
         );
