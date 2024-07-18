@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import clsx from "clsx";
-import { FC } from "react";
+import { FC, useEffect } from "react";
 import style from "./Pass.module.scss";
 import ProfileBoxHead from "../profile/ProfileBoxHead";
 import IconMinus from "@/images/form/minus.svg?react";
@@ -31,7 +31,12 @@ const PassFormBuy: FC<{ formik?: any }> = () => {
   const isTablet = useIsTabletDevice();
   const { tickets_amount } = useAppSelector((state) => state.pass);
   const dispatch = useAppDispatch();
+  const { category, categoryPitch } = useAppSelector((state) => state.category);
   const { data } = useSettigsQuery(undefined);
+
+  useEffect(() => {
+    dispatch(setTicketsAmount(0));
+  }, [dispatch, category, categoryPitch]);
 
   return (
     <div className={clsx(style.box, style.buy)}>

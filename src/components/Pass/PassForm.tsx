@@ -17,6 +17,8 @@ import useProfile from "@/hooks/profile";
 import { setErrorModal, setSuccessModal } from "@/store/modal/modalSlice";
 import { useDispatch } from "react-redux";
 import useSignOut from "@/hooks/signOut";
+import { useNavigate } from "react-router-dom";
+import { paths } from "@/service/paths";
 
 const PassForm: FC = () => {
   const { createValidationSchema, getProperties } = useInitialValues();
@@ -27,6 +29,7 @@ const PassForm: FC = () => {
   const { handleSignOut } = useSignOut();
   const { runWidget } = useWidget();
   const { tickets_amount } = useAppSelector((state) => state.pass);
+  const navigate = useNavigate();
 
   const makePayLoad = async (values: any) => {
     const { category, fields } = values;
@@ -54,6 +57,8 @@ const PassForm: FC = () => {
 
   useEffect(() => {
     if (status === "fulfilled") {
+      navigate(`/${paths.profile}`);
+
       if (category === categories.brand_pitches) {
         dispatch(
           setSuccessModal({

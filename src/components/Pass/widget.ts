@@ -1,5 +1,6 @@
 import { useAppDispatch } from "@/hooks/hook";
 import useProfile from "@/hooks/profile";
+import { paths } from "@/service/paths";
 import { setErrorModal, setSuccessModal } from "@/store/modal/modalSlice";
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
@@ -46,6 +47,7 @@ const useWidget = () => {
         },
         onFail: function () {
           if (isIndividual) {
+            // window.location.replace(`/${paths.profile}`);
             dispatch(
               setErrorModal(
                 "Оплата не прошла! Анкета вашей работы сохранена в черновиках. Попробуйте, пожалуйста, оплатить еще раз!",
