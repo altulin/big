@@ -4,7 +4,6 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Scrollbar, Mousewheel, FreeMode } from "swiper/modules";
 import clsx from "clsx";
 import style from "./HomePage.module.scss";
-// import { pages } from "./HomePage";
 import { useAppDispatch, useAppSelector } from "@/hooks/hook";
 import { checkArr } from "@/service/checkArr";
 import { setClick, setPath } from "@/store/menu/menuSlice";
@@ -43,7 +42,7 @@ const SliderHome: FC<{ pages: any }> = ({ pages }) => {
     const index = listSlides.indexOf(slide);
 
     swiper.slideTo(index, 1000);
-  }, [swiper]);
+  }, [path, swiper]);
 
   useEffect(() => {
     if (!swiper) return;
@@ -63,22 +62,20 @@ const SliderHome: FC<{ pages: any }> = ({ pages }) => {
     dispatch(setClick(false));
   }, [dispatch, isClick, path, swiper]);
 
-  // console.log(pages[0]._source.fileName);
-
   return (
     <>
       <Swiper
         onSwiper={setSwiper}
         className={clsx(style.home__slider)}
         modules={[Scrollbar, Mousewheel, FreeMode]}
-        mousewheel={{ enabled: true, releaseOnEdges: true, sensitivity: 6 }}
+        mousewheel={{ enabled: true, releaseOnEdges: true, sensitivity: 10 }}
         freeMode={{ enabled: true }}
         scrollbar={{
           draggable: true,
           el: `.${style.scrollbar}`,
           dragClass: `${style.scrollbar__drag}`,
         }}
-        allowTouchMove={false}
+        // allowTouchMove={false}
         // initialSlide={12}
         slidesPerView="auto"
         preventInteractionOnTransition={true}
@@ -92,12 +89,6 @@ const SliderHome: FC<{ pages: any }> = ({ pages }) => {
           const path = panelElement ? panelElement.id : null;
           dispatch(setPath(path));
         }}
-        // onProgress={(_, p) => {
-        //   if (path === paths.participants) dispatch(setSwiperProgress(p));
-        // }}
-        // onScroll={(s) => {
-        //   dispatch(setSwiperProgress(s.progress));
-        // }}
       >
         {pages.map((slide: any, index: number) => (
           <SwiperSlide key={index} className={clsx(style.slide)}>
