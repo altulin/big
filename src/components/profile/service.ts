@@ -24,4 +24,5 @@ export const statuses = {
   paid: "paid",
   created: "created",
   payment_error: "payment_error",
+  accepted: "accepted",
 };

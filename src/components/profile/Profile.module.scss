@@ -321,6 +321,9 @@
   &--paid {
     background-color: var(--color-green);
   }
+  &--accepted {
+    background-color: var(--color-green);
+  }
 
   svg {
     width: 1rem;

@@ -13,7 +13,7 @@ const Registration: FC<{ className?: string }> = ({ className }) => {
       href={import.meta.env.VITE_APP_REG}
       target="_blank"
     >
-      Регистрация на мероприятие
+      Регистрация на мероприятия
     </a>
   );
 };

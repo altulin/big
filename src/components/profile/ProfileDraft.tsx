@@ -8,18 +8,18 @@ import { checkArr } from "@/service/checkArr";
 import ProfileApplicationList from "./ProfileApplicationList";
 
 const ProfileDraft: FC = () => {
-  const { draftList } = useFilterList();
+  const { my_drafts } = useFilterList();
 
-  if (!checkArr(draftList)) return null;
+  if (!checkArr(my_drafts)) return null;
 
   return (
     <div className={clsx(style.application)}>
       <ProfileBoxHead
         isBtn={false}
-        title={`Мои черновики (${draftList.length})`}
+        title={`Мои черновики (${my_drafts.length})`}
       />
       <div className={clsx(style.box, style["box--application"])}>
-        {draftList.map((item: any, i: number) => (
+        {my_drafts.map((item: any, i: number) => (
           <ProfileApplicationList key={i} results={item} isDraft={true} />
         ))}
       </div>

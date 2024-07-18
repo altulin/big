@@ -33,27 +33,16 @@ const Refusal: FC = () => {
 };
 
 const ProfileApplication: FC = () => {
-  const { defaultList, paidList } = useFilterList();
+  const { my_applications, my_drafts } = useFilterList();
   const { isIndividual } = useProfile();
 
   return (
     <div className={clsx(style.application)}>
       <ProfileBoxHead isBtn={false} title={"Мои заявки"} />
       <div className={clsx(style.box, style["box--application"])}>
-        {/* {!checkArr(defaultList) && (
+        {!checkArr(my_applications) && (
           <p className={clsx(style.application__empty)}>
-            У вас еще нет заявок!
-          </p>
-        )} */}
-
-        {!isIndividual && !checkArr(defaultList) && (
-          <p className={clsx(style.application__empty)}>
-            У вас еще нет заявок!
-          </p>
-        )}
-        {isIndividual && !checkArr(paidList) && (
-          <p className={clsx(style.application__empty)}>
-            У вас еще нет оплаченных заявок!
+            У вас еще нет оплаченных или принятых заявок!
           </p>
         )}
 
@@ -65,21 +54,14 @@ const ProfileApplication: FC = () => {
           Подать работу
         </HashLink>
 
-        {!isIndividual &&
-          checkArr(defaultList) &&
-          defaultList.map((item: any, i: number) => (
-            <ProfileApplicationList key={i} results={item} />
-          ))}
-
-        {isIndividual &&
-          checkArr(paidList) &&
-          paidList.map((item: any, i: number) => (
+        {checkArr(my_applications) &&
+          my_applications.map((item: any, i: number) => (
             <ProfileApplicationList key={i} results={item} />
           ))}
       </div>
 
-      {!isIndividual && checkArr(defaultList) && <Refusal />}
-      {isIndividual && checkArr(paidList) && <Refusal />}
+      {!isIndividual && checkArr(my_applications) && <Refusal />}
+      {isIndividual && checkArr(my_drafts) && <Refusal />}
     </div>
   );
 };
