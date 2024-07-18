@@ -8,12 +8,25 @@ import style from "./HomePage.module.scss";
 import { useAppDispatch, useAppSelector } from "@/hooks/hook";
 import { checkArr } from "@/service/checkArr";
 import { setClick, setPath } from "@/store/menu/menuSlice";
-import { setSwiperProgress } from "@/store/swiper/swiperSlice";
+import { setSwiperProgress, setSwiperSlides } from "@/store/swiper/swiperSlice";
 
 const SliderHome: FC<{ pages: any }> = ({ pages }) => {
   const { path, isClick } = useAppSelector((state) => state.menu);
   const [swiper, setSwiper] = useState<any>(null);
   const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    if (!swiper) return;
+    const listSlides = swiper.slides;
+    if (!checkArr(listSlides)) return;
+
+    const slides = listSlides.map((slide: any) => {
+      const id = slide.querySelector(".panel").id;
+      return id;
+    });
+
+    dispatch(setSwiperSlides(slides));
+  }, [dispatch, swiper]);
 
   useEffect(() => {
     // при переходе с других страниц

@@ -17,6 +17,7 @@ import Submit from "./Submit";
 import useIsYang from "@/hooks/isYang";
 import LogoBoxHome from "./LogoBoxHome";
 import Logo from "./Logo";
+import useAllLinks from "./allLinks";
 
 const Header = () => {
   const { isMenu } = useAppSelector((state) => state.menu);
@@ -27,7 +28,7 @@ const Header = () => {
   const sticky = useStickyHead();
   const { path } = useAppSelector((state) => state.menu);
   const { isYang } = useIsYang();
-
+  const { allLinksList } = useAllLinks();
   const location = useLocation();
   const [subMenu, setSubMenu] = useState<
     | {
@@ -75,21 +76,11 @@ const Header = () => {
 
   useEffect(() => {
     if (isTablet) return;
-    const list: any = [];
 
-    links.forEach((item) => {
-      list.push(item.path);
-      if (item.submenu) {
-        item.submenu.forEach((subItem) => {
-          list.push(subItem.path);
-        });
-      }
-    });
-
-    if (!list.includes(path)) {
+    if (!allLinksList.includes(path)) {
       setSubMenu(undefined);
     }
-  }, [isTablet, path]);
+  }, [allLinksList, isTablet, path]);
 
   useEffect(() => {
     if (!isTablet) return;
