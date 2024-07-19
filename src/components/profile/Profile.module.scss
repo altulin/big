@@ -214,6 +214,7 @@
   align-items: center;
   background-color: rgba(#131313, 0.06);
   padding: 1rem;
+  text-align: center;
 
   &__btn {
     background-color: transparent;
@@ -261,6 +262,14 @@
 
   &__block {
     display: flex;
+
+    &--link {
+      span {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+    }
 
     &:not(:first-child) {
       margin-top: 1.5rem;

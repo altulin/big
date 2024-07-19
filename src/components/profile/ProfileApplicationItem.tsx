@@ -93,7 +93,13 @@ const ProfileApplicationItem: FC<IProfileApplicationItem> = ({
 
         <div className={clsx(style.content)}>
           {work_link && (
-            <p className={clsx(style.href, style.item__block)}>
+            <p
+              className={clsx(
+                style.href,
+                style.item__block,
+                style["item__block--link"],
+              )}
+            >
               <span className={clsx(style.item__subtitle)}>Ссылка:</span>
               <span className={clsx(style.item__value)}>{work_link}</span>
             </p>
