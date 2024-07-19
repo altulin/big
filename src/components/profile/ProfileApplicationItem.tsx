@@ -77,7 +77,7 @@ const ProfileApplicationItem: FC<IProfileApplicationItem> = ({
           <IconEdit />
         </button>
 
-        {isDraft && (
+        {/* {isDraft && (
           <button
             onClick={handleDelete}
             type="button"
@@ -85,7 +85,7 @@ const ProfileApplicationItem: FC<IProfileApplicationItem> = ({
           >
             <IconBasket />
           </button>
-        )}
+        )} */}
       </div>
 
       <div className={clsx(style.item__inner)}>

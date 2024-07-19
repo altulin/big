@@ -51,10 +51,10 @@
   display: flex;
   flex-direction: column;
   position: relative;
-  background-image: url("@/images/cool/cool-bg.svg");
-  background-size: cover;
+  background-image: url("@/images/cool/cool-bg-new.svg");
+  background-size: 44%;
   background-repeat: no-repeat;
-  background-position: right top;
+  background-position: center 80%;
   flex-grow: 1;
 
   @include mw($ldt) {
@@ -68,8 +68,9 @@
     padding-left: 0.5rem;
     padding-right: 0.5rem;
     aspect-ratio: 1 / 1;
-    background-position: left top;
-    background-image: url("@/images/cool/cool-bg-mob.svg");
+    background-size: 85%;
+    background-position: center bottom;
+    background-image: url("@/images/cool/cool-bg-new.svg");
   }
 
   @include mw($ph) {
