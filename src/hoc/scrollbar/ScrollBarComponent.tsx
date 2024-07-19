@@ -2,7 +2,7 @@ import { FC, ReactNode, useEffect, useRef, useState } from "react";
 import { Scrollbars } from "react-custom-scrollbars";
 import style from "./ScrollBarComponent.module.scss";
 import clsx from "clsx";
-import IconArr from "@/images/scroll/arr-scroll.svg?react";
+import IconArr from "@/images/scroll/arr_simple.svg?react";
 import { useIsTabletDevice } from "@/hooks/IsSmallDevice";
 
 const ScrollBarComponent: FC<{ children: ReactNode }> = ({ children }) => {

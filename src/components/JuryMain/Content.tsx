@@ -10,8 +10,6 @@ import { juryList } from "./jury";
 const ContentDesk: FC = () => {
   const [numActive, setNumActive] = useState(0);
   const handleClick = (e: MouseEvent) => {
-    // console.log(e.target);
-
     setNumActive(
       Number((e.target as HTMLElement)?.getAttribute("data-button")),
     );

@@ -59,6 +59,8 @@
 
 .marquee {
   // height: calc(100vh - 25.4rem);
+  padding-left: 1px;
+  margin-left: -1px;
 
   @include mw($ldt) {
     // height: calc(100vh - 23rem);
@@ -111,6 +113,7 @@
     flex-direction: column;
     row-gap: 0.25rem;
     align-items: flex-start;
+    text-align: left;
   }
 
   &__company {

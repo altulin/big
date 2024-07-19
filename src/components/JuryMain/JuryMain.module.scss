@@ -177,15 +177,15 @@
   &__job {
     font-weight: 400;
     font-size: 1.5rem;
-    line-height: 130%;
+    line-height: 1;
     color: #141414;
   }
 }
 
 .top {
-  padding-top: 4rem;
+  padding-top: 3rem;
   padding-left: 2rem;
-  padding-bottom: 3rem;
+  padding-bottom: 2rem;
 
   @include mw($tb) {
     padding: 2rem 0.5rem;

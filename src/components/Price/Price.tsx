@@ -99,38 +99,6 @@ const Price: FC = () => {
                       </li>
                     ))}
                 </ul>
-                {/* <ul className={clsx(style.body__list)}>
-                  {body.map((item, i) => (
-                    <li
-                      className={clsx(
-                        style.body__item,
-                        style["body__item--head"],
-                      )}
-                      key={i}
-                    >
-                      {item}
-                    </li>
-                  ))}
-                </ul>
-                {data &&
-                  data?.results.slice(0, 3).map((item: any, i: number) => (
-                    <ul className={clsx(style.body__list)} key={i}>
-                      {item.work_costs
-                        .filter((el: any) =>
-                          isYang
-                            ? el.category === "young"
-                            : el.category === "main",
-                        )
-                        .map((elem: any, m: number) => (
-                          <li className={clsx(style.body__item)} key={m}>
-                            {format({
-                              suffix: " ₽",
-                              integerSeparator: " ",
-                            })(elem.price)}
-                          </li>
-                        ))}
-                    </ul>
-                  ))} */}
               </div>
             </div>
           </div>

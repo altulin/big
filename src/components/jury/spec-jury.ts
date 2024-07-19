@@ -22,7 +22,7 @@ export const jury = [
       avatar: "anastasia_gadeeva.jpg",
       name: "Анастасия Гадеева",
       job: "Независимый эксперт, FMCG",
-      company: "Мултон",
+      company: " ",
     },
     {
       avatar: "merezhko.jpg",
@@ -30,14 +30,14 @@ export const jury = [
       job: "Маркетинг директор",
       company: "Черноголовка",
     },
+  ],
+  [
     {
       avatar: "dvornikova.jpg",
       name: "Ирина Дворникова",
       job: "Head of MarCom",
       company: "Пятёрочка",
     },
-  ],
-  [
     {
       avatar: "ColliniOut.jpg",
       name: "Ольга Казьмина",
@@ -62,6 +62,8 @@ export const jury = [
       job: "Член правления. Директор по маркетингу",
       company: "Спортмастер",
     },
+  ],
+  [
     {
       avatar: "semenova.jpg",
       name: "Елена Семенова",
@@ -74,8 +76,6 @@ export const jury = [
       job: "Creative Lead",
       company: "S7",
     },
-  ],
-  [
     {
       avatar: "andrushkevich.jpg",
       name: "Ксения Андрушкевич",

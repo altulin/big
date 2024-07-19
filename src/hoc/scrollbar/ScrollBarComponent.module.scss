@@ -34,8 +34,13 @@
   top: 0;
   right: 0;
   cursor: pointer;
-  // border: var(--line) solid var(--basic-dark);
-  // border-bottom: none;
+  border-right: var(--line) solid var(--color-green);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--color-green);
+  border-right: var(--line) solid var(--basic-dark);
+  border-left: var(--line) solid var(--basic-dark);
 
   &--hidden {
     display: none;
@@ -54,7 +59,8 @@
   svg {
     width: inherit;
     height: inherit;
-    fill: var(--color-green);
     stroke: var(--basic-dark);
+    width: 0.5rem;
+    height: 0.3rem;
   }
 }
