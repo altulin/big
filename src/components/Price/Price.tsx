@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import clsx from "clsx";
 import style from "./Price.module.scss";
-import { FC } from "react";
+import { FC, useEffect, useState } from "react";
 
 import { paths } from "@/service/paths";
 import { useIntermediateStageQuery } from "@/store/rtk/stage/intermediateStage";
@@ -9,9 +9,34 @@ import format from "format-number";
 import useIsYang from "@/hooks/isYang";
 
 const Price: FC = () => {
-  const { data } = useIntermediateStageQuery(undefined);
+  const { data, status } = useIntermediateStageQuery(undefined);
   const { isYang } = useIsYang();
   const body = [["до 2-х"], ["от 3-х до 4-х"], ["от 5-ти"]];
+  const [priceData, setPriceData] = useState<any>({
+    head: null,
+    body_list: null,
+  });
+
+  useEffect(() => {
+    if (status !== "fulfilled") return;
+
+    const baseList = data?.results.slice(0, 3);
+
+    const list = baseList.map((item: any) => {
+      return item.work_costs.filter((el: any) => {
+        return isYang ? el.category === "young" : el.category === "main";
+      });
+    });
+
+    setPriceData({
+      head: baseList,
+      body_list: [
+        [list[0][0].price, list[1][0].price, list[2][0].price],
+        [list[0][1].price, list[1][1].price, list[2][1].price],
+        [list[0][2].price, list[1][2].price, list[2][2].price],
+      ],
+    });
+  }, [data, status, isYang]);
 
   return (
     <section
@@ -37,8 +62,8 @@ const Price: FC = () => {
                   <span className={clsx(style.head__label)}>Кол-во подач</span>
                 </div>
 
-                {data &&
-                  data?.results.slice(0, 3).map((item: any, i: number) => (
+                {priceData.head &&
+                  priceData.head.map((item: any, i: number) => (
                     <div
                       className={clsx(style.cell, style["cell--head"])}
                       key={i}
@@ -55,6 +80,26 @@ const Price: FC = () => {
 
               <div className={clsx(style.body)}>
                 <ul className={clsx(style.body__list)}>
+                  {priceData.body_list &&
+                    body.map((item, i) => (
+                      <li className={clsx(style.body__item)} key={i}>
+                        <div
+                          className={clsx(
+                            style.body__sub_item,
+                            style["body__sub_item--head"],
+                          )}
+                        >
+                          {item}
+                        </div>
+                        {priceData.body_list[i].map((el: any, n: any) => (
+                          <div className={clsx(style.body__sub_item)} key={n}>
+                            {el + " ₽"}
+                          </div>
+                        ))}
+                      </li>
+                    ))}
+                </ul>
+                {/* <ul className={clsx(style.body__list)}>
                   {body.map((item, i) => (
                     <li
                       className={clsx(
@@ -85,7 +130,7 @@ const Price: FC = () => {
                           </li>
                         ))}
                     </ul>
-                  ))}
+                  ))} */}
               </div>
             </div>
           </div>
