@@ -18,12 +18,6 @@ const Cool: FC = () => {
               Покажи свою работу всей индустрии, чтобы твое имя запомнили!
             </p>
           </div>
-
-          <div className={clsx(style.cube)}>
-            <div className={clsx(style.cube__inner)}>
-              <canvas className={clsx(style.canvas)} id="gl-cube"></canvas>
-            </div>
-          </div>
         </div>
 
         <div className={clsx(style.info)}>

@@ -1,7 +1,8 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import * as twgl from "twgl.js";
 import { calculateVisibility } from "./calculateVisibility";
 
-export function initGLTor(id: string) {
+export function initGLTor(id: string, color: any) {
   const canvas = document.getElementById(id);
 
   const gl = (canvas as HTMLCanvasElement)?.getContext("webgl");
@@ -165,7 +166,7 @@ export function initGLTor(id: string) {
     twgl.setUniforms(programInfo, {
       u_cameraDirection: [0, 0, -4],
       u_matrix: matrix,
-      u_color: [0, 1, 0, 1], // Green color
+      u_color: color, // Green color
     });
     gl?.drawElements(
       gl.LINES,

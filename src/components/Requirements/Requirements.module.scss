@@ -60,6 +60,7 @@
 .content {
   flex-grow: 1;
   border-left: var(--line) solid var(--basic-dark);
+  overflow-y: auto;
 
   @include mw($ldt) {
     height: calc(100vh - 8.2rem);

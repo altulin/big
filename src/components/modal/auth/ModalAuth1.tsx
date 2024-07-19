@@ -16,6 +16,7 @@ import { onPhoneInput } from "@/service/form/masks/phone";
 import { TOKEN } from "@/service/const";
 import { useGetMeMutation } from "@/store/rtk/user/me";
 import { setUserData } from "@/store/user/userSlice";
+import { setMenuControl } from "@/store/menu/menuSlice";
 
 const ModalAuth1: FC = () => {
   const navigate = useNavigate();
@@ -66,6 +67,7 @@ const ModalAuth1: FC = () => {
           }}
           validationSchema={getValidationSchema(["phone", "password"])}
           onSubmit={(values) => {
+            dispatch(setMenuControl(false));
             const { phone, password } = values;
 
             const dataObj: {

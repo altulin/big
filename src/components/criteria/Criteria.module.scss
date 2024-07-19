@@ -196,8 +196,8 @@
 .button {
   background-color: transparent;
   position: absolute;
-  top: 0;
-  height: 100%;
+  top: var(--line);
+  height: calc(100% - 2 * var(--line));
   display: flex;
   align-items: center;
   justify-content: center;
@@ -207,11 +207,11 @@
   background-color: var(--basic-light);
 
   &--next {
-    right: 0;
+    right: var(--line);
     transform: rotate(180deg);
   }
   &--prev {
-    left: 0;
+    left: var(--line);
   }
 
   svg {

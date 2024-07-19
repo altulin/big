@@ -74,6 +74,7 @@ const Links: FC = () => {
               onClick={handleClick}
             >
               <span>{item.label}</span>
+              {item.logo && <item.logo />}
             </HashLink>
           </div>
         );

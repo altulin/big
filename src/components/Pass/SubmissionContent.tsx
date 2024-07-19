@@ -157,7 +157,7 @@ const SubmissionContent: FC<{ formik: any; id: number }> = ({ formik, id }) => {
               ? "Прикрепить сценарий"
               : formik.values.fields[`${id}`].file.name
           }
-          accept=".doc, .docx"
+          accept=".doc, .docx, .pdf"
           modifier="file-profile"
           formik={formik}
         ></UploadPass>

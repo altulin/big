@@ -1,6 +1,7 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import * as twgl from "twgl.js";
 
-export function initGLGrid(id: string) {
+export function initGLGrid(id: string, isYang: any) {
   const canvas = document.getElementById(id);
 
   if (!canvas) {
@@ -24,7 +25,14 @@ export function initGLGrid(id: string) {
       v_uv = position.xy;
     }`;
 
-  const fs = `
+  const fs = isYang
+    ? `
+    precision mediump float;
+    varying vec2 v_uv;
+    void main() {
+      gl_FragColor = vec4(0.0, 0.0, 1.0, 1.0); // Green color
+    }`
+    : `
     precision mediump float;
     varying vec2 v_uv;
     void main() {

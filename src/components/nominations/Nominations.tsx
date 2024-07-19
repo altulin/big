@@ -16,8 +16,11 @@ const Nominations: FC = () => {
   const isTablet = useIsTabletDevice();
 
   useEffect(() => {
-    initGLTor("gl-tor");
-  }, []);
+    initGLTor(
+      "gl-tor",
+      isYang ? [0.333, 0.169, 0.937, 0.0] : [0.0, 1.0, 0.0, 1.0],
+    );
+  }, [isYang]);
 
   useEffect(() => {
     getNomination({ offset: 0, limit: isTablet ? 5 : 100 }).unwrap();

@@ -18,10 +18,10 @@ const SubmissionOfWorks: FC = () => {
 
     initGLTunnel(
       "gl-tunnel",
-      "0.0, 1.0, 0.0, 1.0",
-      // isYang ? "0.333,0.169,0.937,0.0" : "0.0, 1.0, 0.0, 1.0",
+      // "0.0, 1.0, 0.0, 1.0",
+      isYang ? "0.333,0.169,0.937,0.0" : "0.0, 1.0, 0.0, 1.0",
     );
-  }, []);
+  }, [isYang]);
 
   const getImg = () => {
     return new URL("./assets/eye.gif", import.meta.url).href;

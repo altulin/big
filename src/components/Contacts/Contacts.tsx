@@ -24,7 +24,7 @@ const Contacts: FC = () => {
   }, []);
 
   useEffect(() => {
-    canvasCreate("canvas-contacts");
+    canvasCreate("canvas-contacts", isYang ? "#552bef" : "#13ff00");
   }, [yang]);
 
   useEffect(() => {

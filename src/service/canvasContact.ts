@@ -14,7 +14,7 @@ const rem = +window
   .getPropertyValue("font-size")
   .slice(0, -2);
 
-export const canvasCreate = (id: string) => {
+export const canvasCreate = (id: string, color: string) => {
   const body = document.body as HTMLBodyElement;
   const parentBlock = body.querySelector(
     ".js-contacts-figure",
@@ -62,7 +62,7 @@ export const canvasCreate = (id: string) => {
   canvas.height = Math.floor(canvasHeight * scale);
   ctx.scale(scale, scale);
 
-  ctx.strokeStyle = "#11FF00";
+  ctx.strokeStyle = color;
   ctx.lineWidth = 0.1 * rem;
 
   ctx.imageSmoothingEnabled = false;

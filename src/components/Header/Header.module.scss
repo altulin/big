@@ -31,6 +31,10 @@
 
     &--dark {
       border-right: var(--line) solid var(--basic-dark);
+
+      @include mw($tb) {
+        border-right: 0;
+      }
     }
 
     @include mw($tb) {
@@ -245,10 +249,10 @@
 
   &--dark {
     border-bottom: var(--line) solid var(--basic-dark);
-    color: #141414;
+    // color: #141414;
 
     &:hover {
-      background-color: #0bdb00;
+      background-color: var(--color-green-hover);
     }
   }
 
