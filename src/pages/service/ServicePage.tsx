@@ -19,7 +19,7 @@ const ServicePage: FC<{ children: ReactNode; title: string }> = ({
   }, []);
 
   useEffect(() => {
-    canvasCreate("canvas-contacts");
+    canvasCreate("canvas-contacts", "#13ff00");
   }, []);
 
   useEffect(() => {

@@ -55,7 +55,7 @@ const Promo: FC = () => {
           }}
         >
           <p className={clsx(style.marquee__inner)}>
-            <span className={clsx(style.marquee__text)}>лето</span>
+            <span className={clsx(style.marquee__text)}>осень</span>
             <span className={clsx(style.marquee__year)}>2024</span>
           </p>
         </Marquee>

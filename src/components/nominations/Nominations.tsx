@@ -27,7 +27,12 @@ const Nominations: FC = () => {
   }, [getNomination, isTablet]);
 
   const handleAdd = () => {
-    getNomination({ offset: 0, limit: 10 });
+    const count = results.data.count;
+    const length = results.data.results.length;
+
+    if (count > length) {
+      getNomination({ offset: 0, limit: length + 5 });
+    }
   };
 
   return (
@@ -39,20 +44,21 @@ const Nominations: FC = () => {
         <div className={clsx(style.content)}>
           <div className={clsx(style.content__head)}>
             <h2 className={clsx(style.nominations__title)}>Номинации</h2>
-            {!isYang && (
-              <p className={clsx(style.content__text)}>
-                Если ты опытный продакшен — оставайся тут! Если ты молод, свеж и
-                твоему продакшену до двух лет — тебе сюда
+
+            <p className={clsx(style.content__text)}>
+              <span>Если ты опытный продакшен/специалист — оставайся тут!</span>
+
+              <span>
+                Если ты молод, свеж или твоему продакшену до двух лет — тебе
+                <br /> в
                 <HashLink
                   to={`/${paths.young_talent}`}
                   className={clsx(style.content__link)}
                 >
                   <span>Young</span> <span>Talent</span>
                 </HashLink>
-                . Бренд-питчи — для тех, кто хочет попробовать свои силы в
-                работе с реальным брендом
-              </p>
-            )}
+              </span>
+            </p>
           </div>
 
           <div className={clsx(style.torus)}>
@@ -67,7 +73,7 @@ const Nominations: FC = () => {
             <AccordionComonent data={results.data?.results} />
           </ScrollBarComponent>
 
-          {isTablet && (
+          {isTablet && results.data.count > results.data.results.length && (
             <button onClick={handleAdd} className={clsx(style.button_add)}>
               Показать еще
             </button>

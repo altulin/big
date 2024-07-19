@@ -41,6 +41,7 @@
 
     @include mw($tb) {
       font-size: 2.38rem;
+      margin-bottom: 1rem;
     }
   }
 }
@@ -73,6 +74,16 @@
     font-size: 1.12rem;
     line-height: 140%;
     color: #141414;
+    display: flex;
+    flex-direction: column;
+
+    @include mw($tb) {
+      font-weight: 400;
+      font-size: 1rem;
+      line-height: 140%;
+      color: #141414;
+      margin-bottom: 2rem;
+    }
   }
 
   &__link {
@@ -233,8 +244,8 @@
   display: inline-flex;
   align-items: center;
   background-color: rgba(20, 20, 20, 0.04);
-  padding: 0.5rem;
   // margin-top: 1.5rem;
+  padding-right: 0.5rem;
 
   &__text {
     font-weight: 400;
@@ -242,17 +253,18 @@
     line-height: 120%;
     color: var(--basic-dark);
     margin-right: 0.5rem;
+    padding: 0.5rem;
   }
 
   &__logo {
-    max-height: 0.94rem;
+    width: auto;
   }
 }
 
 .canvas {
   width: 100%;
   height: 100%;
-  transform: scale(1.3);
+  transform: scale(1.6, 1.3);
 
   @include mw($tb) {
     transform: scale(1.4);

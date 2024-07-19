@@ -28,7 +28,7 @@ export const canvasCreate = (id: string, color: string) => {
   if (store.getState().yang.isYang) {
     img.src = new URL("./assets/canvas_logo_yang.svg", import.meta.url).href;
   } else {
-    img.src = new URL("./assets/canvas_logo.svg", import.meta.url).href;
+    img.src = new URL("./assets/logo.png", import.meta.url).href;
   }
   // img.src = new URL("./assets/canvas_logo.svg", import.meta.url).href;
 

@@ -42,7 +42,7 @@ const useRoom = () => {
     lineWidth = 0.03 * rem;
 
     const img = new Image();
-    img.src = new URL("./assets/canvas_logo.svg", import.meta.url).href;
+    img.src = new URL("./assets/logo.png", import.meta.url).href;
 
     if (!canvas) return;
     if (!ctx) return;
