@@ -12,6 +12,7 @@ const Soc: FC<{ className?: string }> = ({ className }) => {
           href={item.href}
           aria-label="Соц. сети"
           key={i}
+          target="_blank"
         >
           {<item.icon />}
         </a>

@@ -5,7 +5,7 @@ import { FC } from "react";
 import style from "./Program.module.scss";
 import clsx from "clsx";
 import { useIsTabletDevice } from "@/hooks/IsSmallDevice";
-import IconArr from "@/images/step/iconStepArr.svg?react";
+// import IconArr from "@/images/step/iconStepArr.svg?react";
 
 const ProgramBtnInner: FC<{ date: string; title: string[]; logo?: any }> = (
   props,
@@ -29,9 +29,9 @@ const ProgramBtnInner: FC<{ date: string; title: string[]; logo?: any }> = (
         ))}
       </span>
 
-      <span className={clsx(style.button__icon)}>
+      {/* <span className={clsx(style.button__icon)}>
         <IconArr />
-      </span>
+      </span> */}
     </>
   );
 };
@@ -47,6 +47,8 @@ export const ProgramBtn: FC<{
   const { current } = useAppSelector((state) => state.program);
 
   const handle = (e: any) => {
+    return;
+
     const button = e.target.getAttribute("data-button");
 
     if (current === button) {

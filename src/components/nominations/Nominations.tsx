@@ -55,8 +55,10 @@ const Nominations: FC = () => {
                   to={`/${paths.young_talent}`}
                   className={clsx(style.content__link)}
                 >
-                  <span>Young</span> <span>Talent</span>
+                  <span>Young</span>
+                  <span>Talent</span>
                 </HashLink>
+                <span> by NUUM</span>
               </span>
             </p>
           </div>

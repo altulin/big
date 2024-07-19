@@ -5,6 +5,8 @@ import { FC, useCallback, useEffect } from "react";
 
 import { useIsTabletDevice } from "@/hooks/IsSmallDevice";
 import IconMain from "@/images/header/logo.svg?react";
+import IconMainDark from "@/images/contacts/logo_blue_dark.svg?react";
+
 import { paths } from "@/service/paths";
 import Soc from "./Soc";
 import { useAppSelector } from "@/hooks/hook";
@@ -48,7 +50,8 @@ const Contacts: FC = () => {
             <span>Контакты</span>
           </h2>
 
-          {isTablet && <IconMain />}
+          {isTablet && !isYang && <IconMain />}
+          {isTablet && isYang && <IconMainDark />}
 
           <div className={clsx(style.footer)}>
             <div className={clsx(style.footer__top)}>

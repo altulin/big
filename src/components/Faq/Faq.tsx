@@ -1,6 +1,6 @@
 import clsx from "clsx";
 import style from "@/components/nominations/Nominations.module.scss";
-import { FC, useEffect, useState } from "react";
+import { FC, useEffect } from "react";
 import AccordionComonent from "@/components/nominations/Accordion";
 import { useLazyGetFaqQuery } from "@/store/rtk/feedback/faq";
 import ScrollBarComponent from "@/hoc/scrollbar/ScrollBarComponent";
@@ -8,24 +8,29 @@ import { useIsTabletDevice } from "@/hooks/IsSmallDevice";
 import styleFaq from "./Faq.module.scss";
 import { paths } from "@/service/paths";
 import { initGLGrid } from "@/service/twgl/grid";
+import useIsYang from "@/hooks/isYang";
 
 const Faq: FC = () => {
   const isTablet = useIsTabletDevice();
   const [getFaq, results] = useLazyGetFaqQuery();
+  const isYang = useIsYang();
 
   useEffect(() => {
     getFaq({ offset: 0, limit: isTablet ? 5 : 100 }).unwrap();
   }, [getFaq, isTablet]);
 
   const handleAdd = () => {
-    // console.log(results.data.results);
-    // console.log(results.data.count);
-    getNomination({ offset: 0, limit: 10 });
+    const count = results.data.count;
+    const length = results.data.results.length;
+
+    if (count > length) {
+      getFaq({ offset: 0, limit: length + 5 });
+    }
   };
 
   useEffect(() => {
-    initGLGrid("canvas-faq");
-  }, []);
+    initGLGrid("canvas-faq", false);
+  }, [isYang]);
 
   return (
     <section
@@ -51,7 +56,7 @@ const Faq: FC = () => {
             {results.data && <AccordionComonent data={results.data?.results} />}
           </ScrollBarComponent>
 
-          {isTablet && (
+          {isTablet && results?.data?.count > results?.data?.results.length && (
             <button onClick={handleAdd} className={clsx(style.button_add)}>
               Показать еще
             </button>

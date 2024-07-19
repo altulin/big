@@ -23,7 +23,7 @@ export const canvasCreate = (id: string) => {
   canvasWidth = parentBlock.offsetWidth - 2 * rem;
 
   const img = new Image();
-  img.src = new URL("./assets/logo.png", import.meta.url).href;
+  img.src = new URL("./assets/logo_new.svg", import.meta.url).href;
 
   const scale = window.devicePixelRatio;
 
@@ -41,7 +41,7 @@ export const canvasCreate = (id: string) => {
       x2: 20,
       y2: 11.6,
       w: 19,
-      h: 10.6,
+      h: 12,
     };
     refreshSizeSm();
   }

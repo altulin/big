@@ -26,6 +26,7 @@ const ModalAuth1: FC = () => {
   const { phone_number } = useAppSelector((state) => state.user.dataMe);
 
   const handleClickReg = () => {
+    dispatch(setMenuControl(false));
     navigate(paths.registration);
     dispatch(clearAllStep());
   };
@@ -103,7 +104,10 @@ const ModalAuth1: FC = () => {
                     style["button_service--top"],
                   )}
                   type="button"
-                  onClick={() => dispatch(stepTo({ recovery: { step: 1 } }))}
+                  onClick={() => {
+                    dispatch(setMenuControl(false));
+                    dispatch(stepTo({ recovery: { step: 1 } }));
+                  }}
                 >
                   Забыл пароль
                 </button>

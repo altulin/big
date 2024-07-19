@@ -333,6 +333,11 @@
     row-gap: 1rem;
     overflow: auto;
     padding-top: 1.5rem;
+    padding-bottom: 1rem;
+    flex-grow: 1;
+    justify-content: space-around;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
 
     @include mw($tb) {
       display: grid;

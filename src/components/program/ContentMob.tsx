@@ -11,6 +11,7 @@ const ContentMob: FC = () => {
     <Accordion className={clsx(style.content)}>
       {program.map((item, i) => (
         <AccordionItem
+          disabled={true}
           className={clsx(style.accordion__item)}
           header={
             <ProgramBtn

@@ -11,9 +11,9 @@ import IconVk from "@/images/contacts/vk.svg?react";
 export const soc = [
   // { href: "#", icon: IconYou },
   // { href: "#", icon: IconInst },
-  { href: "#", icon: IconNuum },
-  { href: "#", icon: IconTg },
-  { href: "#", icon: IconVk },
+  { href: "https://nuum.ru/channel/bigpicturefestival", icon: IconNuum },
+  { href: "https://t.me/bigpicturefestival", icon: IconTg },
+  { href: "https://vk.com/bigpicturefestival", icon: IconVk },
 ];
 
 export const law = [
