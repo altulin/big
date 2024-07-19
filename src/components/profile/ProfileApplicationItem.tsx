@@ -9,8 +9,8 @@ import { getCategory, getNominationValue } from "./service";
 import { useLazyNominationsQuery } from "@/store/rtk/nominations/nominations";
 import { useNavigate } from "react-router-dom";
 import { paths } from "@/service/paths";
-import IconBasket from "@/images/pass/basket.svg?react";
-import { useLazyDeleteWorkQuery } from "@/store/rtk/orders/delete_work";
+// import IconBasket from "@/images/pass/basket.svg?react";
+// import { useLazyDeleteWorkQuery } from "@/store/rtk/orders/delete_work";
 
 export interface IProfileApplicationItem {
   status: string;
@@ -30,7 +30,7 @@ export interface IProfileApplicationItem {
 }
 
 const ProfileApplicationItem: FC<IProfileApplicationItem> = ({
-  isDraft,
+  // isDraft,
   num,
   ...props
 }) => {
@@ -46,7 +46,7 @@ const ProfileApplicationItem: FC<IProfileApplicationItem> = ({
     title,
   } = props;
   const navigate = useNavigate();
-  const [deletWork] = useLazyDeleteWorkQuery();
+  // const [deletWork] = useLazyDeleteWorkQuery();
 
   useEffect(() => {
     getNomination({ offset: 0, limit: 100 }).unwrap();
@@ -56,10 +56,10 @@ const ProfileApplicationItem: FC<IProfileApplicationItem> = ({
     navigate(`/${paths.edit}/${id}`);
   };
 
-  const handleDelete = () => {
-    deletWork({ id });
-    // console.log(id);
-  };
+  // const handleDelete = () => {
+  //   deletWork({ id });
+  //   // console.log(id);
+  // };
 
   return (
     <div className={clsx(style.item)}>
