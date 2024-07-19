@@ -73,7 +73,7 @@ const Nominations: FC = () => {
             <AccordionComonent data={results.data?.results} />
           </ScrollBarComponent>
 
-          {isTablet && results.data.count > results.data.results.length && (
+          {isTablet && results?.data?.count > results?.data?.results.length && (
             <button onClick={handleAdd} className={clsx(style.button_add)}>
               Показать еще
             </button>

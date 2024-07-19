@@ -105,7 +105,7 @@ export function initGLTunnel(id: string, color: string) {
       const zNear = 0.25;
       const zFar = 100;
       const projection = twgl.m4.perspective(fov, aspect, zNear, zFar);
-      const targetX = (0.5 - scroll / 100) * -1;
+      const targetX = (0.5 - scroll / 100) * 1;
 
       const eye = [cameraX, 0, 0];
       const target = [targetX, 0, -1];

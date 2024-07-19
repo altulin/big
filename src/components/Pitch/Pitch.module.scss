@@ -114,6 +114,29 @@
       }
     }
   }
+
+  &__info {
+    font-weight: 400;
+    font-size: 2rem;
+    line-height: 100%;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    text-align: center;
+    color: #141414;
+    margin: auto 0;
+    transform: translateY(-2rem);
+
+    @include mw($tb) {
+      transform: none;
+      font-weight: 400;
+      font-size: 1.25rem;
+      line-height: 100%;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      text-align: center;
+      color: #141414;
+    }
+  }
 }
 
 .head {
@@ -125,17 +148,22 @@
   @include mw($tb) {
     flex-wrap: wrap;
     gap: 1rem;
-    margin-bottom: 2rem;
+    margin-bottom: 3rem;
   }
 
   &--nuum {
     svg {
-      width: 15.75rem;
-      height: 3rem;
+      // width: 15.75rem;
+      width: 7.25rem;
+      // height: 3rem;
+      height: 3.875rem;
 
       @include mw($tb) {
-        width: 10.75rem;
-        height: 1.75rem;
+        // width: 10.75rem;
+        // height: 1.75rem;
+
+        width: 3.125rem;
+        height: 1.625rem;
       }
     }
   }
@@ -165,7 +193,7 @@
     font-weight: 400;
     font-size: 2.25rem;
     line-height: 100%;
-    letter-spacing: 0.02em;
+    letter-spacing: -0.02em;
     text-transform: uppercase;
     color: #141414;
   }

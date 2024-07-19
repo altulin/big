@@ -78,7 +78,10 @@
   height: 100%;
   &__item {
     display: flex;
-    border-top: var(--line) solid var(--basic-dark);
+
+    &:not(:first-child) {
+      border-top: var(--line) solid var(--basic-dark);
+    }
 
     &:last-child {
       border-bottom: var(--line) solid var(--basic-dark);

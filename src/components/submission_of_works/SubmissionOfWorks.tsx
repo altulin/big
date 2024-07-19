@@ -24,7 +24,7 @@ const SubmissionOfWorks: FC = () => {
   }, [isYang]);
 
   const getImg = () => {
-    return new URL("./assets/eye.gif", import.meta.url).href;
+    return new URL("./assets/eye-2.gif", import.meta.url).href;
   };
 
   return (

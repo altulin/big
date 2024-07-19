@@ -2,12 +2,16 @@
 
 import IconNuum from "@/images/pitch/nuum.svg?react";
 import IconMega from "@/images/pitch/mega.svg?react";
+import IconNuumOnce from "@/images/pitch/nuum-onse.svg?react";
 import { FunctionComponent, SVGProps } from "react";
+import { categoriesPitshes } from "../Pass/script";
 
 type TPitch = {
   icon: FunctionComponent<
     SVGProps<SVGSVGElement> & { title?: string | undefined }
   >;
+  title: string;
+  title_mob: string;
   text: string;
   list: {
     link?: string;
@@ -17,13 +21,16 @@ type TPitch = {
     label_2?: string;
   }[];
   deadline: string;
-  modifier?: string;
+  modifier: string;
 };
 
 export const pitch: TPitch[] = [
   {
-    modifier: "nuum",
-    icon: IconNuum,
+    title: "IDEA DAY by ",
+    title_mob: "IDEA DAY by",
+    modifier: categoriesPitshes.nuum,
+    // icon: IconNuum,
+    icon: IconNuumOnce,
     text: "Специальный творческий конкурс для молодых талантов. Прояви себя и получи шанс попасть на настоящие съемки рекламы!",
     deadline: "20 сентября",
     list: [
@@ -48,7 +55,9 @@ export const pitch: TPitch[] = [
     ],
   },
   {
-    modifier: "mega",
+    title: "Питч от ",
+    title_mob: "Питч от ",
+    modifier: categoriesPitshes.mega,
     icon: IconMega,
     text: "Специальный творческий конкурс для молодых талантов. Прояви себя и получи шанс попасть на настоящие съемки рекламы!",
     deadline: "20 сентября",
