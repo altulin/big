@@ -79,7 +79,7 @@
   font-weight: 400;
   font-size: 0.88rem;
   line-height: 120%;
-  color: #141414;
+  color: var(--basic-dark);
   position: relative;
   background-color: transparent;
   transition: 0.3s;
@@ -162,7 +162,7 @@
   font-weight: 400;
   font-size: 0.88rem;
   line-height: 120%;
-  color: #141414;
+  color: var(--basic-dark);
   display: flex;
   column-gap: 0.5rem;
   align-self: center;
@@ -230,7 +230,7 @@
   padding: 5rem;
 
   @include mw($tb) {
-    padding: 3rem 1.5rem;
+    padding: 3rem 1rem;
   }
 
   &__inner {
@@ -264,6 +264,12 @@
 
     &:hover {
       background-color: var(--color-green-hover);
+    }
+
+    @include mw($tb) {
+      width: 100%;
+      text-align: center;
+      padding: 1.5rem;
     }
   }
 }
