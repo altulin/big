@@ -1,11 +1,18 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { FC } from "react";
+import { FC, useEffect } from "react";
 import style from "./Partners.module.scss";
 import clsx from "clsx";
+import { HashLink } from "react-router-hash-link";
+import { setClick, setPath } from "@/store/menu/menuSlice";
+import { useIsTabletDevice } from "@/hooks/IsSmallDevice";
+import { useAppDispatch } from "@/hooks/hook";
+import { paths } from "@/service/paths";
 const PartnersBlock: FC<{
-  list: { url: string; logo: string }[];
+  list: { url: string; logo: string; title: string }[];
   type: string;
 }> = ({ list, type }) => {
+  const isTablet = useIsTabletDevice();
+  const dispatch = useAppDispatch();
   const getTitle = (type: string) => {
     switch (type) {
       case "general":
@@ -17,16 +24,32 @@ const PartnersBlock: FC<{
     }
   };
 
+  const handleBrandClick = (e: any, section: string | undefined) => {
+    if (section !== "Мегамаркет") return;
+
+    if (!isTablet) {
+      e.preventDefault();
+      dispatch(setClick(true));
+      dispatch(setPath(paths.pitch));
+    }
+  };
+
+  useEffect(() => {
+    console.log(list);
+  }, [list]);
+
   return (
     <div className={clsx(style.item)}>
       <h3 className={clsx(style.item__title)}>{getTitle(type)}</h3>
       <ul className={clsx(style.item__list)}>
         {list.map((item, i) => (
           <li key={i} className={clsx(style.item__list_item)}>
-            <a
-              href={item.url}
+            <HashLink
+              smooth
+              to={item.title === "Мегамаркет" ? `/#${paths.pitch}` : item.url}
               className={clsx(style.item__list_link)}
-              target="_blank"
+              target={item.title !== "Мегамаркет" ? "_blank" : "_self"}
+              onClick={(e) => handleBrandClick(e, item.title)}
             >
               <img
                 className={clsx(style.item__list_logo)}
@@ -35,7 +58,7 @@ const PartnersBlock: FC<{
                 width={96}
                 height={35}
               />
-            </a>
+            </HashLink>
           </li>
         ))}
       </ul>

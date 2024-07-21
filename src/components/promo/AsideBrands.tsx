@@ -25,18 +25,30 @@ const AsideBrands: FC = () => {
     }
   };
 
+  const handleBrandClick = (e: any, section: string | undefined) => {
+    if (!section) return;
+
+    if (!isTablet) {
+      e.preventDefault();
+      dispatch(setClick(true));
+      dispatch(setPath(section));
+    }
+  };
+
   return (
     <div className={clsx(style.aside)}>
       <ul className={clsx(style.aside__list, "scroll")}>
         {brands.map((item, i) => (
           <li key={i} className={clsx(style.aside__item)}>
-            <a
-              href={item.href}
+            <HashLink
+              smooth
+              to={item.section ? `/#${item.section}` : item.href}
               className={clsx(style.aside__link)}
-              target="_blank"
+              target={!item.section ? "_blank" : "_self"}
+              onClick={(e) => handleBrandClick(e, item.section)}
             >
               <item.icon />
-            </a>
+            </HashLink>
           </li>
         ))}
       </ul>

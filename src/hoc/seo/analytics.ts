@@ -36,7 +36,7 @@ export const googleCounter = `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm
 new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
 j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-PR6NRJT5');`;
+})(window,document,'script','dataLayer','GTM-NSR4ZWLM');`;
 
-export const googleNoScript = `<iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PR6NRJT5"
-height="0" width="0" style="display:none;visibility:hidden"></iframe>`;
+export const googleNoScript = `<iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NSR4ZWLM"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe>`;

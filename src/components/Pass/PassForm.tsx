@@ -19,6 +19,7 @@ import { useDispatch } from "react-redux";
 import useSignOut from "@/hooks/signOut";
 import { useNavigate } from "react-router-dom";
 import { paths } from "@/service/paths";
+import useGoogleManager from "@/hooks/googleManager";
 
 const PassForm: FC = () => {
   const { createValidationSchema, getProperties } = useInitialValues();
@@ -30,7 +31,7 @@ const PassForm: FC = () => {
   const { runWidget } = useWidget();
   const { tickets_amount } = useAppSelector((state) => state.pass);
   const navigate = useNavigate();
-
+  const { addEvent } = useGoogleManager();
   const makePayLoad = async (values: any) => {
     const { category, fields } = values;
     const { works } = await makeArrayPayLoad(category, categoryPitch, fields);
@@ -54,6 +55,10 @@ const PassForm: FC = () => {
 
     return body;
   };
+
+  useEffect(() => {
+    addEvent({ event: "submission-start", app_category: category });
+  }, [addEvent, category]);
 
   useEffect(() => {
     if (status === "fulfilled") {
@@ -116,6 +121,11 @@ const PassForm: FC = () => {
               .then(() => resetForm());
           }, 500),
         );
+        addEvent({
+          event: "submission-submit",
+          app_category: category,
+          ticker: tickets_amount === 0 ? "no" : "yes",
+        });
       }}
       enableReinitialize
     >

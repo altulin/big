@@ -65,6 +65,7 @@ const App: FC = () => {
       {import.meta.env.PROD && (
         <Seo title={title} description={description} url={url} />
       )}
+
       <Routes>
         <Route path="/" element={<Template />}>
           <Route index element={<HomePage />} />

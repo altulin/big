@@ -67,8 +67,9 @@
     flex-wrap: wrap;
 
     @include mw($tb) {
-      row-gap: 1rem;
-      column-gap: 0;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
     }
   }
   &__list_item {
@@ -76,8 +77,10 @@
     height: 2.72rem;
     background-color: rgba(#131313, 0.06);
     padding: 0.4rem;
+
     @include mw($tb) {
-      width: calc(100% / 3);
+      width: 100%;
+      // width: calc(100% / 3);
     }
   }
 

@@ -3,7 +3,7 @@ import clsx from "clsx";
 import style from "./Pitch.module.scss";
 import { FC } from "react";
 import { paths } from "@/service/paths";
-import { pitch } from "./scriprt";
+import { usePitch } from "./scriprt";
 import useIsAuth from "@/hooks/isAuth";
 import { useAppDispatch } from "@/hooks/hook";
 import { stepTo } from "@/store/modal/modalSlice";
@@ -17,8 +17,9 @@ const Pitch: FC = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const isTablet = useIsTabletDevice();
+  const { pitch } = usePitch();
 
-  const handleClick = (_: any, type: string) => {
+  const handleClick = () => {
     if (!isAuth) {
       dispatch(stepTo({ auth: { step: 1 } }));
     } else {
@@ -85,7 +86,7 @@ const Pitch: FC = () => {
 
                 <div className={clsx(style.pitch__bottom)}>
                   <button
-                    onClick={(e) => handleClick(e, item.modifier)}
+                    onClick={() => handleClick()}
                     className={clsx(style.pitch__button)}
                   >
                     участвовать

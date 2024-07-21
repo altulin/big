@@ -55,7 +55,7 @@ const AccordionComonent: FC<{
             !data?.partner && style["accordion__block--support"],
           )}
         >
-          {data.partner && (
+          {data.partner && !isYang && (
             <a
               className={clsx(style.support, isYang && style["support--yang"])}
               target="_blank"

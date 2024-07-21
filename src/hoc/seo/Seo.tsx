@@ -1,14 +1,6 @@
 import { FC } from "react";
 import { Helmet } from "react-helmet-async";
-import {
-  mailCounter,
-  mailRating,
-  mailNoScript,
-  yaCounter,
-  yaNoScript,
-  googleCounter,
-  googleNoScript,
-} from "./analytics";
+import { googleCounter, googleNoScript } from "./analytics";
 
 interface ISeo {
   title?: string;
@@ -41,25 +33,6 @@ const Seo: FC<ISeo> = ({ title, description, image = "/image.jpg", url }) => {
 
       {import.meta.env.MODE === "production" && (
         <>
-          <script async type="text/javascript">
-            {mailCounter}
-          </script>
-          <noscript>{mailNoScript}</noscript>
-          <script async type="text/javascript">
-            {mailRating}
-          </script>
-
-          <script async type="text/javascript">
-            {yaCounter}
-          </script>
-          <noscript>{yaNoScript}</noscript>
-
-          <script
-            async
-            src="//cdn.callibri.ru/callibri.js"
-            type="text/javascript"
-          ></script>
-
           <script async type="text/javascript">
             {googleCounter}
           </script>

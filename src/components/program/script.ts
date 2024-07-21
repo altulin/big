@@ -19,7 +19,7 @@ export interface IProgram {
 
 export const program: IProgram[] = [
   {
-    title: ["Наболело:", "препродакшен."],
+    title: ["Препродакшн:", "говорим как есть."],
     date: "01/08",
     place: {
       info: "Место и время проведения:",

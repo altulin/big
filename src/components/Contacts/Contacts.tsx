@@ -79,7 +79,7 @@ const Contacts: FC = () => {
               >
                 Политика использования персональных данных
               </a>
-              <a
+              {/* <a
                 className={clsx(
                   style.law__link,
                   isYang && style.law__link_yang,
@@ -88,7 +88,7 @@ const Contacts: FC = () => {
                 target="_blank"
               >
                 Политика использования Cookie
-              </a>
+              </a> */}
               <a
                 className={clsx(
                   style.law__link,

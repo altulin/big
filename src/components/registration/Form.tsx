@@ -17,12 +17,14 @@ import CompanyReg from "./Company";
 import { onPhoneInput } from "@/service/form/masks/phone";
 import { useSettigsQuery } from "@/store/rtk/main/settings";
 import { useRegistrationMutation } from "@/store/rtk/user/registration";
+import useGoogleManager from "@/hooks/googleManager";
 
 const FormRegistration: FC = () => {
   const dispatch = useAppDispatch();
   const { status } = useAppSelector((state) => state.reg);
   const { data } = useSettigsQuery(undefined);
   const [registration] = useRegistrationMutation();
+  const { addEvent } = useGoogleManager();
 
   const makeArr = () => {
     const arr: any = [
@@ -85,7 +87,9 @@ const FormRegistration: FC = () => {
                 comein: true,
               }),
             );
+
             resetForm();
+            addEvent({ event: "registration-submit" });
           })
           .catch(() => {});
       }}

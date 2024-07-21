@@ -1,10 +1,18 @@
-import { FC } from "react";
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { FC, useEffect } from "react";
 import style from "./Registration.module.scss";
 import clsx from "clsx";
 import FormRegistration from "./Form";
 import ScrollBarComponent from "@/hoc/scrollbar/ScrollBarComponent";
+import useGoogleManager from "@/hooks/googleManager";
 
-const ServicePage: FC = () => {
+const Registration: FC = () => {
+  const { addEvent } = useGoogleManager();
+
+  useEffect(() => {
+    addEvent({ event: "registration-start" });
+  }, [addEvent]);
+
   return (
     <div className={clsx(style.registration)}>
       <div className={clsx(style.registration__inner)}>
@@ -15,4 +23,4 @@ const ServicePage: FC = () => {
     </div>
   );
 };
-export default ServicePage;
+export default Registration;

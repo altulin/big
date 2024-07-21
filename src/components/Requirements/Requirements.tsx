@@ -1,23 +1,20 @@
 import clsx from "clsx";
 import style from "./Requirements.module.scss";
 import { FC, useEffect, useState } from "react";
-import { useIsTabletDevice } from "@/hooks/IsSmallDevice";
-import { requirements } from "./script";
+import { requirements, requirementYang } from "./script";
 import { paths } from "@/service/paths";
 import { useAppSelector } from "@/hooks/hook";
 
 const Requirements: FC = () => {
-  const isTablet = useIsTabletDevice();
-  const [isBtn, setIsBtn] = useState<boolean>(false);
-  const [listResults, setListResults] = useState<string[]>(requirements);
+  // const isTablet = useIsTabletDevice();
+  // const [isBtn, setIsBtn] = useState<boolean>(false);
   const { isYang } = useAppSelector((state) => state.yang);
 
-  useEffect(() => {
-    if (!isTablet) return;
+  const [listResults, setListResults] = useState<string[]>([]);
 
-    setListResults(requirements.slice(0, 5));
-    setIsBtn(true);
-  }, [isTablet]);
+  useEffect(() => {
+    setListResults(() => (isYang ? requirementYang : requirements));
+  }, [isYang]);
 
   return (
     <section
@@ -43,7 +40,7 @@ const Requirements: FC = () => {
             ))}
           </ul>
         </div>
-        {isTablet && isBtn && (
+        {/* {isTablet && isBtn && (
           <button
             onClick={() => {
               setListResults(requirements);
@@ -53,7 +50,7 @@ const Requirements: FC = () => {
           >
             Показать еще
           </button>
-        )}
+        )} */}
       </div>
     </section>
   );

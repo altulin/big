@@ -21,10 +21,10 @@ export const law = [
     label: "Политика использования персональных данных",
     href: import.meta.env.VITE_APP_PERSONAL_DATA,
   },
-  {
-    label: "Политика использования Cookie",
-    href: import.meta.env.VITE_APP_COOKIE_DATA,
-  },
+  // {
+  //   label: "Политика использования Cookie",
+  //   href: import.meta.env.VITE_APP_COOKIE_DATA,
+  // },
   {
     label: "Регламент фестиваля",
     href: import.meta.env.VITE_APP_FESTIVAL_DATA,
