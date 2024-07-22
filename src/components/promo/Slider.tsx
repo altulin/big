@@ -15,7 +15,8 @@ import { paths } from "@/service/paths";
 const Slider: FC = () => {
   const isTablet = useIsTabletDevice();
   const dispatch = useAppDispatch();
-  const slides = [<Slide_1 />, <Slide_2 />];
+  // const slides = [<Slide_1 />, <Slide_2 />];
+  const slides = [<Slide_1 />];
 
   const changeHandle = () => {
     if (isTablet) return;
