@@ -330,7 +330,7 @@
   &__list {
     display: flex;
     flex-direction: column;
-    row-gap: 1rem;
+    // row-gap: 1rem;
     overflow: auto;
     padding-top: 1.5rem;
     padding-bottom: 1rem;
@@ -360,6 +360,12 @@
     display: flex;
     justify-content: center;
     width: 100%;
+    flex-grow: 1;
+
+    svg {
+      // height: 100%;
+      // max-height: 100%;
+    }
 
     @include mw($tb) {
       svg {

@@ -37,7 +37,7 @@ const AsideBrands: FC = () => {
 
   return (
     <div className={clsx(style.aside)}>
-      <ul className={clsx(style.aside__list, "scroll")}>
+      <ul className={clsx(style.aside__list, "swiper-no-mousewheel")}>
         {brands.map((item, i) => (
           <li key={i} className={clsx(style.aside__item)}>
             <HashLink
