@@ -5,7 +5,6 @@ import Steps from "@/components/steps/Steps";
 import Nominations from "@/components/nominations/Nominations";
 import SubmissionOfWorks from "@/components/submission_of_works/SubmissionOfWorks";
 import Price from "@/components/Price/Price";
-import Requirements from "@/components/requirements/Requirements";
 import Criteria from "@/components/criteria/Criteria";
 import Jury from "@/components/jury/Jury";
 import clsx from "clsx";
@@ -24,6 +23,7 @@ import { useAppDispatch } from "@/hooks/hook";
 import { setYang } from "@/store/yang/yangSlice";
 import { setPath } from "@/store/menu/menuSlice";
 import { paths } from "@/service/paths";
+import Requirements from "@/components/requirements/Requirements";
 
 export const pages: any = [
   // <Promo />,
