@@ -54,8 +54,8 @@ const FormRegistration: FC = () => {
         confirm_password: "",
         name: "",
         company_name: "",
-        rule: true,
-        offer: true,
+        rule: false,
+        offer: false,
         phone: "",
         file: undefined,
       }}
@@ -96,6 +96,7 @@ const FormRegistration: FC = () => {
       enableReinitialize={true}
     >
       {(formik) => {
+        console.log(formik);
         {
           return (
             <>
@@ -161,17 +162,15 @@ const FormRegistration: FC = () => {
                   </a>
                 </Checkbox>
 
-                {status === "entity" && (
-                  <Checkbox name="rule" isChecked={formik.values.rule}>
-                    <a
-                      className={clsx(style.form__rule_link)}
-                      href={data?.offer}
-                      target="_blank"
-                    >
-                      Оферту
-                    </a>
-                  </Checkbox>
-                )}
+                <Checkbox name="rule" isChecked={formik.values.rule}>
+                  <a
+                    className={clsx(style.form__rule_link)}
+                    href={data?.offer}
+                    target="_blank"
+                  >
+                    Оферту
+                  </a>
+                </Checkbox>
 
                 <div className={clsx(style.control)}>
                   <Button

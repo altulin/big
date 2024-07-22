@@ -22,9 +22,9 @@ const Entity: FC<{ formik: any }> = ({ formik }) => {
       <Upload
         name="file"
         label={
-          !formik.values.file ? "Прикрепить файл .doc" : formik.values.file.name
+          !formik.values.file ? "Прикрепить файл" : formik.values.file.name
         }
-        accept=".doc, .docx"
+        accept=".doc, .docx, .pdf"
         modifier="file-profile"
         formik={formik}
       ></Upload>

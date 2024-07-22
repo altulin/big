@@ -4,24 +4,19 @@ const useGoogleManager = () => {
     dataLayer: any[];
   }
 
-  const addEvent = ({
-    event,
-    app_category,
-    ticker,
-  }: {
+  interface IObj {
     event: string;
     app_category?: string | undefined;
     ticker?: string | undefined;
-  }) => {
+    user_id?: string | undefined;
+  }
+
+  const addEvent = ({ event, app_category, ticker, user_id }: IObj) => {
     const customWindow = window as unknown as CustomWindow;
 
     if (!customWindow.dataLayer) return;
 
-    const objEvent: {
-      event: string;
-      app_category?: string | undefined;
-      ticker?: string | undefined;
-    } = {
+    const objEvent: IObj = {
       event: event,
     };
 
@@ -31,6 +26,10 @@ const useGoogleManager = () => {
 
     if (ticker) {
       objEvent["ticker"] = ticker;
+    }
+
+    if (user_id) {
+      objEvent["user_id"] = ticker;
     }
 
     customWindow.dataLayer.push(objEvent);

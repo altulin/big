@@ -4,11 +4,13 @@ import style from "./Header.module.scss";
 import IconCome from "@/images/header/come.svg?react";
 import { useAppDispatch } from "@/hooks/hook";
 import { stepTo } from "@/store/modal/modalSlice";
+import { setMenuControl } from "@/store/menu/menuSlice";
 
 const ComeIn: FC<{ className?: string }> = ({ className }) => {
   const dispatch = useAppDispatch();
 
   const clickHandle = () => {
+    dispatch(setMenuControl(false));
     dispatch(stepTo({ auth: { step: 1 } }));
   };
   return (

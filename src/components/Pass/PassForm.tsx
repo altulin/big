@@ -12,7 +12,6 @@ import { useInitialValues } from "./formService";
 import { useSendWorkMutation } from "@/store/rtk/orders/send_work";
 import useWidget from "./widget";
 import makeArrayPayLoad, { getBase64 } from "./payLoadServise";
-import { categories } from "./script";
 import useProfile from "@/hooks/profile";
 import { setErrorModal, setSuccessModal } from "@/store/modal/modalSlice";
 import { useDispatch } from "react-redux";
