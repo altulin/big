@@ -21,6 +21,9 @@ import { token } from "./service/token";
 import useMe from "./hooks/me";
 import Recovery from "./components/Recovery/Recovery";
 import Edit from "./components/Edit/Edit";
+import { setPath } from "./store/menu/menuSlice";
+import { useAppDispatch } from "./hooks/hook";
+import { useIsTabletDevice } from "./hooks/IsSmallDevice";
 
 const App: FC = () => {
   const title = import.meta.env.VITE_APP_TITLE;
@@ -31,6 +34,38 @@ const App: FC = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const { getMeData } = useMe();
+  const dispatch = useAppDispatch();
+  const isTablet = useIsTabletDevice();
+
+  useEffect(() => {
+    const { pathname, hash } = location;
+
+    if (pathname === "/" && hash === "#price") {
+      if (isTablet) {
+        const el = document.getElementById(paths.price);
+        if (!el) return;
+
+        setTimeout(() => {
+          el.scrollIntoView({ behavior: "smooth" });
+        }, 200);
+        return;
+      }
+      dispatch(setPath(paths.price));
+    }
+
+    if (pathname === `/${paths.young_talent}` && hash === "#price") {
+      if (isTablet) {
+        const el = document.getElementById(paths.price_young);
+        console.log(el);
+        if (!el) return;
+        setTimeout(() => {
+          el.scrollIntoView({ behavior: "smooth" });
+        }, 200);
+        return;
+      }
+      dispatch(setPath(paths.price_young));
+    }
+  }, [dispatch, location]);
 
   // dark theme
   useEffect(() => {
@@ -117,6 +152,8 @@ const App: FC = () => {
               </RequireAuth>
             }
           />
+
+          {/* <Route path="/:section" element={<HomePage />} /> */}
 
           {/* <Route path="*" element={<HomePage />} /> */}
         </Route>

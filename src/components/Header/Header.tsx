@@ -18,6 +18,7 @@ import useIsYang from "@/hooks/isYang";
 import LogoBoxHome from "./LogoBoxHome";
 import Logo from "./Logo";
 import useAllLinks from "./allLinks";
+import { paths } from "@/service/paths";
 
 const Header = () => {
   const { isMenu } = useAppSelector((state) => state.menu);
@@ -55,6 +56,15 @@ const Header = () => {
   useEffect(() => {
     if (isTablet) return;
 
+    if (isYang) {
+      const submenu = links.filter(
+        (item) => item.path === paths.young_talent,
+      )[0].submenu;
+
+      setSubMenu(submenu);
+      return;
+    }
+
     links.forEach((item) => {
       if (item.path === path) {
         if (item.submenu) {
@@ -76,6 +86,7 @@ const Header = () => {
 
   useEffect(() => {
     if (isTablet) return;
+    if (isYang) return;
 
     if (!allLinksList.includes(path)) {
       setSubMenu(undefined);
