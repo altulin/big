@@ -119,7 +119,7 @@
     font-weight: 400;
     font-size: 1rem;
     line-height: 130%;
-    color: #141414;
+    color: var(--basic-dark);
     border-right: var(--line) solid var(--basic-dark);
     width: 8rem;
     display: flex;
@@ -208,6 +208,7 @@
   color: var(--basic-dark);
   padding: 0.875rem 1rem 0.875rem 9rem;
   width: 100%;
+  background-color: var(--basic-light);
 
   @include mw($tb) {
     padding-left: 1rem;
@@ -216,6 +217,12 @@
 
   &::placeholder {
     color: rgba(#131313, 0.48);
+  }
+
+  &--yang {
+    &::placeholder {
+      color: rgba(#fff, 0.4);
+    }
   }
 
   &--radio {
@@ -284,6 +291,10 @@
   right: 0;
   height: 100%;
   border-left: var(--line) solid var(--basic-dark);
+
+  svg {
+    stroke: var(--basic-dark);
+  }
 }
 
 .error {

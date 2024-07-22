@@ -6,6 +6,7 @@ import style from "./Form.module.scss";
 import clsx from "clsx";
 import { useAppDispatch } from "@/hooks/hook";
 import { setStatus } from "@/store/reg/regSlice";
+import useIsYang from "@/hooks/isYang";
 
 interface IMyTextInput {
   label?: string;
@@ -34,6 +35,7 @@ const TextInput: FC<IMyTextInput> = ({ children, ...props }) => {
   const [field, meta] = useField(props);
   const id = useId();
   const dispatch = useAppDispatch();
+  const { isYang } = useIsYang();
 
   useEffect(() => {
     if (field.name !== "status") return;
@@ -53,6 +55,7 @@ const TextInput: FC<IMyTextInput> = ({ children, ...props }) => {
             style.input,
             style[`input--${props.modifier}`] || "",
             meta.error && style["input--error"],
+            isYang && style["input--yang"],
           )}
           id={props.id || id}
           // value={field.value || ""}
