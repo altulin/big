@@ -198,7 +198,11 @@
     position: absolute !important;
     right: 0;
     bottom: 0;
-    width: 46%;
+    width: 40%;
+
+    @media screen and (max-width: 1920px) {
+      width: 46%;
+    }
 
     @include mw($tb) {
       position: static !important;
@@ -216,13 +220,26 @@
     flex-grow: 1;
     display: flex;
     flex-direction: column;
+
+    @include mw($tb) {
+      padding-left: 2rem;
+      padding-right: 2rem;
+      margin-top: 6rem;
+    }
   }
 
   &__figure {
     margin-top: auto;
     position: relative;
-    padding-top: 114%;
-    height: 0;
+    flex-grow: 1;
+
+    @include mw($tb) {
+      height: 25rem;
+    }
+
+    @include mw($ph) {
+      height: 17rem;
+    }
   }
 
   &__img {
@@ -232,7 +249,8 @@
     height: 100%;
     top: 0;
     left: 0;
-    object-fit: cover;
+    object-fit: contain;
+    object-position: center bottom;
   }
 }
 

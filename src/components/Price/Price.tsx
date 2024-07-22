@@ -5,7 +5,6 @@ import { FC, useEffect, useState } from "react";
 
 import { paths } from "@/service/paths";
 import { useIntermediateStageQuery } from "@/store/rtk/stage/intermediateStage";
-import format from "format-number";
 import useIsYang from "@/hooks/isYang";
 
 const Price: FC = () => {
@@ -20,7 +19,9 @@ const Price: FC = () => {
   useEffect(() => {
     if (status !== "fulfilled") return;
 
-    const baseList = data?.results.slice(0, 3);
+    const baseList = data?.results.filter(
+      (item: any) => item.stage === "submission",
+    );
 
     const list = baseList.map((item: any) => {
       return item.work_costs.filter((el: any) => {
