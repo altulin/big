@@ -1,5 +1,6 @@
 // import IconBrand_1 from "@/images/promo/brand-carboncore.svg?react";
-import IconBrand_1 from "@/images/promo/brand-carboncore-new.svg?react";
+// import IconBrand_1 from "@/images/promo/brand-carboncore-new.svg?react";
+import IconBrand_1 from "@/images/promo/brand-carboncore.svg?react";
 // import IconBrand_2 from "@/images/promo/brand-2.svg?react";
 import IconBrand_hype from "@/images/promo/brand-3.svg?react";
 // import IconBrand_4 from "@/images/promo/brand-4.svg?react";
@@ -10,11 +11,12 @@ import { paths } from "@/service/paths";
 import IconGrape from "@/images/promo/grape.svg?react";
 
 export const brands = [
+  { href: "https://www.carboncore.ru/", alt: "logo", icon: IconBrand_1 },
   { href: "https://www.hypepro.tv/", alt: "logo", icon: IconBrand_hype },
   { href: "https://nuum.ru/", alt: "logo", icon: IconNuum },
   { href: "#", alt: "", icon: IcconMega, section: paths.pitch },
   { href: "https://bazelevs.ru/", alt: "logo", icon: IconBase },
-  { href: "https://www.carboncore.ru/", alt: "logo", icon: IconBrand_1 },
+
   // { href: "#", alt: "", icon: IconBrand_2 },
   // { href: "#", alt: "", icon: IconBrand_4 },
 ];

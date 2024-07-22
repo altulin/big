@@ -350,6 +350,10 @@ img {
 
 .carboncore {
   transform: scale(0.7);
+
+  @include mw($tb) {
+    transform: none;
+  }
 }
 
 * {
