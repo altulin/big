@@ -7,7 +7,6 @@ import style from "./Promo.module.scss";
 import Slide_1 from "./Slide_1";
 import Slide_2 from "./Slide_2";
 import { Navigation } from "swiper/modules";
-import imgInstructor from "@/images/promo/instructor.png";
 import { useIsTabletDevice } from "@/hooks/IsSmallDevice";
 import { useAppDispatch } from "@/hooks/hook";
 import { setClick, setPath } from "@/store/menu/menuSlice";
@@ -16,15 +15,7 @@ import { paths } from "@/service/paths";
 const Slider: FC = () => {
   const isTablet = useIsTabletDevice();
   const dispatch = useAppDispatch();
-  const slides = [
-    <Slide_1 />,
-    <Slide_2
-      name="Adam Bentel"
-      job="оператор-постановщик из ЮАР"
-      img={imgInstructor}
-    />,
-    <Slide_2 name="Андрей Долгов" job="режиссер" img={imgInstructor} />,
-  ];
+  const slides = [<Slide_1 />, <Slide_2 />];
 
   const changeHandle = () => {
     if (isTablet) return;

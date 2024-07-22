@@ -17,3 +17,26 @@ export const brands = [
   // { href: "#", alt: "", icon: IconBrand_2 },
   // { href: "#", alt: "", icon: IconBrand_4 },
 ];
+
+export const girls = [
+  {
+    name: "Миня Хлечян",
+    job: "Второй режиссер",
+    img: "minya.png",
+  },
+  {
+    name: "Катя Жаворонкова",
+    job: "Совладелец, генеральный продюсер Reason Pictures",
+    img: "katya.png",
+  },
+  {
+    name: "Анна Коновалова",
+    job: "Senior MarCom&Brand Avito ",
+    img: "ann.png",
+  },
+  {
+    name: "Ира Лаврова",
+    job: "Head of production Friends",
+    img: "ira.png",
+  },
+];

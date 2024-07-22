@@ -1,17 +1,13 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import clsx from "clsx";
 import style from "./Promo.module.scss";
 import { FC } from "react";
-import { HashLink } from "react-router-hash-link";
-import { paths } from "@/service/paths";
-import { useIsTabletDevice } from "@/hooks/IsSmallDevice";
+import Instructor from "./Instructor";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { EffectFade, Autoplay } from "swiper/modules";
+import { girls } from "./script";
 
-const Slide_2: FC<{ name: string; job: string; img: string }> = ({
-  name,
-  job,
-  img,
-}) => {
-  const isTablet = useIsTabletDevice();
-
+const Slide_2: FC = () => {
   return (
     <div className={clsx(style.slide_2)}>
       <div className={clsx(style.slide_2__info)}>
@@ -25,36 +21,36 @@ const Slide_2: FC<{ name: string; job: string; img: string }> = ({
           <span className={clsx(style.slide_2__time)}>14:00 / online</span>
         </p>
 
-        {!isTablet && (
-          <HashLink
-            className={clsx(style.slide_2__link)}
-            smooth
-            to={paths.registration}
-            onClick={() => {}}
-          >
-            Зарегистрироваться
-          </HashLink>
-        )}
+        <a
+          className={clsx(style.slide_2__link)}
+          href="https://bpf2024.timepad.ru/event/2961533/ "
+          onClick={() => {}}
+          target="_blank"
+        >
+          Зарегистрироваться
+        </a>
       </div>
 
-      <div className={clsx(style.instructor)}>
-        <div className={clsx(style.instructor__inner)}>
-          <figure className={clsx(style.instructor__figure)}>
-            <img
-              className={clsx(style.instructor__img)}
-              src={img}
-              alt="instructor"
-            />
-          </figure>
-        </div>
-
-        <div className={clsx(style.instructor_info)}>
-          <h3 className={clsx(style.instructor_info__title)}>
-            <span>{name}</span>
-          </h3>
-          <p className={clsx(style.instructor_info__text)}>{job}</p>
-        </div>
-      </div>
+      <Swiper
+        className={clsx(style.instructor__slider)}
+        modules={[EffectFade, Autoplay]}
+        effect={"fade"}
+        speed={1000}
+        loop={true}
+        fadeEffect={{
+          crossFade: true,
+        }}
+        autoplay={{
+          delay: 1000,
+          disableOnInteraction: false,
+        }}
+      >
+        {girls.map((item: any, i: number) => (
+          <SwiperSlide key={i}>
+            <Instructor {...item} />
+          </SwiperSlide>
+        ))}
+      </Swiper>
     </div>
   );
 };
