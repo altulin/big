@@ -64,24 +64,18 @@ const PassForm: FC = () => {
     if (status === "fulfilled") {
       navigate(`/${paths.profile}`);
 
-      if (category === categories.brand_pitches) {
-        dispatch(
-          setSuccessModal({
-            text: "Ваша работа принята на рассмотрение!",
-            title: "Подача работы",
-            profile: true,
-          }),
-        );
-
-        return;
-      }
       if (isIndividual) {
-        const amount = data.transaction.amount;
-        const accountId = data.transaction.user.id;
-        const email = data.transaction.user.email;
-        const invoiceId = data.id;
-        const idempotence_key = data.transaction.idempotence_key;
-        runWidget({ amount, accountId, invoiceId, email, idempotence_key });
+        if (data.transaction !== null) {
+          runWidget(data);
+        } else {
+          dispatch(
+            setSuccessModal({
+              text: "Ваша работа принята на рассмотрение!",
+              title: "Подача работы",
+              profile: true,
+            }),
+          );
+        }
       } else {
         dispatch(
           setSuccessModal({

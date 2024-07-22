@@ -37,6 +37,7 @@
 
       @include mw($tb) {
         border-left: 0;
+        border-top: var(--line) solid var(--basic-dark);
       }
     }
 
@@ -135,6 +136,7 @@
       text-transform: uppercase;
       text-align: center;
       color: #141414;
+      margin-bottom: 3rem;
     }
   }
 }
@@ -189,6 +191,10 @@
   text-transform: uppercase;
   color: #141414;
 
+  @include mw($ldt) {
+    font-size: 4.5rem;
+  }
+
   @include mw($tb) {
     font-weight: 400;
     font-size: 2.25rem;
@@ -232,9 +238,11 @@
     }
 
     &_inner {
-      display: flex;
-      column-gap: 0.5rem;
-      flex-wrap: wrap;
+      @include mw($tb) {
+        display: flex;
+        column-gap: 0.5rem;
+        flex-wrap: wrap;
+      }
     }
   }
 
@@ -242,6 +250,11 @@
     color: #141414;
     position: relative;
     transition: 0.3s;
+    margin: 0 0.5rem;
+
+    @include mw($tb) {
+      margin: 0;
+    }
 
     &:hover {
       color: var(--color-green);

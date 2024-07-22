@@ -16,7 +16,7 @@ const Nominations: FC = () => {
   const isTablet = useIsTabletDevice();
 
   useEffect(() => {
-    initGLTor("gl-tor", isYang ? [0.33, 0.17, 0.9, 1.0] : [0.0, 1.0, 0.0, 1.0]);
+    initGLTor("gl-tor", isYang ? [0.3, 0.2, 0.9, 1.0] : [0.0, 1.0, 0.0, 1.0]);
   }, [isYang]);
 
   useEffect(() => {
@@ -52,7 +52,7 @@ const Nominations: FC = () => {
                   to={`/${paths.young_talent}`}
                   className={clsx(style.content__link)}
                 >
-                  <span>Young</span>
+                  <span>Young </span>
                   <span>Talent</span>
                 </HashLink>
                 <span> by NUUM</span>

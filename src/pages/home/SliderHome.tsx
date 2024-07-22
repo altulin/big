@@ -68,7 +68,7 @@ const SliderHome: FC<{ pages: any }> = ({ pages }) => {
         onSwiper={setSwiper}
         className={clsx(style.home__slider)}
         modules={[Scrollbar, Mousewheel, FreeMode]}
-        mousewheel={{ enabled: true, releaseOnEdges: true, sensitivity: 10 }}
+        mousewheel={{ enabled: true, releaseOnEdges: true, sensitivity: 14 }}
         freeMode={{ enabled: true }}
         scrollbar={{
           draggable: true,

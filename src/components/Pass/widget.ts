@@ -1,6 +1,5 @@
 import { useAppDispatch } from "@/hooks/hook";
 import useProfile from "@/hooks/profile";
-import { paths } from "@/service/paths";
 import { setErrorModal, setSuccessModal } from "@/store/modal/modalSlice";
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
@@ -9,13 +8,13 @@ const useWidget = () => {
   const dispatch = useAppDispatch();
   const { isIndividual } = useProfile();
 
-  const runWidget = ({
-    amount,
-    accountId,
-    invoiceId,
-    email,
-    idempotence_key,
-  }: any) => {
+  const runWidget = (data: any) => {
+    const amount = data.transaction.amount;
+    const accountId = data.transaction.user.id;
+    const email = data.transaction.user.email;
+    const invoiceId = data.id;
+    const idempotence_key = data.transaction.idempotence_key;
+
     widget.pay(
       "charge", // или 'charge'
       {
