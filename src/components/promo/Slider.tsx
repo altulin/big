@@ -25,6 +25,7 @@ const Slider: FC = () => {
 
   return (
     <Swiper
+      autoHeight={false}
       className={clsx(style.slider)}
       modules={[Navigation]}
       navigation={{
@@ -35,6 +36,11 @@ const Slider: FC = () => {
       allowTouchMove={false}
       onSlideChangeTransitionStart={changeHandle}
       // autoHeight={true}
+
+      breakpoints={{
+        320: { allowTouchMove: true, autoHeight: true },
+        768: { allowTouchMove: false, autoHeight: false },
+      }}
     >
       {slides.map((slide, index) => (
         <SwiperSlide key={index} className={clsx(style.slide)}>

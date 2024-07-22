@@ -54,8 +54,8 @@ const Nominations: FC = () => {
                 >
                   <span>Young </span>
                   <span>Talent</span>
+                  <span> by NUUM</span>
                 </HashLink>
-                <span> by NUUM</span>
               </span>
             </p>
           </div>

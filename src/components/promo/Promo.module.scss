@@ -69,7 +69,7 @@
   flex-grow: 1;
 
   @include mw($tb) {
-    flex-direction: column-reverse;
+    flex-direction: column;
     padding-top: 1.875rem;
     padding-left: 0.43rem;
     padding-right: 0.43rem;
@@ -84,6 +84,11 @@
       height: 100%;
       width: auto;
       max-width: 100%;
+
+      @include mw($tb) {
+        width: 100%;
+        margin-top: 2rem;
+      }
     }
 
     @include mw($tb) {
@@ -224,7 +229,7 @@
     @include mw($tb) {
       padding-left: 2rem;
       padding-right: 2rem;
-      margin-top: 6rem;
+      // margin-top: 6rem;
     }
   }
 

@@ -40,10 +40,10 @@ const Slide_2: FC = () => {
         fadeEffect={{
           crossFade: true,
         }}
-        // autoplay={{
-        //   delay: 1000,
-        //   disableOnInteraction: false,
-        // }}
+        autoplay={{
+          delay: 1000,
+          disableOnInteraction: false,
+        }}
       >
         {girls.map((item: any, i: number) => (
           <SwiperSlide key={i}>

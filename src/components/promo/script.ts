@@ -7,16 +7,23 @@ import IconNuum from "@/images/promo/brand-nuum.svg?react";
 import IcconMega from "@/images/promo/brand-mega.svg?react";
 import IconBase from "@/images/promo/brand-base.svg?react";
 import { paths } from "@/service/paths";
+import IconGrape from "@/images/promo/grape.svg?react";
 
 export const brands = [
-  { href: "https://www.hypepro.tv/", alt: "", icon: IconBrand_hype },
-  { href: "https://nuum.ru/", alt: "", icon: IconNuum },
+  { href: "https://www.hypepro.tv/", alt: "logo", icon: IconBrand_hype },
+  { href: "https://nuum.ru/", alt: "logo", icon: IconNuum },
   { href: "#", alt: "", icon: IcconMega, section: paths.pitch },
-  { href: "https://bazelevs.ru/", alt: "", icon: IconBase },
-  { href: "https://www.carboncore.ru/", alt: "", icon: IconBrand_1 },
+  { href: "https://bazelevs.ru/", alt: "logo", icon: IconBase },
+  { href: "https://www.carboncore.ru/", alt: "logo", icon: IconBrand_1 },
   // { href: "#", alt: "", icon: IconBrand_2 },
   // { href: "#", alt: "", icon: IconBrand_4 },
 ];
+
+export const grape = {
+  href: "",
+  alt: "grape",
+  icon: IconGrape,
+};
 
 export const girls = [
   {

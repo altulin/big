@@ -13,7 +13,7 @@ export const soc = [
   // { href: "#", icon: IconInst },
   { href: "https://nuum.ru/channel/bigpicturefestival", icon: IconNuum },
   { href: "https://t.me/bigpicturefestival", icon: IconTg },
-  { href: "https://vk.com/bigpicturefestival", icon: IconVk },
+  // { href: "https://vk.com/bigpicturefestival", icon: IconVk },
 ];
 
 export const law = [

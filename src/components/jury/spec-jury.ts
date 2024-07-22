@@ -85,8 +85,8 @@ export const jury = [
     {
       avatar: "Irene_Lvovna.jpg",
       name: "Ирина Краснокутская",
-      job: "ex-Digital Marketing Director Vivienne Sabô",
-      company: "Viviene sabo! EX",
+      job: "Digital Marketing Director",
+      company: "ex VIVIENE SABO ",
     },
 
     {

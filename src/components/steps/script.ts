@@ -25,52 +25,61 @@ const useControlDate = (data: any) => {
 
   const result = data.data.results;
 
+  const early = result.filter((item: any) => item.title === "Ранняя пташка")[0];
+  const basic = result.filter((item: any) => item.title === "Основной этап")[0];
+  const final = result.filter(
+    (item: any) => item.title === "Финальный этап",
+  )[0];
+  const short = result.filter((item: any) => item.title === "Шорт-листы")[0];
+  const winner = result.filter((item: any) => item.title === "Победители")[0];
+  const reward = result.filter((item: any) => item.title === "Награждение")[0];
+
   const dates: {
     [key: string]: { start: Date; end: Date; step: number };
   } = {
     early: {
-      start: objDate(result[0].stage_start_at),
-      end: objDate(result[0].stage_end_at),
+      start: objDate(early.stage_start_at),
+      end: objDate(early.stage_end_at),
       step: 1,
     },
     basic: {
-      start: objDate(result[1].stage_start_at),
-      end: objDate(result[1].stage_end_at),
+      start: objDate(basic.stage_start_at),
+      end: objDate(basic.stage_end_at),
       step: 2,
     },
     final: {
-      start: objDate(result[2].stage_start_at),
-      end: objDate(result[2].stage_end_at),
+      start: objDate(final.stage_start_at),
+      end: objDate(final.stage_end_at),
       step: 3,
     },
     empty3: {
-      start: addDays(objDate(result[2].stage_end_at), 1),
-      end: addDays(objDate(result[3].stage_start_at), -1),
+      start: addDays(objDate(final.stage_end_at), 1),
+      end: addDays(objDate(short.stage_start_at), -1),
       step: 3,
     },
     short: {
-      start: objDate(result[3].stage_start_at),
-      end: objDate(result[3].stage_end_at),
+      start: objDate(short.stage_start_at),
+      end: objDate(short.stage_end_at),
       step: 4,
     },
     empty4: {
-      start: addDays(objDate(result[3].stage_end_at), 1),
-      end: addDays(objDate(result[4].stage_start_at), -1),
+      start: addDays(objDate(short.stage_end_at), 1),
+      end: addDays(objDate(winner.stage_start_at), -1),
       step: 4,
     },
     winner: {
-      start: objDate(result[4].stage_start_at),
-      end: objDate(result[4].stage_end_at),
+      start: objDate(winner.stage_start_at),
+      end: objDate(winner.stage_end_at),
       step: 5,
     },
     empty5: {
-      start: addDays(objDate(result[4].stage_end_at), 1),
-      end: addDays(objDate(result[5].stage_start_at), -1),
+      start: addDays(objDate(winner.stage_end_at), 1),
+      end: addDays(objDate(reward.stage_start_at), -1),
       step: 5,
     },
     reward: {
-      start: objDate(result[5].stage_start_at),
-      end: objDate(result[5].stage_end_at),
+      start: objDate(reward.stage_start_at),
+      end: objDate(reward.stage_end_at),
       step: 6,
     },
   };
