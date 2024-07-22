@@ -37,6 +37,7 @@ const PassFormRadio: FC<{ formik: any; name?: string }> = ({
             value={item.value}
             formik={formik}
             name={name}
+            // icon={item.icon && <item.icon />}
           />
         ))}
       </div>

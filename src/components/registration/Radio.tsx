@@ -19,6 +19,7 @@ const Radio: FC<IRadio> = ({
   name = "status",
   icon = null,
 }) => {
+  console.log(icon);
   return (
     <TextInput
       className={clsx(style.radio__item)}

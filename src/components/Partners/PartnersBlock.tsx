@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { FC, useEffect } from "react";
+import { FC } from "react";
 import style from "./Partners.module.scss";
 import clsx from "clsx";
 import { HashLink } from "react-router-hash-link";
@@ -33,10 +33,6 @@ const PartnersBlock: FC<{
       dispatch(setPath(paths.pitch));
     }
   };
-
-  useEffect(() => {
-    console.log(list);
-  }, [list]);
 
   return (
     <div className={clsx(style.item)}>

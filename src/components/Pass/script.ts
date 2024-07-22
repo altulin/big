@@ -18,14 +18,17 @@ export const radioList = [
   {
     label: "Основная категория",
     value: categories.main_category,
+    icon: null,
   },
   {
-    label: "Young Talent",
+    label: "Young Talent by Nuum",
     value: categories.young_talent,
+    icon: null,
   },
   {
     label: "Бренд-питчи",
     value: categories.brand_pitches,
+    icon: null,
   },
 ];
 

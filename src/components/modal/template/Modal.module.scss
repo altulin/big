@@ -45,7 +45,7 @@
     font-weight: 400;
     font-size: 1.5rem;
     line-height: 130%;
-    color: #141414;
+    color: var(--basic-dark);
   }
 
   &__close {
@@ -53,14 +53,18 @@
     height: 3rem;
     background-color: rgba(20, 20, 20, 0.04);
     transition: 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
     &:hover {
       background-color: var(--color-green);
     }
 
     svg {
-      width: inherit;
-      height: inherit;
+      width: 1.2rem;
+      height: 1.2rem;
+      stroke: var(--basic-dark);
     }
   }
 }
