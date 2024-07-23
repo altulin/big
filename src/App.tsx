@@ -57,10 +57,10 @@ const App: FC = () => {
       navigate(`/${paths.young_talent}`);
       if (isTablet) {
         const el = document.getElementById(paths.price_young);
-        console.log(el);
+
         if (!el) return;
         setTimeout(() => {
-          el.scrollIntoView({ behavior: "smooth" });
+          el.scrollIntoView();
         }, 200);
         return;
       }
@@ -156,7 +156,7 @@ const App: FC = () => {
 
           {/* <Route path="/:section" element={<HomePage />} /> */}
 
-          {/* <Route path="*" element={<HomePage />} /> */}
+          <Route path="*" element={<HomePage />} />
         </Route>
         <Route path={paths.young_talent} element={<Template />}>
           <Route index element={<YoungTalentPage />} />
