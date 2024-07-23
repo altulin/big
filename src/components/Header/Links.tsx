@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import style from "./Header.module.scss";
 import clsx from "clsx";
-import { FC, MouseEvent } from "react";
+import { FC, MouseEvent, useEffect } from "react";
 import { links } from "./script";
 import { setClick, setMenuControl, setPath } from "@/store/menu/menuSlice";
 import { useAppDispatch, useAppSelector } from "@/hooks/hook";
@@ -28,6 +28,34 @@ const Links: FC = () => {
       return `${item.path}`;
     }
   };
+
+  // переход по ссылке
+  useEffect(() => {
+    const values = Object.values(paths);
+    let name;
+
+    if (pathname.split("/")[1] === paths.young_talent) {
+      name = pathname.split("/")[2];
+      navigate(`/${paths.young_talent}`);
+    } else {
+      name = pathname.split("/")[1];
+    }
+
+    if (!values.includes(name)) return;
+
+    if (!isTablet) {
+      setTimeout(() => {
+        dispatch(setPath(name));
+      }, 200);
+    } else {
+      setTimeout(() => {
+        const el = document.getElementById(name);
+        if (!el) return;
+        el.scrollIntoView();
+      }, 200);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [dispatch, isTablet, navigate]);
 
   const handleClick = (e: MouseEvent<HTMLAnchorElement>) => {
     if (isTablet) {

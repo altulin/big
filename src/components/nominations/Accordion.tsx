@@ -5,14 +5,21 @@ import { Accordion, AccordionItem } from "@szhsin/react-accordion";
 import IconArr from "@/images/nominations/arr.svg?react";
 import useIsYang from "@/hooks/isYang";
 
-const Head: FC<{ label: string }> = ({ label }) => {
+const Head: FC<{ label: string; isFaq?: boolean }> = ({ label, isFaq }) => {
   return (
-    <>
-      <p className={clsx(style.accordion__label)}>{label}</p>
+    <div className={clsx(style.accordion__head)}>
+      <p
+        className={clsx(
+          style.accordion__label,
+          isFaq && style.accordion__label_faq,
+        )}
+      >
+        {label}
+      </p>
       <div className={clsx(style.accordion__icon)}>
         <IconArr />
       </div>
-    </>
+    </div>
   );
 };
 
@@ -33,7 +40,8 @@ interface IAccordionItem {
 
 const AccordionComonent: FC<{
   data: IAccordionItem[];
-}> = ({ data }) => {
+  isFaq?: boolean;
+}> = ({ data, isFaq }) => {
   const getAnswer = (answer: string) => {
     return answer.split("\r").map((el) => el.replace(/\n+/g, ""));
   };
@@ -73,10 +81,20 @@ const AccordionComonent: FC<{
           )}
 
           <AccordionItem
-            header={<Head label={(data.question ?? data.title) as string} />}
+            header={
+              <Head
+                isFaq={isFaq}
+                label={(data.question ?? data.title) as string}
+              />
+            }
           >
             <div className={clsx(style.accordion__inner)}>
-              <p className={clsx(style.accordion__answer)}>
+              <p
+                className={clsx(
+                  style.accordion__answer,
+                  isFaq && style.accordion__answer_faq,
+                )}
+              >
                 {getAnswer((data.answer ?? data.description) as string).map(
                   (el, i) => (
                     <span key={i}>{el}</span>

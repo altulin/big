@@ -37,7 +37,7 @@ const Faq: FC = () => {
       id={paths.faq}
       className={clsx(style.nominations, styleFaq.faq, "panel")}
     >
-      <div className={clsx(style.nominations__inner)}>
+      <div className={clsx(style.nominations__inner, styleFaq.faq__inner)}>
         <div className={clsx(style.content, styleFaq.faq__content)}>
           <h2 className={clsx(style.nominations__title, styleFaq.title)}>
             <span>Вопросы</span>
@@ -53,7 +53,9 @@ const Faq: FC = () => {
 
         <div className={clsx(style.accordion_wrap, "swiper-no-mousewheel")}>
           <ScrollBarComponent>
-            {results.data && <AccordionComonent data={results.data?.results} />}
+            {results.data && (
+              <AccordionComonent isFaq={true} data={results.data?.results} />
+            )}
           </ScrollBarComponent>
 
           {isTablet && results?.data?.count > results?.data?.results.length && (

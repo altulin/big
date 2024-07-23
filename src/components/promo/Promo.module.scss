@@ -360,6 +360,10 @@
   background-color: var(--basic-dark);
   flex-shrink: 0;
 
+  @include mw($tb) {
+    height: 4.5rem;
+  }
+
   &__inner {
     font-size: 4rem;
     font-weight: 900;

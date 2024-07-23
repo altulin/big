@@ -4,17 +4,24 @@ import { FC, useEffect, useState } from "react";
 import { requirements, requirementYang } from "./script";
 import { paths } from "@/service/paths";
 import { useAppSelector } from "@/hooks/hook";
+import { useIsTabletDevice } from "@/hooks/IsSmallDevice";
 
 const Requirements: FC = () => {
-  // const isTablet = useIsTabletDevice();
-  // const [isBtn, setIsBtn] = useState<boolean>(false);
+  const isTablet = useIsTabletDevice();
+  const [isBtn, setIsBtn] = useState<boolean>(true);
   const { isYang } = useAppSelector((state) => state.yang);
 
   const [listResults, setListResults] = useState<string[]>([]);
 
   useEffect(() => {
-    setListResults(() => (isYang ? requirementYang : requirements));
-  }, [isYang]);
+    const list = isYang ? requirementYang : requirements;
+
+    if (isTablet) {
+      setListResults(list.slice(0, 3));
+    } else {
+      setListResults(list);
+    }
+  }, [isTablet, isYang]);
 
   return (
     <section
@@ -40,17 +47,17 @@ const Requirements: FC = () => {
             ))}
           </ul>
         </div>
-        {/* {isTablet && isBtn && (
+        {isTablet && isBtn && (
           <button
             onClick={() => {
-              setListResults(requirements);
+              setListResults(isYang ? requirementYang : requirements);
               setIsBtn(false);
             }}
             className={clsx(style.button_add)}
           >
             Показать еще
           </button>
-        )} */}
+        )}
       </div>
     </section>
   );

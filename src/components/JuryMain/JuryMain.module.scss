@@ -45,6 +45,8 @@
 
   &__right {
     flex-grow: 1;
+    height: 100%;
+    overflow: auto;
   }
 }
 
@@ -80,6 +82,12 @@
   border-bottom: var(--line) solid var(--basic-dark);
   border-right: var(--line) solid var(--basic-dark);
 
+  &:hover {
+    .item__button {
+      background-color: var(--color-green);
+    }
+  }
+
   @include mw($tb) {
     width: 100%;
     border: 0;
@@ -92,6 +100,7 @@
     color: #141414;
     padding: 1rem 1.5rem;
     flex-grow: 1;
+    pointer-events: none;
 
     @include mw($tb) {
       padding: 0.75rem 0.5rem;
@@ -111,7 +120,7 @@
     justify-content: center;
     width: 4rem;
     transform: rotate(180deg);
-    cursor: pointer;
+
     flex-shrink: 0;
 
     &--active {
