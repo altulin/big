@@ -42,7 +42,7 @@ const Jury: FC = () => {
                 pauseOnHover={true}
                 autoFill={true}
                 // gradient={false}
-                speed={isTablet ? 100 : 10}
+                speed={isTablet ? 100 : 100}
                 direction={index % 2 === 0 ? "left" : "right"}
                 className={clsx(style.marquee__row)}
               >

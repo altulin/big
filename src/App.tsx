@@ -53,7 +53,8 @@ const App: FC = () => {
       dispatch(setPath(paths.price));
     }
 
-    if (pathname === `/${paths.young_talent}` && hash === "#price") {
+    if (pathname === `/${paths.young_talent}/` && hash === "#price") {
+      navigate(`/${paths.young_talent}`);
       if (isTablet) {
         const el = document.getElementById(paths.price_young);
         console.log(el);

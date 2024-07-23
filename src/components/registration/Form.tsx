@@ -96,7 +96,6 @@ const FormRegistration: FC = () => {
       enableReinitialize={true}
     >
       {(formik) => {
-        console.log(formik);
         {
           return (
             <>
@@ -155,7 +154,7 @@ const FormRegistration: FC = () => {
                 <Checkbox name="offer" isChecked={formik.values.offer}>
                   <a
                     className={clsx(style.form__rule_link)}
-                    href={data?.policy}
+                    href={data?.cookies}
                     target="_blank"
                   >
                     Обработку персональных данных
