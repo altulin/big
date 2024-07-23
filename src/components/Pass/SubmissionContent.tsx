@@ -25,9 +25,7 @@ const SubmissionContent: FC<{ formik: any; id: number }> = ({ formik, id }) => {
     return { value: item.id, label: item.title };
   });
 
-  useEffect(() => {
-    // console.log(params.id_work);
-  }, [params]);
+ 
 
   return (
     <>
