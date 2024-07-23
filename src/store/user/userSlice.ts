@@ -12,6 +12,7 @@ const userSlice = createSlice({
       type: "individual",
       company_name: null,
       company_details_file: null,
+      id: null,
     },
   },
   reducers: {

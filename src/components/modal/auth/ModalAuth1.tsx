@@ -17,6 +17,7 @@ import { TOKEN } from "@/service/const";
 import { useGetMeMutation } from "@/store/rtk/user/me";
 import { setUserData } from "@/store/user/userSlice";
 import { setMenuControl } from "@/store/menu/menuSlice";
+import useGoogleManager from "@/hooks/googleManager";
 
 const ModalAuth1: FC = () => {
   const navigate = useNavigate();
@@ -24,6 +25,7 @@ const ModalAuth1: FC = () => {
   const [authorization, authData] = useAuthorizationMutation();
   const [getMe, meData] = useGetMeMutation();
   const { phone_number } = useAppSelector((state) => state.user.dataMe);
+  const { addEvent } = useGoogleManager();
 
   const handleClickReg = () => {
     dispatch(setMenuControl(false));
@@ -38,6 +40,9 @@ const ModalAuth1: FC = () => {
     if (isSuccess) {
       localStorage.clear();
       localStorage.setItem(TOKEN, authData.data.access);
+
+      addEvent({ event: "login", user_id: authData.data.id });
+
       getMe(undefined).unwrap();
     }
   }, [authData, dispatch, getMe]);
