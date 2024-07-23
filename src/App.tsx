@@ -22,8 +22,9 @@ import useMe from "./hooks/me";
 import Recovery from "./components/Recovery/Recovery";
 import Edit from "./components/Edit/Edit";
 import { setPath } from "./store/menu/menuSlice";
-import { useAppDispatch } from "./hooks/hook";
+import { useAppDispatch, useAppSelector } from "./hooks/hook";
 import { useIsTabletDevice } from "./hooks/IsSmallDevice";
+import useGoogleManager from "./hooks/googleManager";
 
 const App: FC = () => {
   const title = import.meta.env.VITE_APP_TITLE;
@@ -36,6 +37,15 @@ const App: FC = () => {
   const { getMeData } = useMe();
   const dispatch = useAppDispatch();
   const isTablet = useIsTabletDevice();
+  const { id } = useAppSelector((state) => state.user.dataMe);
+  const { addEvent } = useGoogleManager();
+
+  useEffect(() => {
+    if (isAuth) {
+      if (!id) return;
+      addEvent({ event: "", user_id: id });
+    }
+  }, [addEvent, id, isAuth]);
 
   useEffect(() => {
     const { pathname, hash } = location;
