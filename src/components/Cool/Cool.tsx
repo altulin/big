@@ -34,13 +34,13 @@ const Cool: FC = () => {
               Выбирай подходящую номинацию
             </li>
             <li className={clsx(style.info__item)}>
-              Загрузи видео с хештегом #bpfyoung24 на платформу NUUM
+              Загрузи видео с хештегом #bpfyoung24 на платформу
               <a
                 className={clsx(style.info__link)}
                 href="https://nuum.ru/"
                 target="_blank"
               >
-                https://nuum.ru/
+                NUUM
               </a>{" "}
               и подай свою работу на нашем сайте
             </li>

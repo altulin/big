@@ -30,6 +30,12 @@ export const jury = [
       job: "Маркетинг директор",
       company: "Черноголовка",
     },
+    {
+      avatar: "igoshina.jpg",
+      name: "Елена Игошина ",
+      job: "Producer",
+      company: "МегаФон&Yota",
+    },
   ],
   [
     {
@@ -61,6 +67,12 @@ export const jury = [
       name: "Зинаида Хохлова",
       job: "Член правления. Директор по маркетингу",
       company: "Спортмастер",
+    },
+    {
+      avatar: "potapova.jpg",
+      name: "Александра Потапова",
+      job: "Senior Producer",
+      company: "МегаФон&Yota",
     },
   ],
   [

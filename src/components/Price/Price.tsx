@@ -49,7 +49,6 @@ const Price: FC = () => {
           <h2 className={clsx(style.title)}>
             <span>стоимость Участия </span>
           </h2>
-
           <div className={clsx(style.price__content)}>
             <div className={clsx(style.table)}>
               <div className={clsx(style.row, style["row--head"])}>
@@ -103,11 +102,17 @@ const Price: FC = () => {
               </div>
             </div>
           </div>
-
           <p className={clsx(style.price__text)}>
-            *цены в рублях за одну работу в категории
-            {isYang ? <span> молодых </span> : <span> опытных </span>}
-            талантов
+            <span>
+              *цены в рублях за одну работу в категории
+              {isYang ? <span> молодых </span> : <span> опытных </span>}
+              талантов
+            </span>
+            <span>
+              ** Приобрести билеты на церемонию награждения можно в процессе
+              подачи заявок. Стоимость 1 билета не зависит от категории
+              номинации или количества заявок и составляет 15 000 рублей.
+            </span>
           </p>
         </div>
       </div>

@@ -36,6 +36,7 @@ const Links: FC = () => {
 
     if (pathname.split("/")[1] === paths.young_talent) {
       name = pathname.split("/")[2];
+
       navigate(`/${paths.young_talent}`);
     } else {
       name = pathname.split("/")[1];

@@ -17,15 +17,19 @@ import {
 
 // const MAX_FILE_SIZE = 5; //100KB
 const MAX_FILE_SIZE = 5242880; //5Mb
+import store from "@/store";
+import { categories } from "@/components/Pass/script";
 
-const isValidUrl = (url: any) => {
-  try {
-    new URL(url);
-  } catch (e) {
-    return false;
-  }
-  return true;
-};
+// without https
+// const regMain =
+//   /(?:https?:\/\/)?(?:youtu\.be\/|(?:www\.|m\.)?youtube\.com\/|(?:www\.|m\.)?vimeo\.com\/|(?:www\.|m\.)?disk\.yandex\.ru\/|(?:www\.|m\.)?drive\.google\.com\/)([a-zA-Z0-9\_-]+)/;
+
+const { category } = store.getState();
+
+const regMain =
+  /(?:https?:\/\/)(?:youtu\.be\/|youtube\.com\/|vimeo\.com\/|nuum\.ru\/|disk\.yandex\.ru\/|drive\.google\.com\/)([a-zA-Z0-9\_-]+)/;
+
+const regNuum = /(?:https?:\/\/)(nuum\.ru\/)([a-zA-Z0-9\_-]+)/;
 
 export const object: any = {
   name: yup
@@ -85,16 +89,17 @@ export const object: any = {
   target_audience: yup.string().required(required),
   idea: yup.string().required(required),
   about_project: yup.string().required(required),
-  // link: yup.string().required(required),
+
   work_link: yup
     .string()
-    // .matches(
-    //   /((https?):\/\/)?(www.)?[a-z0-9]+(\.[a-z]{2,}){1,3}(#?\/?[a-zA-Z0-9#]+)*\/?(\?[a-zA-Z0-9-_]+=[a-zA-Z0-9-%]+&?)?$/,
-    //   url,
-    // )
-    .test("is-url-valid", url, (value) => isValidUrl(value))
-
+    .matches(
+      category.category === categories.main_category ? regMain : regNuum,
+      url,
+    )
     .required(required),
+
+  work_link_nuum: yup.string().matches(regNuum, url).required(required),
+
   credits: yup.string().required(required),
 
   project_image: yup
@@ -120,3 +125,5 @@ export const getValidationSchema = (arr: string[]) => {
 };
 
 export const validationSchema = yup.object().shape(object);
+
+// (?:https?:\/\/)?    (?:youtu\.be\/|(?:www\.|m\.)?youtube\.com\/)   ([a-zA-Z0-9\_-]+)

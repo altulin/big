@@ -177,6 +177,18 @@
     color: var(--basic-dark);
     margin: 0 0.5rem;
     transition: 0.3s;
+    position: relative;
+
+    &::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: var(--line);
+      background-color: var(--basic-dark);
+      transition: 0.3s;
+    }
 
     &:hover {
       opacity: 0.5;

@@ -81,6 +81,7 @@
   display: flex;
   border-bottom: var(--line) solid var(--basic-dark);
   border-right: var(--line) solid var(--basic-dark);
+  cursor: pointer;
 
   &:hover {
     .item__button {

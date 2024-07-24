@@ -46,6 +46,9 @@
     color: var(--basic-dark);
     margin-top: 1rem;
     padding-left: 2rem;
+    display: flex;
+    flex-direction: column;
+    row-gap: 0.5rem;
 
     @include mw($tb) {
       padding: 0.5rem;
