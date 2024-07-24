@@ -6,7 +6,7 @@ import style from "./Promo.module.scss";
 
 import Slide_1 from "./Slide_1";
 import Slide_2 from "./Slide_2";
-import { Navigation } from "swiper/modules";
+import { Navigation, EffectFade, Autoplay } from "swiper/modules";
 import { useIsTabletDevice } from "@/hooks/IsSmallDevice";
 import { useAppDispatch } from "@/hooks/hook";
 import { setClick, setPath } from "@/store/menu/menuSlice";
@@ -28,12 +28,21 @@ const Slider: FC = () => {
     <Swiper
       autoHeight={false}
       className={clsx(style.slider)}
-      modules={[Navigation]}
+      modules={[Navigation, EffectFade, Autoplay]}
       navigation={{
         nextEl: `.${style[`button_slider--next`]}`,
         prevEl: `.${style[`button_slider--prev`]}`,
       }}
       speed={1000}
+      effect={"fade"}
+      loop={true}
+      fadeEffect={{
+        crossFade: true,
+      }}
+      autoplay={{
+        delay: 5000,
+        disableOnInteraction: false,
+      }}
       allowTouchMove={false}
       onSlideChangeTransitionStart={changeHandle}
       // autoHeight={true}

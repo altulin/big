@@ -42,7 +42,7 @@ const Slide_2: FC = () => {
           crossFade: true,
         }}
         autoplay={{
-          delay: 1000,
+          delay: 800,
           disableOnInteraction: false,
         }}
       >
