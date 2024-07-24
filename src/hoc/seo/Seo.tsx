@@ -28,9 +28,6 @@ const Seo: FC<ISeo> = ({ title, description, image = "/image.jpg", url }) => {
       <meta name="twitter:description" content={description} />
       <meta name="twitter:image" content={image} />
 
-      <link rel="preload" as="image" href="/assets/promo.png"></link>
-      <link rel="preload" as="image" href="/assets/promo-mob.png"></link>
-
       {import.meta.env.MODE === "production" && (
         <>
           <script async type="text/javascript">
