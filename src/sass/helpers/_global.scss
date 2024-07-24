@@ -11,6 +11,7 @@ html {
 
   // font-size: 16px;
   font-size: 0.83vw;
+  // font-size: calc(var(--delta) * 1vw + var(--delta) * 1vh);
 
   @media screen and (max-width: 1920px) {
     font-size: 1vw;

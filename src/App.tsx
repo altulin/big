@@ -21,9 +21,7 @@ import { token } from "./service/token";
 import useMe from "./hooks/me";
 import Recovery from "./components/Recovery/Recovery";
 import Edit from "./components/Edit/Edit";
-import { setPath } from "./store/menu/menuSlice";
-import { useAppDispatch, useAppSelector } from "./hooks/hook";
-import { useIsTabletDevice } from "./hooks/IsSmallDevice";
+import { useAppSelector } from "./hooks/hook";
 import useGoogleManager from "./hooks/googleManager";
 
 const App: FC = () => {
@@ -35,8 +33,8 @@ const App: FC = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const { getMeData } = useMe();
-  const dispatch = useAppDispatch();
-  const isTablet = useIsTabletDevice();
+  // const dispatch = useAppDispatch();
+  // const isTablet = useIsTabletDevice();
   const { id } = useAppSelector((state) => state.user.dataMe);
   const { addEvent } = useGoogleManager();
 
@@ -47,36 +45,36 @@ const App: FC = () => {
     }
   }, [addEvent, id, isAuth]);
 
-  useEffect(() => {
-    const { pathname, hash } = location;
+  // useEffect(() => {
+  //   const { pathname, hash } = location;
 
-    if (pathname === "/" && hash === "#price") {
-      if (isTablet) {
-        const el = document.getElementById(paths.price);
-        if (!el) return;
+  //   if (pathname === "/" && hash === "#price") {
+  //     if (isTablet) {
+  //       const el = document.getElementById(paths.price);
+  //       if (!el) return;
 
-        setTimeout(() => {
-          el.scrollIntoView({ behavior: "smooth" });
-        }, 200);
-        return;
-      }
-      dispatch(setPath(paths.price));
-    }
+  //       setTimeout(() => {
+  //         el.scrollIntoView({ behavior: "smooth" });
+  //       }, 200);
+  //       return;
+  //     }
+  //     dispatch(setPath(paths.price));
+  //   }
 
-    if (pathname === `/${paths.young_talent}/` && hash === "#price") {
-      navigate(`/${paths.young_talent}`);
-      if (isTablet) {
-        const el = document.getElementById(paths.price_young);
+  //   if (pathname === `/${paths.young_talent}/` && hash === "#price") {
+  //     navigate(`/${paths.young_talent}`);
+  //     if (isTablet) {
+  //       const el = document.getElementById(paths.price_young);
 
-        if (!el) return;
-        setTimeout(() => {
-          el.scrollIntoView();
-        }, 200);
-        return;
-      }
-      dispatch(setPath(paths.price_young));
-    }
-  }, [dispatch, location]);
+  //       if (!el) return;
+  //       setTimeout(() => {
+  //         el.scrollIntoView();
+  //       }, 200);
+  //       return;
+  //     }
+  //     dispatch(setPath(paths.price_young));
+  //   }
+  // }, [dispatch, location]);
 
   // dark theme
   useEffect(() => {
