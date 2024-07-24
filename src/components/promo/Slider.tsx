@@ -11,12 +11,12 @@ import { useIsTabletDevice } from "@/hooks/IsSmallDevice";
 import { useAppDispatch } from "@/hooks/hook";
 import { setClick, setPath } from "@/store/menu/menuSlice";
 import { paths } from "@/service/paths";
+import Slide_3 from "./Slide_3";
 
 const Slider: FC = () => {
   const isTablet = useIsTabletDevice();
   const dispatch = useAppDispatch();
-  // const slides = [<Slide_1 />, <Slide_2 />];
-  const slides = [<Slide_1 />];
+  const slides = [<Slide_1 />, <Slide_2 />, <Slide_3 />];
 
   const changeHandle = () => {
     if (isTablet) return;
@@ -37,9 +37,9 @@ const Slider: FC = () => {
       allowTouchMove={false}
       onSlideChangeTransitionStart={changeHandle}
       // autoHeight={true}
-
+      spaceBetween={8}
       breakpoints={{
-        320: { allowTouchMove: true, autoHeight: true },
+        320: { allowTouchMove: true, autoHeight: false },
         768: { allowTouchMove: false, autoHeight: false },
       }}
     >

@@ -12,13 +12,14 @@ const Slide_2: FC = () => {
     <div className={clsx(style.slide_2)}>
       <div className={clsx(style.slide_2__info)}>
         <h2 className={clsx(style.slide_2__title)}>
-          <span>Сторителлинг</span>
-          <span>в операторском</span>
-          <span>искусстве</span>
+          <span>наболело:</span>
+          <span>перепродакшен</span>
         </h2>
         <p className={clsx(style.slide_2__date)}>
-          <span>9 июля</span>
-          <span className={clsx(style.slide_2__time)}>14:00 / online</span>
+          <span>1 августа</span>
+          <span className={clsx(style.slide_2__time)}>
+            19:00 / ONLINE + OFFLINE
+          </span>
         </p>
 
         <a

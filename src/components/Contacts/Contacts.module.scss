@@ -185,6 +185,7 @@
 .canvas {
   flex-grow: 1;
   width: 43%;
+  box-sizing: border-box;
 
   @include mw($tb) {
     display: none;
@@ -196,5 +197,13 @@
     display: flex;
     align-items: center;
     padding: 2rem;
+    overflow: hidden;
+    box-sizing: border-box;
+
+    canvas {
+      box-sizing: border-box;
+      max-width: 100%;
+      max-height: 100%;
+    }
   }
 }

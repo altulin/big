@@ -8,7 +8,7 @@ import Price from "@/components/Price/Price";
 import Criteria from "@/components/criteria/Criteria";
 import Jury from "@/components/jury/Jury";
 import clsx from "clsx";
-import style from "./YoungTalentPage.module.scss";
+import style from "../home/HomePage.module.scss";
 import Program from "@/components/program/Program";
 import SliderHome from "../home/SliderHome";
 import { useIsTabletDevice } from "@/hooks/IsSmallDevice";
