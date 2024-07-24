@@ -238,7 +238,7 @@
   }
 
   &__head {
-    margin-bottom: 3rem;
+    margin-bottom: 1.5rem;
 
     @include mw($ldt) {
       margin-bottom: 1rem;
@@ -258,7 +258,7 @@
     font-size: 1.5rem;
     line-height: 130%;
     color: #141414;
-    margin-bottom: 1rem;
+    margin-bottom: 0.25rem;
 
     span {
       flex-shrink: 0;
@@ -314,7 +314,7 @@
   &__pictures {
     display: flex;
     margin-bottom: 0.5rem;
-    gap: 1rem;
+
     flex-wrap: wrap;
 
     @include mw($tb) {
@@ -324,8 +324,11 @@
 
   &__item {
     display: flex;
-    flex-direction: column;
-    align-items: center;
+    flex-wrap: wrap;
+    font-weight: 400;
+    font-size: 1rem;
+    line-height: 130%;
+    color: #141414;
   }
 
   &__figure {
@@ -346,11 +349,7 @@
   }
 
   &__name {
-    font-weight: 400;
-    font-size: 1rem;
-    line-height: 130%;
-    color: #141414;
-    margin-bottom: 0.5rem;
+    flex-shrink: 0;
   }
 
   &__btn {
@@ -394,7 +393,7 @@
 }
 
 .description {
-  margin-bottom: 1rem;
+  margin-bottom: 2rem;
 
   &__title {
     font-weight: 400;

@@ -5,11 +5,14 @@ import { FC } from "react";
 import style from "./Program.module.scss";
 import clsx from "clsx";
 import { useIsTabletDevice } from "@/hooks/IsSmallDevice";
-// import IconArr from "@/images/step/iconStepArr.svg?react";
+import IconArr from "@/images/step/iconStepArr.svg?react";
 
-const ProgramBtnInner: FC<{ date: string; title: string[]; logo?: any }> = (
-  props,
-) => {
+const ProgramBtnInner: FC<{
+  date: string;
+  title: string[];
+  logo?: any;
+  is_description: boolean;
+}> = (props) => {
   const isTablet = useIsTabletDevice();
 
   const { date, title } = props;
@@ -29,9 +32,11 @@ const ProgramBtnInner: FC<{ date: string; title: string[]; logo?: any }> = (
         ))}
       </span>
 
-      {/* <span className={clsx(style.button__icon)}>
-        <IconArr />
-      </span> */}
+      {props.is_description && (
+        <span className={clsx(style.button__icon)}>
+          <IconArr />
+        </span>
+      )}
     </>
   );
 };
@@ -41,12 +46,15 @@ export const ProgramBtn: FC<{
   title: string[];
   i: number;
   logo?: any;
-}> = ({ date, title, i, logo }) => {
+  is_description: boolean;
+}> = ({ date, title, i, logo, is_description }) => {
   const dispatch = useAppDispatch();
   const isTablet = useIsTabletDevice();
   const { current } = useAppSelector((state) => state.program);
 
   const handle = (e: any) => {
+    if (!is_description) return;
+
     return;
 
     const button = e.target.getAttribute("data-button");
@@ -64,11 +72,20 @@ export const ProgramBtn: FC<{
     <>
       {!isTablet ? (
         <button onClick={handle} data-button={i} className={clsx(style.button)}>
-          <ProgramBtnInner date={date} title={title} />
+          <ProgramBtnInner
+            is_description={is_description}
+            date={date}
+            title={title}
+          />
         </button>
       ) : (
         <div className={clsx(style.button)}>
-          <ProgramBtnInner date={date} title={title} logo={logo} />
+          <ProgramBtnInner
+            is_description={is_description}
+            date={date}
+            title={title}
+            logo={logo}
+          />
         </div>
       )}
     </>

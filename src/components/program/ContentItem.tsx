@@ -12,7 +12,7 @@ import { useAppDispatch } from "@/hooks/hook";
 import { stepTo } from "@/store/modal/modalSlice";
 
 const ContentItem: FC<{ item: IProgram; i: number }> = ({ item, i }) => {
-  const { date, title, place, speakers, description } = item;
+  const { date, title, place, speakers, description, is_description } = item;
   const isTablet = useIsTabletDevice();
   const dispatch = useAppDispatch();
 
@@ -22,7 +22,14 @@ const ContentItem: FC<{ item: IProgram; i: number }> = ({ item, i }) => {
 
   return (
     <div className={clsx(style.item)}>
-      {!isTablet && <ProgramBtn date={date} title={title} i={i} />}
+      {!isTablet && (
+        <ProgramBtn
+          is_description={is_description}
+          date={date}
+          title={title}
+          i={i}
+        />
+      )}
 
       <div className={clsx(style.info)}>
         <div className={clsx(style.info__inner)}>
@@ -45,32 +52,37 @@ const ContentItem: FC<{ item: IProgram; i: number }> = ({ item, i }) => {
             </p>
           </div>
 
+          <div className={clsx(style.description)}>
+            <p className={clsx(style.description__text)}>{description}</p>
+          </div>
+
           <div className={clsx(style.speakers)}>
             <p className={clsx(style.speakers__title)}>Спикеры:</p>
             <div className={clsx(style.speakers__content)}>
               <div className={clsx(style.speakers__pictures)}>
-                {speakers.map(({ avatar, name }, i) => (
+                {speakers.map(({ name, info_prof }, i) => (
                   <div key={i} className={clsx(style.speakers__item)}>
-                    <figure key={i} className={clsx(style.speakers__figure)}>
-                      <img src={avatar} alt="" />
-                    </figure>
-
-                    <span className={clsx(style.speakers__name)}>{name}</span>
-                    <button
-                      onClick={handleSpeaker}
-                      className={clsx(style.speakers__btn)}
-                    >
-                      Подробнее
-                    </button>
+                    <span
+                      className={clsx(style.speakers__name)}
+                    >{`${name} - ${info_prof}`}</span>
                   </div>
+
+                  // <div key={i} className={clsx(style.speakers__item)}>
+                  //   <figure key={i} className={clsx(style.speakers__figure)}>
+                  //     <img src={avatar} alt="" />
+                  //   </figure>
+
+                  //   <span className={clsx(style.speakers__name)}>{name}</span>
+                  //   <button
+                  //     onClick={handleSpeaker}
+                  //     className={clsx(style.speakers__btn)}
+                  //   >
+                  //     Подробнее
+                  //   </button>
+                  // </div>
                 ))}
               </div>
             </div>
-          </div>
-
-          <div className={clsx(style.description)}>
-            <p className={clsx(style.description__title)}>Описание:</p>
-            <p className={clsx(style.description__text)}>{description}</p>
           </div>
 
           <div className={clsx(style.footer)}>

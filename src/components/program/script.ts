@@ -14,7 +14,7 @@ export interface IProgram {
     time: string;
   };
   link_reg?: { href: string; label: string };
-  is_description?: boolean;
+  is_description: boolean;
 }
 
 export const program: IProgram[] = [
