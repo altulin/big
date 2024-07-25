@@ -15,6 +15,7 @@ const Slide_2: FC = () => {
   useEffect(() => {
     if (!swiper) return;
     if (slide !== 1) return;
+    swiper.update();
     swiper.slideNext(1000);
   }, [slide, swiper]);
 
