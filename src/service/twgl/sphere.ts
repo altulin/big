@@ -32,7 +32,7 @@ export function initGLSphere(id: string) {
   function createSphereLines(verticalLines, horizontalLines) {
     const positions = [];
     const indices = [];
-    const radius = 1;
+    const radius = 1.3;
 
     // Generate vertices
     for (let j = 0; j <= horizontalLines; j++) {

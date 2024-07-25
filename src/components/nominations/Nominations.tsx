@@ -9,6 +9,7 @@ import { useLazyNominationsQuery } from "@/store/rtk/nominations/nominations";
 import { initGLTor } from "@/service/twgl/tor";
 import useIsYang from "@/hooks/isYang";
 import { HashLink } from "react-router-hash-link";
+import IconNominations from "@/images/nominations/tor.svg?react";
 
 const Nominations: FC = () => {
   const [getNomination, results] = useLazyNominationsQuery(undefined);
@@ -16,8 +17,9 @@ const Nominations: FC = () => {
   const isTablet = useIsTabletDevice();
 
   useEffect(() => {
+    if (isTablet) return;
     initGLTor("gl-tor", isYang ? [0.3, 0.2, 0.9, 1.0] : [0.0, 1.0, 0.0, 1.0]);
-  }, [isYang]);
+  }, [isTablet, isYang]);
 
   useEffect(() => {
     getNomination({ offset: 0, limit: isTablet ? 5 : 100 }).unwrap();
@@ -62,7 +64,11 @@ const Nominations: FC = () => {
 
           <div className={clsx(style.torus)}>
             <div className={clsx(style.torus__inner)}>
-              <canvas className={clsx(style.canvas)} id="gl-tor"></canvas>
+              {!isTablet && (
+                <canvas className={clsx(style.canvas)} id="gl-tor"></canvas>
+              )}
+
+              {isTablet && <IconNominations />}
             </div>
           </div>
         </div>

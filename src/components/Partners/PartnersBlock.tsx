@@ -13,8 +13,6 @@ const PartnersBlock: FC<{
   list: { url: string; logo: string; title: string }[];
   type: string;
 }> = ({ list, type }) => {
-  console.log(list);
-
   const isTablet = useIsTabletDevice();
   const dispatch = useAppDispatch();
   const getTitle = (type: string) => {
@@ -36,12 +34,6 @@ const PartnersBlock: FC<{
       dispatch(setClick(true));
       dispatch(setPath(paths.pitch));
     }
-  };
-
-  const changeAttr = (code: any) => {
-    code
-      .replace(/fill=".*?"/g, 'fill="currentColor"')
-      .replace(/stroke=".*?"/g, 'stroke="currentColor"');
   };
 
   return (
