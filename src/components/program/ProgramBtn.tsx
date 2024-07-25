@@ -55,8 +55,6 @@ export const ProgramBtn: FC<{
   const handle = (e: any) => {
     if (!is_description) return;
 
-    return;
-
     const button = e.target.getAttribute("data-button");
 
     if (current === button) {

@@ -8,17 +8,25 @@ import { useIsTabletDevice } from "@/hooks/IsSmallDevice";
 import ProgramBtn from "./ProgramBtn";
 import { Link } from "react-router-dom";
 import { paths } from "@/service/paths";
-import { useAppDispatch } from "@/hooks/hook";
-import { stepTo } from "@/store/modal/modalSlice";
+// import { useAppDispatch } from "@/hooks/hook";
+// import { stepTo } from "@/store/modal/modalSlice";
 
 const ContentItem: FC<{ item: IProgram; i: number }> = ({ item, i }) => {
-  const { date, title, place, speakers, description, is_description } = item;
+  const {
+    date,
+    title,
+    place,
+    speakers,
+    description,
+    is_description,
+    link_reg,
+  } = item;
   const isTablet = useIsTabletDevice();
-  const dispatch = useAppDispatch();
+  // const dispatch = useAppDispatch();
 
-  const handleSpeaker = () => {
-    dispatch(stepTo({ speaker: {} }));
-  };
+  // const handleSpeaker = () => {
+  //   dispatch(stepTo({ speaker: {} }));
+  // };
 
   return (
     <div className={clsx(style.item)}>
@@ -86,18 +94,28 @@ const ContentItem: FC<{ item: IProgram; i: number }> = ({ item, i }) => {
           </div>
 
           <div className={clsx(style.footer)}>
-            <Link to={paths.registration} className={clsx(style.registration)}>
-              Регистрация
-            </Link>
+            {link_reg && (
+              <a
+                target="_blank"
+                href={link_reg.href}
+                className={clsx(style.registration)}
+              >
+                {link_reg.label}
+              </a>
+            )}
 
-            {item.logo && !isTablet && (
+            <a className={clsx(style.online)} href="#">
+              Смотреть онлайн
+            </a>
+
+            {/* {item.logo && !isTablet && (
               <div className={clsx(style.support)}>
                 <span className={clsx(style.support__text)}>При поддержке</span>
                 <a className={clsx(style.support__link)} href="#">
                   <item.logo />
                 </a>
               </div>
-            )}
+            )} */}
           </div>
         </div>
       </div>
