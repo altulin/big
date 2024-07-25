@@ -17,12 +17,14 @@ export interface IProgram {
   is_description: boolean;
 }
 
+const info = "Место и время:";
+
 export const program: IProgram[] = [
   {
     title: ["Препродакшн:", "говорим как есть."],
     date: "01/08",
     place: {
-      info: "Место и время проведения:",
+      info,
       address: "",
       time: "coming soon",
     },
@@ -61,7 +63,7 @@ export const program: IProgram[] = [
     title: ["LED-экраны:", "съёмка без", "ограничений?"],
     date: "08/08",
     place: {
-      info: "Место и время проведения:",
+      info,
       address: "Киностудия им.Горького",
       time: "18:30",
     },
@@ -99,7 +101,7 @@ export const program: IProgram[] = [
     title: ["Big Battle:", "AI или крафт?"],
     date: "15/08",
     place: {
-      info: "Место и время проведения:",
+      info,
       address: "ул. Усачева, 11к",
       time: "18:30",
     },
@@ -138,7 +140,7 @@ export const program: IProgram[] = [
     title: ["COMING SOON"],
     date: "22/08",
     place: {
-      info: "Место и время проведения:",
+      info,
       address: "",
       time: "",
     },
@@ -156,7 +158,7 @@ export const program: IProgram[] = [
     title: ["COMING SOON"],
     date: "29/08",
     place: {
-      info: "Место и время проведения:",
+      info,
       address: "",
       time: "",
     },
@@ -174,7 +176,7 @@ export const program: IProgram[] = [
     title: ["Производство", "контента на", "МегаСкоростях:", "как выжить?"],
     date: "05/09",
     place: {
-      info: "Место и время проведения:",
+      info,
       address: "ул. Образцова, 7 ",
       time: "18:30",
     },
@@ -217,7 +219,7 @@ export const program: IProgram[] = [
     title: ["COMING SOON"],
     date: "11/09",
     place: {
-      info: "Место и время проведения:",
+      info,
       address: "",
       time: "",
     },
@@ -242,7 +244,7 @@ export const program: IProgram[] = [
     ],
     date: "19/09",
     place: {
-      info: "Место и время проведения:",
+      info,
       address: "",
       time: "",
     },
@@ -260,7 +262,7 @@ export const program: IProgram[] = [
     title: ["ЦЕРЕМОНИЯ", "НАГРАЖДЕНИЯ"],
     date: "03/10",
     place: {
-      info: "Место и время проведения:",
+      info,
       address: "",
       time: "",
     },

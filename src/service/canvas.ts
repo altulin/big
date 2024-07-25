@@ -185,6 +185,10 @@ export const handleDraw = (e: any) => {
   ) {
     return;
   } else {
-    redraw(e);
+    try {
+      redraw(e);
+    } catch {
+      //
+    }
   }
 };

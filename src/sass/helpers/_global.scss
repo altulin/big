@@ -232,10 +232,24 @@ img {
 .program {
   .szh-accordion__item-btn {
     padding-left: 0;
+
+    &[aria-expanded="true"] {
+      background-color: rgba(#131313, 0.06);
+
+      .program-button {
+        background-color: transparent;
+      }
+    }
   }
 
   .szh-accordion__item {
     border-top: 0;
+  }
+
+  .szh-accordion__item--expanded {
+    .program-item {
+      background-color: rgba(#131313, 0.06);
+    }
   }
 
   @include mw($tb) {

@@ -36,7 +36,7 @@ const Slider: FC = () => {
         320: { allowTouchMove: true, autoHeight: false },
         768: { allowTouchMove: false, autoHeight: false },
       }}
-      onSlideChange={(s) => dispatch(setPromoSlide(s.realIndex))}
+      onSlideChangeTransitionEnd={(s) => dispatch(setPromoSlide(s.realIndex))}
     >
       {slides.map((slide, index) => (
         <SwiperSlide key={index} className={clsx(style.slide)}>

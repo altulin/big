@@ -8,7 +8,7 @@ import { useIsTabletDevice } from "@/hooks/IsSmallDevice";
 import ProgramBtn from "./ProgramBtn";
 import { Link } from "react-router-dom";
 import { paths } from "@/service/paths";
-import { useAppDispatch } from "@/hooks/hook";
+import { useAppDispatch, useAppSelector } from "@/hooks/hook";
 import { setProgramItem } from "@/store/program/programSlice";
 
 const ContentItem: FC<{ item: IProgram; i: number }> = ({ item, i }) => {
@@ -24,18 +24,27 @@ const ContentItem: FC<{ item: IProgram; i: number }> = ({ item, i }) => {
   const isTablet = useIsTabletDevice();
   const dispatch = useAppDispatch();
 
+  const { current } = useAppSelector((state) => state.program);
+
   const resetProgram = () => {
     dispatch(setProgramItem(null));
   };
 
   return (
-    <div className={clsx(style.item)}>
+    <div
+      className={clsx(
+        style.item,
+        current === i.toString() && style["item_active"],
+        "program-item",
+      )}
+    >
       {!isTablet && (
         <ProgramBtn
           is_description={is_description}
           date={date}
           title={title}
           i={i}
+          isActive={current === i.toString()}
         />
       )}
 
@@ -50,12 +59,16 @@ const ContentItem: FC<{ item: IProgram; i: number }> = ({ item, i }) => {
                 ))}
               </span>
             </h3>
-            <p className={clsx(style.place)}>
-              <span className={clsx(style.place__info)}>{place.info}</span>
-              <span className={clsx(style.place__time)}>{place.time},</span>
 
-              <span className={clsx(style.place__address)}>
-                {place.address}
+            <p className={clsx(style.place)}>
+              <span className={clsx(style.place__title)}>В гостях у:</span>
+              <span className={clsx(style.place__content)}>
+                <span className={clsx(style.place__info)}>{place.info}</span>
+                <span className={clsx(style.place__time)}>{place.time},</span>
+
+                <span className={clsx(style.place__address)}>
+                  {place.address}
+                </span>
               </span>
             </p>
           </div>

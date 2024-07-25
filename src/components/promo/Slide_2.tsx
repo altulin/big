@@ -15,7 +15,11 @@ const Slide_2: FC = () => {
   useEffect(() => {
     if (!swiper) return;
     if (slide !== 1) return;
-    swiper.update();
+
+    // console.log(132132);
+
+    // swiper.slideToLoop(swiper.realIndex, 1000);
+
     swiper.slideNext(1000);
   }, [slide, swiper]);
 
@@ -49,6 +53,7 @@ const Slide_2: FC = () => {
         modules={[EffectFade, Autoplay]}
         speed={1000}
         loop={true}
+        // cssMode={true}
         autoplay={{
           delay: 800,
           disableOnInteraction: false,
