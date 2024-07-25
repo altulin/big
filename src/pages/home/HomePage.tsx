@@ -21,21 +21,21 @@ import JuryMain from "@/components/JuryMain/JuryMain";
 import Partners from "@/components/Partners/Partners";
 
 export const pages: any = [
-  // <Promo />,
-  // <Steps />,
-  // <Nominations />,
-  // <Pitch />,
-  // <SubmissionOfWorks />,
-  // <Price />,
-  // <Requirements />,
-  // <Criteria />,
-  // <JuryMain />,
-  // <Jury />,
+  <Promo />,
+  <Steps />,
+  <Nominations />,
+  <Pitch />,
+  <SubmissionOfWorks />,
+  <Price />,
+  <Requirements />,
+  <Criteria />,
+  <JuryMain />,
+  <Jury />,
   <Program />,
-  // <Festival />,
-  // <Partners />,
-  // <Faq />,
-  // <Contacts />,
+  <Festival />,
+  <Partners />,
+  <Faq />,
+  <Contacts />,
 ];
 
 const HomePage: FC = () => {

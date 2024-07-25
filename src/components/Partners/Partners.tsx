@@ -6,6 +6,7 @@ import { paths } from "@/service/paths";
 import PartnersBlock from "./PartnersBlock";
 import { usePartnersQuery } from "@/store/rtk/partners/partners";
 import { checkArr } from "@/service/checkArr";
+import IconTest from "@/images/partners/test.svg?react";
 
 const Partners: FC = () => {
   const { data } = usePartnersQuery(undefined);
@@ -34,6 +35,10 @@ const Partners: FC = () => {
             />
           </>
         )}
+
+        {/* <div className={clsx(style.test)}>
+          <IconTest />
+        </div> */}
       </div>
     </section>
   );

@@ -54,7 +54,7 @@ const Content: FC<{ refParent: any }> = ({ refParent }) => {
           .fromTo(
             item.querySelector(`.${styleProgram.info}`),
             { display: "none", width: "0" },
-            { display: "flex", width: "35rem", duration: 0.01 },
+            { display: "flex", width: "38rem", duration: 0.01 },
             "<",
           )
           .fromTo(

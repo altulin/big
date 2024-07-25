@@ -21,7 +21,11 @@ export const program: IProgram[] = [
   {
     title: ["Препродакшн:", "говорим как есть."],
     date: "01/08",
-    place: { visiting: "", address: "", time: "coming soon" },
+    place: {
+      visiting: "REASON PICTURES",
+      address: "Котельная на Хлебозаводе / ул. Новодмитровская, 1",
+      time: "18:30",
+    },
 
     speakers: [
       {
@@ -44,9 +48,14 @@ export const program: IProgram[] = [
         name: "Ира Лаврова",
         info_prof: "Head of production Friends",
       },
+      {
+        avatar: img,
+        name: "Александра Галиус",
+        info_prof: "Старший продюсер Fetish Film",
+      },
     ],
     description:
-      "Подготовка к съемкам — процесс нервный. Обсудим с разными участниками процесса, у кого что наболело, и как эти больные места лечить.",
+      "Подготовка к съемкам — процесс масштабный и сложносоставной. Обсудим с представителями индустрии, кого что не устраивает и как это исправить. Начнем с паблик-тока, продолжим легкой вечеринкой!",
     link_reg: {
       href: "https://bpf2024.timepad.ru/event/2961533/",
       label: "Регистрация",
@@ -56,7 +65,11 @@ export const program: IProgram[] = [
   {
     title: ["LED-экраны:", "съёмка без", "ограничений?"],
     date: "08/08",
-    place: { visiting: "", address: "Киностудия им.Горького", time: "18:30" },
+    place: {
+      visiting: "ЗАГРАНИЦА",
+      address: `ПАВИЛЬОН: "55.8" ВИРТУАЛЬНАЯ СТУДИЯ / 2ая Магистральная ул. Д16с7`,
+      time: "18:30",
+    },
     speakers: [
       {
         avatar: img,
@@ -78,6 +91,21 @@ export const program: IProgram[] = [
         name: "Ника Кадо",
         info_prof: "Заведующая. Виртуальная студия Горького",
       },
+      {
+        avatar: img,
+        name: "Елена Егорова",
+        info_prof: "руководитель группы продюсирования Яндекс Еда",
+      },
+      {
+        avatar: img,
+        name: "Борис Петров",
+        info_prof: "исполнительный продюсер Яндекс Еда",
+      },
+      {
+        avatar: img,
+        name: "Максим Ежов",
+        info_prof: "креативный директор WildBerries",
+      },
     ],
     description:
       "Что делать, когда «нам нужно снять лето зимой», а ЮАР — дорого? Снимать на экранах!",
@@ -90,7 +118,11 @@ export const program: IProgram[] = [
   {
     title: ["Big Battle:", "AI или крафт?"],
     date: "15/08",
-    place: { visiting: "", address: "ул. Усачева, 11к", time: "18:30" },
+    place: {
+      visiting: "HYPE PRODUCTION",
+      address: "ул. Усачева, 11к",
+      time: "18:30",
+    },
     speakers: [
       {
         avatar: img,
@@ -151,9 +183,41 @@ export const program: IProgram[] = [
     is_description: false,
   },
   {
+    title: ["COMING SOON"],
+    date: "29/08",
+    place: { visiting: "", address: "", time: "" },
+    speakers: [
+      {
+        avatar: img,
+        name: "",
+        info_prof: "",
+      },
+    ],
+    description: "",
+    is_description: false,
+  },
+  {
+    title: ["COMING SOON"],
+    date: "29/08",
+    place: { visiting: "", address: "", time: "" },
+    speakers: [
+      {
+        avatar: img,
+        name: "",
+        info_prof: "",
+      },
+    ],
+    description: "",
+    is_description: false,
+  },
+  {
     title: ["Производство", "контента на", "МегаСкоростях:", "как выжить?"],
     date: "05/09",
-    place: { visiting: "", address: "ул. Образцова, 7 ", time: "18:30" },
+    place: {
+      visiting: "STEREOTACTIC",
+      address: "ул. Образцова, 7 ",
+      time: "18:30",
+    },
     speakers: [
       {
         avatar: img,
