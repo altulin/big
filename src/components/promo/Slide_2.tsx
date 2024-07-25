@@ -12,19 +12,19 @@ const Slide_2: FC = () => {
     <div className={clsx(style.slide_2)}>
       <div className={clsx(style.slide_2__info)}>
         <h2 className={clsx(style.slide_2__title)}>
-          <span>наболело:</span>
-          <span>перепродакшен</span>
+          <span>Препродакшн:</span>
+          <span>говорим как есть.</span>
         </h2>
         <p className={clsx(style.slide_2__date)}>
           <span>1 августа</span>
           <span className={clsx(style.slide_2__time)}>
-            19:00 / ONLINE + OFFLINE
+            18:30 / ONLINE + OFFLINE
           </span>
         </p>
 
         <a
           className={clsx(style.slide_2__link)}
-          href="https://bpf2024.timepad.ru/event/2961533/ "
+          href="https://bpf2024.timepad.ru/event/2961533/"
           onClick={() => {}}
           target="_blank"
         >

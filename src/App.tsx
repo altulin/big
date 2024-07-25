@@ -45,37 +45,6 @@ const App: FC = () => {
     }
   }, [addEvent, id, isAuth]);
 
-  // useEffect(() => {
-  //   const { pathname, hash } = location;
-
-  //   if (pathname === "/" && hash === "#price") {
-  //     if (isTablet) {
-  //       const el = document.getElementById(paths.price);
-  //       if (!el) return;
-
-  //       setTimeout(() => {
-  //         el.scrollIntoView({ behavior: "smooth" });
-  //       }, 200);
-  //       return;
-  //     }
-  //     dispatch(setPath(paths.price));
-  //   }
-
-  //   if (pathname === `/${paths.young_talent}/` && hash === "#price") {
-  //     navigate(`/${paths.young_talent}`);
-  //     if (isTablet) {
-  //       const el = document.getElementById(paths.price_young);
-
-  //       if (!el) return;
-  //       setTimeout(() => {
-  //         el.scrollIntoView();
-  //       }, 200);
-  //       return;
-  //     }
-  //     dispatch(setPath(paths.price_young));
-  //   }
-  // }, [dispatch, location]);
-
   // dark theme
   useEffect(() => {
     if (isYang) {
