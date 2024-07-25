@@ -39,7 +39,10 @@ const ScrollBarComponent: FC<{ children: ReactNode }> = ({ children }) => {
         {children}
       </Scrollbars>
       <button
-        className={clsx(style.button, isScroll && style["button--hidden"])}
+        className={clsx(
+          style.button,
+          // isScroll && style["button--hidden"]
+        )}
         onClick={() => refScroll.current?.scrollToTop()}
       >
         <IconArr />
@@ -48,7 +51,7 @@ const ScrollBarComponent: FC<{ children: ReactNode }> = ({ children }) => {
         className={clsx(
           style.button,
           style["button--down"],
-          isScroll && style["button--hidden"],
+          // isScroll && style["button--hidden"],
         )}
         onClick={() => refScroll.current?.scrollToBottom()}
       >

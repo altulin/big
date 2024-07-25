@@ -61,9 +61,13 @@ const ContentItem: FC<{ item: IProgram; i: number }> = ({ item, i }) => {
             </h3>
 
             <p className={clsx(style.place)}>
-              <span className={clsx(style.place__title)}>В гостях у:</span>
+              <span className={clsx(style.visiting)}>
+                <span>В гостях у:</span>
+                <span>{place.visiting}</span>
+              </span>
+
               <span className={clsx(style.place__content)}>
-                <span className={clsx(style.place__info)}>{place.info}</span>
+                <span className={clsx(style.place__info)}>Место и время:</span>
                 <span className={clsx(style.place__time)}>{place.time},</span>
 
                 <span className={clsx(style.place__address)}>

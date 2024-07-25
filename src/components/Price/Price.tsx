@@ -6,6 +6,7 @@ import { FC, useEffect, useState } from "react";
 import { paths } from "@/service/paths";
 import { useIntermediateStageQuery } from "@/store/rtk/stage/intermediateStage";
 import useIsYang from "@/hooks/isYang";
+import { compareDesc } from "date-fns";
 
 const Price: FC = () => {
   const { data, status } = useIntermediateStageQuery(undefined);
@@ -19,9 +20,11 @@ const Price: FC = () => {
   useEffect(() => {
     if (status !== "fulfilled") return;
 
-    const baseList = data?.results.filter(
-      (item: any) => item.stage === "submission",
-    );
+    const baseList = data?.results
+      .filter((item: any) => item.stage === "submission")
+      .sort((a: any, b: any) => {
+        return compareDesc(b.stage_start_at, a.stage_start_at);
+      });
 
     const list = baseList.map((item: any) => {
       return item.work_costs.filter((el: any) => {

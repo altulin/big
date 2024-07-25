@@ -17,12 +17,15 @@ const Content: FC<{ refParent: any }> = ({ refParent }) => {
   useEffect(() => {
     if (!refContent.current) return;
 
+    console.log(q(`.${styleProgram.program__main}`));
+
     setTimeLines(
       q(`.${styleProgram.item}`).map((item) => {
         if (!item.querySelector(`.${styleProgram.button__icon}`)) return;
         return gsap
           .timeline({ paused: true })
           .add("start", "<")
+
           .fromTo(
             [
               item.querySelector(`.${styleProgram.button__title}`),
@@ -32,6 +35,7 @@ const Content: FC<{ refParent: any }> = ({ refParent }) => {
             { autoAlpha: 0, direction: 0.01 },
             "<",
           )
+
           .fromTo(
             [
               item.querySelector(`.${styleProgram.button__title}`),
@@ -71,13 +75,18 @@ const Content: FC<{ refParent: any }> = ({ refParent }) => {
     }
 
     if (current !== null) {
+      gsap.set(q(`.${styleProgram.planet}`), { autoAlpha: 0 });
+
       timeLines.forEach((tl: any) => {
         if (!tl) return;
         tl.pause("start");
       });
-      timeLines[current].play();
+
+      timeLines[current].play().then(() => {
+        gsap.set(q(`.${styleProgram.planet}`), { autoAlpha: 1 });
+      });
     }
-  }, [current, timeLines]);
+  }, [current, q, timeLines]);
 
   return (
     <div ref={refContent} className={clsx(styleProgram.content)}>

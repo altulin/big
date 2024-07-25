@@ -9,7 +9,7 @@ export interface IProgram {
   description: string;
   logo?: any;
   place: {
-    info: string;
+    visiting: string;
     address: string;
     time: string;
   };
@@ -17,17 +17,11 @@ export interface IProgram {
   is_description: boolean;
 }
 
-const info = "Место и время:";
-
 export const program: IProgram[] = [
   {
     title: ["Препродакшн:", "говорим как есть."],
     date: "01/08",
-    place: {
-      info,
-      address: "",
-      time: "coming soon",
-    },
+    place: { visiting: "", address: "", time: "coming soon" },
 
     speakers: [
       {
@@ -62,11 +56,7 @@ export const program: IProgram[] = [
   {
     title: ["LED-экраны:", "съёмка без", "ограничений?"],
     date: "08/08",
-    place: {
-      info,
-      address: "Киностудия им.Горького",
-      time: "18:30",
-    },
+    place: { visiting: "", address: "Киностудия им.Горького", time: "18:30" },
     speakers: [
       {
         avatar: img,
@@ -100,11 +90,7 @@ export const program: IProgram[] = [
   {
     title: ["Big Battle:", "AI или крафт?"],
     date: "15/08",
-    place: {
-      info,
-      address: "ул. Усачева, 11к",
-      time: "18:30",
-    },
+    place: { visiting: "", address: "ул. Усачева, 11к", time: "18:30" },
     speakers: [
       {
         avatar: img,
@@ -139,11 +125,7 @@ export const program: IProgram[] = [
   {
     title: ["COMING SOON"],
     date: "22/08",
-    place: {
-      info,
-      address: "",
-      time: "",
-    },
+    place: { visiting: "", address: "", time: "" },
     speakers: [
       {
         avatar: img,
@@ -157,11 +139,7 @@ export const program: IProgram[] = [
   {
     title: ["COMING SOON"],
     date: "29/08",
-    place: {
-      info,
-      address: "",
-      time: "",
-    },
+    place: { visiting: "", address: "", time: "" },
     speakers: [
       {
         avatar: img,
@@ -175,11 +153,7 @@ export const program: IProgram[] = [
   {
     title: ["Производство", "контента на", "МегаСкоростях:", "как выжить?"],
     date: "05/09",
-    place: {
-      info,
-      address: "ул. Образцова, 7 ",
-      time: "18:30",
-    },
+    place: { visiting: "", address: "ул. Образцова, 7 ", time: "18:30" },
     speakers: [
       {
         avatar: img,
@@ -218,11 +192,7 @@ export const program: IProgram[] = [
   {
     title: ["COMING SOON"],
     date: "11/09",
-    place: {
-      info,
-      address: "",
-      time: "",
-    },
+    place: { visiting: "", address: "", time: "" },
     speakers: [
       {
         avatar: img,
@@ -243,11 +213,7 @@ export const program: IProgram[] = [
       "на площадке.",
     ],
     date: "19/09",
-    place: {
-      info,
-      address: "",
-      time: "",
-    },
+    place: { visiting: "", address: "", time: "" },
     speakers: [
       {
         avatar: img,
@@ -261,11 +227,7 @@ export const program: IProgram[] = [
   {
     title: ["ЦЕРЕМОНИЯ", "НАГРАЖДЕНИЯ"],
     date: "03/10",
-    place: {
-      info,
-      address: "",
-      time: "",
-    },
+    place: { visiting: "", address: "", time: "" },
     speakers: [
       {
         avatar: img,
