@@ -8,8 +8,8 @@ import { useIsTabletDevice } from "@/hooks/IsSmallDevice";
 import ProgramBtn from "./ProgramBtn";
 import { Link } from "react-router-dom";
 import { paths } from "@/service/paths";
-// import { useAppDispatch } from "@/hooks/hook";
-// import { stepTo } from "@/store/modal/modalSlice";
+import { useAppDispatch } from "@/hooks/hook";
+import { setProgramItem } from "@/store/program/programSlice";
 
 const ContentItem: FC<{ item: IProgram; i: number }> = ({ item, i }) => {
   const {
@@ -22,11 +22,11 @@ const ContentItem: FC<{ item: IProgram; i: number }> = ({ item, i }) => {
     link_reg,
   } = item;
   const isTablet = useIsTabletDevice();
-  // const dispatch = useAppDispatch();
+  const dispatch = useAppDispatch();
 
-  // const handleSpeaker = () => {
-  //   dispatch(stepTo({ speaker: {} }));
-  // };
+  const resetProgram = () => {
+    dispatch(setProgramItem(null));
+  };
 
   return (
     <div className={clsx(style.item)}>
@@ -94,19 +94,25 @@ const ContentItem: FC<{ item: IProgram; i: number }> = ({ item, i }) => {
           </div>
 
           <div className={clsx(style.footer)}>
+            <Link
+              onClick={resetProgram}
+              to={paths.registration}
+              className={clsx(style.registration)}
+            >
+              Регистрация
+            </Link>
+
             {link_reg && (
               <a
                 target="_blank"
                 href={link_reg.href}
-                className={clsx(style.registration)}
+                className={clsx(style.online)}
+                onClick={resetProgram}
               >
-                {link_reg.label}
+                Смотреть онлайн
+                {/* {link_reg.label} */}
               </a>
             )}
-
-            <a className={clsx(style.online)} href="#">
-              Смотреть онлайн
-            </a>
 
             {/* {item.logo && !isTablet && (
               <div className={clsx(style.support)}>

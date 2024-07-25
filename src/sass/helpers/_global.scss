@@ -85,10 +85,10 @@ body {
   display: flex;
   flex-direction: column;
   flex-grow: 1;
-  max-height: 100vh;
+  height: 100vh;
 
   @include mw($tb) {
-    max-height: none;
+    height: auto;
   }
 }
 

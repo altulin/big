@@ -8,6 +8,7 @@ import { useAppDispatch, useAppSelector } from "@/hooks/hook";
 import { checkArr } from "@/service/checkArr";
 import { setClick, setPath } from "@/store/menu/menuSlice";
 import { setSwiperProgress, setSwiperSlides } from "@/store/swiper/swiperSlice";
+import "swiper/css";
 
 const SliderHome: FC<{ pages: any }> = ({ pages }) => {
   const { path, isClick } = useAppSelector((state) => state.menu);

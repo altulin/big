@@ -19,44 +19,47 @@ const Content: FC<{ refParent: any }> = ({ refParent }) => {
 
     setTimeLines(
       q(`.${styleProgram.item}`).map((item) => {
-        return gsap
-          .timeline({ paused: true })
-          .add("start", "<")
-          .fromTo(
-            [
-              item.querySelector(`.${styleProgram.button__title}`),
-              item.querySelector(`.${styleProgram.button__date}`),
-            ],
-            { autoAlpha: 1 },
-            { autoAlpha: 0, direction: 0.01 },
-            "<",
-          )
-          .fromTo(
-            [
-              item.querySelector(`.${styleProgram.button__title}`),
-              item.querySelector(`.${styleProgram.button__date}`),
-            ],
-            { width: "auto" },
-            { width: 0, direction: 0.01 },
-            "<",
-          )
-          .fromTo(
-            item.querySelector(`.${styleProgram.button__icon}`),
-            { rotate: 180 },
-            { rotate: 0, ease, duration: 0.01 },
-            "<",
-          )
-          .fromTo(
-            item.querySelector(`.${styleProgram.info}`),
-            { display: "none", width: "0" },
-            { display: "flex", width: "35rem", direction: 0.01 },
-            "<",
-          )
-          .fromTo(
-            item.querySelector(`.${styleProgram.info}`),
-            { autoAlpha: 0 },
-            { autoAlpha: 1, direction: 0.01 },
-          );
+        if (!item.querySelector(`.${styleProgram.button__icon}`)) return;
+        return (
+          gsap
+            .timeline({ paused: true })
+            .add("start", "<")
+            .fromTo(
+              [
+                item.querySelector(`.${styleProgram.button__title}`),
+                item.querySelector(`.${styleProgram.button__date}`),
+              ],
+              { autoAlpha: 1 },
+              { autoAlpha: 0, direction: 0.01 },
+              "<",
+            )
+            .fromTo(
+              [
+                item.querySelector(`.${styleProgram.button__title}`),
+                item.querySelector(`.${styleProgram.button__date}`),
+              ],
+              { width: "auto" },
+              { width: 0, direction: 0.01 },
+              "<",
+            )
+            // .fromTo(
+            //   item.querySelector(`.${styleProgram.button__icon}`),
+            //   { rotate: 180 },
+            //   { rotate: 0, ease, duration: 0.01 },
+            //   "<",
+            // )
+            .fromTo(
+              item.querySelector(`.${styleProgram.info}`),
+              { display: "none", width: "0" },
+              { display: "flex", width: "35rem", direction: 0.01 },
+              "<",
+            )
+            .fromTo(
+              item.querySelector(`.${styleProgram.info}`),
+              { autoAlpha: 0 },
+              { autoAlpha: 1, direction: 0.01 },
+            )
+        );
       }),
     );
   }, []);
@@ -64,12 +67,14 @@ const Content: FC<{ refParent: any }> = ({ refParent }) => {
   useEffect(() => {
     if (current === null) {
       timeLines.forEach((tl: any) => {
+        if (!tl) return;
         tl.pause("start");
       });
     }
 
     if (current !== null) {
       timeLines.forEach((tl: any) => {
+        if (!tl) return;
         tl.pause("start");
       });
       timeLines[current].play();

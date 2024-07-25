@@ -51,7 +51,10 @@ const Promo: FC = () => {
           autoFill={true}
           speed={100}
           onMount={() => {
-            canvasCreate("canvas-sm");
+            setTimeout(() => {
+              canvasCreate("canvas-sm");
+            }, 500);
+            // canvasCreate("canvas-sm");
           }}
         >
           <p className={clsx(style.marquee__inner)}>

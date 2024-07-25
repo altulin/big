@@ -1,7 +1,7 @@
 import clsx from "clsx";
 import { FC } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import "swiper/css";
+
 import style from "./Promo.module.scss";
 
 import Slide_1 from "./Slide_1";
@@ -11,6 +11,7 @@ import { Navigation, EffectFade, Autoplay } from "swiper/modules";
 import Slide_3 from "./Slide_3";
 
 const Slider: FC = () => {
+  // const slides = [<Slide_1 />, <Slide_2 />, <Slide_3 />];
   const slides = [<Slide_1 />, <Slide_2 />, <Slide_3 />];
 
   return (
