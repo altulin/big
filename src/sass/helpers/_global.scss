@@ -304,13 +304,11 @@ img {
   }
 }
 
-.home {
-  .swiper-wrapper {
-    transition-duration: 1s !important;
-    /*Ease-out for scrolling, big difference when changed*/
-    transition-timing-function: ease-out;
-    flex-grow: 1;
-  }
+.home-swiper-wrapper {
+  transition-duration: 1s !important;
+  /*Ease-out for scrolling, big difference when changed*/
+  transition-timing-function: ease-out;
+  flex-grow: 1;
 }
 
 #modal-root {

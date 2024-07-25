@@ -1,13 +1,23 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import clsx from "clsx";
 import style from "./Promo.module.scss";
-import { FC } from "react";
+import { FC, useEffect, useState } from "react";
 import Instructor from "./Instructor";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { EffectFade, Autoplay } from "swiper/modules";
 import { girls } from "./script";
+import { useAppSelector } from "@/hooks/hook";
 
 const Slide_2: FC = () => {
+  const [swiper, setSwiper] = useState<any>(null);
+  const { slide } = useAppSelector((state) => state.promo);
+
+  useEffect(() => {
+    if (!swiper) return;
+    if (slide !== 1) return;
+    swiper.slideNext(1000);
+  }, [slide, swiper]);
+
   return (
     <div className={clsx(style.slide_2)}>
       <div className={clsx(style.slide_2__info)}>
@@ -33,14 +43,11 @@ const Slide_2: FC = () => {
       </div>
 
       <Swiper
+        onSwiper={setSwiper}
         className={clsx(style.instructor__slider)}
         modules={[EffectFade, Autoplay]}
-        effect={"fade"}
         speed={1000}
         loop={true}
-        fadeEffect={{
-          crossFade: true,
-        }}
         autoplay={{
           delay: 800,
           disableOnInteraction: false,
