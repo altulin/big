@@ -32,7 +32,7 @@ const Content: FC<{ refParent: any }> = ({ refParent }) => {
               item.querySelector(`.${styleProgram.button__date}`),
             ],
             { autoAlpha: 1 },
-            { autoAlpha: 0, direction: 0.01 },
+            { autoAlpha: 0, duration: 0.01 },
             "<",
           )
 
@@ -42,7 +42,7 @@ const Content: FC<{ refParent: any }> = ({ refParent }) => {
               item.querySelector(`.${styleProgram.button__date}`),
             ],
             { width: "auto" },
-            { width: 0, direction: 0.01 },
+            { width: 0, duration: 0.01 },
             "<",
           )
           .fromTo(
@@ -54,13 +54,13 @@ const Content: FC<{ refParent: any }> = ({ refParent }) => {
           .fromTo(
             item.querySelector(`.${styleProgram.info}`),
             { display: "none", width: "0" },
-            { display: "flex", width: "35rem", direction: 0.01 },
+            { display: "flex", width: "35rem", duration: 0.01 },
             "<",
           )
           .fromTo(
             item.querySelector(`.${styleProgram.info}`),
             { autoAlpha: 0 },
-            { autoAlpha: 1, direction: 0.01 },
+            { autoAlpha: 1, duration: 0.5 },
           );
       }),
     );
@@ -75,7 +75,7 @@ const Content: FC<{ refParent: any }> = ({ refParent }) => {
     }
 
     if (current !== null) {
-      gsap.set(q(`.${styleProgram.planet}`), { autoAlpha: 0 });
+      // gsap.set(q(`.${styleProgram.planet}`), { autoAlpha: 0 });
 
       timeLines.forEach((tl: any) => {
         if (!tl) return;
@@ -83,7 +83,7 @@ const Content: FC<{ refParent: any }> = ({ refParent }) => {
       });
 
       timeLines[current].play().then(() => {
-        gsap.set(q(`.${styleProgram.planet}`), { autoAlpha: 1 });
+        // gsap.set(q(`.${styleProgram.planet}`), { autoAlpha: 1 });
       });
     }
   }, [current, q, timeLines]);
