@@ -7,10 +7,14 @@ import { setClick, setPath } from "@/store/menu/menuSlice";
 import { useIsTabletDevice } from "@/hooks/IsSmallDevice";
 import { useAppDispatch } from "@/hooks/hook";
 import { paths } from "@/service/paths";
+import SVG from "react-inlinesvg";
+
 const PartnersBlock: FC<{
   list: { url: string; logo: string; title: string }[];
   type: string;
 }> = ({ list, type }) => {
+  console.log(list);
+
   const isTablet = useIsTabletDevice();
   const dispatch = useAppDispatch();
   const getTitle = (type: string) => {
@@ -34,6 +38,12 @@ const PartnersBlock: FC<{
     }
   };
 
+  const changeAttr = (code: any) => {
+    code
+      .replace(/fill=".*?"/g, 'fill="currentColor"')
+      .replace(/stroke=".*?"/g, 'stroke="currentColor"');
+  };
+
   return (
     <div className={clsx(style.item)}>
       <h3 className={clsx(style.item__title)}>{getTitle(type)}</h3>
@@ -47,13 +57,23 @@ const PartnersBlock: FC<{
               target={item.title !== "Мегамаркет" ? "_blank" : "_self"}
               onClick={(e) => handleBrandClick(e, item.title)}
             >
-              <img
+              <SVG
+                src={item.logo}
+                width={96}
+                height={35}
+                title={item.title}
+                preProcessor={
+                  (code) => code.replace(/fill=".*?"/g, 'fill="currentColor"')
+                  // .replace(/stroke=".*?"/g, 'stroke="currentColor"')
+                }
+              />
+              {/* <img
                 className={clsx(style.item__list_logo)}
                 src={item.logo}
                 alt="logo"
                 width={96}
                 height={35}
-              />
+              /> */}
             </HashLink>
           </li>
         ))}
