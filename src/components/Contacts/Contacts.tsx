@@ -10,7 +10,7 @@ import IconMainDark from "@/images/contacts/logo_blue_dark.svg?react";
 import { paths } from "@/service/paths";
 import Soc from "./Soc";
 import { useAppSelector } from "@/hooks/hook";
-import { canvasCreate, handleDraw } from "@/service/canvasContact";
+import { canvasCreate, handleDraw } from "@/service/canvasContactLeft";
 import { useSettigsQuery } from "@/store/rtk/main/settings";
 import useIsYang from "@/hooks/isYang";
 
