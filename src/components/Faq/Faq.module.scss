@@ -27,7 +27,7 @@
       padding-bottom: 2rem;
       padding-left: 0.5rem;
       padding-right: 0.5rem;
-      min-height: 35rem;
+      min-height: 30rem;
       overflow: hidden;
     }
   }
@@ -40,18 +40,23 @@
     top: 0;
 
     @include mw($tb) {
-      aspect-ratio: 1 / 1;
-      width: auto;
-      min-width: 100%;
-      left: 50%;
-      transform: translateX(-50%);
+      background-image: url("@/images/faq/lines.svg");
+      background-repeat: no-repeat;
+      background-size: cover;
     }
   }
 
   &__canvas {
+    position: absolute;
+    left: 0;
+    top: 0;
     width: 100%;
     height: 100%;
   }
+
+  // &__canvas_2 {
+  //   transform: rotate(180deg);
+  // }
 }
 
 .title {

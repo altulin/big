@@ -7,7 +7,7 @@ import ScrollBarComponent from "@/hoc/scrollbar/ScrollBarComponent";
 import { useIsTabletDevice } from "@/hooks/IsSmallDevice";
 import styleFaq from "./Faq.module.scss";
 import { paths } from "@/service/paths";
-import { initGLGrid } from "@/service/twgl/gridLine";
+import { initGLGrid } from "@/service/twgl/grid";
 import useIsYang from "@/hooks/isYang";
 
 const Faq: FC = () => {
@@ -29,6 +29,7 @@ const Faq: FC = () => {
   };
 
   useEffect(() => {
+    if (isTablet) return;
     initGLGrid("canvas-faq", false);
   }, [isYang]);
 
@@ -44,10 +45,12 @@ const Faq: FC = () => {
             <span>и ответы</span>
           </h2>
           <div className={clsx(styleFaq.faq__figure)}>
-            <canvas
-              className={clsx(styleFaq.faq__canvas)}
-              id="canvas-faq"
-            ></canvas>
+            {!isTablet && (
+              <canvas
+                className={clsx(styleFaq.faq__canvas)}
+                id="canvas-faq"
+              ></canvas>
+            )}
           </div>
         </div>
 

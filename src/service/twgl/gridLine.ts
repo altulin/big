@@ -55,14 +55,14 @@ export function initGLGrid(id: string, isYang: any) {
 
   for (let y = 0; y <= gridSize; y++) {
     for (let x = 0; x <= gridSize; x++) {
-      positions.push(x / gridSize, y / gridSize, 0);
+      const width = x / gridSize;
+      const height = y / gridSize;
+
+      positions.push(width, height + width, 0);
+
       if (x < gridSize) {
         const index = y * (gridSize + 1) + x;
         indices.push(index, index + 1);
-      }
-      if (y < gridSize) {
-        const index = y * (gridSize + 1) + x;
-        indices.push(index, index + gridSize + 1);
       }
     }
   }
