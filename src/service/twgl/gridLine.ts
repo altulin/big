@@ -49,26 +49,24 @@ export function initGLGrid(id: string, isYang: any) {
 
   const programInfo = twgl.createProgramInfo(gl, [vs, fs]);
 
-  const gridSize = 2;
+  const gridSize = 24;
   const positions = [];
   const indices = [];
 
   for (let y = 0; y <= gridSize; y++) {
     for (let x = 0; x <= gridSize; x++) {
-      console.log(x / gridSize, y / gridSize);
-
       positions.push(x / gridSize, y / gridSize, 0);
-
       if (x < gridSize) {
         const index = y * (gridSize + 1) + x;
         indices.push(index, index + 1);
       }
-      //   if (y < gridSize) {
-      //     const index = y * (gridSize + 1) + x;
-      //     indices.push(index, index + gridSize + 1);
-      //   }
+      if (y < gridSize) {
+        const index = y * (gridSize + 1) + x;
+        indices.push(index, index + gridSize + 1);
+      }
     }
   }
+
   const bufferInfo = twgl.createBufferInfoFromArrays(gl, {
     position: positions,
     indices: indices,
