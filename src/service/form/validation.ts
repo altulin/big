@@ -17,19 +17,15 @@ import {
 
 // const MAX_FILE_SIZE = 5; //100KB
 const MAX_FILE_SIZE = 5242880; //5Mb
-import store from "@/store";
-import { categories } from "@/components/Pass/script";
 
 // without https
-// const regMain =
-//   /(?:https?:\/\/)?(?:youtu\.be\/|(?:www\.|m\.)?youtube\.com\/|(?:www\.|m\.)?vimeo\.com\/|(?:www\.|m\.)?disk\.yandex\.ru\/|(?:www\.|m\.)?drive\.google\.com\/)([a-zA-Z0-9\_-]+)/;
-
-const { category } = store.getState();
-
 const regMain =
-  /(?:https?:\/\/)(?:youtu\.be\/|youtube\.com\/|vimeo\.com\/|nuum\.ru\/|disk\.yandex\.ru\/|drive\.google\.com\/)([a-zA-Z0-9\_-]+)/;
+  /(?:https?:\/\/)?(?:youtu\.be\/|(?:www\.|m\.)?youtube\.com\/|(?:www\.|m\.)?vimeo\.com\/|(?:www\.|m\.)?disk\.yandex\.ru\/|(?:www\.|m\.)?drive\.google\.com\/)([a-zA-Z0-9\_-]+)/;
 
-const regNuum = /(?:https?:\/\/)(nuum\.ru\/)([a-zA-Z0-9\_-]+)/;
+// const regMain =
+//   /(?:https?:\/\/)(?:youtu\.be\/|youtube\.com\/|vimeo\.com\/|nuum\.ru\/|disk\.yandex\.ru\/|drive\.google\.com\/)([a-zA-Z0-9\_-]+)/;
+
+const regNuum = /(?:https?:\/\/)((?:www\.|m\.)?nuum\.ru\/)([a-zA-Z0-9\_-]+)/;
 
 export const object: any = {
   name: yup
@@ -90,14 +86,7 @@ export const object: any = {
   idea: yup.string().required(required),
   about_project: yup.string().required(required),
 
-  work_link: yup
-    .string()
-    .matches(
-      category.category === categories.main_category ? regMain : regNuum,
-      url,
-    )
-    .required(required),
-
+  work_link: yup.string().matches(regMain, url).required(required),
   work_link_nuum: yup.string().matches(regNuum, url).required(required),
 
   credits: yup.string().required(required),

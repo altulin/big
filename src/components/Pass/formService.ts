@@ -102,6 +102,12 @@ export const useInitialValues = () => {
         }
       }
 
+      if (item === "work_link") {
+        if (category === categories.young_talent) {
+          return (schema[`${item}`] = object.work_link_nuum);
+        }
+      }
+
       return (schema[`${item}`] = object[`${item}`]);
     });
 

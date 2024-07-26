@@ -11,6 +11,7 @@ import { useParams } from "react-router-dom";
 import { setSuccessModal } from "@/store/modal/modalSlice";
 import { useAppDispatch } from "@/hooks/hook";
 import { getBase64 } from "../Pass/payLoadServise";
+import { paths } from "@/service/paths";
 
 const EditForm: FC<{ data?: any }> = ({ data }) => {
   const { createValidationSchema, getProperties } = useInitialValues();
@@ -46,7 +47,7 @@ const EditForm: FC<{ data?: any }> = ({ data }) => {
   return (
     <Formik
       initialValues={{ fields: [getProperties(data)] }}
-      validationSchema={createValidationSchema("edit")}
+      validationSchema={createValidationSchema(paths.edit)}
       onSubmit={async (values) => {
         convertBase(values).then((res) => {
           setTimeout(() => {
