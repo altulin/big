@@ -68,8 +68,6 @@ export const canvasCreate = (id: string, color: string) => {
   ctx.imageSmoothingEnabled = false;
 
   function refreshSizeSm() {
-    console.log(Math.round(canvasWidth / rem));
-
     smallSquare = {
       x1: Math.round((canvasWidth / rem / 100) * 5),
       y1: Math.round((canvasWidth / rem / 100) * 5),

@@ -17,8 +17,6 @@ const Content: FC<{ refParent: any }> = ({ refParent }) => {
   useEffect(() => {
     if (!refContent.current) return;
 
-    console.log(q(`.${styleProgram.program__main}`));
-
     setTimeLines(
       q(`.${styleProgram.item}`).map((item) => {
         if (!item.querySelector(`.${styleProgram.button__icon}`)) return;
