@@ -96,6 +96,18 @@ const PassForm: FC = () => {
     }
   }, [dispatch, error, status]); // eslint-disable-line
 
+  const getListErr = (res: any) => {
+    const list = res.data.works;
+    const arr: any = [];
+
+    list.forEach((item: any) => {
+      const key = Object.keys(item)[0];
+      arr.push(...item[`${key}`]);
+    });
+
+    return arr;
+  };
+
   return (
     <Formik
       initialValues={{
@@ -111,7 +123,12 @@ const PassForm: FC = () => {
           setTimeout(() => {
             sendWork(res)
               .unwrap()
-              .then(() => resetForm());
+              .then(() => {
+                resetForm();
+              })
+              .catch((res) => {
+                dispatch(setErrorModal(getListErr(res)[0]));
+              });
           }, 500),
         );
         addEvent({

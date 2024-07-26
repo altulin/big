@@ -18,12 +18,8 @@ import {
 // const MAX_FILE_SIZE = 5; //100KB
 const MAX_FILE_SIZE = 5242880; //5Mb
 
-// without https
 const regMain =
-  /(?:https?:\/\/)?(?:youtu\.be\/|(?:www\.|m\.)?youtube\.com\/|(?:www\.|m\.)?vimeo\.com\/|(?:www\.|m\.)?disk\.yandex\.ru\/|(?:www\.|m\.)?drive\.google\.com\/)([a-zA-Z0-9\_-]+)/;
-
-// const regMain =
-//   /(?:https?:\/\/)(?:youtu\.be\/|youtube\.com\/|vimeo\.com\/|nuum\.ru\/|disk\.yandex\.ru\/|drive\.google\.com\/)([a-zA-Z0-9\_-]+)/;
+  /(?:https?:\/\/)(?:youtu\.be\/|(?:www\.|m\.)?youtube\.com\/|(?:www\.|m\.)?vimeo\.com\/|(?:www\.|m\.)?disk\.yandex\.ru\/|(?:www\.|m\.)?drive\.google\.com\/)([a-zA-Z0-9\_-]+)/;
 
 const regNuum = /(?:https?:\/\/)((?:www\.|m\.)?nuum\.ru\/)([a-zA-Z0-9\_-]+)/;
 
