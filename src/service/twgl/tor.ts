@@ -35,8 +35,8 @@ export function initGLTor(id: string, color: any) {
          }`,
   ]);
 
-  const majorRadius = 1;
-  const minorRadius = 0.3;
+  const majorRadius = 1.8;
+  const minorRadius = 0.5;
   const numMajor = 70;
   const numMinor = 40;
 
@@ -150,7 +150,7 @@ export function initGLTor(id: string, color: any) {
       10,
     );
 
-    const cameraPosition = [0, -4, 4];
+    const cameraPosition = [0, -6, 4];
     const target = [0, 0, 0];
     const up = [0, 1, 0];
     const cameraMatrix = twgl.m4.lookAt(cameraPosition, target, up);
