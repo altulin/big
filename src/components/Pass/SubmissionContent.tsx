@@ -25,8 +25,6 @@ const SubmissionContent: FC<{ formik: any; id: number }> = ({ formik, id }) => {
     return { value: item.id, label: item.title };
   });
 
- 
-
   return (
     <>
       {category !== categories.brand_pitches && (
@@ -45,7 +43,7 @@ const SubmissionContent: FC<{ formik: any; id: number }> = ({ formik, id }) => {
 
       {category !== categories.brand_pitches && (
         <p className={clsx(style.big__text)}>
-          Напоминаем, что название авторов/продакшена нигде не должно
+          Напоминаем, что название авторов/продакшна нигде не должно
           фигурировать. Исключение - селфпромо работа
         </p>
       )}
@@ -118,7 +116,7 @@ const SubmissionContent: FC<{ formik: any; id: number }> = ({ formik, id }) => {
             Яндекс Диск/ Google Drive в открытом доступе.
           </p>
           <p className={clsx(style.big__text)}>
-            Напоминаем, что канал не должен называться именем продакшена. Мы
+            Напоминаем, что канал не должен называться именем продакшна. Мы
             рекомендуем создать специальный фестивальный аккаунт.
           </p>
         </>
