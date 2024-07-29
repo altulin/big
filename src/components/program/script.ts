@@ -14,6 +14,7 @@ export interface IProgram {
     time: string;
   };
   link_reg?: { href: string; label: string };
+  link_online?: { href: string; label: string };
   is_description: boolean;
 }
 
@@ -23,7 +24,7 @@ export const program: IProgram[] = [
     date: "01/08",
     place: {
       visiting: "REASON PICTURES",
-      address: "Котельная на Хлебозаводе / ул. Новодмитровская, 1",
+      address: "Котельная на Хлебозаводе / Новодмитровская ул., 1, стр. 23",
       time: "18:30",
     },
 
@@ -53,12 +54,37 @@ export const program: IProgram[] = [
         name: "Александра Галиус",
         info_prof: "Старший продюсер Fetish Film",
       },
+      {
+        avatar: img,
+        name: "Гоша Евдокимов",
+        info_prof: "Режиссер",
+      },
+      {
+        avatar: img,
+        name: "Таир Полад-заде",
+        info_prof: "Режиссер",
+      },
+      {
+        avatar: img,
+        name: "Елена Игошина",
+        info_prof: "Producer Мегафон&Yota",
+      },
+      {
+        avatar: img,
+        name: "Заур Фардзинов",
+        info_prof:
+          "Сo-founder and creative director Showrunners, Mass delusion",
+      },
     ],
     description:
       "Подготовка к съемкам — процесс масштабный и сложносоставной. Обсудим с представителями индустрии, кого что не устраивает и как это исправить. Начнем с паблик-тока, продолжим легкой вечеринкой!",
     link_reg: {
       href: "https://bpf2024.timepad.ru/event/2961533/",
       label: "Регистрация",
+    },
+    link_online: {
+      href: "https://nuum.ru/channel/bigpicturefestival/streams",
+      label: "Смотреть онлайн",
     },
     is_description: true,
   },
@@ -74,12 +100,17 @@ export const program: IProgram[] = [
       {
         avatar: img,
         name: "Андрей Шавкеро",
-        info_prof: "Режиссер",
+        info_prof: "Режиссер-постановщик",
       },
       {
         avatar: img,
         name: "Алексей Куприянов",
-        info_prof: "Оператор",
+        info_prof: "Оператор-постановщик",
+      },
+      {
+        avatar: img,
+        name: "Иван Степин",
+        info_prof: "Руководитель продакшна «Заграница»",
       },
       {
         avatar: img,
@@ -89,12 +120,12 @@ export const program: IProgram[] = [
       {
         avatar: img,
         name: "Ника Кадо",
-        info_prof: "Заведующая. Виртуальная студия Горького",
+        info_prof: "Руководитель Виртуального продакшена Горького",
       },
       {
         avatar: img,
         name: "Елена Егорова",
-        info_prof: "руководитель группы продюсирования Яндекс Еда",
+        info_prof: "Руководитель группы продюсирования Яндекс Еда",
       },
       {
         avatar: img,
@@ -104,14 +135,18 @@ export const program: IProgram[] = [
       {
         avatar: img,
         name: "Максим Ежов",
-        info_prof: "креативный директор WildBerries",
+        info_prof: "Креативный директор команды рекламных запусков WildBerries",
       },
     ],
     description:
-      "Что делать, когда «нам нужно снять лето зимой», а ЮАР — дорого? Снимать на экранах!",
+      "Что делать, когда «нам нужно снять лето зимой», а ЮАР — дорого? Снимать на экранах! Паблик-ток пройдет в павильоне с LED экранами студии Горького. После круглого стола послушаем музыку и поиграем в плейстейшн на большом LED экране.",
     link_reg: {
       href: "https://bpf2024.timepad.ru/event/2967461/",
       label: "Регистрация",
+    },
+    link_online: {
+      href: "https://nuum.ru/channel/bigpicturefestival/streams",
+      label: "Смотреть онлайн",
     },
     is_description: true,
   },
@@ -152,39 +187,15 @@ export const program: IProgram[] = [
     ],
     description:
       "Рукотворный трудозатратный крафт versus грамотные промпты: когда нейронкам стоит делегировать задачи, а когда лучше сделать самому? Ну и, конечно, классика: кого уволят первым?",
+    link_online: {
+      href: "https://nuum.ru/channel/bigpicturefestival/streams",
+      label: "Смотреть онлайн",
+    },
     is_description: true,
   },
   {
     title: ["COMING SOON"],
     date: "22/08",
-    place: { visiting: "", address: "", time: "" },
-    speakers: [
-      {
-        avatar: img,
-        name: "",
-        info_prof: "",
-      },
-    ],
-    description: "",
-    is_description: false,
-  },
-  {
-    title: ["COMING SOON"],
-    date: "29/08",
-    place: { visiting: "", address: "", time: "" },
-    speakers: [
-      {
-        avatar: img,
-        name: "",
-        info_prof: "",
-      },
-    ],
-    description: "",
-    is_description: false,
-  },
-  {
-    title: ["COMING SOON"],
-    date: "29/08",
     place: { visiting: "", address: "", time: "" },
     speakers: [
       {
@@ -250,6 +261,10 @@ export const program: IProgram[] = [
     link_reg: {
       href: "https://bpf2024.timepad.ru/event/2967459/",
       label: "Регистрация",
+    },
+    link_online: {
+      href: "https://nuum.ru/channel/bigpicturefestival/streams",
+      label: "Смотреть онлайн",
     },
     is_description: true,
   },

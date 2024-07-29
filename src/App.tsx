@@ -58,6 +58,7 @@ const App: FC = () => {
   useEffect(() => {
     if (!isAuth) return;
     if (!location.state) return;
+    if (!location.state.from) return;
 
     if (location.state.from.pathname === paths.private) {
       navigate(paths.private);

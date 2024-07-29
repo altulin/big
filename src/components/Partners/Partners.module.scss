@@ -46,8 +46,14 @@
     padding: 1rem 0.5rem;
   }
 
-  &:not(:last-child) {
-    border-bottom: var(--line) solid var(--basic-dark);
+  border-bottom: var(--line) solid var(--basic-dark);
+
+  &:last-child {
+    border-bottom: 0;
+
+    @include mw($tb) {
+      border-bottom: var(--line) solid var(--basic-dark);
+    }
   }
 
   &__title {
