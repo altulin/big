@@ -29,7 +29,7 @@ export const grape = {
 
 export const girls = [
   {
-    name: "Миня Хлечян",
+    name: "Мина Хлечян",
     job: "Второй режиссер",
     img: "minya.png",
   },
