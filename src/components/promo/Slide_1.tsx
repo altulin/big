@@ -35,7 +35,7 @@ const Slide_1: FC = () => {
     <div className={clsx(style.slide_1)}>
       <p className={clsx(style.slide_1__text)}>
         Уникальный для России фестиваль видеоиндустрии, который отмечает
-        персональные достижения, заслуги продакшенов и вклад в развитие
+        персональные достижения, заслуги продакшнов и вклад в развитие
         визуальных коммуникаций.
       </p>
       <figure className={clsx(style.slide_1__figure, "js-logo-placemove")}>

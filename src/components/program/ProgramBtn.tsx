@@ -51,7 +51,7 @@ const ProgramBtnInner: FC<{
       </span>
 
       {props.is_description && (
-        <button
+        <div
           onMouseEnter={() => props.setHover(true)}
           onMouseLeave={() => props.setHover(false)}
           data-button={i}
@@ -59,7 +59,7 @@ const ProgramBtnInner: FC<{
           onClick={handle}
         >
           <IconArr />
-        </button>
+        </div>
       )}
     </>
   );

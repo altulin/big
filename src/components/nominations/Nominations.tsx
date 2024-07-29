@@ -45,10 +45,10 @@ const Nominations: FC = () => {
             <h2 className={clsx(style.nominations__title)}>Номинации</h2>
 
             <p className={clsx(style.content__text)}>
-              <span>Если ты опытный продакшен/специалист — оставайся тут!</span>
+              <span>Если ты опытный продакшн/специалист — оставайся тут!</span>
 
               <span>
-                Если ты молод, свеж или твоему продакшену до двух лет — тебе
+                Если ты молод, свеж или твоему продакшну до двух лет — тебе
                 <br /> в
                 <HashLink
                   to={`/${paths.young_talent}`}

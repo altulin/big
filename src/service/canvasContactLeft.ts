@@ -20,7 +20,7 @@ export const canvasCreate = (id: string, color: string) => {
     ".js-contacts-figure",
   ) as HTMLDivElement;
 
-  canvasHeight = parentBlock.offsetHeight - 10 * rem;
+  canvasHeight = parentBlock.offsetHeight - 5 * rem;
 
   canvasWidth = parentBlock.offsetWidth - 4 * rem;
 
@@ -72,7 +72,7 @@ export const canvasCreate = (id: string, color: string) => {
       x1: Math.round((canvasWidth / rem / 100) * 5),
       y1: Math.round((canvasWidth / rem / 100) * 5),
       x2: Math.round((canvasWidth / rem / 100) * 25),
-      y2: Math.round((canvasHeight / rem / 100) * 15),
+      y2: Math.round((canvasHeight / rem / 100) * 20),
     };
   }
 

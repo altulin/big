@@ -150,6 +150,7 @@
     padding: 1rem 0.5rem;
     width: 100%;
     position: relative;
+    border-left: 0;
   }
 
   &__date {
@@ -311,7 +312,7 @@
 }
 
 .speakers {
-  margin-bottom: 3rem;
+  margin-bottom: 2rem;
 
   @include mw($ldt) {
     margin-bottom: 1rem;
