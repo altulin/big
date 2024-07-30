@@ -6,6 +6,7 @@ import style from "./Program.module.scss";
 import clsx from "clsx";
 import { useIsTabletDevice } from "@/hooks/IsSmallDevice";
 import IconArr from "@/images/step/iconStepArr.svg?react";
+import IconMega from "@/images/program/btn_mega.svg?react";
 
 const ProgramBtnInner: FC<{
   date: string;
@@ -14,12 +15,13 @@ const ProgramBtnInner: FC<{
   is_description: boolean;
   setHover?: any;
   i?: number;
+  is_mega?: boolean;
 }> = (props) => {
   const isTablet = useIsTabletDevice();
   const { current } = useAppSelector((state) => state.program);
   const dispatch = useAppDispatch();
 
-  const { date, title, i, is_description } = props;
+  const { date, title, i, is_description, is_mega } = props;
 
   const handle = (e: any) => {
     if (!is_description) return;
@@ -50,29 +52,38 @@ const ProgramBtnInner: FC<{
         ))}
       </span>
 
-      {props.is_description && (
-        <div
-          onMouseEnter={() => props.setHover(true)}
-          onMouseLeave={() => props.setHover(false)}
-          data-button={i}
-          className={clsx(style.button__icon)}
-          onClick={handle}
-        >
-          <IconArr />
-        </div>
-      )}
+      <div className={clsx(style.button__footer)}>
+        {props.is_description && (
+          <div
+            // onMouseEnter={() => props.setHover(true)}
+            // onMouseLeave={() => props.setHover(false)}
+            data-button={i}
+            className={clsx(style.button__icon)}
+            onClick={handle}
+          >
+            <IconArr />
+          </div>
+        )}
+
+        {is_mega && (
+          <span className={clsx(style.button__mega)}>
+            <IconMega />
+          </span>
+        )}
+      </div>
     </>
   );
 };
 
 export const ProgramBtn: FC<{
+  is_mega?: boolean;
   date: string;
   title: string[];
   i: number;
   logo?: any;
   is_description: boolean;
   isActive?: boolean;
-}> = ({ date, title, i, logo, is_description, isActive }) => {
+}> = ({ date, title, i, logo, is_description, isActive, is_mega }) => {
   const isTablet = useIsTabletDevice();
   const [isHover, setHover] = useState(false);
 
@@ -89,6 +100,7 @@ export const ProgramBtn: FC<{
         >
           <ProgramBtnInner
             setHover={setHover}
+            is_mega={is_mega}
             is_description={is_description}
             date={date}
             title={title}
@@ -99,6 +111,7 @@ export const ProgramBtn: FC<{
         <div className={clsx(style.button, "program-button")}>
           <ProgramBtnInner
             is_description={is_description}
+            is_mega={is_mega}
             date={date}
             title={title}
             logo={logo}

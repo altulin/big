@@ -20,7 +20,7 @@ const Content: FC<{ refParent: any }> = ({ refParent }) => {
     setTimeLines(
       q(`.${styleProgram.item}`).map((item) => {
         if (!item.querySelector(`.${styleProgram.button__icon}`)) return;
-        return gsap
+        const tl = gsap
           .timeline({ paused: true })
           .add("start", "<")
 
@@ -43,6 +43,7 @@ const Content: FC<{ refParent: any }> = ({ refParent }) => {
             { width: 0, duration: 0.01 },
             "<",
           )
+
           .fromTo(
             item.querySelector(`.${styleProgram.button__icon}`),
             { rotate: 180 },
@@ -60,6 +61,21 @@ const Content: FC<{ refParent: any }> = ({ refParent }) => {
             { autoAlpha: 0 },
             { autoAlpha: 1, duration: 0.5 },
           );
+
+        if (item.querySelector(`.${styleProgram.button__mega}`)) {
+          tl.add(
+            gsap.fromTo(
+              item.querySelector(`.${styleProgram.button__mega}`),
+              {
+                display: "block",
+              },
+              { display: "none", duration: 0.01 },
+            ),
+            "start",
+          );
+        }
+
+        return tl;
       }),
     );
   }, []);

@@ -16,6 +16,7 @@ export interface IProgram {
   link_reg?: { href: string; label: string };
   link_online?: { href: string; label: string };
   is_description: boolean;
+  is_mega?: boolean;
 }
 
 export const program: IProgram[] = [
@@ -267,6 +268,7 @@ export const program: IProgram[] = [
       label: "Смотреть онлайн",
     },
     is_description: true,
+    is_mega: true,
   },
   {
     title: ["COMING SOON"],

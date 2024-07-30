@@ -15,6 +15,7 @@ const ContentMob: FC = () => {
           className={clsx(style.accordion__item)}
           header={
             <ProgramBtn
+              is_mega={item.is_mega}
               is_description={item.is_description}
               date={item.date}
               title={item.title}

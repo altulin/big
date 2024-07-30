@@ -6,10 +6,9 @@ import { IProgram } from "./script";
 
 import { useIsTabletDevice } from "@/hooks/IsSmallDevice";
 import ProgramBtn from "./ProgramBtn";
-import { Link } from "react-router-dom";
-import { paths } from "@/service/paths";
 import { useAppDispatch, useAppSelector } from "@/hooks/hook";
 import { setProgramItem } from "@/store/program/programSlice";
+import IconMegaInfo from "@/images/program/info_mega.svg?react";
 
 const ContentItem: FC<{ item: IProgram; i: number }> = ({ item, i }) => {
   const {
@@ -21,6 +20,7 @@ const ContentItem: FC<{ item: IProgram; i: number }> = ({ item, i }) => {
     is_description,
     link_reg,
     link_online,
+    is_mega,
   } = item;
   const isTablet = useIsTabletDevice();
   const dispatch = useAppDispatch();
@@ -42,6 +42,7 @@ const ContentItem: FC<{ item: IProgram; i: number }> = ({ item, i }) => {
       {!isTablet && (
         <ProgramBtn
           is_description={is_description}
+          is_mega={is_mega}
           date={date}
           title={title}
           i={i}
@@ -50,6 +51,9 @@ const ContentItem: FC<{ item: IProgram; i: number }> = ({ item, i }) => {
       )}
 
       <div className={clsx(style.info)}>
+        <div className={clsx(style.info__mega_by)}>
+          <IconMegaInfo />
+        </div>
         <div className={clsx(style.info__inner)}>
           <div className={clsx(style.info__head)}>
             <h3 className={clsx(style.info__title)}>
@@ -92,20 +96,6 @@ const ContentItem: FC<{ item: IProgram; i: number }> = ({ item, i }) => {
                       className={clsx(style.speakers__name)}
                     >{`${name} - ${info_prof}`}</span>
                   </div>
-
-                  // <div key={i} className={clsx(style.speakers__item)}>
-                  //   <figure key={i} className={clsx(style.speakers__figure)}>
-                  //     <img src={avatar} alt="" />
-                  //   </figure>
-
-                  //   <span className={clsx(style.speakers__name)}>{name}</span>
-                  //   <button
-                  //     onClick={handleSpeaker}
-                  //     className={clsx(style.speakers__btn)}
-                  //   >
-                  //     Подробнее
-                  //   </button>
-                  // </div>
                 ))}
               </div>
             </div>
@@ -126,22 +116,13 @@ const ContentItem: FC<{ item: IProgram; i: number }> = ({ item, i }) => {
             {link_online && (
               <a
                 target="_blank"
-                href={link_online.href}
+                href="https://nuum.ru/channel/bigpicturefestival/streams/live"
                 className={clsx(style.online)}
                 onClick={resetProgram}
               >
-                {link_online.label}
+                Смотреть онлайн
               </a>
             )}
-
-            {/* {item.logo && !isTablet && (
-              <div className={clsx(style.support)}>
-                <span className={clsx(style.support__text)}>При поддержке</span>
-                <a className={clsx(style.support__link)} href="#">
-                  <item.logo />
-                </a>
-              </div>
-            )} */}
           </div>
         </div>
       </div>
