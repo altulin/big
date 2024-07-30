@@ -31,7 +31,7 @@ const Faq: FC = () => {
   useEffect(() => {
     if (isTablet) return;
     initGLGrid("canvas-faq", false);
-  }, [isYang]);
+  }, [isTablet, isYang]);
 
   return (
     <section
