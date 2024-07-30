@@ -40,6 +40,7 @@ const Links: FC = () => {
       navigate(`/${paths.young_talent}`);
     } else {
       name = pathname.split("/")[1];
+      // navigate("/");
     }
 
     if (!values.includes(name)) return;
@@ -52,8 +53,8 @@ const Links: FC = () => {
       setTimeout(() => {
         const el = document.getElementById(name);
         if (!el) return;
-        el.scrollIntoView();
-      }, 200);
+        el.scrollIntoView({ block: "start", behavior: "smooth" });
+      }, 1000);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dispatch, isTablet, navigate]);
