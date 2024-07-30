@@ -43,7 +43,7 @@ const Slide_2: FC = () => {
           onClick={() => {}}
           target="_blank"
         >
-          Зарегистрироваться
+          Смотреть онлайн
         </a>
       </div>
 

@@ -18,24 +18,8 @@ const ProgramBtnInner: FC<{
   is_mega?: boolean;
 }> = (props) => {
   const isTablet = useIsTabletDevice();
-  const { current } = useAppSelector((state) => state.program);
-  const dispatch = useAppDispatch();
 
-  const { date, title, i, is_description, is_mega } = props;
-
-  const handle = (e: any) => {
-    if (!is_description) return;
-
-    const button = e.target.getAttribute("data-button");
-
-    if (current === button) {
-      e.target.parentElement.style.flexGrow = "0";
-      dispatch(setProgramItem(null));
-      return;
-    }
-
-    dispatch(setProgramItem(button));
-  };
+  const { date, title, i, is_mega } = props;
 
   return (
     <>
@@ -54,13 +38,7 @@ const ProgramBtnInner: FC<{
 
       <div className={clsx(style.button__footer)}>
         {props.is_description && (
-          <div
-            // onMouseEnter={() => props.setHover(true)}
-            // onMouseLeave={() => props.setHover(false)}
-            data-button={i}
-            className={clsx(style.button__icon)}
-            onClick={handle}
-          >
+          <div data-button={i} className={clsx(style.button__icon)}>
             <IconArr />
           </div>
         )}
@@ -86,6 +64,22 @@ export const ProgramBtn: FC<{
 }> = ({ date, title, i, logo, is_description, isActive, is_mega }) => {
   const isTablet = useIsTabletDevice();
   const [isHover, setHover] = useState(false);
+  const dispatch = useAppDispatch();
+  const { current } = useAppSelector((state) => state.program);
+
+  const handle = (e: any) => {
+    if (!is_description) return;
+
+    const button = e.target.getAttribute("data-button");
+
+    if (current === button) {
+      e.target.parentElement.style.flexGrow = "0";
+      dispatch(setProgramItem(null));
+      return;
+    }
+
+    dispatch(setProgramItem(button));
+  };
 
   return (
     <>
@@ -97,6 +91,7 @@ export const ProgramBtn: FC<{
             isActive && style["button_active"],
             isHover && style["button_hover"],
           )}
+          onClick={handle}
         >
           <ProgramBtnInner
             setHover={setHover}

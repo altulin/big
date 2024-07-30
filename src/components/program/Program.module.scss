@@ -105,13 +105,15 @@
 }
 
 .item {
-  // flex: 0 0 0px;
   display: flex;
-  // border-left: var(--line) solid var(--basic-dark);
   flex-grow: 0;
 
   &_active {
     background-color: rgba(#131313, 0.06);
+
+    .button:hover {
+      background-color: transparent;
+    }
   }
 
   @include mw($tb) {
@@ -127,6 +129,10 @@
   flex-shrink: 0;
   // transition: 0.3s;
   border-left: var(--line) solid var(--basic-dark);
+
+  &:hover {
+    background-color: var(--color-green);
+  }
 
   &_active {
     background-color: transparent;
