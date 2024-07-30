@@ -39,7 +39,7 @@ const Slide_2: FC = () => {
 
         <a
           className={clsx(style.slide_2__link)}
-          href="https://bpf2024.timepad.ru/event/2961533/"
+          href="https://nuum.ru/channel/bigpicturefestival/streams/live"
           onClick={() => {}}
           target="_blank"
         >

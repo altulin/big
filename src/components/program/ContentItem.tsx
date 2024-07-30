@@ -51,9 +51,12 @@ const ContentItem: FC<{ item: IProgram; i: number }> = ({ item, i }) => {
       )}
 
       <div className={clsx(style.info)}>
-        <div className={clsx(style.info__mega_by)}>
-          <IconMegaInfo />
-        </div>
+        {is_mega && (
+          <div className={clsx(style.info__mega_by)}>
+            <IconMegaInfo />
+          </div>
+        )}
+
         <div className={clsx(style.info__inner)}>
           <div className={clsx(style.info__head)}>
             <h3 className={clsx(style.info__title)}>
