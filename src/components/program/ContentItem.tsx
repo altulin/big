@@ -20,6 +20,7 @@ const ContentItem: FC<{ item: IProgram; i: number }> = ({ item, i }) => {
     description,
     is_description,
     link_reg,
+    link_online,
   } = item;
   const isTablet = useIsTabletDevice();
   const dispatch = useAppDispatch();
@@ -111,23 +112,25 @@ const ContentItem: FC<{ item: IProgram; i: number }> = ({ item, i }) => {
           </div>
 
           <div className={clsx(style.footer)}>
-            <Link
-              onClick={resetProgram}
-              to={paths.registration}
-              className={clsx(style.registration)}
-            >
-              Регистрация
-            </Link>
-
             {link_reg && (
               <a
-                target="_blank"
+                onClick={resetProgram}
                 href={link_reg.href}
+                className={clsx(style.registration)}
+                target="_blank"
+              >
+                {link_reg.label}
+              </a>
+            )}
+
+            {link_online && (
+              <a
+                target="_blank"
+                href={link_online.href}
                 className={clsx(style.online)}
                 onClick={resetProgram}
               >
-                Смотреть онлайн
-                {/* {link_reg.label} */}
+                {link_online.label}
               </a>
             )}
 

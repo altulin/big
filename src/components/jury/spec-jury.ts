@@ -86,7 +86,7 @@ export const jury = [
       avatar: "mityasha.jpg",
       name: "Шардин Митя",
       job: "Creative Lead",
-      company: "S7",
+      company: "S7 Airlines",
     },
     {
       avatar: "andrushkevich.jpg",
