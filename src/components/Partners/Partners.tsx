@@ -17,6 +17,16 @@ const Partners: FC = () => {
   return (
     <section id={paths.partners} className={clsx(style.partners, "panel")}>
       <div className={clsx(style.partners__inner)}>
+        {checkArr(data?.results) && filterResult("organizer").length > 0 && (
+          <>
+            <h2 className={clsx(style.title)}>
+              <span>организатор</span>
+            </h2>
+
+            <PartnersBlock list={filterResult("organizer")} type="grape" />
+          </>
+        )}
+
         <h2 className={clsx(style.title)}>
           <span>Партнеры</span>
         </h2>

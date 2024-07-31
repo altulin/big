@@ -57,7 +57,13 @@ const ContentItem: FC<{ item: IProgram; i: number }> = ({ item, i }) => {
           </div>
         )}
 
-        <div className={clsx(style.info__inner)}>
+        <div
+          className={clsx(
+            style.info__inner,
+            "swiper-no-mousewheel",
+            "scroll-min",
+          )}
+        >
           <div className={clsx(style.info__head)}>
             <h3 className={clsx(style.info__title)}>
               <span className={clsx(style.info__date)}>{date}</span>

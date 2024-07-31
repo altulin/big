@@ -7,7 +7,7 @@ import { setClick, setPath } from "@/store/menu/menuSlice";
 import { useIsTabletDevice } from "@/hooks/IsSmallDevice";
 import { useAppDispatch } from "@/hooks/hook";
 import { paths } from "@/service/paths";
-import SVG from "react-inlinesvg";
+// import SVG from "react-inlinesvg";
 
 const PartnersBlock: FC<{
   list: { url: string; logo: string; title: string }[];
@@ -37,8 +37,10 @@ const PartnersBlock: FC<{
   };
 
   return (
-    <div className={clsx(style.item)}>
-      <h3 className={clsx(style.item__title)}>{getTitle(type)}</h3>
+    <div className={clsx(style.item, style[`item--${type}`])}>
+      {type !== "grape" && (
+        <h3 className={clsx(style.item__title)}>{getTitle(type)}</h3>
+      )}
       <ul className={clsx(style.item__list)}>
         {list.map((item, i) => (
           <li key={i} className={clsx(style.item__list_item)}>

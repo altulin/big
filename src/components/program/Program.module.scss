@@ -273,10 +273,13 @@
   flex-direction: column;
   display: none;
   position: relative;
+  height: var(--heigh-scroll);
+  padding-right: 0.5rem;
 
   @include mw($tb) {
     display: flex;
     padding-top: 1.5;
+    height: auto;
   }
 
   &__mega_by {
@@ -298,7 +301,8 @@
     flex-grow: 1;
     padding-left: 1.5rem;
     padding-right: 1.25rem;
-
+    height: 100%;
+    overflow: auto;
     display: flex;
     flex-direction: column;
 

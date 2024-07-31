@@ -1,11 +1,10 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import img from "@/images/program/img_program.png";
 
 export interface IProgram {
   title: string[];
   date: string;
 
-  speakers: { avatar: string; name: string; info_prof?: string }[];
+  speakers: { name: string; info_prof?: string }[];
   description: string;
   logo?: any;
   place: {
@@ -31,47 +30,38 @@ export const program: IProgram[] = [
 
     speakers: [
       {
-        avatar: img,
         name: "Катя Жаворонкова",
         info_prof: "Совладелец, генеральный продюсер Reason Pictures",
       },
       {
-        avatar: img,
         name: "Мина Хлечян",
         info_prof: "Второй режиссер",
       },
       {
-        avatar: img,
         name: "Анна Коновалова",
         info_prof: "Senior MarCom&Brand Avito",
       },
       {
-        avatar: img,
         name: "Ира Лаврова",
         info_prof: "Head of production Friends",
       },
       {
-        avatar: img,
         name: "Александра Галиус",
         info_prof: "Старший продюсер Fetish Film",
       },
       {
-        avatar: img,
         name: "Гоша Евдокимов",
         info_prof: "Режиссер",
       },
       {
-        avatar: img,
         name: "Таир Полад-заде",
         info_prof: "Режиссер",
       },
       {
-        avatar: img,
         name: "Елена Игошина",
         info_prof: "Producer Мегафон&Yota",
       },
       {
-        avatar: img,
         name: "Заур Фардзинов",
         info_prof:
           "Сo-founder and creative director Showrunners, Mass delusion",
@@ -93,48 +83,40 @@ export const program: IProgram[] = [
     title: ["LED-экраны:", "съёмка без", "ограничений?"],
     date: "08/08",
     place: {
-      visiting: "ЗАГРАНИЦА",
+      visiting: "ЗАГРАНИЦА & Виртуальный продакшен Горького",
       address: `ПАВИЛЬОН: "55.8" ВИРТУАЛЬНАЯ СТУДИЯ / 2ая Магистральная ул. Д16с7`,
       time: "18:30",
     },
     speakers: [
       {
-        avatar: img,
         name: "Андрей Шавкеро",
         info_prof: "Режиссер-постановщик",
       },
       {
-        avatar: img,
         name: "Алексей Куприянов",
         info_prof: "Оператор-постановщик",
       },
       {
-        avatar: img,
         name: "Иван Степин",
         info_prof: "Руководитель продакшна «Заграница»",
       },
       {
-        avatar: img,
         name: "Иван Яковенко",
         info_prof: "продюсер «Заграница»",
       },
       {
-        avatar: img,
         name: "Ника Кадо",
         info_prof: "Руководитель Виртуального продакшена Горького",
       },
       {
-        avatar: img,
         name: "Елена Егорова",
         info_prof: "Руководитель группы продюсирования Яндекс Еда",
       },
       {
-        avatar: img,
         name: "Борис Петров",
         info_prof: "исполнительный продюсер Яндекс Еда",
       },
       {
-        avatar: img,
         name: "Максим Ежов",
         info_prof: "Креативный директор команды рекламных запусков WildBerries",
       },
@@ -161,27 +143,22 @@ export const program: IProgram[] = [
     },
     speakers: [
       {
-        avatar: img,
         name: "Мурад Османн",
         info_prof: "Co-Founder HYPE",
       },
       {
-        avatar: img,
         name: "Влад Ситников",
         info_prof: "Партнер GRAPE",
       },
       {
-        avatar: img,
         name: "Саша Доброкотов",
         info_prof: "Независимый креативный директор",
       },
       {
-        avatar: img,
         name: "Даниил Трабун",
         info_prof: "Независимый креативный директор",
       },
       {
-        avatar: img,
         name: "Эдуард Маас",
         info_prof: "Руководитель цифровой лаборатории D.Lab",
       },
@@ -200,7 +177,6 @@ export const program: IProgram[] = [
     place: { visiting: "", address: "", time: "" },
     speakers: [
       {
-        avatar: img,
         name: "",
         info_prof: "",
       },
@@ -214,7 +190,6 @@ export const program: IProgram[] = [
     place: { visiting: "", address: "", time: "" },
     speakers: [
       {
-        avatar: img,
         name: "",
         info_prof: "",
       },
@@ -232,27 +207,22 @@ export const program: IProgram[] = [
     },
     speakers: [
       {
-        avatar: img,
         name: "Ольга Казьмина",
         info_prof: "Head of Brand & Marcom Мегамаркет",
       },
       {
-        avatar: img,
         name: "Паша Карыхалин",
         info_prof: "Креативный продюсер и co-founder Stereotactic",
       },
       {
-        avatar: img,
         name: "Антон Мельников",
         info_prof: "Креативный директор EMG",
       },
       {
-        avatar: img,
         name: "Саша Медведко",
         info_prof: "Генеральный директор Stereotactic",
       },
       {
-        avatar: img,
         name: "Алеша",
         info_prof: "Режиссер",
       },
@@ -276,7 +246,6 @@ export const program: IProgram[] = [
     place: { visiting: "", address: "", time: "" },
     speakers: [
       {
-        avatar: img,
         name: "",
         info_prof: "",
       },
@@ -297,7 +266,6 @@ export const program: IProgram[] = [
     place: { visiting: "", address: "", time: "" },
     speakers: [
       {
-        avatar: img,
         name: "",
         info_prof: "",
       },
@@ -311,7 +279,6 @@ export const program: IProgram[] = [
     place: { visiting: "", address: "", time: "" },
     speakers: [
       {
-        avatar: img,
         name: "",
         info_prof: "",
       },

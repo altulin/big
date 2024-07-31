@@ -49,7 +49,7 @@ export function initGLGrid(id: string, isYang: any) {
 
   const programInfo = twgl.createProgramInfo(gl, [vs, fs]);
 
-  const gridSize = 24;
+  const gridSize = 52;
   const positions = [];
   const indices = [];
 
@@ -58,11 +58,11 @@ export function initGLGrid(id: string, isYang: any) {
       const width = x / gridSize;
       const height = y / gridSize;
 
-      positions.push(width, height + width, 0);
+      positions.push(width * 2 - 1, height * 2 - 1, 0);
 
-      if (x < gridSize) {
+      if (x < gridSize && y < gridSize) {
         const index = y * (gridSize + 1) + x;
-        indices.push(index, index + 1);
+        indices.push(index, index + gridSize + 2);
       }
     }
   }

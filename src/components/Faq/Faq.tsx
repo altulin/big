@@ -7,7 +7,7 @@ import ScrollBarComponent from "@/hoc/scrollbar/ScrollBarComponent";
 import { useIsTabletDevice } from "@/hooks/IsSmallDevice";
 import styleFaq from "./Faq.module.scss";
 import { paths } from "@/service/paths";
-import { initGLGrid } from "@/service/twgl/grid";
+import { initGLGrid } from "@/service/twgl/gridLine";
 import useIsYang from "@/hooks/isYang";
 
 const Faq: FC = () => {

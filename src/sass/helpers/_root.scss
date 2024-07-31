@@ -7,7 +7,7 @@
   --line: 0.06rem;
   --color-green: #13ff00;
   --color-green-hover: #0bdb00;
-  // --heigh: calc(100vh - 12.25rem);
+  --heigh-scroll: calc(100vh - 12.25rem);
   --heigh: 100%;
   --width: 100vw;
   --error: #ee00ff;
@@ -20,15 +20,16 @@
     --color-green-hover: #391f9a;
   }
   @media screen and (max-width: 1920px) {
-    // --heigh: calc(100vh - 10.5rem);
+    --heigh-scroll: calc(100vh - 10.5rem);
   }
   @include mw($ldt) {
-    // --heigh: calc(100vh - 9.7rem);
+    --heigh-scroll: calc(100vh - 9.7rem);
   }
   @include mw($dt) {
-    // --heigh: calc(100vh - 9.3rem);
+    --heigh-scroll: calc(100vh - 9.3rem);
   }
   @include mw($tb) {
     --height: auto;
+    --heigh-scroll: auto;
   }
 }

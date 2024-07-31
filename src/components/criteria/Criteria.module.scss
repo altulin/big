@@ -106,7 +106,6 @@
 }
 
 .rules {
-  // display: flex;
   border-top: var(--line) solid var(--basic-dark);
   border-bottom: var(--line) solid var(--basic-dark);
 
@@ -171,7 +170,7 @@
 
       @include mw($tb) {
         border-right: 0;
-        padding: 1rem;
+        padding: 1rem 0;
       }
     }
 
@@ -186,6 +185,10 @@
     font-size: 1.12rem;
     line-height: 140%;
     display: flex;
+
+    @include mw($tb) {
+      font-size: 1rem;
+    }
 
     &::before {
       content: "";
