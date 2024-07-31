@@ -13,9 +13,14 @@ const ScrollBarComponent: FC<{ children: ReactNode }> = ({ children }) => {
   const [isScroll, setIsScroll] = useState(false);
 
   useEffect(() => {
-    if (!refScroll.current) return;
-
-    setIsScroll(refScroll.current.getThumbVerticalHeight() === 0);
+    // if (!refScroll.current) return;
+    // console.log(refScroll.current.getClientHeight());
+    // console.log(refScroll.current.getScrollHeight());
+    // console.log(
+    //   refScroll.current.getScrollHeight() !==
+    //     refScroll.current.getClientHeight(),
+    // );
+    // setIsScroll(refScroll.current.getThumbVerticalHeight() === 0);
   });
 
   if (isTablet) return <>{children}</>;
@@ -25,7 +30,7 @@ const ScrollBarComponent: FC<{ children: ReactNode }> = ({ children }) => {
       <Scrollbars
         hideTracksWhenNotNeeded={true}
         className={clsx(
-          !isScroll && "swiper-no-mousewheel",
+          isScroll && "swiper-no-mousewheel",
           !isScroll && "scrollbar",
         )}
         ref={refScroll}
@@ -35,14 +40,13 @@ const ScrollBarComponent: FC<{ children: ReactNode }> = ({ children }) => {
         renderThumbVertical={(props) => {
           return <div {...props} className={clsx(style.thumb)}></div>;
         }}
+        onScroll={() => setIsScroll(true)}
+        onScrollFrame={() => console.log("first")}
       >
         {children}
       </Scrollbars>
       <button
-        className={clsx(
-          style.button,
-          // isScroll && style["button--hidden"]
-        )}
+        className={clsx(style.button, !isScroll && style["button--hidden"])}
         onClick={() => refScroll.current?.scrollToTop()}
       >
         <IconArr />
@@ -51,7 +55,7 @@ const ScrollBarComponent: FC<{ children: ReactNode }> = ({ children }) => {
         className={clsx(
           style.button,
           style["button--down"],
-          // isScroll && style["button--hidden"],
+          !isScroll && style["button--hidden"],
         )}
         onClick={() => refScroll.current?.scrollToBottom()}
       >
