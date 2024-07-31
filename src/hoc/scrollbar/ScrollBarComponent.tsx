@@ -41,7 +41,6 @@ const ScrollBarComponent: FC<{ children: ReactNode }> = ({ children }) => {
           return <div {...props} className={clsx(style.thumb)}></div>;
         }}
         onScroll={() => setIsScroll(true)}
-        onScrollFrame={() => console.log("first")}
       >
         {children}
       </Scrollbars>
