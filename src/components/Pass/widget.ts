@@ -19,7 +19,7 @@ const useWidget = () => {
       "charge", // или 'charge'
       {
         //options
-        publicId: "pk_a3f1f232462173983749ca15b31f4", //id из личного кабинета
+        publicId: import.meta.env.VITE_APP_API_PUBLIC_ID, //id из личного кабинета
         description: "Оплата заявки", //назначение
         amount, //сумма
         currency: "RUB", //валюта
