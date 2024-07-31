@@ -7,7 +7,7 @@ import { setClick, setPath } from "@/store/menu/menuSlice";
 import { useIsTabletDevice } from "@/hooks/IsSmallDevice";
 import { useAppDispatch } from "@/hooks/hook";
 import { paths } from "@/service/paths";
-// import SVG from "react-inlinesvg";
+import SVG from "react-inlinesvg";
 
 const PartnersBlock: FC<{
   list: { url: string; logo: string; title: string }[];
@@ -51,7 +51,7 @@ const PartnersBlock: FC<{
               target={item.title !== "Мегамаркет" ? "_blank" : "_self"}
               onClick={(e) => handleBrandClick(e, item.title)}
             >
-              {/* <SVG
+              <SVG
                 src={item.logo}
                 width={96}
                 height={35}
@@ -60,14 +60,14 @@ const PartnersBlock: FC<{
                   (code) => code.replace(/fill=".*?"/g, 'fill="currentColor"')
                   // .replace(/stroke=".*?"/g, 'stroke="currentColor"')
                 }
-              /> */}
-              <img
+              />
+              {/* <img
                 className={clsx(style.item__list_logo)}
                 src={item.logo}
                 alt="logo"
                 width={96}
                 height={35}
-              />
+              /> */}
             </HashLink>
           </li>
         ))}
