@@ -10,11 +10,12 @@ import { paths } from "@/service/paths";
 import SVG from "react-inlinesvg";
 
 const PartnersBlock: FC<{
-  list: { url: string; logo: string; title: string }[];
+  list: { url: string; logo: string; title: string; sub_title?: string }[];
   type: string;
 }> = ({ list, type }) => {
   const isTablet = useIsTabletDevice();
   const dispatch = useAppDispatch();
+
   const getTitle = (type: string) => {
     switch (type) {
       case "general":
@@ -36,6 +37,8 @@ const PartnersBlock: FC<{
     }
   };
 
+  if (list.length === 0) return null;
+
   return (
     <div className={clsx(style.item, style[`item--${type}`])}>
       {type !== "grape" && (
@@ -44,6 +47,12 @@ const PartnersBlock: FC<{
       <ul className={clsx(style.item__list)}>
         {list.map((item, i) => (
           <li key={i} className={clsx(style.item__list_item)}>
+            {item.sub_title && (
+              <span className={clsx(style.item__list_subtitle)}>
+                {item.sub_title}
+              </span>
+            )}
+
             <HashLink
               smooth
               to={item.title === "Мегамаркет" ? `/#${paths.pitch}` : item.url}

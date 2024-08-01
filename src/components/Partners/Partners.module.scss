@@ -5,6 +5,8 @@
   height: var(--heigh);
   min-width: 100vw;
   border-right: var(--line) solid var(--basic-dark);
+  display: flex;
+  flex-direction: column;
 
   @include mw($tb) {
     height: auto;
@@ -13,12 +15,20 @@
 
   &__inner {
     padding-top: 1.5rem;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+
     @include mw($tb) {
       margin-left: 0.56rem;
       margin-right: 0.56rem;
       border-left: var(--line) solid var(--basic-dark);
       border-right: var(--line) solid var(--basic-dark);
     }
+  }
+
+  &__content {
+    margin-top: 2rem;
   }
 }
 
@@ -30,6 +40,8 @@
   letter-spacing: 0.02em;
   text-transform: uppercase;
   color: #141414;
+  margin-bottom: auto;
+  margin-top: auto;
 
   @include mw($tb) {
     font-size: 1.75rem;
@@ -39,15 +51,16 @@
 }
 
 .item {
-  padding-bottom: 1.2rem;
-  padding-left: 2rem;
-  padding-right: 2rem;
-  padding-top: 1rem;
+  padding: 1.6rem 2rem;
+  border-bottom: var(--line) solid var(--basic-dark);
+
+  &:first-child {
+    border-top: var(--line) solid var(--basic-dark);
+  }
 
   @include mw($tb) {
     padding: 1rem 0.5rem;
   }
-  border-bottom: var(--line) solid var(--basic-dark);
 
   &:last-child {
     border-bottom: 0;
@@ -62,7 +75,7 @@
   }
 
   &__title {
-    margin-bottom: 1rem;
+    margin-bottom: 1.5rem;
     font-weight: 400;
     font-size: 1.12rem;
     line-height: 110%;
@@ -73,7 +86,7 @@
 
   &__list {
     display: flex;
-    align-items: center;
+    align-items: flex-end;
     gap: 4rem;
 
     @include mw($tb) {
@@ -84,22 +97,35 @@
   }
 
   &__list_item {
-    width: 6.5rem;
-    height: 1.95rem;
-    background-color: rgba(#131313, 0.06);
-    padding: 0.4rem;
-
     @include mw($tb) {
       width: 100%;
       // width: calc(100% / 3);
     }
   }
 
+  &__list_subtitle {
+    display: block;
+    font-weight: 400;
+    font-size: 1rem;
+    line-height: 100%;
+    color: #141414;
+    margin-bottom: 0.5rem;
+  }
+
   &__list_link {
+    width: 6.5rem;
+    height: 1.95rem;
+    background-color: rgba(#131313, 0.06);
+    padding: 0.4rem;
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 100%;
+
+    @include mw($tb) {
+      height: 3rem;
+      width: 100%;
+      padding: 0.5rem;
+    }
 
     &:hover {
       svg {

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import clsx from "clsx";
 import style from "./Partners.module.scss";
@@ -11,39 +12,38 @@ const Partners: FC = () => {
   const { data } = usePartnersQuery(undefined);
 
   const filterResult = (type: string) => {
-    return data?.results.filter((el: any) => el.type === type);
+    const elements = data?.results.filter((el: any) => el.type === type);
+
+    if (type === "general") {
+      const orgList = data?.results
+        .filter((el: any) => el.type === "organizer")
+        .map((item: any) => {
+          return {
+            ...item,
+            sub_title: "организатор",
+          };
+        });
+
+      return [...orgList, ...elements];
+    }
+    return elements;
   };
+
+  const types = ["general", "informational", "industrial"];
 
   return (
     <section id={paths.partners} className={clsx(style.partners, "panel")}>
       <div className={clsx(style.partners__inner)}>
-        {checkArr(data?.results) && filterResult("organizer").length > 0 && (
-          <>
-            <h2 className={clsx(style.title)}>
-              <span>организатор</span>
-            </h2>
-
-            <PartnersBlock list={filterResult("organizer")} type="grape" />
-          </>
-        )}
-
         <h2 className={clsx(style.title)}>
-          <span>Партнеры</span>
+          <span>Партнеры и организаторы</span>
         </h2>
 
-        {checkArr(data?.results) && (
-          <>
-            <PartnersBlock list={filterResult("general")} type="general" />
-            <PartnersBlock
-              list={filterResult("informational")}
-              type="informational"
-            />
-            <PartnersBlock
-              list={filterResult("industrial")}
-              type="industrial"
-            />
-          </>
-        )}
+        <div className={clsx(style.partners__content)}>
+          {checkArr(data?.results) &&
+            types.map((item: any, i: number) => (
+              <PartnersBlock key={i} list={filterResult(item)} type={item} />
+            ))}
+        </div>
       </div>
     </section>
   );
