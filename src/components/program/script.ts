@@ -89,10 +89,6 @@ export const program: IProgram[] = [
     },
     speakers: [
       {
-        name: "Андрей Шавкеро",
-        info_prof: "Режиссер-постановщик",
-      },
-      {
         name: "Алексей Куприянов",
         info_prof: "Оператор-постановщик",
       },
@@ -119,6 +115,10 @@ export const program: IProgram[] = [
       {
         name: "Максим Ежов",
         info_prof: "Креативный директор команды рекламных запусков WildBerries",
+      },
+      {
+        name: "Сергей Анохин",
+        info_prof: "Старший креативный продюсер  Magic Camp",
       },
     ],
     description:

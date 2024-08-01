@@ -112,12 +112,21 @@ const SubmissionContent: FC<{ formik: any; id: number }> = ({ formik, id }) => {
       {category === categories.main_category && (
         <>
           <p className={clsx(style.big__text)}>
-            Cсылка на одну из видеоплатформ: Vimeo / Youtube или ссылка на
-            Яндекс Диск/ Google Drive в открытом доступе.
+            Cсылка на одну из видеоплатформ: Vimeo или ссылка на Яндекс Диск/
+            Google Drive в открытом доступе.
           </p>
           <p className={clsx(style.big__text)}>
             Напоминаем, что канал не должен называться именем продакшна. Мы
             рекомендуем создать специальный фестивальный аккаунт.
+          </p>
+        </>
+      )}
+
+      {category === categories.young_talent && (
+        <>
+          <p className={clsx(style.big__text)}>
+            Работа должна быть загружена на платформу NUUM с хэштегом
+            #bpfyoung24.
           </p>
         </>
       )}

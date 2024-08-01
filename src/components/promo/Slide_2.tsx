@@ -5,7 +5,7 @@ import { FC, useEffect, useState } from "react";
 import Instructor from "./Instructor";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { EffectFade, Autoplay } from "swiper/modules";
-import { girls } from "./script";
+import { peoples } from "./script";
 import { useAppSelector } from "@/hooks/hook";
 
 const Slide_2: FC = () => {
@@ -27,11 +27,12 @@ const Slide_2: FC = () => {
     <div className={clsx(style.slide_2)}>
       <div className={clsx(style.slide_2__info)}>
         <h2 className={clsx(style.slide_2__title)}>
-          <span>Препродакшн:</span>
-          <span>говорим как есть.</span>
+          <span>LED-экраны:</span>
+          <span>съёмка без</span>
+          <span>ограничений?</span>
         </h2>
         <p className={clsx(style.slide_2__date)}>
-          <span>1 августа</span>
+          <span>8 августа</span>
           <span className={clsx(style.slide_2__time)}>
             18:30 / ONLINE + OFFLINE
           </span>
@@ -59,7 +60,7 @@ const Slide_2: FC = () => {
           disableOnInteraction: false,
         }}
       >
-        {girls.map((item: any, i: number) => (
+        {peoples.map((item: any, i: number) => (
           <SwiperSlide key={i}>
             <Instructor {...item} />
           </SwiperSlide>
