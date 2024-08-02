@@ -2,8 +2,26 @@ import clsx from "clsx";
 import style from "./Festival.module.scss";
 import { FC } from "react";
 import { paths } from "@/service/paths";
+import Soc from "../Contacts/Soc";
+import IconGrape from "@/images/contacts/grape_word.svg?react";
+import IconBig from "@/images/contacts/big.svg?react";
+import { useIsTabletDevice } from "@/hooks/IsSmallDevice";
+
+const Content: FC<{ array: string[]; children?: React.ReactNode }> = ({
+  array,
+  children,
+}) => {
+  return (
+    <div className={clsx(style.festival__content)}>
+      <Soc array={array} className={clsx(style.festival__soc)} />
+
+      {children}
+    </div>
+  );
+};
 
 const Festival: FC = () => {
+  const isTablet = useIsTabletDevice();
   return (
     <section id={paths.festival} className={clsx(style.festival, "panel")}>
       <div className={clsx(style.festival__inner)}>
@@ -24,6 +42,17 @@ const Festival: FC = () => {
                 форму контента, остаётся в тени.
               </p>
             </div>
+
+            {isTablet && (
+              <div className={clsx(style.footer__inner)}>
+                <Content array={["nuum", "tg"]}>
+                  <div className={clsx(style.footer__icon_big)}>
+                    <IconBig className={clsx(style.footer__icon_grape)} />
+                  </div>
+                </Content>{" "}
+              </div>
+            )}
+
             <div className={clsx(style.content__inner)}>
               <p className={clsx(style.content__text)}>
                 Мы — креативное агентство Grape — в третий раз проводим
@@ -35,10 +64,32 @@ const Festival: FC = () => {
                 Talent.
               </p>
             </div>
+
+            {isTablet && (
+              <div className={clsx(style.footer__inner)}>
+                <Content array={["grape", "tg"]}>
+                  <div className={clsx(style.footer__icon_big)}>
+                    <IconGrape className={clsx(style.footer__icon_big)} />
+                  </div>
+                </Content>
+              </div>
+            )}
           </div>
           <div className={clsx(style.footer)}>
-            <div className={clsx(style.footer__inner)}></div>
-            <div className={clsx(style.footer__inner)}></div>
+            <div className={clsx(style.footer__inner)}>
+              <Content array={["nuum", "tg"]}>
+                <div className={clsx(style.footer__icon_big)}>
+                  <IconBig className={clsx(style.footer__icon_grape)} />
+                </div>
+              </Content>
+            </div>
+            <div className={clsx(style.footer__inner)}>
+              <Content array={["grape", "tg"]}>
+                <div className={clsx(style.footer__icon_big)}>
+                  <IconGrape className={clsx(style.footer__icon_big)} />
+                </div>
+              </Content>
+            </div>
           </div>
         </div>
       </div>

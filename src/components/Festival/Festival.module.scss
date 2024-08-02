@@ -18,12 +18,30 @@
     flex-grow: 1;
     display: flex;
     flex-direction: column;
+    padding-top: 2rem;
 
     @include mw($tb) {
       margin-left: 0.56rem;
       margin-right: 0.56rem;
       border-left: var(--line) solid var(--basic-dark);
       border-right: var(--line) solid var(--basic-dark);
+    }
+  }
+
+  &__content {
+    display: flex;
+    column-gap: 0.8rem;
+  }
+
+  &__soc {
+    display: flex;
+
+    a {
+      border: var(--line) solid var(--color-green);
+
+      &:last-child {
+        border-left: 0;
+      }
     }
   }
 }
@@ -36,8 +54,8 @@
   text-transform: uppercase;
   text-align: center;
   color: #141414;
-  padding-top: 5rem;
-  padding-bottom: 3rem;
+  margin-top: auto;
+  margin-bottom: auto;
 
   @include mw($tb) {
     font-weight: 400;
@@ -53,8 +71,8 @@
 }
 
 .content {
-  flex-grow: 1;
   display: flex;
+  margin-top: 1rem;
   flex-direction: column;
 
   &__info {
@@ -64,6 +82,7 @@
 
     @include mw($tb) {
       flex-direction: column;
+      border-top: 0;
     }
   }
 
@@ -74,13 +93,14 @@
     @include mw($tb) {
       width: 100%;
       padding: 1rem 0.5rem;
+      border-bottom: var(--line) solid var(--basic-dark);
+      border-top: var(--line) solid var(--basic-dark);
     }
 
     &:first-child {
       border-right: var(--line) solid var(--basic-dark);
 
       @include mw($tb) {
-        border-bottom: var(--line) solid var(--basic-dark);
         border-right: 0;
       }
     }
@@ -105,9 +125,28 @@
 
   &__inner {
     width: 50%;
+    padding: 2rem;
+
+    @include mw($tb) {
+      width: 100%;
+      padding: 1rem 0.5rem;
+    }
 
     &:first-child {
       border-right: var(--line) solid var(--basic-dark);
+    }
+  }
+
+  &__icon_big {
+    svg {
+      width: 4.125rem;
+      height: 2rem;
+    }
+  }
+  &__icon_grape {
+    svg {
+      width: 3.9rem;
+      height: 0.75rem;
     }
   }
 }

@@ -65,7 +65,10 @@ const Contacts: FC = () => {
                 </a>
               </div>
 
-              <Soc className={clsx(style.footer__soc)} />
+              <Soc
+                array={["nuum", "tg", "grape"]}
+                className={clsx(style.footer__soc)}
+              />
             </div>
 
             <div className={clsx(style.law)}>

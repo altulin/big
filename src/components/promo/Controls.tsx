@@ -20,7 +20,9 @@ const Controls: FC = () => {
   return (
     <div className={clsx(style.controls)}>
       <div className={clsx(style.controls__inner)}>
-        {!isTablet && <Soc className={style.soc} />}
+        {!isTablet && (
+          <Soc array={["nuum", "tg", "grape"]} className={style.soc} />
+        )}
 
         <Button dir="prev" />
         <Button dir="next" />
