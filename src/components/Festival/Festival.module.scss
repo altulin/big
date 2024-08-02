@@ -43,6 +43,12 @@
         border-left: 0;
       }
     }
+
+    &--grape {
+      a {
+        border-color: var(--basic-dark);
+      }
+    }
   }
 }
 

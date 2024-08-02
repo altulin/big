@@ -7,13 +7,23 @@ import IconGrape from "@/images/contacts/grape_word.svg?react";
 import IconBig from "@/images/contacts/big.svg?react";
 import { useIsTabletDevice } from "@/hooks/IsSmallDevice";
 
-const Content: FC<{ array: string[]; children?: React.ReactNode }> = ({
-  array,
-  children,
-}) => {
+const Content: FC<{
+  array: string[];
+  children?: React.ReactNode;
+  modifier?: string;
+  custom?: { tg: { href: string } };
+}> = ({ array, children, modifier, custom }) => {
   return (
     <div className={clsx(style.festival__content)}>
-      <Soc array={array} className={clsx(style.festival__soc)} />
+      <Soc
+        custom={custom}
+        modifier={modifier}
+        array={array}
+        className={clsx(
+          style.festival__soc,
+          modifier && style[`festival__soc--${modifier}`],
+        )}
+      />
 
       {children}
     </div>
@@ -49,7 +59,7 @@ const Festival: FC = () => {
                   <div className={clsx(style.footer__icon_big)}>
                     <IconBig className={clsx(style.footer__icon_grape)} />
                   </div>
-                </Content>{" "}
+                </Content>
               </div>
             )}
 
@@ -67,7 +77,11 @@ const Festival: FC = () => {
 
             {isTablet && (
               <div className={clsx(style.footer__inner)}>
-                <Content array={["grape", "tg"]}>
+                <Content
+                  modifier="grape"
+                  array={["grape", "tg"]}
+                  custom={{ tg: { href: "https://t.me/grape_agency" } }}
+                >
                   <div className={clsx(style.footer__icon_big)}>
                     <IconGrape className={clsx(style.footer__icon_big)} />
                   </div>
@@ -84,7 +98,11 @@ const Festival: FC = () => {
               </Content>
             </div>
             <div className={clsx(style.footer__inner)}>
-              <Content array={["grape", "tg"]}>
+              <Content
+                modifier="grape"
+                array={["grape", "tg"]}
+                custom={{ tg: { href: "https://t.me/grape_agency" } }}
+              >
                 <div className={clsx(style.footer__icon_big)}>
                   <IconGrape className={clsx(style.footer__icon_big)} />
                 </div>

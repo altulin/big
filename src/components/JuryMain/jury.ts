@@ -147,4 +147,13 @@ export const juryList = [
     info_2:
       "В области киноискусства сосредоточен на создании произведений, которые выходят за рамки традиционных человеческих тем. Его работы исследуют взаимодействие территории, окружающей среды и места, придавая особое значение их влиянию на персонажей.",
   },
+  {
+    name: "Николай Иванов",
+    job: "режиссер можтажа",
+    img: "nivanov.jpg",
+    info_1:
+      "Режиссер монтажа с обширным международным опытом, отмеченный наградами таких престижных фестивалей, как Berlin Music Video Awards, Five Continents International Film Festival и других. Только за последние пять лет участвовал более чем в 200 проектах телевизионной рекламы. Профессиональная деятельность охватывает более пятнадцати лет работы в рекламной индустрии, включая сотрудничество с крупнейшими мировыми брендами, такими как BMW, Red Bull, IKEA, Renault, Toyota, Mazda, VW, KIA, Chevrolet, Coca Cola, Google, Durex, McDonald’s, Visa и другими.",
+    info_2:
+      "Успешно сотрудничает с ведущими рекламными агентствами, включая BBDO, TBWA, McCANN, Wunderman Thompson, Grape, MullenLowe, DDB, VLMY&R, Ogilvy, Leo Burnett, Havas, Saatchi & Saatchi, Publicis, Pahnke Markenmacherei и Brand Pearls и другими.",
+  },
 ];
