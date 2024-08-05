@@ -70,13 +70,13 @@ export const program: IProgram[] = [
     description:
       "Подготовка к съемкам — процесс масштабный и сложносоставной. Обсудим с представителями индустрии, кого что не устраивает и как это исправить. Начнем с паблик-тока, продолжим легкой вечеринкой!",
     link_reg: {
-      href: "https://bpf2024.timepad.ru/event/2961533/",
-      label: "Регистрация",
+      href: "https://nuum.ru/videos/2970304-pablik-tok-preprodakshn-govorim-kak-est-by-bpf-reason-pictures",
+      label: "смотреть запись",
     },
-    link_online: {
-      href: "https://nuum.ru/channel/bigpicturefestival/streams",
-      label: "Смотреть онлайн",
-    },
+    // link_online: {
+    //   href: "https://nuum.ru/channel/bigpicturefestival/streams",
+    //   label: "Смотреть онлайн",
+    // },
     is_description: true,
   },
   {
