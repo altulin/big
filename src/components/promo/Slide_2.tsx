@@ -38,21 +38,21 @@ const Slide_2: FC = () => {
           </span>
         </p>
 
-        <a
+        {/* <a
           className={clsx(style.slide_2__link)}
           href="https://bpf2024.timepad.ru/event/2967461/"
           target="_blank"
         >
           Зарегистрироваться
-        </a>
-        {/* <a
+        </a> */}
+        <a
           className={clsx(style.slide_2__link)}
           href="https://nuum.ru/channel/bigpicturefestival/streams/live"
           onClick={() => {}}
           target="_blank"
         >
           Смотреть онлайн
-        </a> */}
+        </a>
       </div>
 
       <Swiper
