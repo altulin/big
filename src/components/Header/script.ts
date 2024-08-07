@@ -14,7 +14,7 @@ export const links = [
       { label: "Требования", path: paths.requirements_young },
     ],
   },
-  { label: "Бренд питчи", path: paths.pitch },
+  { label: "Бренд-питчи", path: paths.pitch },
   {
     label: "Участникам",
     path: paths.participants,
