@@ -1,4 +1,4 @@
-import { FC, ReactNode, useEffect, useRef, useState } from "react";
+import { FC, ReactNode, useRef, useState } from "react";
 import { Scrollbars } from "react-custom-scrollbars";
 import style from "./ScrollBarComponent.module.scss";
 import clsx from "clsx";
@@ -11,17 +11,6 @@ const ScrollBarComponent: FC<{ children: ReactNode }> = ({ children }) => {
   const refScroll = useRef<Scrollbars>(null);
 
   const [isScroll, setIsScroll] = useState(false);
-
-  useEffect(() => {
-    // if (!refScroll.current) return;
-    // console.log(refScroll.current.getClientHeight());
-    // console.log(refScroll.current.getScrollHeight());
-    // console.log(
-    //   refScroll.current.getScrollHeight() !==
-    //     refScroll.current.getClientHeight(),
-    // );
-    // setIsScroll(refScroll.current.getThumbVerticalHeight() === 0);
-  });
 
   if (isTablet) return <>{children}</>;
 

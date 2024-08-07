@@ -6,7 +6,7 @@ import clsx from "clsx";
 import useProfile from "@/hooks/profile";
 import usePrice from "@/hooks/price";
 
-const PassFormTotal: FC<{ formik: any }> = ({ formik }) => {
+const PassFormTotal: FC<{ formik?: any }> = ({ formik }) => {
   const { isIndividual } = useProfile();
   const { data } = usePrice();
 
