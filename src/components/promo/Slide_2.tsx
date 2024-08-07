@@ -34,7 +34,7 @@ const Slide_2: FC = () => {
         <p className={clsx(style.slide_2__date)}>
           <span>8 августа</span>
           <span className={clsx(style.slide_2__time)}>
-            18:30 / ONLINE + OFFLINE
+            19:30 / ONLINE + OFFLINE
           </span>
         </p>
 
