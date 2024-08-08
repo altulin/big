@@ -8,6 +8,7 @@ import Button from "../modal/template/Button";
 import useWidget from "../Pass/widget";
 import { format } from "date-fns";
 import StatusComponents from "./StatusComponent";
+import useDeadline from "@/hooks/deadline";
 
 const ProfileApplicationList: FC<{ results: any; isDraft?: boolean }> = ({
   results,
@@ -16,19 +17,9 @@ const ProfileApplicationList: FC<{ results: any; isDraft?: boolean }> = ({
   const { status, works, cost } = results;
   const [isVisible, setIsVisible] = useState(false);
   const { runWidget } = useWidget();
-
-  // console.log(results);
+  const isDeadline = useDeadline(import.meta.env.VITE_APP_DEADLINE_PASS);
 
   const handlePay = () => {
-    // const {
-    //   transaction: {
-    //     amount,
-    //     user: { id, email },
-    //     idempotence_key,
-    //   },
-    // } = results;
-
-    // const invoiceId = results.id;
     runWidget(results);
   };
 
@@ -55,7 +46,7 @@ const ProfileApplicationList: FC<{ results: any; isDraft?: boolean }> = ({
         {isVisible ? "Свернуть" : "Показать больше"}
       </button>
 
-      {isVisible && isDraft && (
+      {isVisible && isDraft && isDeadline && (
         <Button
           className={clsx(style.pay)}
           type="button"
