@@ -22,6 +22,7 @@ export const links = [
       { label: "Стоимость", path: paths.price },
       { label: "Требования", path: paths.requirements },
       { label: "Критерии оценки", path: paths.criteria },
+      { label: "FAQ", path: paths.faq },
     ],
   },
   {
@@ -40,7 +41,5 @@ export const links = [
   {
     label: "О нас",
     path: "about_the_festival",
-    submenu: [{ label: "FAQ", path: "faq" }],
   },
-  // { label: "Контакты", path: "contacts" },
 ];
