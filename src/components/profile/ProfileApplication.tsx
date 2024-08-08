@@ -11,6 +11,7 @@ import { checkArr } from "@/service/checkArr";
 import ProfileApplicationList from "./ProfileApplicationList";
 import useFilterList from "./filter";
 import useProfile from "@/hooks/profile";
+import useDeadline from "@/hooks/deadline";
 
 const Refusal: FC = () => {
   const dispatch = useAppDispatch();
@@ -35,6 +36,7 @@ const Refusal: FC = () => {
 const ProfileApplication: FC = () => {
   const { my_applications, my_drafts } = useFilterList();
   const { isIndividual } = useProfile();
+  const isDeadline = useDeadline(import.meta.env.VITE_APP_DEADLINE_PASS);
 
   return (
     <div className={clsx(style.application)}>
@@ -46,13 +48,15 @@ const ProfileApplication: FC = () => {
           </p>
         )}
 
-        <HashLink
-          smooth
-          className={clsx(style.application__btn)}
-          to={`/${paths.pass}`}
-        >
-          Подать работу
-        </HashLink>
+        {isDeadline && (
+          <HashLink
+            smooth
+            className={clsx(style.application__btn)}
+            to={`/${paths.pass}`}
+          >
+            Подать работу
+          </HashLink>
+        )}
 
         {checkArr(my_applications) &&
           my_applications.map((item: any, i: number) => (

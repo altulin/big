@@ -9,6 +9,7 @@ import { getCategory, getNominationValue } from "./service";
 import { useLazyNominationsQuery } from "@/store/rtk/nominations/nominations";
 import { useNavigate } from "react-router-dom";
 import { paths } from "@/service/paths";
+import useDeadline from "@/hooks/deadline";
 // import IconBasket from "@/images/pass/basket.svg?react";
 // import { useLazyDeleteWorkQuery } from "@/store/rtk/orders/delete_work";
 
@@ -46,7 +47,7 @@ const ProfileApplicationItem: FC<IProfileApplicationItem> = ({
     title,
   } = props;
   const navigate = useNavigate();
-  // const [deletWork] = useLazyDeleteWorkQuery();
+  const isDeadline = useDeadline(import.meta.env.VITE_APP_DEADLINE_PASS);
 
   useEffect(() => {
     getNomination({ offset: 0, limit: 100 }).unwrap();
@@ -56,11 +57,6 @@ const ProfileApplicationItem: FC<IProfileApplicationItem> = ({
     navigate(`/${paths.edit}/${id}`);
   };
 
-  // const handleDelete = () => {
-  //   deletWork({ id });
-  //   // console.log(id);
-  // };
-
   return (
     <div className={clsx(style.item)}>
       <div className={clsx(style.header)}>
@@ -69,13 +65,15 @@ const ProfileApplicationItem: FC<IProfileApplicationItem> = ({
           <span>{`№${num + 1}`}</span>
         </p>
 
-        <button
-          type="button"
-          className={clsx(style.edit, style["edit--left"])}
-          onClick={handleEdit}
-        >
-          <IconEdit />
-        </button>
+        {isDeadline && (
+          <button
+            type="button"
+            className={clsx(style.edit, style["edit--left"])}
+            onClick={handleEdit}
+          >
+            <IconEdit />
+          </button>
+        )}
 
         {/* {isDraft && (
           <button

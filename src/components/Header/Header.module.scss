@@ -214,6 +214,10 @@
     flex-direction: column;
     width: 50%;
 
+    &--deadline {
+      width: 100%;
+    }
+
     @include mw($tb) {
       border-left: 0;
       padding-left: 0;
@@ -419,6 +423,10 @@
   justify-content: center;
   padding: 0.5rem;
 
+  &--deadline {
+    width: 50%;
+  }
+
   &__icon {
     background-image: url("@/images/header/profile.png");
     width: 1rem;
@@ -492,8 +500,13 @@
       grid-column: 2 / 3;
       grid-row: 2 / 3;
       width: 100%;
-      border-bottom: var(--line) solid var(--basic-dark);
+      // border-bottom: var(--line) solid var(--basic-dark);
       margin: 0;
+
+      &--deadline {
+        grid-column: 1 / 3;
+        // border-bottom: 0;
+      }
     }
 
     &__profile {
