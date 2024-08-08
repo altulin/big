@@ -87,7 +87,9 @@ const Pitch: FC = () => {
                   участвовать
                 </button>
                 <p className={clsx(style.pitch__deadline)}>
-                  <span>Дедлайн подачи работ — {item.deadline}</span>
+                  {item.deadline.map((el, i) => (
+                    <span key={i}>{el}</span>
+                  ))}
                 </p>
               </div>
             </>
