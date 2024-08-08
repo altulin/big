@@ -1,6 +1,6 @@
 import { paths } from "@/service/paths";
 import clsx from "clsx";
-import { FC, useEffect } from "react";
+import { FC } from "react";
 import style from "./Header.module.scss";
 import useIsAuth from "@/hooks/isAuth";
 import { HashLink } from "react-router-hash-link";
@@ -16,10 +16,6 @@ const SubmitJob: FC<{ className?: string }> = ({ className }) => {
   const dispatch = useAppDispatch();
   const { isYang } = useIsYang();
   const isDeadline = useDeadline(import.meta.env.VITE_APP_DEADLINE_PASS);
-
-  useEffect(() => {
-    console.log(isDeadline);
-  }, [isDeadline]);
 
   const handleClick = () => {
     if (isTablet) {
