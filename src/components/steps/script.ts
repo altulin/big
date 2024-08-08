@@ -35,22 +35,25 @@ const useControlDate = (data: any) => {
   const reward = result.filter((item: any) => item.title === "Награждение")[0];
 
   const dates: {
-    [key: string]: { start: Date; end: Date; step: number };
+    [key: string]: { start: Date; end: Date; step: number; title?: string };
   } = {
     early: {
       start: objDate(early.stage_start_at),
       end: objDate(early.stage_end_at),
+      title: "Ранняя пташка",
       step: 1,
     },
     basic: {
       start: objDate(basic.stage_start_at),
       end: objDate(basic.stage_end_at),
       step: 2,
+      title: "Основной этап",
     },
     final: {
       start: objDate(final.stage_start_at),
       end: objDate(final.stage_end_at),
       step: 3,
+      title: "Финальный этап",
     },
     empty3: {
       start: addDays(objDate(final.stage_end_at), 1),
@@ -61,6 +64,7 @@ const useControlDate = (data: any) => {
       start: objDate(short.stage_start_at),
       end: objDate(short.stage_end_at),
       step: 4,
+      title: "Шорт-листы",
     },
     empty4: {
       start: addDays(objDate(short.stage_end_at), 1),
@@ -71,6 +75,7 @@ const useControlDate = (data: any) => {
       start: objDate(winner.stage_start_at),
       end: objDate(winner.stage_end_at),
       step: 5,
+      title: "Победители",
     },
     empty5: {
       start: addDays(objDate(winner.stage_end_at), 1),
@@ -81,6 +86,7 @@ const useControlDate = (data: any) => {
       start: objDate(reward.stage_start_at),
       end: objDate(reward.stage_end_at),
       step: 6,
+      title: "Награждение",
     },
   };
 
@@ -123,19 +129,19 @@ const useControlDate = (data: any) => {
   const schedule = [
     {
       date: `${frmtDt(dates.early.start)} – ${frmtDt(dates.early.end)}`,
-      title: result[0].title,
+      title: dates.early.title,
     },
     {
       date: `${frmtDt(dates.basic.start)} – ${frmtDt(dates.basic.end)}`,
-      title: result[1].title,
+      title: dates.basic.title,
     },
     {
       date: `${frmtDt(dates.final.start)} – ${frmtDt(dates.final.end)}`,
-      title: result[2].title,
+      title: dates.final.title,
     },
-    { date: `${frmtDt(dates.short.end)}`, title: result[3].title },
-    { date: `${frmtDt(dates.winner.end)}`, title: result[4].title },
-    { date: `${frmtDt(dates.reward.end)}`, title: result[5].title },
+    { date: `${frmtDt(dates.short.end)}`, title: dates.short.title },
+    { date: `${frmtDt(dates.winner.end)}`, title: dates.winner.title },
+    { date: `${frmtDt(dates.reward.end)}`, title: dates.reward.title },
   ];
 
   const getLength = (date: Date) => {
