@@ -140,7 +140,6 @@ const PassForm: FC = () => {
       enableReinitialize
     >
       {(formik) => {
-        // console.log(formik.initialValues);
         return (
           <>
             <Form className={clsx(style.form)}>

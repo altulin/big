@@ -42,6 +42,7 @@ const brand_pitches_mega = {
   title: "",
   idea: "",
   file: "",
+  nomination: "",
 };
 
 const getVal = (template: any, values: any) => {
@@ -78,12 +79,14 @@ export const useInitialValues = () => {
           if (values) {
             return getVal(brand_pitches_nuum, values);
           }
+
           return brand_pitches_nuum;
         }
         if (categoryPitch === categoriesPitshes.mega) {
           if (values) {
             return getVal(brand_pitches_mega, values);
           }
+
           return brand_pitches_mega;
         }
     }
