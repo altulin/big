@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { FC } from "react";
+import { FC, useEffect } from "react";
 import ProfileBoxHead from "../profile/ProfileBoxHead";
 import style from "./Pass.module.scss";
 import clsx from "clsx";
@@ -9,6 +9,10 @@ import usePrice from "@/hooks/price";
 const PassFormTotal: FC<{ formik?: any }> = ({ formik }) => {
   const { isIndividual } = useProfile();
   const { data } = usePrice();
+
+  useEffect(() => {
+    console.log(formik);
+  }, [formik]);
 
   return (
     <div className={clsx(style.box)}>

@@ -169,6 +169,11 @@
 
 .application {
   margin-bottom: 3rem;
+
+  &--ticket {
+    margin-bottom: 0;
+  }
+
   &__empty {
     font-weight: 400;
     font-size: 1.12rem;
@@ -192,6 +197,10 @@
     width: 22rem;
     display: block;
     text-align: center;
+
+    &--ticket {
+      margin-bottom: 0;
+    }
 
     @include mw($tb) {
       width: 100%;

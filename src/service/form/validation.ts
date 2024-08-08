@@ -82,6 +82,8 @@ export const object: any = {
   idea: yup.string().required(required),
   about_project: yup.string().required(required),
 
+  ticket: yup.number().moreThan(0, required),
+
   work_link: yup.string().matches(regMain, url).required(required),
   work_link_nuum: yup.string().matches(regNuum, url).required(required),
 
