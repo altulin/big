@@ -25,6 +25,11 @@ const SubmissionContent: FC<{ formik: any; id: number }> = ({ formik, id }) => {
     return { value: item.id, label: item.title };
   });
 
+  // const optionsCategory = [
+  //   { value: 0, label: "Молодой специалист" },
+  //   { value: 1, label: "опытный продакшн" },
+  // ];
+
   return (
     <>
       {category !== categories.brand_pitches && (
