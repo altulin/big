@@ -23,6 +23,7 @@ import Recovery from "./components/Recovery/Recovery";
 import Edit from "./components/Edit/Edit";
 import { useAppSelector } from "./hooks/hook";
 import useGoogleManager from "./hooks/googleManager";
+import Ticket from "./components/ticket/Ticket";
 
 const App: FC = () => {
   const title = import.meta.env.VITE_APP_TITLE;
@@ -119,6 +120,15 @@ const App: FC = () => {
             element={
               <RequireAuth>
                 {<ServicePage children={<Profile />} title="Профиль" />}
+              </RequireAuth>
+            }
+          />
+
+          <Route
+            path={paths.ticket}
+            element={
+              <RequireAuth>
+                {<ServicePage children={<Ticket />} title="покупка билета" />}
               </RequireAuth>
             }
           />

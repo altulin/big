@@ -1,0 +1,23 @@
+@import "@/sass/helpers/variables";
+@import "@/sass/helpers/mixins.scss";
+
+.ticket {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+
+  @include mw($tb) {
+    width: 100%;
+  }
+
+  &__inner {
+    flex-grow: 1;
+    width: 100%;
+    padding-top: 4rem;
+
+    @include mw($tb) {
+      padding-top: 0;
+    }
+  }
+}

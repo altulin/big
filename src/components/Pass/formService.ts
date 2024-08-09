@@ -34,9 +34,8 @@ const young = {
 const brand_pitches_nuum = {
   title: "",
   idea: "",
-  about_project: "",
-  work_link: "",
-  project_image: "",
+  file: "",
+  brand_category: "",
 };
 const brand_pitches_mega = {
   title: "",
@@ -100,6 +99,9 @@ export const useInitialValues = () => {
     keys.forEach((item) => {
       if (page === "edit") {
         if (item === "project_image") {
+          return;
+        }
+        if (item === "file") {
           return;
         }
       }

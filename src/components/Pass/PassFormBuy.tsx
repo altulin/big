@@ -27,7 +27,6 @@ const Button: FC<{ type: "add" | "remove"; onClick?: any }> = ({
 };
 
 const PassFormBuy: FC<{ formik?: any }> = () => {
-  // const [counter, setCounter] = useState(0);
   const isTablet = useIsTabletDevice();
   const { tickets_amount } = useAppSelector((state) => state.pass);
   const dispatch = useAppDispatch();

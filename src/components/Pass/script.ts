@@ -1,10 +1,11 @@
-// import IconNuum from "@/images/form/nuum.svg?react";
+import IconNuum from "@/images/form/nuum.svg?react";
 import IconMega from "@/images/form/mega.svg?react";
 
 export const categories = {
   main_category: "main",
   young_talent: "young",
   brand_pitches: "brand_pitches",
+  only_tickets: "only_tickets",
 };
 
 export const categoriesPitshes = {
@@ -33,11 +34,11 @@ export const radioList = [
 ];
 
 export const radioListPitch = [
-  // {
-  //   label: "Питч от",
-  //   icon: IconNuum,
-  //   value: categoriesPitshes.nuum,
-  // },
+  {
+    label: "Питч от",
+    icon: IconNuum,
+    value: categoriesPitshes.nuum,
+  },
   {
     label: "Питч от",
     icon: IconMega,

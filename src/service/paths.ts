@@ -32,4 +32,5 @@ export const paths = {
   price_young: "price_young",
   requirements_young: "requirements_young",
   criteria_young: "criteria_young",
+  ticket: "ticket",
 };

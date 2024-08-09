@@ -169,6 +169,11 @@
 
 .application {
   margin-bottom: 3rem;
+
+  &--ticket {
+    margin-bottom: 0;
+  }
+
   &__empty {
     font-weight: 400;
     font-size: 1.12rem;
@@ -192,6 +197,10 @@
     width: 22rem;
     display: block;
     text-align: center;
+
+    &--ticket {
+      margin-bottom: 0;
+    }
 
     @include mw($tb) {
       width: 100%;
@@ -518,4 +527,79 @@
   margin-right: auto;
   margin-top: 3rem;
   margin-bottom: 2rem;
+}
+
+.ticket {
+  border: var(--line) solid var(--basic-dark);
+  margin-right: 2rem;
+  margin-bottom: 2rem;
+
+  @include mw($tb) {
+    margin-right: 0;
+    margin-bottom: 1rem;
+  }
+
+  &__title {
+    font-weight: 400;
+    font-size: 1.5rem;
+    line-height: 130%;
+    color: #141414;
+    padding: 1rem 2rem;
+    display: flex;
+    column-gap: 0.5rem;
+    border-bottom: var(--line) solid var(--basic-dark);
+
+    @include mw($tb) {
+      font-weight: 400;
+      font-size: 1.12rem;
+      line-height: 130%;
+      color: #141414;
+      padding-left: 1.5rem;
+      padding-right: 1.5rem;
+    }
+  }
+
+  &__content {
+    padding: 2rem;
+
+    @include mw($tb) {
+      padding: 1.5rem;
+    }
+  }
+
+  &__list {
+    margin-bottom: 2rem;
+    display: flex;
+    flex-direction: column;
+    row-gap: 0.5rem;
+  }
+
+  &__item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    span {
+      font-weight: 400;
+      font-size: 1.12rem;
+      line-height: 140%;
+      color: #141414;
+
+      @include mw($tb) {
+        font-size: 1rem;
+      }
+    }
+  }
+
+  &__text {
+    font-weight: 400;
+    font-size: 0.88rem;
+    line-height: 120%;
+    color: var(--text-tertiary);
+  }
+
+  &__value {
+    flex-shrink: 0;
+    margin-left: 1rem;
+  }
 }

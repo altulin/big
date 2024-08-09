@@ -85,6 +85,7 @@ const PassForm: FC = () => {
         );
       }
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [status]);
 
   useEffect(() => {
@@ -140,6 +141,10 @@ const PassForm: FC = () => {
       enableReinitialize
     >
       {(formik) => {
+<<<<<<< HEAD
+=======
+        // console.log(formik);
+>>>>>>> feature/ticket
         return (
           <>
             <Form className={clsx(style.form)}>

@@ -25,6 +25,11 @@ const SubmissionContent: FC<{ formik: any; id: number }> = ({ formik, id }) => {
     return { value: item.id, label: item.title };
   });
 
+  const optionsCategory = [
+    { value: "young_specialist", label: "Молодой специалист" },
+    { value: "experienced_production", label: "Опытный продакшн" },
+  ];
+
   return (
     <>
       {category !== categories.brand_pitches && (
@@ -34,6 +39,26 @@ const SubmissionContent: FC<{ formik: any; id: number }> = ({ formik, id }) => {
           placeholder="Введите название бренда"
         />
       )}
+
+      {category === categories.brand_pitches &&
+        categoryPitch === categoriesPitshes.nuum && (
+          <p className={clsx(style.big__text)}>
+            Если твой опыт не превышает 2х лет или твоему продакшну еще нет 2х
+            лет — выбирай "молодой специалист".
+          </p>
+        )}
+
+      {category === categories.brand_pitches &&
+        categoryPitch === categoriesPitshes.nuum && (
+          <SelectField
+            form={formik}
+            name={`fields.${id}.brand_category`}
+            label="Категория"
+            prefix="pass"
+            placeholder="Не выбрано"
+            options={optionsCategory}
+          />
+        )}
 
       <TextInput
         name={`fields.${id}.title`}
@@ -92,7 +117,7 @@ const SubmissionContent: FC<{ formik: any; id: number }> = ({ formik, id }) => {
         as="textarea"
       />
 
-      {categoryPitch !== categoriesPitshes.mega && (
+      {!categoryPitch && (
         <>
           <TextInput
             name={`fields.${id}.about_project`}
@@ -140,7 +165,7 @@ const SubmissionContent: FC<{ formik: any; id: number }> = ({ formik, id }) => {
         />
       )}
 
-      {categoryPitch !== categoriesPitshes.mega && (
+      {!categoryPitch && (
         <div className={clsx(style.upload_image)}>
           <p className={clsx(style.upload_image__label)}>Имидж проекта</p>
           <p className={clsx(style.upload_image__text)}>
@@ -154,7 +179,7 @@ const SubmissionContent: FC<{ formik: any; id: number }> = ({ formik, id }) => {
           />
         </div>
       )}
-      {categoryPitch === categoriesPitshes.mega && (
+      {category === categories.brand_pitches && (
         <UploadPass
           name={`fields.${id}.file`}
           label={

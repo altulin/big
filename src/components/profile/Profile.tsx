@@ -7,6 +7,7 @@ import ProfileApplication from "./ProfileApplication";
 import useProfile from "@/hooks/profile";
 import ProfileCompany from "./ProfileCompany";
 import ProfileDraft from "./ProfileDraft";
+import ProfileApplicationTicketsList from "./ProfileApplicationTicketsList";
 
 const Profile: FC = () => {
   const { isIndividual } = useProfile();
@@ -18,6 +19,7 @@ const Profile: FC = () => {
           {!isIndividual && <ProfileCompany />}
           <ProfileApplication />
           {isIndividual && <ProfileDraft />}
+          <ProfileApplicationTicketsList />
         </div>
       </ScrollBarComponent>
     </div>
