@@ -83,6 +83,10 @@ export const object: any = {
   about_project: yup.string().required(required),
 
   ticket: yup.number().moreThan(0, required),
+  // ticket: yup.number().test("ticket", "", (value) => {
+  //   console.log(value);
+  //   return false;
+  // }),
 
   work_link: yup.string().matches(regMain, url).required(required),
   work_link_nuum: yup.string().matches(regNuum, url).required(required),

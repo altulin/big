@@ -17,18 +17,7 @@ const ProfileApplicationList: FC<{ results: any; isDraft?: boolean }> = ({
   const [isVisible, setIsVisible] = useState(false);
   const { runWidget } = useWidget();
 
-  // console.log(results);
-
   const handlePay = () => {
-    // const {
-    //   transaction: {
-    //     amount,
-    //     user: { id, email },
-    //     idempotence_key,
-    //   },
-    // } = results;
-
-    // const invoiceId = results.id;
     runWidget(results);
   };
 

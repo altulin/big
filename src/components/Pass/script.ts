@@ -5,6 +5,7 @@ export const categories = {
   main_category: "main",
   young_talent: "young",
   brand_pitches: "brand_pitches",
+  only_tickets: "only_tickets",
 };
 
 export const categoriesPitshes = {
