@@ -6,16 +6,20 @@ import style from "./Profile.module.scss";
 import { HashLink } from "react-router-hash-link";
 import { paths } from "@/service/paths";
 import { checkArr } from "@/service/checkArr";
-import ProfileApplicationList from "./ProfileApplicationList";
 import { useLazyGetTicketsQuery } from "@/store/rtk/orders/tickets";
+import ProfileApplicationTicket from "./ProfileApplicationTicket";
 
 const ProfileApplicationTicketsList: FC = () => {
-  const test: Array<any> = [];
-  const [getTickets, { data, status }] = useLazyGetTicketsQuery();
+  const test: Array<any> = ["", ""];
+  const [getTickets, { data }] = useLazyGetTicketsQuery();
 
   useEffect(() => {
     getTickets({ limit: 100, offset: 0 });
   }, [getTickets]);
+
+  useEffect(() => {
+    console.log(data);
+  }, [data]);
 
   return (
     <div className={clsx(style.application, style["application--ticket"])}>
@@ -27,6 +31,11 @@ const ProfileApplicationTicketsList: FC = () => {
           </p>
         )}
 
+        {checkArr(data?.results) &&
+          data.results.map((item: any, i: number) => (
+            <ProfileApplicationTicket key={i} />
+          ))}
+
         <HashLink
           smooth
           className={clsx(
@@ -37,11 +46,6 @@ const ProfileApplicationTicketsList: FC = () => {
         >
           Купить билет
         </HashLink>
-
-        {checkArr(test) &&
-          test.map((item: any, i: number) => (
-            <ProfileApplicationList key={i} results={item} />
-          ))}
       </div>
     </div>
   );
