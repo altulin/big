@@ -141,10 +141,8 @@ const PassForm: FC = () => {
       enableReinitialize
     >
       {(formik) => {
-<<<<<<< HEAD
-=======
         // console.log(formik);
->>>>>>> feature/ticket
+
         return (
           <>
             <Form className={clsx(style.form)}>
