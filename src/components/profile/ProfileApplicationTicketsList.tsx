@@ -10,7 +10,6 @@ import { useLazyGetTicketsQuery } from "@/store/rtk/orders/tickets";
 import ProfileApplicationTicket from "./ProfileApplicationTicket";
 
 const ProfileApplicationTicketsList: FC = () => {
-  const test: Array<any> = ["", ""];
   const [getTickets, { data }] = useLazyGetTicketsQuery();
 
   useEffect(() => {
@@ -25,7 +24,7 @@ const ProfileApplicationTicketsList: FC = () => {
     <div className={clsx(style.application, style["application--ticket"])}>
       <ProfileBoxHead isBtn={false} title={"Мои билеты"} />
       <div className={clsx(style.box, style["box--application"])}>
-        {!checkArr(test) && (
+        {!checkArr(data?.results) && (
           <p className={clsx(style.application__empty)}>
             У вас еще нет билетов!
           </p>
@@ -33,7 +32,7 @@ const ProfileApplicationTicketsList: FC = () => {
 
         {checkArr(data?.results) &&
           data.results.map((item: any, i: number) => (
-            <ProfileApplicationTicket key={i} />
+            <ProfileApplicationTicket item={item} key={i} />
           ))}
 
         <HashLink
