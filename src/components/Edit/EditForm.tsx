@@ -54,13 +54,11 @@ const EditForm: FC<{ data?: any }> = ({ data }) => {
             changeWork({ id_work, body: res });
           }, 500);
         });
-
-        // changeWork({ id_work, body });
       }}
       enableReinitialize
     >
       {(formik) => {
-        console.log(formik.values);
+        // console.log(formik.initialValues);
         return (
           <Form>
             <SubmissionContent formik={formik} id={0} />

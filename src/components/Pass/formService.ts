@@ -99,6 +99,9 @@ export const useInitialValues = () => {
         if (item === "project_image") {
           return;
         }
+        if (item === "file") {
+          return;
+        }
       }
 
       if (item === "work_link") {

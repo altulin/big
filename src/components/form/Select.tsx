@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 // import { useGetUsersQuery } from "@/store/rtk/user/userApi";
-import { FC } from "react";
+import { FC, useEffect, useState } from "react";
 import Select from "react-select";
 import style from "./Form.module.scss";
 import clsx from "clsx";
@@ -48,18 +48,11 @@ const SelectField: FC<ISelectField> = ({
         placeholder={placeholder}
         options={options}
         name={name}
-        defaultValue={
+        value={
           options
             ? options.find(
                 (option: { value: number }) =>
                   option.value === fieldData?.value,
-              )
-            : ""
-        }
-        value={
-          options
-            ? options.find(
-                (option: { value: number }) => option.value === field?.value,
               )
             : ""
         }

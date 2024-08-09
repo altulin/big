@@ -16,10 +16,6 @@ const ProfileApplicationTicketsList: FC = () => {
     getTickets({ limit: 100, offset: 0 });
   }, [getTickets]);
 
-  useEffect(() => {
-    console.log(data);
-  }, [data]);
-
   return (
     <div className={clsx(style.application, style["application--ticket"])}>
       <ProfileBoxHead isBtn={false} title={"Мои билеты"} />
