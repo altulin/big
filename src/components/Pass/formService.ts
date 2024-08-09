@@ -42,7 +42,6 @@ const brand_pitches_mega = {
   title: "",
   idea: "",
   file: "",
-  // nomination: "",
 };
 
 const getVal = (template: any, values: any) => {
