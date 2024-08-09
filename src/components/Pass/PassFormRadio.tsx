@@ -16,8 +16,8 @@ const PassFormRadio: FC<{ formik: any; name?: string }> = ({
 
   useEffect(() => {
     if (formik.values.category === categories.brand_pitches) {
-      dispatch(setCategoryPitch(categoriesPitshes.mega));
-      formik.setFieldValue("categoryPitch", categoriesPitshes.mega);
+      dispatch(setCategoryPitch(categoriesPitshes.nuum));
+      formik.setFieldValue("categoryPitch", categoriesPitshes.nuum);
     } else {
       dispatch(setCategoryPitch(null));
     }

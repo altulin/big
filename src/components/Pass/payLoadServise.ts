@@ -59,22 +59,13 @@ const makeArrayPayLoad = async (
   if (category === categories.brand_pitches) {
     if (categoryPitch === categoriesPitshes.nuum) {
       fields.forEach((el: any) => {
-        const {
-          title,
-          deadlines,
-          idea,
-          about_project,
-          work_link,
-          project_image,
-        } = el;
+        const { title, idea, file, brand_category } = el;
 
         const work = {
           title: title,
-          deadlines,
           idea: idea,
-          about_project: about_project,
-          work_link: work_link,
-          project_image,
+          file,
+          brand_category,
         };
 
         works.push(work);

@@ -15,7 +15,6 @@ import {
   valid,
 } from "./errText";
 
-// const MAX_FILE_SIZE = 5; //100KB
 const MAX_FILE_SIZE = 5242880; //5Mb
 
 const regMain =
@@ -76,6 +75,7 @@ export const object: any = {
   brand: yup.string().required(required),
   title: yup.string().required(required),
   nomination: yup.string().required(required),
+  brand_category: yup.string().required(required),
   deadlines: yup.string().required(required),
   goals: yup.string().required(required),
   target_audience: yup.string().required(required),
@@ -112,5 +112,3 @@ export const getValidationSchema = (arr: string[]) => {
 };
 
 export const validationSchema = yup.object().shape(object);
-
-// (?:https?:\/\/)?    (?:youtu\.be\/|(?:www\.|m\.)?youtube\.com\/)   ([a-zA-Z0-9\_-]+)
