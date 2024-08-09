@@ -35,6 +35,24 @@ const SubmissionContent: FC<{ formik: any; id: number }> = ({ formik, id }) => {
         />
       )}
 
+      {/* {category === categories.brand_pitches && (
+        <p className={clsx(style.big__text)}>
+          Если твой опыт не превышает 2х лет или твоему продакшну еще нет 2х лет
+          — выбирай "молодой специалист".
+        </p>
+      )}
+
+      {category === categories.brand_pitches && (
+        <SelectField
+          form={formik}
+          name={`fields.${id}.nomination`}
+          label="Категория"
+          prefix="pass"
+          placeholder="Не выбрано"
+          options={optionsCategory}
+        />
+      )} */}
+
       <TextInput
         name={`fields.${id}.title`}
         label="Название"
