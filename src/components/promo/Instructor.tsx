@@ -3,22 +3,18 @@ import clsx from "clsx";
 import { FC } from "react";
 import style from "./Promo.module.scss";
 
-const Instructor: FC<{ name: string; job: string; img: string }> = ({
+const Instructor: FC<{ name: string; position: string; photo: string }> = ({
   name,
-  job,
-  img,
+  position,
+  photo,
 }) => {
-  const getImg = (img: any) => {
-    return new URL(`./assets/${img}`, import.meta.url).href;
-  };
-
   return (
     <div className={clsx(style.instructor)}>
       <div className={clsx(style.instructor__inner)}>
         <figure className={clsx(style.instructor__figure)}>
           <img
             className={clsx(style.instructor__img)}
-            src={getImg(img)}
+            src={photo}
             alt="instructor"
           />
         </figure>
@@ -28,7 +24,7 @@ const Instructor: FC<{ name: string; job: string; img: string }> = ({
         <h3 className={clsx(style.instructor_info__title)}>
           <span>{name}</span>
         </h3>
-        <p className={clsx(style.instructor_info__text)}>{job}</p>
+        <p className={clsx(style.instructor_info__text)}>{position}</p>
       </div>
     </div>
   );

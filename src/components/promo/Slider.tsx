@@ -29,8 +29,6 @@ const Slider: FC = () => {
         delay: 5000,
         disableOnInteraction: false,
       }}
-      // allowTouchMove={false}
-
       spaceBetween={8}
       breakpoints={{
         320: { allowTouchMove: true, autoHeight: false },
