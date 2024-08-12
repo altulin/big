@@ -128,13 +128,13 @@ export const program: IProgram[] = [
     description:
       "Что делать, когда «нам нужно снять лето зимой», а ЮАР — дорого? Снимать на экранах! Паблик-ток пройдет в павильоне с LED экранами студии Горького. После круглого стола послушаем музыку и поиграем в плейстейшн на большом LED экране.",
     link_reg: {
-      href: "https://bpf2024.timepad.ru/event/2967461/",
-      label: "Регистрация",
+      href: "https://nuum.ru/streams/3051090-led-ekrany-sieemka-bez-ogranichenii?t=3930s",
+      label: "смотреть запись",
     },
-    link_online: {
-      href: "https://nuum.ru/channel/bigpicturefestival/streams",
-      label: "Смотреть онлайн",
-    },
+    // link_online: {
+    //   href: "https://nuum.ru/channel/bigpicturefestival/streams",
+    //   label: "Смотреть онлайн",
+    // },
     is_description: true,
   },
   {

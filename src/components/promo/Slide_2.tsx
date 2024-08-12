@@ -47,11 +47,11 @@ const Slide_2: FC = () => {
         </a> */}
         <a
           className={clsx(style.slide_2__link)}
-          href="https://nuum.ru/channel/bigpicturefestival/streams/live"
+          href="https://nuum.ru/streams/3051090-led-ekrany-sieemka-bez-ogranichenii?t=3930s"
           onClick={() => {}}
           target="_blank"
         >
-          Смотреть онлайн
+          Смотреть запись
         </a>
       </div>
 
