@@ -34,7 +34,8 @@ const ProfileApplicationList: FC<{
       <StatusComponents status={status} cost={cost} />
 
       <h3 className={clsx(style.list__title)}>
-        {category === "only_tickets" ? "Билеты от" : "Заявка от"}
+        {/* {category === "only_tickets" ? "Билеты от" : "Заявка от"} */}
+        <span>Заявка от</span>
         <span>{format(results.created_at, "dd.MM.yyyy")}</span>
       </h3>
 
