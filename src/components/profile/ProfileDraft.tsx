@@ -10,8 +10,6 @@ import ProfileApplicationList from "./ProfileApplicationList";
 const ProfileDraft: FC = () => {
   const { my_drafts } = useFilterList();
 
-  console.log(my_drafts);
-
   if (!checkArr(my_drafts)) return null;
 
   return (

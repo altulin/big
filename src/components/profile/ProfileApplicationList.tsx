@@ -10,14 +10,16 @@ import { format } from "date-fns";
 import StatusComponents from "./StatusComponent";
 import useDeadline from "@/hooks/deadline";
 
-const ProfileApplicationList: FC<{ results: any; isDraft?: boolean }> = ({
-  results,
-  isDraft,
-}) => {
-  const { status, works, cost } = results;
+const ProfileApplicationList: FC<{
+  results: any;
+  isDraft?: boolean;
+}> = ({ results, isDraft }) => {
+  const { status, works, cost, category } = results;
   const [isVisible, setIsVisible] = useState(false);
   const { runWidget } = useWidget();
   const isDeadline = useDeadline(import.meta.env.VITE_APP_DEADLINE_PASS);
+
+  console.log(results.category);
 
   const handlePay = () => {
     runWidget(results);
@@ -32,7 +34,7 @@ const ProfileApplicationList: FC<{ results: any; isDraft?: boolean }> = ({
       <StatusComponents status={status} cost={cost} />
 
       <h3 className={clsx(style.list__title)}>
-        <span>Заявка от</span>
+        {category === "only_tickets" ? "Билеты от" : "Заявка от"}
         <span>{format(results.created_at, "dd.MM.yyyy")}</span>
       </h3>
 

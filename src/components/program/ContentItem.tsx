@@ -2,7 +2,6 @@
 import clsx from "clsx";
 import { FC } from "react";
 import style from "./Program.module.scss";
-import { IProgram } from "./script";
 
 import { useIsTabletDevice } from "@/hooks/IsSmallDevice";
 import ProgramBtn from "./ProgramBtn";
@@ -10,22 +9,22 @@ import { useAppDispatch, useAppSelector } from "@/hooks/hook";
 import { setProgramItem } from "@/store/program/programSlice";
 import IconMegaInfo from "@/images/program/info_mega.svg?react";
 import ScrollBarComponent from "@/hoc/scrollbar/ScrollBarComponent";
+import { checkArr } from "@/service/checkArr";
 
-const ContentItem: FC<{ item: IProgram; i: number }> = ({ item, i }) => {
+const ContentItem: FC<{ item: any; i: number }> = ({ item, i }) => {
   const {
-    date,
-    title,
-    place,
+    date_at,
     speakers,
     description,
-    is_description,
-    link_reg,
-    link_online,
-    is_mega,
+    is_active,
+    sponsor_photo,
+    collapsed_title,
+    we_are_visiting_to,
+    date_and_venue,
+    buttons,
   } = item;
   const isTablet = useIsTabletDevice();
   const dispatch = useAppDispatch();
-
   const { current } = useAppSelector((state) => state.program);
 
   const resetProgram = () => {
@@ -42,10 +41,10 @@ const ContentItem: FC<{ item: IProgram; i: number }> = ({ item, i }) => {
     >
       {!isTablet && (
         <ProgramBtn
-          is_description={is_description}
-          is_mega={is_mega}
-          date={date}
-          title={title}
+          is_description={is_active}
+          is_mega={typeof sponsor_photo === "string"}
+          date={date_at}
+          title={collapsed_title.split("/")}
           i={i}
           isActive={current === i.toString()}
         />
@@ -53,7 +52,7 @@ const ContentItem: FC<{ item: IProgram; i: number }> = ({ item, i }) => {
 
       <div className={clsx(style.info)}>
         <ScrollBarComponent>
-          {is_mega && (
+          {sponsor_photo && (
             <div className={clsx(style.info__mega_by)}>
               <IconMegaInfo />
             </div>
@@ -62,9 +61,9 @@ const ContentItem: FC<{ item: IProgram; i: number }> = ({ item, i }) => {
           <div className={clsx(style.info__inner, "swiper-no-mousewheel")}>
             <div className={clsx(style.info__head)}>
               <h3 className={clsx(style.info__title)}>
-                <span className={clsx(style.info__date)}>{date}</span>
+                <span className={clsx(style.info__date)}>{date_at}</span>
                 <span className={clsx(style.info__sub_title)}>
-                  {title.map((item, i) => (
+                  {collapsed_title.split("/").map((item: any, i: number) => (
                     <span key={i}>{item}</span>
                   ))}
                 </span>
@@ -73,17 +72,16 @@ const ContentItem: FC<{ item: IProgram; i: number }> = ({ item, i }) => {
               <p className={clsx(style.place)}>
                 <span className={clsx(style.visiting)}>
                   <span>В гостях у:</span>
-                  <span>{place.visiting}</span>
+                  <span>{we_are_visiting_to}</span>
                 </span>
 
                 <span className={clsx(style.place__content)}>
                   <span className={clsx(style.place__info)}>
                     Место и время:
                   </span>
-                  <span className={clsx(style.place__time)}>{place.time},</span>
 
                   <span className={clsx(style.place__address)}>
-                    {place.address}
+                    {date_and_venue}
                   </span>
                 </span>
               </p>
@@ -97,11 +95,11 @@ const ContentItem: FC<{ item: IProgram; i: number }> = ({ item, i }) => {
               <p className={clsx(style.speakers__title)}>Спикеры:</p>
               <div className={clsx(style.speakers__content)}>
                 <div className={clsx(style.speakers__pictures)}>
-                  {speakers.map(({ name, info_prof }, i) => (
+                  {speakers.map(({ name, position }: any, i: number) => (
                     <div key={i} className={clsx(style.speakers__item)}>
                       <span
                         className={clsx(style.speakers__name)}
-                      >{`${name} - ${info_prof}`}</span>
+                      >{`${name} - ${position}`}</span>
                     </div>
                   ))}
                 </div>
@@ -109,27 +107,21 @@ const ContentItem: FC<{ item: IProgram; i: number }> = ({ item, i }) => {
             </div>
 
             <div className={clsx(style.footer)}>
-              {link_reg && (
-                <a
-                  onClick={resetProgram}
-                  href={link_reg.href}
-                  className={clsx(style.registration)}
-                  target="_blank"
-                >
-                  {link_reg.label}
-                </a>
-              )}
-
-              {link_online && (
-                <a
-                  target="_blank"
-                  href="https://nuum.ru/channel/bigpicturefestival/streams/live"
-                  className={clsx(style.online)}
-                  onClick={resetProgram}
-                >
-                  Смотреть онлайн
-                </a>
-              )}
+              {checkArr(buttons) &&
+                buttons.map((item: any, i: number) => (
+                  <a
+                    key={i}
+                    onClick={resetProgram}
+                    href={item.link}
+                    className={clsx(
+                      item.background_color === "green" && style.registration,
+                      item.background_color === "black" && style.online,
+                    )}
+                    target="_blank"
+                  >
+                    {item.title}
+                  </a>
+                ))}
             </div>
           </div>
         </ScrollBarComponent>

@@ -2,10 +2,11 @@
 import clsx from "clsx";
 import { FC, useEffect, useRef, useState } from "react";
 import styleProgram from "./Program.module.scss";
-import { program } from "./script";
 import ContentItem from "./ContentItem";
 import gsap from "gsap";
 import { useAppSelector } from "@/hooks/hook";
+import { useProgramsQuery } from "@/store/rtk/main/programs";
+import { checkArr } from "@/service/checkArr";
 
 const Content: FC<{ refParent: any }> = ({ refParent }) => {
   const refContent = useRef<HTMLDivElement | null>(null);
@@ -13,9 +14,11 @@ const Content: FC<{ refParent: any }> = ({ refParent }) => {
   const [timeLines, setTimeLines] = useState<any>([]);
   const { current } = useAppSelector((state) => state.program);
   const ease = "none";
+  const { data } = useProgramsQuery({});
 
   useEffect(() => {
     if (!refContent.current) return;
+    if (!checkArr(data?.results)) return;
 
     setTimeLines(
       q(`.${styleProgram.item}`).map((item) => {
@@ -78,7 +81,7 @@ const Content: FC<{ refParent: any }> = ({ refParent }) => {
         return tl;
       }),
     );
-  }, []);
+  }, [data]);
 
   useEffect(() => {
     if (current === null) {
@@ -102,11 +105,14 @@ const Content: FC<{ refParent: any }> = ({ refParent }) => {
     }
   }, [current, q, timeLines]);
 
+  if (!data) return null;
+
   return (
     <div ref={refContent} className={clsx(styleProgram.content)}>
-      {program.map((item, i) => (
-        <ContentItem item={item} i={i} key={i} />
-      ))}
+      {checkArr(data.results) &&
+        data.results.map((item: any, i: number) => (
+          <ContentItem item={item} i={i} key={i} />
+        ))}
     </div>
   );
 };
