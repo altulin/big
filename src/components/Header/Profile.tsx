@@ -3,14 +3,13 @@ import clsx from "clsx";
 import { FC } from "react";
 import { HashLink } from "react-router-hash-link";
 import style from "./Header.module.scss";
-import { useAppSelector } from "@/hooks/hook";
+import { useAppDispatch } from "@/hooks/hook";
 import useDeadline from "@/hooks/deadline";
+import { setMenuControl } from "@/store/menu/menuSlice";
 
 const Profile: FC<{ className?: string }> = ({ className }) => {
-  const { name } = useAppSelector((state) => state.user.dataMe);
   const isDeadline = useDeadline(import.meta.env.VITE_APP_DEADLINE_PASS);
-
-  if (!name) return null;
+  const dispatch = useAppDispatch();
 
   return (
     <HashLink
@@ -21,6 +20,9 @@ const Profile: FC<{ className?: string }> = ({ className }) => {
       )}
       smooth
       to={`/${paths.profile}`}
+      onClick={() => {
+        dispatch(setMenuControl(false));
+      }}
     >
       <span className={clsx(style.profile__icon)}></span>
       <span className={clsx(style.profile__name)}>Профиль</span>
