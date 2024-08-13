@@ -6,7 +6,6 @@ import style from "./Program.module.scss";
 import clsx from "clsx";
 import { useIsTabletDevice } from "@/hooks/IsSmallDevice";
 import IconArr from "@/images/step/iconStepArr.svg?react";
-import IconMega from "@/images/program/btn_mega.svg?react";
 
 const ProgramBtnInner: FC<{
   date: string;
@@ -15,11 +14,11 @@ const ProgramBtnInner: FC<{
   is_description: boolean;
   setHover?: any;
   i?: number;
-  is_mega?: boolean;
+  logo_btn: string | null;
 }> = (props) => {
   const isTablet = useIsTabletDevice();
 
-  const { date, title, i, is_mega } = props;
+  const { date, title, i, logo_btn } = props;
 
   return (
     <>
@@ -43,9 +42,9 @@ const ProgramBtnInner: FC<{
           </div>
         )}
 
-        {is_mega && (
+        {logo_btn && (
           <span className={clsx(style.button__mega)}>
-            <IconMega />
+            <img src={logo_btn} alt="icon" />
           </span>
         )}
       </div>
@@ -54,14 +53,23 @@ const ProgramBtnInner: FC<{
 };
 
 export const ProgramBtn: FC<{
-  is_mega?: boolean;
   date: string;
   title: string[];
   i: number;
   logo?: any;
   is_description: boolean;
   isActive?: boolean;
-}> = ({ date, title, i, logo, is_description, isActive, is_mega }) => {
+  logo_btn: string | null;
+}> = ({
+  date,
+  title,
+  i,
+  logo,
+  is_description,
+  isActive,
+
+  logo_btn,
+}) => {
   const isTablet = useIsTabletDevice();
   const [isHover, setHover] = useState(false);
   const dispatch = useAppDispatch();
@@ -95,21 +103,21 @@ export const ProgramBtn: FC<{
         >
           <ProgramBtnInner
             setHover={setHover}
-            is_mega={is_mega}
             is_description={is_description}
             date={date}
             title={title}
             i={i}
+            logo_btn={logo_btn}
           />
         </div>
       ) : (
         <div className={clsx(style.button, "program-button")}>
           <ProgramBtnInner
             is_description={is_description}
-            is_mega={is_mega}
             date={date}
             title={title}
             logo={logo}
+            logo_btn={logo_btn}
           />
         </div>
       )}

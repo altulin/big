@@ -13,8 +13,6 @@ const ContentMob: FC = () => {
 
   if (!data) return null;
 
-  console.log(data.results);
-
   return (
     <Accordion className={clsx(style.content)}>
       {checkArr(data.results) &&
@@ -23,12 +21,11 @@ const ContentMob: FC = () => {
             className={clsx(style.accordion__item)}
             header={
               <ProgramBtn
-                is_mega={typeof item.sponsor_photo === "string"}
+                logo_btn={item.collapsed_sponsor_photo}
                 is_description={item.is_active}
                 date={item.date_at}
                 title={item.collapsed_title.split("/")}
                 i={i}
-                // logo={item.logo}
               />
             }
             key={i}

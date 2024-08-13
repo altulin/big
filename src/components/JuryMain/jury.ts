@@ -150,7 +150,7 @@ export const juryList = [
   },
   {
     name: "Николай Иванов",
-    job: "режиссер можтажа",
+    job: "режиссер монтажа",
     img: "nivanov.jpg",
     info_1:
       "Режиссер монтажа с обширным международным опытом, отмеченный наградами таких престижных фестивалей, как Berlin Music Video Awards, Five Continents International Film Festival и других. Профессиональная деятельность охватывает более пятнадцати лет работы в рекламной индустрии, включая сотрудничество с крупнейшими мировыми брендами, такими как BMW, Red Bull, IKEA, Renault, Toyota, Mazda, VW, KIA, Chevrolet, Coca Cola, Google, Durex, McDonald’s, Visa и другими.",

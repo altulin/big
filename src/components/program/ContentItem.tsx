@@ -7,7 +7,6 @@ import { useIsTabletDevice } from "@/hooks/IsSmallDevice";
 import ProgramBtn from "./ProgramBtn";
 import { useAppDispatch, useAppSelector } from "@/hooks/hook";
 import { setProgramItem } from "@/store/program/programSlice";
-import IconMegaInfo from "@/images/program/info_mega.svg?react";
 import ScrollBarComponent from "@/hoc/scrollbar/ScrollBarComponent";
 import { checkArr } from "@/service/checkArr";
 
@@ -22,6 +21,7 @@ const ContentItem: FC<{ item: any; i: number }> = ({ item, i }) => {
     we_are_visiting_to,
     date_and_venue,
     buttons,
+    collapsed_sponsor_photo,
   } = item;
   const isTablet = useIsTabletDevice();
   const dispatch = useAppDispatch();
@@ -42,7 +42,7 @@ const ContentItem: FC<{ item: any; i: number }> = ({ item, i }) => {
       {!isTablet && (
         <ProgramBtn
           is_description={is_active}
-          is_mega={typeof sponsor_photo === "string"}
+          logo_btn={collapsed_sponsor_photo}
           date={date_at}
           title={collapsed_title.split("/")}
           i={i}
@@ -54,7 +54,7 @@ const ContentItem: FC<{ item: any; i: number }> = ({ item, i }) => {
         <ScrollBarComponent>
           {sponsor_photo && (
             <div className={clsx(style.info__mega_by)}>
-              <IconMegaInfo />
+              <img src={sponsor_photo} alt="sponsor" />
             </div>
           )}
 
