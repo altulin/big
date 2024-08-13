@@ -8,6 +8,7 @@ import useProfile from "@/hooks/profile";
 import ProfileCompany from "./ProfileCompany";
 import ProfileDraft from "./ProfileDraft";
 import ProfileApplicationTicketsList from "./ProfileApplicationTicketsList";
+import ProfileVote from "./ProfileVote";
 
 const Profile: FC = () => {
   const { isIndividual } = useProfile();
@@ -17,6 +18,7 @@ const Profile: FC = () => {
         <div className={clsx(style.profile__inner, "scroll-content")}>
           <ProfilePersonalForm />
           {!isIndividual && <ProfileCompany />}
+          <ProfileVote />
           <ProfileApplication />
           {isIndividual && <ProfileDraft />}
           <ProfileApplicationTicketsList />

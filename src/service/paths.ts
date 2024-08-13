@@ -33,4 +33,6 @@ export const paths = {
   requirements_young: "requirements_young",
   criteria_young: "criteria_young",
   ticket: "ticket",
+  jury_account_list: "jury_account_list",
+  jury_account_card: "jury_account_card",
 };

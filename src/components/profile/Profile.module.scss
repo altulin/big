@@ -170,6 +170,10 @@
 .application {
   margin-bottom: 3rem;
 
+  &--vote {
+    margin-bottom: 0;
+  }
+
   &--ticket {
     margin-bottom: 0;
   }
@@ -199,6 +203,10 @@
     text-align: center;
 
     &--ticket {
+      margin-bottom: 0;
+    }
+
+    &--vote {
       margin-bottom: 0;
     }
 
