@@ -6,13 +6,21 @@ import style from "./JuryAccount.module.scss";
 import JuryAccountListRowHead from "./JuryAccountListRowHead";
 import { Form, Formik } from "formik";
 import JuryAccountListContent from "./JuryAccountListContent";
+import { useLocation } from "react-router-dom";
 
 const JuryAccountList: FC = () => {
+  const location = useLocation();
+
   return (
     <ScrollBarComponent>
       <Formik
-        initialValues={{ category: "", nomination: "", is_reviewed: "" }}
+        initialValues={{
+          category: location.state?.values?.category || "",
+          nomination: location.state?.values?.nomination || "",
+          is_reviewed: location.state?.values?.is_reviewed || "",
+        }}
         onSubmit={() => {}}
+        enableReinitialize
       >
         {(formik) => {
           return (

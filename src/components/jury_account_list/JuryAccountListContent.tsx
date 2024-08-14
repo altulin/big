@@ -37,7 +37,13 @@ const JuryAccountListContent: FC<{ values: any }> = ({ values }) => {
             key={i}
             to={`/${paths.jury_account_card}/${el.id}`}
             className={clsx(style.list__link)}
-            state={{ page: paths.jury_account_list, id: el.id, number: i + 1 }}
+            state={{
+              page: paths.jury_account_list,
+              id: el.id,
+              number: i,
+              list: dataWorks.data.results.map((n: any) => n.id),
+              values,
+            }}
           >
             <JuryAccountListRow
               items={{

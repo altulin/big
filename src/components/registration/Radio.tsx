@@ -3,6 +3,7 @@ import { FC } from "react";
 import style from "./Registration.module.scss";
 import clsx from "clsx";
 import TextInput from "../form/TextInput";
+import { useField } from "formik";
 
 interface IRadio {
   label: string;
@@ -15,10 +16,12 @@ interface IRadio {
 const Radio: FC<IRadio> = ({
   label,
   value,
-  formik,
+
   name = "status",
   icon = null,
 }) => {
+  const [field] = useField(name);
+
   return (
     <TextInput
       className={clsx(style.radio__item)}
@@ -29,7 +32,7 @@ const Radio: FC<IRadio> = ({
     >
       <>
         <div className={clsx(style.radio__icon)}>
-          {formik && formik.values[`${name}`] === value && (
+          {field.value === value && (
             <div className={clsx(style.radio__active)}></div>
           )}
         </div>
