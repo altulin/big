@@ -34,11 +34,11 @@ export const radioList = [
 ];
 
 export const radioListPitch = [
-  {
-    label: "Питч от",
-    icon: IconNuum,
-    value: categoriesPitshes.nuum,
-  },
+  // {
+  //   label: "Питч от",
+  //   icon: IconNuum,
+  //   value: categoriesPitshes.nuum,
+  // },
   {
     label: "Питч от",
     icon: IconMega,
