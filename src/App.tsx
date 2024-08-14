@@ -24,7 +24,8 @@ import Edit from "./components/Edit/Edit";
 import { useAppSelector } from "./hooks/hook";
 import useGoogleManager from "./hooks/googleManager";
 import Ticket from "./components/ticket/Ticket";
-import JuryAccountList from "./components/jury_account/JuryAccountList";
+import JuryAccountList from "./components/jury_account_list/JuryAccountList";
+import JuryCard from "./components/jury_account_card/JuryCard";
 
 const App: FC = () => {
   const title = import.meta.env.VITE_APP_TITLE;
@@ -146,6 +147,15 @@ const App: FC = () => {
             element={
               <RequireAuth>
                 <JuryAccountList />
+              </RequireAuth>
+            }
+          />
+
+          <Route
+            path={`${paths.jury_account_card}/:id_card`}
+            element={
+              <RequireAuth>
+                <JuryCard />
               </RequireAuth>
             }
           />

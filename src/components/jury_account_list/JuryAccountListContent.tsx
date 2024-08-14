@@ -35,8 +35,9 @@ const JuryAccountListContent: FC<{ values: any }> = ({ values }) => {
         dataWorks.data.results.map((el: any, i: number) => (
           <HashLink
             key={i}
-            to={paths.jury_account_card}
+            to={`/${paths.jury_account_card}/${el.id}`}
             className={clsx(style.list__link)}
+            state={{ page: paths.jury_account_list, id: el.id, number: i + 1 }}
           >
             <JuryAccountListRow
               items={{
