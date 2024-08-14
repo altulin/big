@@ -20,7 +20,6 @@ const JuryAccountListContent: FC<{ values: any }> = ({ values }) => {
   }, [getNomination]);
 
   useEffect(() => {
-    console.log(typeof values.is_reviewed);
     getWorks(values);
   }, [getWorks, values]);
 

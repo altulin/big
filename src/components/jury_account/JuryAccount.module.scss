@@ -2,6 +2,8 @@
   margin: 0 2rem;
   border-left: var(--line) solid var(--basic-dark);
   border-right: var(--line) solid var(--basic-dark);
+  padding-bottom: 3rem;
+  min-height: 100%;
 
   &__link {
     width: 100%;
@@ -20,7 +22,12 @@
   transition: 0.3s;
 
   &--head {
-    background-color: rgba(#131313, 0.06);
+    position: sticky;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    background-color: var(--basic-light);
   }
 
   &__item {
@@ -35,6 +42,10 @@
 
     &--element {
       padding: 0;
+    }
+
+    &--head {
+      background-color: rgba(19, 19, 19, 0.06);
     }
 
     &_number {

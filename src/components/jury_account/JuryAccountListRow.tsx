@@ -24,6 +24,7 @@ const JuryAccountListRow: FC<IJuryAccountListRow> = ({ items, is_head }) => {
             <li
               className={clsx(
                 style.row__item,
+                is_head && style["row__item--head"],
                 style[`row__item_${item}`],
                 isValidElement(value) && style["row__item--element"],
               )}

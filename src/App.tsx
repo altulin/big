@@ -35,8 +35,6 @@ const App: FC = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const { getMeData } = useMe();
-  // const dispatch = useAppDispatch();
-  // const isTablet = useIsTabletDevice();
   const { id } = useAppSelector((state) => state.user.dataMe);
   const { addEvent } = useGoogleManager();
 
