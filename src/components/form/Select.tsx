@@ -23,7 +23,7 @@ interface ISelectField {
 }
 
 const SelectField: FC<ISelectField> = ({
-  field,
+  // field,
   form,
   id,
   options,
@@ -34,7 +34,11 @@ const SelectField: FC<ISelectField> = ({
 }) => {
   const { pref_parse, id_parse, name_parse } = useParse(name);
 
-  const [fieldData] = useField(name);
+  const [field, meta, helpers] = useField(name);
+
+  useEffect(() => {
+    console.log(meta);
+  }, [field]);
 
   if (!options) return null;
 
@@ -48,26 +52,26 @@ const SelectField: FC<ISelectField> = ({
         placeholder={placeholder}
         options={options}
         name={name}
-        value={
-          options
-            ? options.find(
-                (option: { value: number }) =>
-                  option.value === fieldData?.value,
-              )
-            : ""
-        }
+        // value={
+        //   options
+        //     ? options.find(
+        //         (option: { value: number }) =>
+        //           option.value === fieldData?.value,
+        //       )
+        //     : ""
+        // }
         onChange={(option: any) => {
-          form.setFieldValue(name, option ? option["value"] : "");
+          // form.setFieldValue(name, option ? option["value"] : "");
+          helpers.setValue(option ? option["value"] : "");
         }}
         onBlur={() => {
-          form.setFieldTouched(name, true);
+          // form.setFieldTouched(name, true);
+          helpers.setTouched(true);
         }}
         id={id}
       />
 
-      {form.errors[`${pref_parse}`] &&
-      form.errors[`${pref_parse}`][`${id_parse}`] &&
-      form.errors[`${pref_parse}`][`${id_parse}`][`${name_parse}`] ? (
+      {meta.touched && meta.error ? (
         <div className={clsx(style.error)}>
           <p className={clsx(style.error__text)}>
             {form.errors[`${pref_parse}`][`${id_parse}`][`${name_parse}`]}

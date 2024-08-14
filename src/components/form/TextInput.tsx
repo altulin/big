@@ -54,7 +54,7 @@ const TextInput: FC<IMyTextInput> = ({ children, ...props }) => {
             props.className,
             style.input,
             style[`input--${props.modifier}`] || "",
-            meta.error && style["input--error"],
+            meta.touched && meta.error && style["input--error"],
             isYang && style["input--yang"],
           )}
           id={props.id || id}
