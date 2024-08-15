@@ -74,6 +74,12 @@ export const jury = [
       job: "Senior Producer",
       company: "МегаФон&Yota",
     },
+    {
+      avatar: "gordeev.jpg",
+      name: "Гавриил Гордеев",
+      job: "Генеральный продюсер",
+      company: "",
+    },
   ],
   [
     {
