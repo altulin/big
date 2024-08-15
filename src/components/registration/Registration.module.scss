@@ -84,6 +84,7 @@
     border-radius: 50%;
     border: var(--line) solid var(--basic-dark);
     position: relative;
+    flex-shrink: 0;
   }
 
   &__active {

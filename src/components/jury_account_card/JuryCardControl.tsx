@@ -1,33 +1,29 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import clsx from "clsx";
 import { FC } from "react";
 import style from "./JuryCard.module.scss";
-// import { useLocation } from "react-router-dom";
 import JuryCardBack from "./JuryCardBack";
 import IconPlayLink from "@/images/jury_account/control_link.svg?react";
 import JuryCardForm from "./JuryCardForm";
 import JuryCardNav from "./JuryCardNav";
-// import { useLazyGetWorkQuery } from "@/store/rtk/orders/get_work";
+import JuryCardHead from "./uryCardHead";
 
-const JuryCardControl: FC = () => {
-  // const location = useLocation();
-  // const [getWork, { data }] = useLazyGetWorkQuery();
-
-  // useEffect(() => {
-  // getWork({ id_work: location.state.id });
-  // getWork({ id_work: location.state.id });
-  // }, [getWork, location]);
-
+const JuryCardControl: FC<{ el_info: any }> = ({ el_info }) => {
   return (
     <div className={clsx(style.control)}>
       <JuryCardBack />
 
-      <a href="#" className={clsx(style.control_link)}>
+      <a
+        href={el_info.work_link}
+        className={clsx(style.control_link)}
+        target="_blank"
+      >
         <span className={clsx(style.control_link__icon)}>
           <IconPlayLink />
         </span>
         <span className={clsx(style.control_link__content)}>
           <span className={clsx(style.control_link__label)}>
-            https://www.youtube.com/?app=desktop&hl=RU
+            {el_info.work_link}
           </span>
         </span>
       </a>
@@ -35,6 +31,8 @@ const JuryCardControl: FC = () => {
       <JuryCardForm />
 
       <JuryCardNav />
+
+      <JuryCardHead title={el_info.title} />
     </div>
   );
 };

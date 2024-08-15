@@ -1,3 +1,6 @@
+@import "@/sass/helpers/variables";
+@import "@/sass/helpers/mixins.scss";
+
 .list {
   margin: 0 2rem;
   border-left: var(--line) solid var(--basic-dark);

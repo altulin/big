@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import clsx from "clsx";
-import { FC, useEffect } from "react";
+import { FC } from "react";
 import Select from "react-select";
 import style from "./JuryAccount.module.scss";
 import { useField } from "formik";
@@ -28,12 +28,6 @@ const JuryAccountListRowSelect: FC<IJuryAccountListRowSelect> = ({
 
     helpers.setValue(val.value);
   };
-
-  useEffect(() => {
-    if (!checkArr(options)) return;
-
-    console.log([empty_value, ...options]);
-  }, [options]);
 
   if (!checkArr(options)) return;
 

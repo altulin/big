@@ -50,6 +50,7 @@ const ProfileApplicationItem: FC<IProfileApplicationItem> = ({
   const isDeadline = useDeadline(import.meta.env.VITE_APP_DEADLINE_PASS);
 
   useEffect(() => {
+    if (!nomination) return;
     getNomination({ offset: 0, limit: 100 }).unwrap();
   }, []); // eslint-disable-line
 
