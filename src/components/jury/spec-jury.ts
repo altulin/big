@@ -78,7 +78,7 @@ export const jury = [
       avatar: "gordeev.jpg",
       name: "Гавриил Гордеев",
       job: "Генеральный продюсер",
-      company: "",
+      company: "ОККО",
     },
   ],
   [
