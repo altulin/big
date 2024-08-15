@@ -8,17 +8,39 @@ import { useNavigate } from "react-router-dom";
 import { paths } from "@/service/paths";
 import { useLazyGetWorksQuery } from "@/store/rtk/jury/works";
 import { checkArr } from "@/service/checkArr";
+import { useIntermediateStageQuery } from "@/store/rtk/stage/intermediateStage";
+import { toZonedTime } from "date-fns-tz";
+import { endOfDay, isAfter, parse } from "date-fns";
 
 const ProfileVote: FC = () => {
   const navigate = useNavigate();
   const [getWorks, dataWorks] = useLazyGetWorksQuery();
+  const { data } = useIntermediateStageQuery({});
 
   useEffect(() => {
     getWorks({});
   }, [getWorks]);
 
   const handle = () => {
-    navigate(`/${paths.jury_account_list}`);
+    const day = data.results.filter((el: any) => el.title === "Победители")[0]
+      .stage_end_at;
+
+    // const day = "2022-09-20";
+
+    const toZoned = (date: Date) => {
+      return toZonedTime(date, "Europe/Moscow");
+    };
+    const now = new Date();
+    const date = parse(day, "yyyy-MM-dd", new Date());
+    // console.log("now: " + toZoned(now));
+
+    const deadline = isAfter(endOfDay(date), toZoned(now));
+
+    const state = {
+      page: deadline ? paths.jury_account_list : paths.jury_account_list_short,
+    };
+
+    navigate(`/${paths.jury_account_list}`, { state });
   };
 
   const getLengthWorks = () => {

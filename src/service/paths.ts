@@ -35,4 +35,6 @@ export const paths = {
   ticket: "ticket",
   jury_account_list: "jury_account_list",
   jury_account_card: "jury_account_card",
+  jury_account_list_short: "jury_account_list_short",
+  jury_account_card_short: "jury_account_card_short",
 };
