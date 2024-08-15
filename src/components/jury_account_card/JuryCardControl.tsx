@@ -7,8 +7,10 @@ import IconPlayLink from "@/images/jury_account/control_link.svg?react";
 import JuryCardForm from "./JuryCardForm";
 import JuryCardNav from "./JuryCardNav";
 import JuryCardHead from "./uryCardHead";
+import { useIsTabletDevice } from "@/hooks/IsSmallDevice";
 
 const JuryCardControl: FC<{ el_info: any }> = ({ el_info }) => {
+  const isTablet = useIsTabletDevice();
   return (
     <div className={clsx(style.control)}>
       <JuryCardBack />
@@ -32,7 +34,7 @@ const JuryCardControl: FC<{ el_info: any }> = ({ el_info }) => {
 
       <JuryCardNav />
 
-      <JuryCardHead title={el_info.title} />
+      {isTablet && <JuryCardHead title={el_info.title} />}
     </div>
   );
 };
