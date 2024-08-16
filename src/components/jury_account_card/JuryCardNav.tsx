@@ -7,6 +7,7 @@ import IconBack from "@/images/jury_account/back.svg?react";
 import { useLocation } from "react-router-dom";
 import { paths } from "@/service/paths";
 import { useIsTabletDevice } from "@/hooks/IsSmallDevice";
+import JuryAccountListRowStatus from "../jury_account_list/JuryAccountListRowStatus";
 
 interface INavLink {
   dir: "prev" | "next";
@@ -64,17 +65,21 @@ const NavLink: FC<INavLink> = ({ dir, label, state }) => {
 const JuryCardNav: FC = () => {
   const location = useLocation();
   const isTablet = useIsTabletDevice();
+
   return (
     <div className={clsx(style.navigate)}>
-      <NavLink state={location.state} dir="prev" label="предыдущая" />
+      <div className={clsx(style.navigate__inner)}>
+        <NavLink state={location.state} dir="prev" label="предыдущая" />
 
-      {isTablet && (
-        <div className={clsx(style.navigate__number)}>
-          <span>5</span>
-        </div>
-      )}
+        {isTablet && (
+          <div className={clsx(style.navigate__number)}>
+            <span>{location.state.number}</span>
+          </div>
+        )}
 
-      <NavLink state={location.state} dir="next" label="следующая" />
+        <NavLink state={location.state} dir="next" label="следующая" />
+      </div>
+      {isTablet && <JuryAccountListRowStatus status="fghfgh" />}
     </div>
   );
 };

@@ -11,22 +11,30 @@ import { checkArr } from "@/service/checkArr";
 import { useIntermediateStageQuery } from "@/store/rtk/stage/intermediateStage";
 import { toZonedTime } from "date-fns-tz";
 import { endOfDay, isAfter, parse } from "date-fns";
+import { useIsTabletDevice } from "@/hooks/IsSmallDevice";
 
 const ProfileVote: FC = () => {
   const navigate = useNavigate();
   const [getWorks, dataWorks] = useLazyGetWorksQuery();
   const { data } = useIntermediateStageQuery({});
+  const isTablet = useIsTabletDevice();
 
   useEffect(() => {
     getWorks({});
   }, [getWorks]);
 
+  // const state = {
+  //   page: paths.jury_account_list,
+  //   id: el.id,
+  //   number: i,
+  //   list: dataWorks.data.results.map((n: any) => n.id),
+  //   values,
+  // };
+
   const handle = () => {
     const day = data.results.filter((el: any) => el.title === "Победители")[0]
       .stage_end_at;
-
     // const day = "2022-09-20";
-
     const toZoned = (date: Date) => {
       return toZonedTime(date, "Europe/Moscow");
     };
@@ -36,11 +44,21 @@ const ProfileVote: FC = () => {
 
     const deadline = isAfter(endOfDay(date), toZoned(now));
 
-    const state = {
+    const state: any = {
       page: deadline ? paths.jury_account_list : paths.jury_account_list_short,
     };
 
-    navigate(`/${paths.jury_account_list}`, { state });
+    let path = paths.jury_account_list;
+
+    if (isTablet) {
+      const firstWork = dataWorks.data?.results[0];
+      path = `${paths.jury_account_card}/${firstWork?.id}`;
+      state.id = firstWork?.id;
+      state.number = 0;
+      state.list = dataWorks.data.results.map((n: any) => n.id);
+    }
+
+    navigate(`/${path}`, { state });
   };
 
   const getLengthWorks = () => {

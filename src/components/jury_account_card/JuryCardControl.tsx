@@ -32,7 +32,7 @@ const JuryCardControl: FC<{ el_info: any }> = ({ el_info }) => {
 
       <JuryCardForm />
 
-      <JuryCardNav />
+      {!isTablet && <JuryCardNav />}
 
       {isTablet && <JuryCardHead title={el_info.title} />}
     </div>

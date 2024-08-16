@@ -7,6 +7,7 @@ import ScrollBarComponent from "@/hoc/scrollbar/ScrollBarComponent";
 import JuryCardHead from "./uryCardHead";
 import { ban_list, getInfoLabel } from "./service";
 import { useIsTabletDevice } from "@/hooks/IsSmallDevice";
+import { categoriesLabel } from "../Pass/script";
 
 const JuryCardInfo: FC<{ el_info: any }> = ({ el_info }) => {
   const isTablet = useIsTabletDevice();
@@ -14,9 +15,22 @@ const JuryCardInfo: FC<{ el_info: any }> = ({ el_info }) => {
   const getArray = () => {
     const array: any = [];
 
-    Object.keys(el_info).forEach((key) => {
-      if (ban_list.includes(key)) return;
-      array.push({ key: `${getInfoLabel(key)}:`, value: el_info[key] });
+    Object.keys(el_info).forEach((item) => {
+      if (ban_list.includes(item)) return;
+
+      const key = `${getInfoLabel(item)}:`;
+
+      let value;
+
+      switch (item) {
+        case "category":
+          value = categoriesLabel[`${el_info[item]}`];
+          break;
+        default:
+          value = el_info[item];
+      }
+
+      array.push({ key, value });
     });
 
     return array;

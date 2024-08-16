@@ -34,7 +34,13 @@ export const info_keys = [
   "project_image_url",
 ];
 
-export const ban_list = ["id", "category", "status", "title"];
+export const ban_list = [
+  "id",
+  "title",
+  "is_reviewed",
+  "voting_result",
+  "status",
+];
 
 export const getInfoLabel = (label: string) => {
   let result = "";

@@ -8,7 +8,7 @@ export const categories = {
   only_tickets: "only_tickets",
 };
 
-export const categoriesLabel = {
+export const categoriesLabel: { [key: string]: string } = {
   main: "Основная категория",
   young: "Young Talent by Nuum",
   brand_pitches: "Бренд-питчи",

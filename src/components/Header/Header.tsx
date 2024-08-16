@@ -109,9 +109,15 @@ const Header = () => {
     },
     { scope: itemRef },
   );
+
   return (
     <header
-      className={clsx(style.header, sticky && style[`header--${sticky}`])}
+      className={clsx(
+        style.header,
+        sticky && style[`header--${sticky}`],
+        location.pathname.match(paths.jury_account_card) !== null &&
+          style[`header--card`],
+      )}
     >
       <div
         ref={itemRef}
