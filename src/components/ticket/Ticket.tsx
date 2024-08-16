@@ -33,9 +33,8 @@ const Ticket: FC = () => {
       ticket: tickets_amount,
     },
     validationSchema: getValidationSchema(["ticket"]),
-    onSubmit: (values) => {
+    onSubmit: () => {
       sendWork({ category, tickets_amount });
-      console.log(values);
     },
   });
 

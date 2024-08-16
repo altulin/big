@@ -11,7 +11,6 @@ const Container: FC<{
   id?: string;
   meta: any;
 }> = ({ id, meta, children, ...props }) => {
-  console.log(meta);
   return (
     <div
       className={clsx(

@@ -4,16 +4,29 @@ import { setErrorModal, setSuccessModal } from "@/store/modal/modalSlice";
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
 const useWidget = () => {
-  const widget = new (window as any).cp.CloudPayments();
+  // const widget = new (window as any).cp.CloudPayments();
   const dispatch = useAppDispatch();
   const { isIndividual } = useProfile();
 
-  const runWidget = (data: any) => {
-    const amount = data.transaction.amount;
-    const accountId = data.transaction.user.id;
-    const email = data.transaction.user.email;
-    const invoiceId = data.id;
-    const idempotence_key = data.transaction.idempotence_key;
+  const runWidget = (dataMy: any) => {
+    const widget = new (window as any).cp.CloudPayments();
+    const amount = dataMy.transaction.amount;
+    const accountId = dataMy.transaction.user.id;
+    const email = dataMy.transaction.user.email;
+    const invoiceId = dataMy.id;
+    const idempotence_key = dataMy.transaction.idempotence_key;
+
+    const receipt: any = {
+      Items: [
+        {
+          label: "Наименование товара 1", //наименование товара
+          price: amount, //цена
+          quantity: 1.0, //количество
+          amount: amount, //сумма
+          vat: 20, //ставка НДС
+        },
+      ],
+    };
 
     widget.pay(
       "charge", // или 'charge'
@@ -29,6 +42,9 @@ const useWidget = () => {
         skin: "mini", //дизайн виджета (необязательно)
         data: {
           idempotence_key,
+          CloudPayments: {
+            CustomerReceipt: receipt,
+          },
         },
       },
       {

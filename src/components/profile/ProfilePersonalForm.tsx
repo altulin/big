@@ -120,6 +120,8 @@ const ProfilePersonalForm: FC = () => {
       enableReinitialize={true}
     >
       {(formik) => {
+        // console.log(formik);
+
         return (
           <Form className={clsx(style.form)}>
             <ProfileBoxHead
