@@ -28,7 +28,7 @@ const JuryCard: FC = () => {
 
   return (
     <div className={clsx(style.card)}>
-      {isTablet && <JuryCardNav />}
+      {isTablet && <JuryCardNav is_reviewed={data.is_reviewed} />}
 
       <JuryCardControl el_info={data} />
       <JuryCardInfo el_info={data} />

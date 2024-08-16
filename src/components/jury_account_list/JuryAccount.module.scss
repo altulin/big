@@ -93,17 +93,40 @@
   justify-content: center;
   background-color: #13ff00;
 
+  @include mw($tb) {
+    margin: 0;
+    height: auto;
+    padding: 0.3rem;
+    border-left: var(--line) solid var(--basic-dark);
+    border-right: var(--line) solid var(--basic-dark);
+    flex-direction: row-reverse;
+  }
+
   &__text {
     font-weight: 400;
     font-size: 1.12rem;
     line-height: 140%;
     color: #141414;
+
+    @include mw($tb) {
+      font-weight: 400;
+      font-size: 0.88rem;
+      line-height: 120%;
+      color: #141414;
+    }
   }
 
   &__icon {
     width: 1.5rem;
     height: 1.5rem;
     margin-left: 0.5rem;
+
+    @include mw($tb) {
+      width: 1rem;
+      height: 1rem;
+      margin-left: 0;
+      margin-right: 0.5rem;
+    }
 
     svg {
       width: inherit;

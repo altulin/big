@@ -62,7 +62,7 @@ const NavLink: FC<INavLink> = ({ dir, label, state }) => {
   );
 };
 
-const JuryCardNav: FC = () => {
+const JuryCardNav: FC<{ is_reviewed: boolean }> = ({ is_reviewed }) => {
   const location = useLocation();
   const isTablet = useIsTabletDevice();
 
@@ -73,13 +73,15 @@ const JuryCardNav: FC = () => {
 
         {isTablet && (
           <div className={clsx(style.navigate__number)}>
-            <span>{location.state.number}</span>
+            <span>{location.state.number + 1}</span>
           </div>
         )}
 
         <NavLink state={location.state} dir="next" label="следующая" />
       </div>
-      {isTablet && <JuryAccountListRowStatus status="fghfgh" />}
+      {isTablet && is_reviewed && (
+        <JuryAccountListRowStatus status="рассмотрено" />
+      )}
     </div>
   );
 };
