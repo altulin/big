@@ -23,7 +23,7 @@ import { useAppDispatch } from "@/hooks/hook";
 import { setYang } from "@/store/yang/yangSlice";
 import { setPath } from "@/store/menu/menuSlice";
 import { paths } from "@/service/paths";
-import Requirements from "@/components/requirements/Requirements";
+import Requirements from "@/components/Requirements/Requirements";
 
 export const pages: any = [
   // <Promo />,

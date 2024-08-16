@@ -1,5 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+import { useLocation } from "react-router-dom";
 import { categories, categoriesLabel } from "../Pass/script.ts";
+import { paths } from "@/service/paths.ts";
 
 export const optionsCategory = () => {
   const list = Object.values(categories);
@@ -20,3 +22,8 @@ export const optionsReviewed = [
     label: "Не рассмотрено",
   },
 ];
+
+export const useCheckShort = () => {
+  const location = useLocation();
+  return { isShort: location.state?.page === paths.jury_account_list_short };
+};

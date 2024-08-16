@@ -23,14 +23,6 @@ const ProfileVote: FC = () => {
     getWorks({});
   }, [getWorks]);
 
-  // const state = {
-  //   page: paths.jury_account_list,
-  //   id: el.id,
-  //   number: i,
-  //   list: dataWorks.data.results.map((n: any) => n.id),
-  //   values,
-  // };
-
   const handle = () => {
     const day = data.results.filter((el: any) => el.title === "Победители")[0]
       .stage_end_at;

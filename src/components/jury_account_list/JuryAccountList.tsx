@@ -1,35 +1,28 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import ScrollBarComponent from "@/hoc/scrollbar/ScrollBarComponent";
 import clsx from "clsx";
-import { FC, useEffect } from "react";
+import { FC } from "react";
 import style from "./JuryAccount.module.scss";
 import JuryAccountListRowHead from "./JuryAccountListRowHead";
 import { Form, Formik } from "formik";
 import JuryAccountListContent from "./JuryAccountListContent";
 import { useLocation } from "react-router-dom";
-import { paths } from "@/service/paths";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
+import { useCheckShort } from "./service";
 
 const JuryAccountList: FC = () => {
   const location = useLocation();
+  const { isShort } = useCheckShort();
 
   const tabs = ["Основная", "Young Talent"];
 
-  const isShort = () => {
-    return location.state?.page === paths.jury_account_list_short;
-  };
-
   const getTabs = () => {
-    return isShort() ? tabs : [""];
+    return isShort ? tabs : [""];
   };
-
-  useEffect(() => {
-    console.log(location.state?.page);
-  }, [location.state?.page]);
 
   return (
     <div className={clsx(style.list_wrapper)}>
-      {isShort() && (
+      {isShort && (
         <h2 className={clsx(style.list_wrapper__title)}>шорт-лист</h2>
       )}
 

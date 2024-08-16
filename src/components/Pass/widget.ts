@@ -4,11 +4,11 @@ import { setErrorModal, setSuccessModal } from "@/store/modal/modalSlice";
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
 const useWidget = () => {
-  const widget = new (window as any).cp.CloudPayments();
   const dispatch = useAppDispatch();
   const { isIndividual } = useProfile();
 
   const runWidget = (data: any) => {
+    const widget = new (window as any).cp.CloudPayments();
     const amount = data.transaction.amount;
     const accountId = data.transaction.user.id;
     const email = data.transaction.user.email;
