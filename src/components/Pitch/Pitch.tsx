@@ -46,11 +46,6 @@ const Pitch: FC = () => {
               {<item.icon />}
             </div>
 
-            {item.modifier !== categoriesPitshes.mega && (
-              <p className={clsx(style.pitch__info)}>Coming soon...</p>
-            )}
-
-            {item.modifier === categoriesPitshes.mega && (
               <>
                 <p className={clsx(style.pitch__text)}>{item.text}</p>
 
@@ -101,7 +96,6 @@ const Pitch: FC = () => {
                   </p>
                 </div>
               </>
-            )}
           </div>
         ))}
       </div>

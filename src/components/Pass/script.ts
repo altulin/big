@@ -1,4 +1,4 @@
-// import IconNuum from "@/images/pass/pass_nuum.svg?react";
+import IconNuum from "@/images/pass/pass_nuum.svg?react";
 import IconMega from "@/images/form/mega.svg?react";
 
 export const categories = {
@@ -34,11 +34,11 @@ export const radioList = [
 ];
 
 export const radioListPitch = [
-  // {
-  //   label: "Питч от",
-  //   icon: IconNuum,
-  //   value: categoriesPitshes.nuum,
-  // },
+  {
+    label: "Питч от",
+    icon: IconNuum,
+    value: categoriesPitshes.nuum,
+  },
   {
     label: "Питч от",
     icon: IconMega,
