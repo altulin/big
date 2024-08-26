@@ -34,8 +34,8 @@ export const useCheckDeadline = () => {
     return { isDeadline: false };
   }
 
-  // const day = data_settings.voting_deadline;
-  const day = "2024-08-20";
+  const day = data_settings.voting_deadline;
+  // const day = "2024-08-20";
   const toZoned = (date: Date) => {
     return toZonedTime(date, "Europe/Moscow");
   };
