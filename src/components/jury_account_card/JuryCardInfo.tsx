@@ -5,7 +5,7 @@ import { FC } from "react";
 import style from "./JuryCard.module.scss";
 import ScrollBarComponent from "@/hoc/scrollbar/ScrollBarComponent";
 import JuryCardHead from "./uryCardHead";
-import { ban_list, getInfoLabel } from "./service";
+import { ban_list, getInfoLabel, getVoteStatus } from "./service";
 import { useIsTabletDevice } from "@/hooks/IsSmallDevice";
 import { categoriesLabel } from "../Pass/script";
 
@@ -26,8 +26,12 @@ const JuryCardInfo: FC<{ el_info: any }> = ({ el_info }) => {
         case "category":
           value = categoriesLabel[`${el_info[item]}`];
           break;
+
+        case "vote":
+          value = getVoteStatus(el_info[item]);
+          break;
         default:
-          value = el_info[item];
+          value = el_info[item] ? el_info[item] : "отсутствует";
       }
 
       array.push({ key, value });

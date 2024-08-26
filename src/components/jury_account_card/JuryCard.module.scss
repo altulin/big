@@ -153,6 +153,11 @@
   &__submit {
     width: 100%;
     text-align: center;
+
+    &:disabled {
+      background: #ebedf0;
+      pointer-events: none;
+    }
   }
 }
 

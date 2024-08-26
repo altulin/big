@@ -5,15 +5,21 @@ import style from "./JuryCard.module.scss";
 import { radio_list } from "./service";
 import Radio from "../registration/Radio";
 import Button from "../modal/template/Button";
+import { useVoteWorkMutation } from "@/store/rtk/jury/vote";
 
-const JuryCardForm: FC = () => {
+const JuryCardForm: FC<{ id_work?: number; is_reviewed?: boolean }> = ({
+  id_work,
+  is_reviewed,
+}) => {
+  const [voteWork] = useVoteWorkMutation();
+
   return (
     <Formik
       initialValues={{
-        work: radio_list[0].value,
+        vote: radio_list[0].value,
       }}
       onSubmit={(values) => {
-        console.log(values);
+        voteWork({ id_work, body: values });
       }}
     >
       {() => {
@@ -23,9 +29,10 @@ const JuryCardForm: FC = () => {
               {radio_list.map((item, i) => (
                 <Radio
                   key={i}
-                  name="work"
+                  name="vote"
                   label={item.label}
                   value={item.value}
+                  disabled={is_reviewed}
                 />
               ))}
             </div>
@@ -35,6 +42,7 @@ const JuryCardForm: FC = () => {
               type="submit"
               label="голосовать"
               modifier="green"
+              disabled={is_reviewed}
             />
           </Form>
         );

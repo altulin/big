@@ -11,6 +11,7 @@ import { useIsTabletDevice } from "@/hooks/IsSmallDevice";
 
 const JuryCardControl: FC<{ el_info: any }> = ({ el_info }) => {
   const isTablet = useIsTabletDevice();
+
   return (
     <div className={clsx(style.control)}>
       <JuryCardBack />
@@ -30,7 +31,7 @@ const JuryCardControl: FC<{ el_info: any }> = ({ el_info }) => {
         </span>
       </a>
 
-      <JuryCardForm />
+      <JuryCardForm id_work={el_info.id} is_reviewed={el_info.is_reviewed} />
 
       {!isTablet && <JuryCardNav />}
 

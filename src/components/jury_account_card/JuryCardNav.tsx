@@ -62,7 +62,7 @@ const NavLink: FC<INavLink> = ({ dir, label, state }) => {
   );
 };
 
-const JuryCardNav: FC<{ is_reviewed: boolean }> = ({ is_reviewed }) => {
+const JuryCardNav: FC<{ is_reviewed?: boolean }> = ({ is_reviewed }) => {
   const location = useLocation();
   const isTablet = useIsTabletDevice();
 

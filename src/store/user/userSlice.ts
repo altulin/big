@@ -14,6 +14,8 @@ const userSlice = createSlice({
       company_details_file: null,
       id: null,
       is_jury: false,
+      votes_amount: 0,
+      works_amount: 0,
     },
   },
   reducers: {

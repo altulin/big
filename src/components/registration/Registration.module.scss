@@ -67,6 +67,12 @@
         border-color: var(--color-green-hover);
       }
     }
+
+    & {
+      input:disabled + .radio__icon {
+        border-color: var(--basic-dark);
+      }
+    }
   }
 
   &__text {

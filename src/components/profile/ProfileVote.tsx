@@ -7,32 +7,33 @@ import Button from "../modal/template/Button";
 import { useNavigate } from "react-router-dom";
 import { paths } from "@/service/paths";
 import { useLazyGetWorksQuery } from "@/store/rtk/jury/works";
-import { checkArr } from "@/service/checkArr";
-import { useIntermediateStageQuery } from "@/store/rtk/stage/intermediateStage";
 import { toZonedTime } from "date-fns-tz";
 import { endOfDay, isAfter, parse } from "date-fns";
 import { useIsTabletDevice } from "@/hooks/IsSmallDevice";
+import { useAppSelector } from "@/hooks/hook";
+import { useSettigsQuery } from "@/store/rtk/main/settings";
 
 const ProfileVote: FC = () => {
   const navigate = useNavigate();
   const [getWorks, dataWorks] = useLazyGetWorksQuery();
-  const { data } = useIntermediateStageQuery({});
   const isTablet = useIsTabletDevice();
+  const { data: data_settings } = useSettigsQuery(undefined);
+  const { votes_amount, works_amount } = useAppSelector(
+    (state) => state.user.dataMe,
+  );
 
   useEffect(() => {
     getWorks({});
   }, [getWorks]);
 
   const handle = () => {
-    const day = data.results.filter((el: any) => el.title === "Победители")[0]
-      .stage_end_at;
-    // const day = "2022-09-20";
+    const day = data_settings.voting_deadline;
+
     const toZoned = (date: Date) => {
       return toZonedTime(date, "Europe/Moscow");
     };
     const now = new Date();
     const date = parse(day, "yyyy-MM-dd", new Date());
-    // console.log("now: " + toZoned(now));
 
     const deadline = isAfter(endOfDay(date), toZoned(now));
 
@@ -53,31 +54,21 @@ const ProfileVote: FC = () => {
     navigate(`/${path}`, { state });
   };
 
-  const getLengthWorks = () => {
-    return dataWorks.data?.results.length;
-  };
-
-  const getLengthIsReviewed = () => {
-    return dataWorks.data?.results.filter((el: any) => !el.is_reviewed).length;
-  };
-
   return (
     <div className={clsx(style.application, style["application--vote"])}>
       <ProfileBoxHead isBtn={false} title="Голосование" />
       <div className={clsx(style.box, style["box--application"])}>
-        {dataWorks.isSuccess && checkArr(dataWorks.data.results) && (
-          <p className={clsx(style.application__empty)}>
-            Вам осталось рассмотреть
-            <span className={clsx(style.application__length)}>
-              {getLengthIsReviewed()}
-            </span>
-            из
-            <span className={clsx(style.application__length)}>
-              {getLengthWorks()}
-            </span>
-            работ.
-          </p>
-        )}
+        <p className={clsx(style.application__empty)}>
+          Вам осталось рассмотреть
+          <span className={clsx(style.application__length)}>
+            {works_amount - votes_amount}
+          </span>
+          из
+          <span className={clsx(style.application__length)}>
+            {works_amount}
+          </span>
+          работ.
+        </p>
 
         <Button
           className={clsx(
@@ -85,7 +76,7 @@ const ProfileVote: FC = () => {
             style["application__btn--vote"],
           )}
           type="button"
-          label="перейти в раздел голосования"
+          label={!isTablet ? "перейти в раздел голосования" : "голосование"}
           modifier="green"
           onClick={handle}
         />

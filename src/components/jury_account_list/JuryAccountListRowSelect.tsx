@@ -20,15 +20,6 @@ const JuryAccountListRowSelect: FC<IJuryAccountListRowSelect> = ({
 }) => {
   const [field, meta, helpers] = useField(name);
 
-  const getValue = (val: any) => {
-    if (name === "is_reviewed") {
-      helpers.setValue(val.value === "true" ? true : false);
-      return;
-    }
-
-    helpers.setValue(val.value);
-  };
-
   if (!checkArr(options)) return;
 
   return (
@@ -45,7 +36,7 @@ const JuryAccountListRowSelect: FC<IJuryAccountListRowSelect> = ({
         menuList: () => clsx(style.select__menuList),
       }}
       name={name}
-      onChange={(val: any) => getValue(val)}
+      onChange={(val: any) => helpers.setValue(val.value)}
       value={options.find((el) => el.value === field.value)}
     />
   );

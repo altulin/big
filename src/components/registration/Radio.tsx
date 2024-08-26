@@ -11,12 +11,13 @@ interface IRadio {
   value: string;
   formik?: any;
   icon?: any;
+  disabled?: boolean;
 }
 
 const Radio: FC<IRadio> = ({
   label,
   value,
-
+  disabled = false,
   name = "status",
   icon = null,
 }) => {
@@ -29,6 +30,7 @@ const Radio: FC<IRadio> = ({
       type="radio"
       modifier="radio"
       value={value}
+      disabled={disabled}
     >
       <>
         <div className={clsx(style.radio__icon)}>

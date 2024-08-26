@@ -16,11 +16,6 @@ const JuryCard: FC = () => {
   const [getWork, { data, isSuccess }] = useLazyGetWorkJuryQuery();
 
   useEffect(() => {
-    if (!isSuccess) return;
-    console.log(data);
-  }, [data, isSuccess]);
-
-  useEffect(() => {
     getWork({ id: location.state.id });
   }, [getWork, location.state.id]);
 
@@ -32,6 +27,7 @@ const JuryCard: FC = () => {
 
       <JuryCardControl el_info={data} />
       <JuryCardInfo el_info={data} />
+
       {isTablet && (
         <figure className={clsx(style.card__icon)}>
           <IconMain />

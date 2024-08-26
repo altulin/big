@@ -105,9 +105,26 @@ export const getInfoLabel = (label: string) => {
       result = "Ссылка на изображение проекта";
       break;
 
+    case "vote":
+      result = "Статус голосования";
+      break;
+
     default:
       result = "Нет данных";
   }
 
   return result;
+};
+
+export const getVoteStatus = (value: string) => {
+  switch (value) {
+    case "short_list":
+      return "В шорт-лист";
+    case "not_short_list":
+      return "Не в шорт-лист";
+    case "pending":
+      return "В ожидании";
+    default:
+      return "Нет данных";
+  }
 };
