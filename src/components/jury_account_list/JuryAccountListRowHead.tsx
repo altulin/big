@@ -19,16 +19,16 @@ const JuryAccountListRowHead: FC = () => {
   const itemsShort = {
     number: "№",
     title: "Название работы",
-    category: (
-      <JuryAccountListRowSelect name="category" options={optionsCategory()} />
+    category: null,
+    nomination: (
+      <JuryAccountListRowSelect name="nomination" options={options} />
     ),
-    nomination: null,
     status: null,
   };
 
   const itemsSimple = {
-    nomination: (
-      <JuryAccountListRowSelect name="nomination" options={options} />
+    category: (
+      <JuryAccountListRowSelect name="category" options={optionsCategory()} />
     ),
     status: (
       <JuryAccountListRowSelect name="is_reviewed" options={optionsReviewed} />

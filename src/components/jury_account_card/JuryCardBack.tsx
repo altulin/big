@@ -4,15 +4,21 @@ import { HashLink } from "react-router-hash-link";
 import style from "./JuryCard.module.scss";
 import IconBack from "@/images/jury_account/back.svg?react";
 import { useLocation } from "react-router-dom";
+import { paths } from "@/service/paths";
+import { useCheckShort } from "../jury_account_list/service";
 
 const JuryCardBack: FC = () => {
   const location = useLocation();
+  const { isShort } = useCheckShort();
 
   return (
     <HashLink
       className={clsx(style.control_back)}
-      to={`/${location.state.page}`}
-      state={{ values: location.state.values }}
+      to={`/${paths.jury_account_list}`}
+      state={{
+        values: location.state.values,
+        page: isShort ? paths.jury_account_list_short : paths.jury_account_list,
+      }}
     >
       <span className={clsx(style.control_back__icon)}>
         <IconBack />

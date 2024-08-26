@@ -1,20 +1,30 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import ScrollBarComponent from "@/hoc/scrollbar/ScrollBarComponent";
 import clsx from "clsx";
-import { FC } from "react";
+import { FC, useEffect, useState } from "react";
 import style from "./JuryAccount.module.scss";
 import JuryAccountListRowHead from "./JuryAccountListRowHead";
 import { Form, Formik } from "formik";
 import JuryAccountListContent from "./JuryAccountListContent";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import { useCheckShort } from "./service";
+import { useIsTabletDevice } from "@/hooks/IsSmallDevice";
+import { paths } from "@/service/paths";
 
 const JuryAccountList: FC = () => {
   const location = useLocation();
   const { isShort } = useCheckShort();
-
+  const [tabIndex, setTabIndex] = useState(0);
+  const isTablet = useIsTabletDevice();
+  const navigate = useNavigate();
   const tabs = ["Основная", "Young Talent"];
+
+  useEffect(() => {
+    if (isTablet) {
+      navigate(`/${paths.profile}`);
+    }
+  }, [isTablet, navigate]);
 
   const getTabs = () => {
     return isShort ? tabs : [""];
@@ -29,11 +39,20 @@ const JuryAccountList: FC = () => {
       <Tabs
         className={clsx(style.list_wrapper__tabs)}
         selectedTabPanelClassName={clsx(style["list_wrapper__panel--selected"])}
+        selectedIndex={tabIndex}
+        onSelect={(index) => setTabIndex(index)}
       >
         <TabList className={clsx(style.list_wrapper__list)}>
           {getTabs().map((item, i) => {
             return (
-              <Tab className={clsx(style.list_wrapper__tab)} key={i}>
+              <Tab
+                selectedClassName={clsx(style["list_wrapper__tab--selected"])}
+                className={clsx(
+                  style.list_wrapper__tab,
+                  !isShort && style["list_wrapper__tab--hidden"],
+                )}
+                key={i}
+              >
                 {item}
               </Tab>
             );
@@ -58,7 +77,10 @@ const JuryAccountList: FC = () => {
                       return (
                         <Form className={clsx(style.list)}>
                           <JuryAccountListRowHead />
-                          <JuryAccountListContent values={formik.values} />
+                          <JuryAccountListContent
+                            values={formik.values}
+                            tabIndex={tabIndex}
+                          />
                         </Form>
                       );
                     }}

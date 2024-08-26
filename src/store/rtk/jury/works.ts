@@ -10,9 +10,10 @@ export const worksApi = api.injectEndpoints({
         category = "",
         nomination = "",
         is_reviewed = "",
+        is_short_list = "",
       }) => {
         return {
-          url: `/api/jury/works?limit=${limit}&offset=${offset}&category=${category}&nomination=${nomination}&is_reviewed=${is_reviewed}`,
+          url: `/api/jury/works?limit=${limit}&offset=${offset}&category=${category}&nomination=${nomination}&is_reviewed=${is_reviewed}&is_short_list=${is_short_list}`,
           method: "GET",
           headers: {
             Authorization: `Bearer ${token()}`,
