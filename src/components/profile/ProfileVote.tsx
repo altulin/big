@@ -7,38 +7,31 @@ import Button from "../modal/template/Button";
 import { useNavigate } from "react-router-dom";
 import { paths } from "@/service/paths";
 import { useLazyGetWorksQuery } from "@/store/rtk/jury/works";
-import { toZonedTime } from "date-fns-tz";
-import { endOfDay, isAfter, parse } from "date-fns";
 import { useIsTabletDevice } from "@/hooks/IsSmallDevice";
 import { useAppSelector } from "@/hooks/hook";
-import { useSettigsQuery } from "@/store/rtk/main/settings";
+import { useCheckDeadline } from "../jury_account_list/service";
 
 const ProfileVote: FC = () => {
   const navigate = useNavigate();
   const [getWorks, dataWorks] = useLazyGetWorksQuery();
   const isTablet = useIsTabletDevice();
-  const { data: data_settings } = useSettigsQuery(undefined);
   const { votes_amount, works_amount } = useAppSelector(
     (state) => state.user.dataMe,
   );
+  const { isShort } = useCheckDeadline();
 
   useEffect(() => {
+    if (isShort) {
+      getWorks({ is_short_list: true });
+      return;
+    }
+
     getWorks({});
-  }, [getWorks]);
+  }, [getWorks, isShort]);
 
   const handle = () => {
-    const day = data_settings.voting_deadline;
-
-    const toZoned = (date: Date) => {
-      return toZonedTime(date, "Europe/Moscow");
-    };
-    const now = new Date();
-    const date = parse(day, "yyyy-MM-dd", new Date());
-
-    const deadline = isAfter(endOfDay(date), toZoned(now));
-
     const state: any = {
-      page: deadline ? paths.jury_account_list : paths.jury_account_list_short,
+      page: isShort ? paths.jury_account_list_short : paths.jury_account_list,
     };
 
     let path = paths.jury_account_list;

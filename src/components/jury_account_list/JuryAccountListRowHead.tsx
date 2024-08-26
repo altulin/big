@@ -2,12 +2,12 @@
 import { FC, useEffect } from "react";
 import JuryAccountListRow from "./JuryAccountListRow";
 import JuryAccountListRowSelect from "./JuryAccountListRowSelect";
-import { optionsCategory, optionsReviewed, useCheckShort } from "./service";
+import { optionsCategory, optionsReviewed, useCheckDeadline } from "./service";
 import { useLazyNominationsQuery } from "@/store/rtk/nominations/nominations";
 
 const JuryAccountListRowHead: FC = () => {
   const [getNomination, { data }] = useLazyNominationsQuery(undefined);
-  const { isShort } = useCheckShort();
+  const { isShort } = useCheckDeadline();
   useEffect(() => {
     getNomination({ offset: 0, limit: 100 }).unwrap();
   }, [getNomination]);

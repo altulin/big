@@ -8,17 +8,16 @@ import { Form, Formik } from "formik";
 import JuryAccountListContent from "./JuryAccountListContent";
 import { useLocation, useNavigate } from "react-router-dom";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
-import { useCheckShort } from "./service";
+import { tabs, useCheckDeadline } from "./service";
 import { useIsTabletDevice } from "@/hooks/IsSmallDevice";
 import { paths } from "@/service/paths";
 
 const JuryAccountList: FC = () => {
   const location = useLocation();
-  const { isShort } = useCheckShort();
+  const { isShort } = useCheckDeadline();
   const [tabIndex, setTabIndex] = useState(0);
   const isTablet = useIsTabletDevice();
   const navigate = useNavigate();
-  const tabs = ["Основная", "Young Talent"];
 
   useEffect(() => {
     if (isTablet) {

@@ -5,11 +5,11 @@ import style from "./JuryCard.module.scss";
 import IconBack from "@/images/jury_account/back.svg?react";
 import { useLocation } from "react-router-dom";
 import { paths } from "@/service/paths";
-import { useCheckShort } from "../jury_account_list/service";
+import { useCheckDeadline } from "../jury_account_list/service";
 
 const JuryCardBack: FC = () => {
   const location = useLocation();
-  const { isShort } = useCheckShort();
+  const { isShort } = useCheckDeadline();
 
   return (
     <HashLink

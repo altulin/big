@@ -1,7 +1,7 @@
 import clsx from "clsx";
 import { FC, isValidElement, ReactNode } from "react";
 import style from "./JuryAccount.module.scss";
-import { useCheckShort } from "./service";
+import { useCheckDeadline } from "./service";
 
 interface IJuryAccountListRow {
   items: {
@@ -15,7 +15,7 @@ interface IJuryAccountListRow {
 }
 
 const JuryAccountListRow: FC<IJuryAccountListRow> = ({ items, is_head }) => {
-  const { isShort } = useCheckShort();
+  const { isShort } = useCheckDeadline();
   return (
     <ul
       className={clsx(

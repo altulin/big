@@ -6,11 +6,11 @@ import JuryAccountListRow from "./JuryAccountListRow";
 import { paths } from "@/service/paths";
 import clsx from "clsx";
 import style from "./JuryAccount.module.scss";
-import { categories, categoriesLabel } from "../Pass/script";
+import { categoriesLabel } from "../Pass/script";
 import { checkArr } from "@/service/checkArr";
 import { useLazyNominationsQuery } from "@/store/rtk/nominations/nominations";
 import JuryAccountListRowStatus from "./JuryAccountListRowStatus";
-import { useCheckShort } from "./service";
+import { getCategory, useCheckDeadline } from "./service";
 
 const JuryAccountListContent: FC<{ values: any; tabIndex?: number }> = ({
   values,
@@ -18,16 +18,7 @@ const JuryAccountListContent: FC<{ values: any; tabIndex?: number }> = ({
 }) => {
   const [getWorks, dataWorks] = useLazyGetWorksQuery();
   const [getNomination, { data }] = useLazyNominationsQuery(undefined);
-  const { isShort } = useCheckShort();
-
-  const getCategory = (index: number) => {
-    switch (index) {
-      case 0:
-        return categories.main_category;
-      case 1:
-        return categories.young_talent;
-    }
-  };
+  const { isShort } = useCheckDeadline();
 
   useEffect(() => {
     getNomination({ offset: 0, limit: 100 }).unwrap();
@@ -35,8 +26,6 @@ const JuryAccountListContent: FC<{ values: any; tabIndex?: number }> = ({
 
   useEffect(() => {
     if (isShort) {
-      // console.log(values);
-
       values.category = getCategory(tabIndex!);
       getWorks({ ...values, is_short_list: true });
       return;

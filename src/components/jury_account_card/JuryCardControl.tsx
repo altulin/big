@@ -8,17 +8,22 @@ import JuryCardForm from "./JuryCardForm";
 import JuryCardNav from "./JuryCardNav";
 import JuryCardHead from "./uryCardHead";
 import { useIsTabletDevice } from "@/hooks/IsSmallDevice";
+import { useCheckDeadline } from "../jury_account_list/service";
 
 const JuryCardControl: FC<{ el_info: any }> = ({ el_info }) => {
   const isTablet = useIsTabletDevice();
+  const { isShort } = useCheckDeadline();
 
   return (
-    <div className={clsx(style.control)}>
+    <div className={clsx(style.control, isShort && style["control--short"])}>
       <JuryCardBack />
 
       <a
         href={el_info.work_link}
-        className={clsx(style.control_link)}
+        className={clsx(
+          style.control_link,
+          isShort && style["control_link--short"],
+        )}
         target="_blank"
       >
         <span className={clsx(style.control_link__icon)}>
@@ -31,7 +36,9 @@ const JuryCardControl: FC<{ el_info: any }> = ({ el_info }) => {
         </span>
       </a>
 
-      <JuryCardForm id_work={el_info.id} is_reviewed={el_info.is_reviewed} />
+      {!isShort && (
+        <JuryCardForm id_work={el_info.id} is_reviewed={el_info.is_reviewed} />
+      )}
 
       {!isTablet && <JuryCardNav />}
 
