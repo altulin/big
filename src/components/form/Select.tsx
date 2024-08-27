@@ -36,10 +36,6 @@ const SelectField: FC<ISelectField> = ({
 
   const [field, meta, helpers] = useField(name);
 
-  useEffect(() => {
-    console.log(meta);
-  }, [field]);
-
   if (!options) return null;
 
   return (

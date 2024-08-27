@@ -10,6 +10,7 @@ import { useLazyNominationsQuery } from "@/store/rtk/nominations/nominations";
 import { useNavigate } from "react-router-dom";
 import { paths } from "@/service/paths";
 import useDeadline from "@/hooks/deadline";
+import { categories } from "../Pass/script";
 // import IconBasket from "@/images/pass/basket.svg?react";
 // import { useLazyDeleteWorkQuery } from "@/store/rtk/orders/delete_work";
 
@@ -30,6 +31,22 @@ export interface IProfileApplicationItem {
   isDraft?: boolean;
 }
 
+const EditBtn: FC<{ id: number }> = ({ id }) => {
+  const navigate = useNavigate();
+  const handleEdit = () => {
+    navigate(`/${paths.edit}/${id}`);
+  };
+  return (
+    <button
+      type="button"
+      className={clsx(style.edit, style["edit--left"])}
+      onClick={handleEdit}
+    >
+      <IconEdit />
+    </button>
+  );
+};
+
 const ProfileApplicationItem: FC<IProfileApplicationItem> = ({
   // isDraft,
   num,
@@ -46,16 +63,11 @@ const ProfileApplicationItem: FC<IProfileApplicationItem> = ({
     id,
     title,
   } = props;
-  const navigate = useNavigate();
   const isDeadline = useDeadline(import.meta.env.VITE_APP_DEADLINE_PASS);
 
   useEffect(() => {
     getNomination({ offset: 0, limit: 100 }).unwrap();
   }, []); // eslint-disable-line
-
-  const handleEdit = () => {
-    navigate(`/${paths.edit}/${id}`);
-  };
 
   return (
     <div className={clsx(style.item)}>
@@ -65,14 +77,10 @@ const ProfileApplicationItem: FC<IProfileApplicationItem> = ({
           <span>{`№${num + 1}`}</span>
         </p>
 
-        {isDeadline && (
-          <button
-            type="button"
-            className={clsx(style.edit, style["edit--left"])}
-            onClick={handleEdit}
-          >
-            <IconEdit />
-          </button>
+        {isDeadline && <EditBtn id={id} />}
+
+        {!isDeadline && categories.brand_pitches === category && (
+          <EditBtn id={id} />
         )}
 
         {/* {isDraft && (
