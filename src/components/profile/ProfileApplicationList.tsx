@@ -9,6 +9,7 @@ import useWidget from "../Pass/widget";
 import { format } from "date-fns";
 import StatusComponents from "./StatusComponent";
 import useDeadline from "@/hooks/deadline";
+import ProfileApplicationItemTicket from "./ProfileApplicationItemTicket";
 
 const ProfileApplicationList: FC<{
   results: any;
@@ -41,6 +42,8 @@ const ProfileApplicationList: FC<{
         works.map((item: any, i: number) => (
           <ProfileApplicationItem isDraft={isDraft} key={i} {...item} num={i} />
         ))}
+
+      {isVisible && false && <ProfileApplicationItemTicket />}
 
       <button onClick={toggleVisible} className={clsx(style.visible)}>
         {isVisible ? "Свернуть" : "Показать больше"}

@@ -174,6 +174,35 @@ const ProfileApplicationItem: FC<IProfileApplicationItem> = ({
               </span>
             </div>
           )}
+
+          {false && (
+            <div
+              className={clsx(
+                style.insight,
+                style.item__block,
+                style["item__block--sum"],
+              )}
+            >
+              <span
+                className={clsx(
+                  style.insight__title,
+                  style.item__subtitle,
+                  style["item__subtitle--sum"],
+                )}
+              >
+                Сумма:
+              </span>
+              <span
+                className={clsx(
+                  style.insight__text,
+                  style.item__value,
+                  style["item__value--sum"],
+                )}
+              >
+                {`${10000} ₽`}
+              </span>
+            </div>
+          )}
         </div>
       </div>
     </div>

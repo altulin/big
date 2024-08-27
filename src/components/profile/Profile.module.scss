@@ -288,6 +288,14 @@
       }
     }
 
+    &--sum:not(:first-child) {
+      margin-top: 3rem;
+
+      @include mw($tb) {
+        margin-top: 1.5rem;
+      }
+    }
+
     @include mw($tb) {
       flex-direction: column;
     }
@@ -301,6 +309,14 @@
     width: 8.3rem;
     flex-shrink: 0;
 
+    &--sum {
+      color: #141414;
+    }
+
+    &--ticket {
+      width: auto;
+    }
+
     @include mw($tb) {
       fz: 1rem;
     }
@@ -312,6 +328,10 @@
     line-height: 140%;
     color: #141414;
     flex-grow: 1;
+
+    &--sum {
+      text-align: right;
+    }
 
     @include mw($tb) {
       font-size: 1rem;
