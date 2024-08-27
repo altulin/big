@@ -19,7 +19,7 @@ const useWidget = () => {
     const receipt: any = {
       Items: [
         {
-          label: "Наименование товара 1", //наименование товара
+          label: "Оплата заявки на участие в фестивале", //наименование товара
           price: amount, //цена
           quantity: 1.0, //количество
           amount: amount, //сумма
