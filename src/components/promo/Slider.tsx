@@ -9,10 +9,11 @@ import { Navigation, Autoplay } from "swiper/modules";
 import Slide_3 from "./Slide_3";
 import { useAppDispatch } from "@/hooks/hook";
 import { setPromoSlide } from "@/store/promoSlider/promoSlice";
+import Slide_4 from "./Slide_4";
 
 const Slider: FC = () => {
   const dispatch = useAppDispatch();
-  const slides = [<Slide_1 />, <Slide_2 />, <Slide_3 />];
+  const slides = [<Slide_1 />, <Slide_2 />, <Slide_3 />, <Slide_4 />];
 
   return (
     <Swiper

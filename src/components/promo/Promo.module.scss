@@ -547,12 +547,15 @@
     position: relative;
 
     @include mw($tb) {
-      height: 25rem;
+      // height: 25rem;
       width: 100%;
       margin-bottom: 1.5rem;
+      height: 0;
+      padding-top: 100%;
     }
 
     @include mw($ph) {
+      padding-top: 0;
       height: 17rem;
     }
   }
@@ -624,6 +627,22 @@
 
     &:hover {
       background-color: var(--color-green-hover);
+    }
+  }
+}
+
+.slide_4 {
+  &__figure {
+    @include mw($tb) {
+      height: 0;
+      padding-top: 100%;
+    }
+  }
+
+  &__img {
+    @include mw($tb) {
+      object-fit: cover;
+      object-position: center;
     }
   }
 }
