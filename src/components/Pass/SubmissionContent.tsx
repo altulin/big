@@ -184,7 +184,7 @@ const SubmissionContent: FC<{ formik: any; id: number }> = ({ formik, id }) => {
           name={`fields.${id}.file`}
           label={
             !formik.values?.fields[`${id}`]?.file?.name
-              ? "Прикрепить сценарий"
+              ? "Прикрепить презентацию идеи"
               : formik.values.fields[`${id}`].file.name
           }
           accept=".doc, .docx, .pdf, .ppt, .pptx, .key"

@@ -38,6 +38,8 @@ const SelectField: FC<ISelectField> = ({
 
   if (!options) return null;
 
+  // console.log(meta);
+
   return (
     <div className={prefix}>
       {label && <span className={`${prefix}__label`}>{label}</span>}
@@ -48,14 +50,13 @@ const SelectField: FC<ISelectField> = ({
         placeholder={placeholder}
         options={options}
         name={name}
-        // value={
-        //   options
-        //     ? options.find(
-        //         (option: { value: number }) =>
-        //           option.value === fieldData?.value,
-        //       )
-        //     : ""
-        // }
+        value={
+          options
+            ? options.find(
+                (option: { value: number }) => option.value === field?.value,
+              )
+            : ""
+        }
         onChange={(option: any) => {
           // form.setFieldValue(name, option ? option["value"] : "");
           helpers.setValue(option ? option["value"] : "");

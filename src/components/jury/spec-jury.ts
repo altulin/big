@@ -119,5 +119,11 @@ export const jury = [
       job: "Head of MarCom",
       company: "Роллтон",
     },
+    {
+      avatar: "vika-1.png",
+      name: "Виктория Литвинова",
+      job: "Head of Brand",
+      company: "Skillbox",
+    },
   ],
 ];
