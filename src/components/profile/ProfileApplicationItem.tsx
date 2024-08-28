@@ -29,6 +29,8 @@ export interface IProfileApplicationItem {
   id: number;
   title?: string;
   isDraft?: boolean;
+  work_cost?: number;
+  works_cost?: number;
 }
 
 const EditBtn: FC<{ id: number }> = ({ id }) => {
@@ -48,8 +50,9 @@ const EditBtn: FC<{ id: number }> = ({ id }) => {
 };
 
 const ProfileApplicationItem: FC<IProfileApplicationItem> = ({
-  // isDraft,
+  isDraft,
   num,
+  works_cost,
   ...props
 }) => {
   const [getNomination, { data: results }] = useLazyNominationsQuery(undefined);
@@ -68,6 +71,8 @@ const ProfileApplicationItem: FC<IProfileApplicationItem> = ({
   useEffect(() => {
     getNomination({ offset: 0, limit: 100 }).unwrap();
   }, []); // eslint-disable-line
+
+  console.log(props);
 
   return (
     <div className={clsx(style.item)}>
@@ -175,7 +180,7 @@ const ProfileApplicationItem: FC<IProfileApplicationItem> = ({
             </div>
           )}
 
-          {false && (
+          {isDraft && (
             <div
               className={clsx(
                 style.insight,
@@ -199,7 +204,7 @@ const ProfileApplicationItem: FC<IProfileApplicationItem> = ({
                   style["item__value--sum"],
                 )}
               >
-                {`${10000} ₽`}
+                {`${works_cost} ₽`}
               </span>
             </div>
           )}

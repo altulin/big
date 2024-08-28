@@ -519,11 +519,12 @@
   background-color: var(--color-green);
   display: flex;
   align-items: center;
-
+  min-height: 4rem;
   padding: 0.5rem 0.5rem 0.5rem 2rem;
 
   @include mw($tb) {
     padding: 0 0 0 1.5rem;
+    min-height: 3rem;
   }
 
   &__text {

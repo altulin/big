@@ -15,7 +15,7 @@ const ProfileApplicationList: FC<{
   results: any;
   isDraft?: boolean;
 }> = ({ results, isDraft }) => {
-  const { status, works, cost, category } = results;
+  const { status, works, cost, category, works_cost } = results;
   const [isVisible, setIsVisible] = useState(false);
   const { runWidget } = useWidget();
   const isDeadline = useDeadline(import.meta.env.VITE_APP_DEADLINE_PASS);
@@ -40,10 +40,21 @@ const ProfileApplicationList: FC<{
       {isVisible &&
         works &&
         works.map((item: any, i: number) => (
-          <ProfileApplicationItem isDraft={isDraft} key={i} {...item} num={i} />
+          <ProfileApplicationItem
+            isDraft={isDraft}
+            key={i}
+            {...item}
+            num={i}
+            works_cost={works_cost}
+          />
         ))}
 
-      {isVisible && false && <ProfileApplicationItemTicket />}
+      {isVisible && isDraft && (
+        <ProfileApplicationItemTicket
+          tickets_cost={results.tickets_cost}
+          tickets_amount={results.tickets_amount}
+        />
+      )}
 
       <button onClick={toggleVisible} className={clsx(style.visible)}>
         {isVisible ? "Свернуть" : "Показать больше"}
