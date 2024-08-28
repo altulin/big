@@ -30,7 +30,7 @@ export interface IProfileApplicationItem {
   title?: string;
   isDraft?: boolean;
   work_cost?: number;
-  works_cost?: number;
+  cost?: number;
 }
 
 const EditBtn: FC<{ id: number }> = ({ id }) => {
@@ -52,7 +52,7 @@ const EditBtn: FC<{ id: number }> = ({ id }) => {
 const ProfileApplicationItem: FC<IProfileApplicationItem> = ({
   isDraft,
   num,
-  works_cost,
+
   ...props
 }) => {
   const [getNomination, { data: results }] = useLazyNominationsQuery(undefined);
@@ -65,14 +65,13 @@ const ProfileApplicationItem: FC<IProfileApplicationItem> = ({
     idea,
     id,
     title,
+    cost,
   } = props;
   const isDeadline = useDeadline(import.meta.env.VITE_APP_DEADLINE_PASS);
 
   useEffect(() => {
     getNomination({ offset: 0, limit: 100 }).unwrap();
   }, []); // eslint-disable-line
-
-  console.log(props);
 
   return (
     <div className={clsx(style.item)}>
@@ -204,7 +203,7 @@ const ProfileApplicationItem: FC<IProfileApplicationItem> = ({
                   style["item__value--sum"],
                 )}
               >
-                {`${works_cost} ₽`}
+                {`${cost} ₽`}
               </span>
             </div>
           )}
