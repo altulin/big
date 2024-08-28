@@ -5,13 +5,13 @@ import style from "./Profile.module.scss";
 import { format } from "date-fns";
 
 interface IItem {
-  cost: number;
+  tickets_cost: number;
   tickets_amount: number;
   updated_at: string;
 }
 
 const ProfileApplicationTicket: FC<{ item: IItem }> = ({ item }) => {
-  const { cost, tickets_amount, updated_at } = item;
+  const { tickets_cost, tickets_amount, updated_at } = item;
 
   return (
     <div className={clsx(style.ticket)}>
@@ -30,7 +30,9 @@ const ProfileApplicationTicket: FC<{ item: IItem }> = ({ item }) => {
           </li>
           <li className={clsx(style.ticket__item)}>
             <span>Сумма:</span>
-            <span className={clsx(style.ticket__value)}>{`${cost} ₽`}</span>
+            <span
+              className={clsx(style.ticket__value)}
+            >{`${tickets_cost} ₽`}</span>
           </li>
         </ul>
         <p className={clsx(style.ticket__text)}>
