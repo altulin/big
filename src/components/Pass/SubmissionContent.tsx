@@ -30,6 +30,17 @@ const SubmissionContent: FC<{ formik: any; id: number }> = ({ formik, id }) => {
     { value: "experienced_production", label: "Опытный продакшн" },
   ];
 
+  const getLabel = () => {
+    if (!categoryPitch) return;
+
+    switch (categoryPitch) {
+      case categoriesPitshes.nuum:
+        return "Прикрепить презентацию идеи";
+      case categoriesPitshes.mega:
+        return "Прикрепить сценарий";
+    }
+  };
+
   return (
     <>
       {category !== categories.brand_pitches && (
@@ -184,7 +195,7 @@ const SubmissionContent: FC<{ formik: any; id: number }> = ({ formik, id }) => {
           name={`fields.${id}.file`}
           label={
             !formik.values?.fields[`${id}`]?.file?.name
-              ? "Прикрепить презентацию идеи"
+              ? getLabel()
               : formik.values.fields[`${id}`].file.name
           }
           accept=".doc, .docx, .pdf, .ppt, .pptx, .key"
