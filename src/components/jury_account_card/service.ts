@@ -9,11 +9,11 @@ export const radio_list = [
     value: "not_short_list",
     icon: null,
   },
-  {
-    label: "Моя работа",
-    value: "my_work",
-    icon: null,
-  },
+  // {
+  //   label: "Моя работа",
+  //   value: "my_work",
+  //   icon: null,
+  // },
 ];
 
 export const info_keys = [
@@ -126,5 +126,15 @@ export const getVoteStatus = (value: string) => {
       return "В ожидании";
     default:
       return "Нет данных";
+  }
+};
+
+export const getValRadio = (value: string | undefined) => {
+  switch (value) {
+    case "not_short_list":
+      return "not_short_list";
+
+    default:
+      return "short_list";
   }
 };

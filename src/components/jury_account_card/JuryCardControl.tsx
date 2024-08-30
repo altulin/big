@@ -37,7 +37,11 @@ const JuryCardControl: FC<{ el_info: any }> = ({ el_info }) => {
       </a>
 
       {!isShort && (
-        <JuryCardForm id_work={el_info.id} is_reviewed={el_info.is_reviewed} />
+        <JuryCardForm
+          id_work={el_info.id}
+          is_reviewed={el_info.is_reviewed}
+          vote={el_info.vote}
+        />
       )}
 
       {!isTablet && <JuryCardNav />}

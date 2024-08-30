@@ -2,7 +2,7 @@ import clsx from "clsx";
 import { Form, Formik } from "formik";
 import { FC, useEffect } from "react";
 import style from "./JuryCard.module.scss";
-import { radio_list } from "./service";
+import { getValRadio, radio_list } from "./service";
 import Radio from "../registration/Radio";
 import Button from "../modal/template/Button";
 import { useVoteWorkMutation } from "@/store/rtk/jury/vote";
@@ -12,9 +12,14 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { paths } from "@/service/paths";
 import { useCheckDeadline } from "../jury_account_list/service";
 
-const JuryCardForm: FC<{ id_work?: number; is_reviewed?: boolean }> = ({
+const JuryCardForm: FC<{
+  id_work?: number;
+  is_reviewed?: boolean;
+  vote?: string;
+}> = ({
   id_work,
   // is_reviewed,
+  vote,
 }) => {
   const [voteWork, { isSuccess }] = useVoteWorkMutation();
   const dispatch = useAppDispatch();
@@ -43,11 +48,13 @@ const JuryCardForm: FC<{ id_work?: number; is_reviewed?: boolean }> = ({
   return (
     <Formik
       initialValues={{
-        vote: radio_list[0].value,
+        vote: getValRadio(vote),
+        // vote: radio_list[0].value,
       }}
       onSubmit={(values) => {
         voteWork({ id_work, body: values });
       }}
+      enableReinitialize
     >
       {() => {
         return (
