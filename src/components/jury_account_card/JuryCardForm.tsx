@@ -14,7 +14,7 @@ import { useCheckDeadline } from "../jury_account_list/service";
 
 const JuryCardForm: FC<{ id_work?: number; is_reviewed?: boolean }> = ({
   id_work,
-  is_reviewed,
+  // is_reviewed,
 }) => {
   const [voteWork, { isSuccess }] = useVoteWorkMutation();
   const dispatch = useAppDispatch();
@@ -59,7 +59,7 @@ const JuryCardForm: FC<{ id_work?: number; is_reviewed?: boolean }> = ({
                   name="vote"
                   label={item.label}
                   value={item.value}
-                  disabled={is_reviewed}
+                  // disabled={is_reviewed}
                 />
               ))}
             </div>
@@ -69,7 +69,7 @@ const JuryCardForm: FC<{ id_work?: number; is_reviewed?: boolean }> = ({
               type="submit"
               label="голосовать"
               modifier="green"
-              disabled={is_reviewed}
+              // disabled={is_reviewed}
             />
           </Form>
         );
