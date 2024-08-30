@@ -46,6 +46,7 @@
     "react-router-dom": "^6.21.0",
     "react-router-hash-link": "^2.4.3",
     "react-select": "^5.8.0",
+    "react-tabs": "^6.0.2",
     "sass": "^1.69.5",
     "string-mask": "^0.3.0",
     "swiper": "^11.1.4",

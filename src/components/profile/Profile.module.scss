@@ -170,6 +170,10 @@
 .application {
   margin-bottom: 3rem;
 
+  &--vote {
+    margin-bottom: 0;
+  }
+
   &--ticket {
     margin-bottom: 0;
   }
@@ -202,6 +206,10 @@
       margin-bottom: 0;
     }
 
+    &--vote {
+      margin-bottom: 0;
+    }
+
     @include mw($tb) {
       width: 100%;
       font-size: 1rem;
@@ -210,6 +218,10 @@
     &:hover {
       background-color: var(--color-green-hover);
     }
+  }
+
+  &__length {
+    margin: 0 0.4rem;
   }
 }
 

@@ -24,6 +24,8 @@ import Edit from "./components/Edit/Edit";
 import { useAppSelector } from "./hooks/hook";
 import useGoogleManager from "./hooks/googleManager";
 import Ticket from "./components/ticket/Ticket";
+import JuryAccountList from "./components/jury_account_list/JuryAccountList";
+import JuryCard from "./components/jury_account_card/JuryCard";
 
 const App: FC = () => {
   const title = import.meta.env.VITE_APP_TITLE;
@@ -34,8 +36,6 @@ const App: FC = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const { getMeData } = useMe();
-  // const dispatch = useAppDispatch();
-  // const isTablet = useIsTabletDevice();
   const { id } = useAppSelector((state) => state.user.dataMe);
   const { addEvent } = useGoogleManager();
 
@@ -142,7 +142,23 @@ const App: FC = () => {
             }
           />
 
-          {/* <Route path="/:section" element={<HomePage />} /> */}
+          <Route
+            path={paths.jury_account_list}
+            element={
+              <RequireAuth>
+                <JuryAccountList />
+              </RequireAuth>
+            }
+          />
+
+          <Route
+            path={`${paths.jury_account_card}/:id_card`}
+            element={
+              <RequireAuth>
+                <JuryCard />
+              </RequireAuth>
+            }
+          />
 
           <Route path="*" element={<HomePage />} />
         </Route>
@@ -151,7 +167,6 @@ const App: FC = () => {
         </Route>
       </Routes>
       <ModalManager />
-      {/* <Cursor /> */}
     </HelmetProvider>
   );
 };

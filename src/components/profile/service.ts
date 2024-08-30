@@ -20,7 +20,7 @@ export const getNominationValue = (nomination: any, list: any) => {
   return list.filter((item: any) => item.id === nomination)[0].title;
 };
 
-export const statuses = {
+export const statuses: { [key: string]: string } = {
   paid: "paid",
   created: "created",
   payment_error: "payment_error",

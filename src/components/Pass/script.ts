@@ -8,26 +8,31 @@ export const categories = {
   only_tickets: "only_tickets",
 };
 
+export const categoriesLabel: { [key: string]: string } = {
+  main: "Основная категория",
+  young: "Young Talent by Nuum",
+  brand_pitches: "Бренд-питчи",
+  only_tickets: "Только билеты",
+};
+
 export const categoriesPitshes = {
-  // nuum: "nuum_category",
   nuum: "nuum",
-  // mega: "mega_category",
   mega: "mega_market",
 };
 
 export const radioList = [
   {
-    label: "Основная категория",
+    label: categoriesLabel.main,
     value: categories.main_category,
     icon: null,
   },
   {
-    label: "Young Talent by Nuum",
+    label: categoriesLabel.young,
     value: categories.young_talent,
     icon: null,
   },
   {
-    label: "Бренд-питчи",
+    label: categoriesLabel.brand_pitches,
     value: categories.brand_pitches,
     icon: null,
   },
