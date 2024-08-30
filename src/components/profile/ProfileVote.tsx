@@ -10,6 +10,7 @@ import { useLazyGetWorksQuery } from "@/store/rtk/jury/works";
 import { useIsTabletDevice } from "@/hooks/IsSmallDevice";
 import { useAppSelector } from "@/hooks/hook";
 import { useCheckDeadline } from "../jury_account_list/service";
+import useDeadline from "@/hooks/deadline";
 
 const ProfileVote: FC = () => {
   const navigate = useNavigate();
@@ -19,6 +20,7 @@ const ProfileVote: FC = () => {
     (state) => state.user.dataMe,
   );
   const { isShort } = useCheckDeadline();
+  const isDeadline = useDeadline(import.meta.env.VITE_APP_DEADLINE_PASS);
 
   useEffect(() => {
     if (isShort) {
@@ -46,6 +48,8 @@ const ProfileVote: FC = () => {
 
     navigate(`/${path}`, { state });
   };
+
+  if (isDeadline) return null;
 
   return (
     <div className={clsx(style.application, style["application--vote"])}>
