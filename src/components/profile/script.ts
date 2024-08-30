@@ -54,3 +54,16 @@ export const list = [
     file,
   },
 ];
+
+export const ban_list = [
+  "id",
+  "pitch_brand",
+  "script",
+  "script_url",
+  "cost",
+  "works_cost",
+  "project_image",
+  "project_image_url",
+  "status",
+  "work_link",
+];

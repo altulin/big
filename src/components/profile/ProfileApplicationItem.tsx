@@ -4,13 +4,15 @@ import { FC, useEffect } from "react";
 import style from "./Profile.module.scss";
 
 import IconEdit from "@/images/profile/edit.svg?react";
-import { checkArr } from "@/service/checkArr";
-import { getCategory, getNominationValue } from "./service";
+// import { checkArr } from "@/service/checkArr";
+// import { getCategory, getNominationValue } from "./service";
 import { useLazyNominationsQuery } from "@/store/rtk/nominations/nominations";
 import { useNavigate } from "react-router-dom";
 import { paths } from "@/service/paths";
 import useDeadline from "@/hooks/deadline";
 import { categories } from "../Pass/script";
+import { getArray } from "../jury_account_card/service";
+import { ban_list } from "./script";
 // import IconBasket from "@/images/pass/basket.svg?react";
 // import { useLazyDeleteWorkQuery } from "@/store/rtk/orders/delete_work";
 
@@ -52,17 +54,16 @@ const EditBtn: FC<{ id: number }> = ({ id }) => {
 const ProfileApplicationItem: FC<IProfileApplicationItem> = ({
   isDraft,
   num,
-
   ...props
 }) => {
-  const [getNomination, { data: results }] = useLazyNominationsQuery(undefined);
+  const [getNomination] = useLazyNominationsQuery(undefined);
   const {
     category,
-    work_link,
+    // work_link,
     nomination,
-    credits,
-    about_project,
-    idea,
+    // credits,
+    // about_project,
+    // idea,
     id,
     title,
     cost,
@@ -103,7 +104,14 @@ const ProfileApplicationItem: FC<IProfileApplicationItem> = ({
         <h3 className={clsx(style.name)}>{title}</h3>
 
         <div className={clsx(style.content)}>
-          {work_link && (
+          {getArray(props, ban_list).map((el: any, i: number) => (
+            <li key={i} className={clsx(style.item__block)}>
+              <span className={clsx(style.item__subtitle)}>{el.key}</span>
+              <span className={clsx(style.item__value)}>{el.value}</span>
+            </li>
+          ))}
+
+          {/* {work_link && (
             <p
               className={clsx(
                 style.href,
@@ -114,17 +122,17 @@ const ProfileApplicationItem: FC<IProfileApplicationItem> = ({
               <span className={clsx(style.item__subtitle)}>Ссылка:</span>
               <span className={clsx(style.item__value)}>{work_link}</span>
             </p>
-          )}
+          )} */}
 
-          <div className={clsx(style.category, style.item__block)}>
+          {/* <div className={clsx(style.category, style.item__block)}>
             <span className={clsx(style.item__subtitle)}>Категория:</span>
             <span className={clsx(style.category__box, style.item__value)}>
               {getCategory(category)}
               {props.img_category && <props.img_category />}
             </span>
-          </div>
+          </div> */}
 
-          {nomination && (
+          {/* {nomination && (
             <div className={clsx(style.nomination, style.item__block)}>
               <span className={clsx(style.item__subtitle)}>Номинация:</span>
               <span className={clsx(style.item__value)}>
@@ -132,9 +140,9 @@ const ProfileApplicationItem: FC<IProfileApplicationItem> = ({
                   getNominationValue(nomination, results?.results)}
               </span>
             </div>
-          )}
+          )} */}
 
-          {credits && (
+          {/* {credits && (
             <div className={clsx(style.credits, style.item__block)}>
               <span
                 className={clsx(style.credits__title, style.item__subtitle)}
@@ -154,9 +162,9 @@ const ProfileApplicationItem: FC<IProfileApplicationItem> = ({
                 )}
               </div>
             </div>
-          )}
+          )} */}
 
-          {about_project && (
+          {/* {about_project && (
             <div className={clsx(style.about, style.item__block)}>
               <span className={clsx(style.about__title, style.item__subtitle)}>
                 О проекте:
@@ -165,9 +173,9 @@ const ProfileApplicationItem: FC<IProfileApplicationItem> = ({
                 {about_project}
               </span>
             </div>
-          )}
+          )} */}
 
-          {idea && (
+          {/* {idea && (
             <div className={clsx(style.insight, style.item__block)}>
               <span
                 className={clsx(style.insight__title, style.item__subtitle)}
@@ -178,7 +186,7 @@ const ProfileApplicationItem: FC<IProfileApplicationItem> = ({
                 {idea}
               </span>
             </div>
-          )}
+          )} */}
 
           {isDraft && (
             <div

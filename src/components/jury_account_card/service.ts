@@ -1,3 +1,6 @@
+import { categoriesLabel } from "../Pass/script";
+
+/* eslint-disable @typescript-eslint/no-explicit-any */
 export const radio_list = [
   {
     label: "В шорт-лист",
@@ -40,6 +43,8 @@ export const ban_list = [
   "is_reviewed",
   "voting_result",
   "status",
+  "credits",
+  "cost",
 ];
 
 export const getInfoLabel = (label: string) => {
@@ -137,4 +142,33 @@ export const getValRadio = (value: string | undefined) => {
     default:
       return "short_list";
   }
+};
+
+export const getArray = (el_info: any, ban_list: any) => {
+  const array: any = [];
+
+  Object.keys(el_info).forEach((item) => {
+    console.log(item);
+    if (ban_list.includes(item)) return;
+
+    const key = `${getInfoLabel(item)}:`;
+
+    let value;
+
+    switch (item) {
+      case "category":
+        value = categoriesLabel[`${el_info[item]}`];
+        break;
+
+      case "vote":
+        value = getVoteStatus(el_info[item]);
+        break;
+      default:
+        value = el_info[item] ? el_info[item] : "отсутствует";
+    }
+
+    array.push({ key, value });
+  });
+
+  return array;
 };
