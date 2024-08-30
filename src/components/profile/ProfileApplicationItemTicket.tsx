@@ -6,6 +6,8 @@ const ProfileApplicationItemTicket: FC<{
   tickets_cost: number;
   tickets_amount: number;
 }> = ({ tickets_cost, tickets_amount }) => {
+  if (tickets_cost === 0) return null;
+
   return (
     <div className={clsx(style.item)}>
       <div className={clsx(style.header)}>

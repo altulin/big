@@ -4,11 +4,11 @@ import { FC } from "react";
 import { HashLink } from "react-router-hash-link";
 import style from "./Header.module.scss";
 import { useAppDispatch } from "@/hooks/hook";
-import useDeadline from "@/hooks/deadline";
+// import useDeadline from "@/hooks/deadline";
 import { setMenuControl } from "@/store/menu/menuSlice";
 
 const Profile: FC<{ className?: string }> = ({ className }) => {
-  const isDeadline = useDeadline(import.meta.env.VITE_APP_DEADLINE_PASS);
+  // const isDeadline = useDeadline(import.meta.env.VITE_APP_DEADLINE_PASS);
   const dispatch = useAppDispatch();
 
   return (
@@ -16,7 +16,7 @@ const Profile: FC<{ className?: string }> = ({ className }) => {
       className={clsx(
         style.profile,
         className,
-        !isDeadline && style["profile--deadline"],
+        // !isDeadline && style["profile--deadline"],
       )}
       smooth
       to={`/${paths.profile}`}

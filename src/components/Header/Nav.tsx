@@ -9,12 +9,10 @@ import useIsAuth from "@/hooks/isAuth";
 import ComeIn from "./ComeIn";
 import Exit from "./Exit";
 import Profile from "./Profile";
-import useDeadline from "@/hooks/deadline";
 
 const Nav: FC = () => {
   const isTablet = useIsTabletDevice();
   const isAuth = useIsAuth();
-  const isDeadline = useDeadline(import.meta.env.VITE_APP_DEADLINE_PASS);
 
   return (
     <div className={clsx(style.nav)}>
@@ -42,7 +40,6 @@ const Nav: FC = () => {
               <ComeIn
                 className={clsx(
                   style.footer__come,
-                  !isDeadline && style["footer__come--deadline"],
                   isAuth && style.footer__come__auth,
                 )}
               />
