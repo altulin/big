@@ -56,7 +56,7 @@ const ProfileApplicationItem: FC<IProfileApplicationItem> = ({
   num,
   ...props
 }) => {
-  const [getNomination] = useLazyNominationsQuery(undefined);
+  const [getNomination, { data: results }] = useLazyNominationsQuery(undefined);
   const {
     category,
     // work_link,
@@ -104,12 +104,14 @@ const ProfileApplicationItem: FC<IProfileApplicationItem> = ({
         <h3 className={clsx(style.name)}>{title}</h3>
 
         <div className={clsx(style.content)}>
-          {getArray(props, ban_list).map((el: any, i: number) => (
-            <li key={i} className={clsx(style.item__block)}>
-              <span className={clsx(style.item__subtitle)}>{el.key}</span>
-              <span className={clsx(style.item__value)}>{el.value}</span>
-            </li>
-          ))}
+          {getArray(props, ban_list, results?.results).map(
+            (el: any, i: number) => (
+              <li key={i} className={clsx(style.item__block)}>
+                <span className={clsx(style.item__subtitle)}>{el.key}</span>
+                <span className={clsx(style.item__value)}>{el.value}</span>
+              </li>
+            ),
+          )}
 
           {/* {work_link && (
             <p

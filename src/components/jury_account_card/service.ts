@@ -38,13 +38,22 @@ export const info_keys = [
 ];
 
 export const ban_list = [
-  "id",
-  "title",
-  "is_reviewed",
-  "voting_result",
-  "status",
   "credits",
+  "id",
+  "pitch_brand",
+  "script",
+  "script_url",
   "cost",
+  "works_cost",
+  "project_image",
+  "project_image_url",
+  "status",
+  "title",
+  "brand",
+  "deadlines",
+  "target_audience",
+  "goals",
+  "is_reviewed",
 ];
 
 export const getInfoLabel = (label: string) => {
@@ -83,7 +92,7 @@ export const getInfoLabel = (label: string) => {
       break;
 
     case "idea":
-      result = "Идея";
+      result = "Инсайт";
       break;
 
     case "about_project":
@@ -91,11 +100,11 @@ export const getInfoLabel = (label: string) => {
       break;
 
     case "work_link":
-      result = "Ссылка на работу";
+      result = "Ссылка";
       break;
 
     case "credits":
-      result = "Кредиты";
+      result = "Кредитсы";
       break;
 
     case "target_audience":
@@ -144,17 +153,32 @@ export const getValRadio = (value: string | undefined) => {
   }
 };
 
-export const getArray = (el_info: any, ban_list: any) => {
+const sortArrTemplate = [
+  "work_link",
+  "category",
+  "nomination",
+  "credits",
+  "about_project",
+  "idea",
+];
+
+export const getArray = (el_info: any, ban_list: any, nominations: any) => {
   const array: any = [];
 
-  Object.keys(el_info).forEach((item) => {
-    console.log(item);
+  const elList = Object.keys(el_info);
+
+  const sortArr = sortArrTemplate.reduce((result: any, item) => {
+    if (sortArrTemplate.indexOf(item) !== -1) {
+      elList.splice(elList.indexOf(item), 1);
+      return [...result, item];
+    }
+    return [result];
+  }, []);
+
+  [...sortArr, ...elList].forEach((item) => {
     if (ban_list.includes(item)) return;
-
     const key = `${getInfoLabel(item)}:`;
-
     let value;
-
     switch (item) {
       case "category":
         value = categoriesLabel[`${el_info[item]}`];
@@ -163,10 +187,19 @@ export const getArray = (el_info: any, ban_list: any) => {
       case "vote":
         value = getVoteStatus(el_info[item]);
         break;
+
+      case "nomination":
+        if (!nominations) {
+          value = "";
+          break;
+        }
+
+        value = nominations.filter((el: any) => el.id === el_info[item])[0]
+          .title;
+        break;
       default:
         value = el_info[item] ? el_info[item] : "отсутствует";
     }
-
     array.push({ key, value });
   });
 

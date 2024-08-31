@@ -65,5 +65,11 @@ export const ban_list = [
   "project_image",
   "project_image_url",
   "status",
-  "work_link",
+  "title",
+  "brand",
+  "deadlines",
+  "target_audience",
+  "goals",
+
+  // "work_link",
 ];
