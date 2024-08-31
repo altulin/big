@@ -83,10 +83,12 @@
       background-position: center;
       background-size: cover;
       flex-shrink: 0;
+      display: block;
     }
 
     @include mw($tb) {
       flex-direction: row;
+      width: 69.9%;
     }
   }
 
@@ -172,6 +174,14 @@
       background-size: 100% auto;
       background-position: 0 bottom;
       padding-top: 0;
+
+      @include mw($tb) {
+        display: block;
+        width: 81%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        text-wrap: nowrap;
+      }
     }
 
     &--error {
@@ -357,6 +367,10 @@
     &::after {
       border-width: 0.34rem 0.56rem 0.34rem 0;
       border-color: transparent var(--error) transparent transparent;
+    }
+
+    @include mw($tb) {
+      width: 24%;
     }
   }
 

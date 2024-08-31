@@ -70,6 +70,6 @@ export const ban_list = [
   "deadlines",
   "target_audience",
   "goals",
-
-  // "work_link",
+  "presentation_url",
+  "presentation",
 ];

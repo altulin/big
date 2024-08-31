@@ -1,4 +1,4 @@
-import { categoriesLabel } from "../Pass/script";
+import { categoriesLabel, categoriesPitshes } from "../Pass/script";
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
 export const radio_list = [
@@ -175,11 +175,21 @@ export const getArray = (el_info: any, ban_list: any, nominations: any) => {
     return [...result];
   }, []);
 
-  console.log(sortArr);
+  console.log(el_info["pitch_brand"]);
+  console.log([...sortArr, ...elList]);
 
   [...sortArr, ...elList].forEach((item) => {
+    if (el_info["pitch_brand"] === categoriesPitshes.nuum) {
+      ban_list.push("work_link");
+      ban_list.push("about_project");
+      ban_list.push("brand_category");
+    }
+
     if (ban_list.includes(item)) return;
     const key = `${getInfoLabel(item)}:`;
+
+    console.log(item);
+
     let value;
     switch (item) {
       case "category":
