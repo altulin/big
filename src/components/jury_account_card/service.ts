@@ -168,12 +168,14 @@ export const getArray = (el_info: any, ban_list: any, nominations: any) => {
   const elList = Object.keys(el_info);
 
   const sortArr = sortArrTemplate.reduce((result: any, item) => {
-    if (sortArrTemplate.indexOf(item) !== -1) {
+    if (elList.indexOf(item) !== -1) {
       elList.splice(elList.indexOf(item), 1);
       return [...result, item];
     }
-    return [result];
+    return [...result];
   }, []);
+
+  console.log(sortArr);
 
   [...sortArr, ...elList].forEach((item) => {
     if (ban_list.includes(item)) return;
