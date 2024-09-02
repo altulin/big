@@ -6,12 +6,11 @@ import { paths } from "@/service/paths";
 import { usePitch } from "./scriprt";
 import useIsAuth from "@/hooks/isAuth";
 import { useAppDispatch } from "@/hooks/hook";
-import { setErrorModal, stepTo } from "@/store/modal/modalSlice";
+import { stepTo } from "@/store/modal/modalSlice";
 import { useNavigate } from "react-router-dom";
 import { setCategory } from "@/store/category/categorySlice";
 import { categories } from "../Pass/script";
 import { useIsTabletDevice } from "@/hooks/IsSmallDevice";
-import useDeadline from "@/hooks/deadline";
 
 const Pitch: FC = () => {
   const isAuth = useIsAuth();
@@ -19,18 +18,20 @@ const Pitch: FC = () => {
   const navigate = useNavigate();
   const isTablet = useIsTabletDevice();
   const { pitch } = usePitch();
-  const isDeadline = useDeadline(import.meta.env.VITE_APP_DEADLINE_PASS);
 
   const handleClick = () => {
     if (!isAuth) {
       dispatch(stepTo({ auth: { step: 1 } }));
     } else {
-      if (isDeadline) {
-        dispatch(setCategory(categories.brand_pitches));
-        navigate(`/${paths.pass}`);
-      } else {
-        dispatch(setErrorModal("Срок подачи работ истёк!"));
-      }
+      // if (isDeadline) {
+      //   dispatch(setCategory(categories.brand_pitches));
+      //   navigate(`/${paths.pass}`);
+      // } else {
+      //   dispatch(setErrorModal("Срок подачи работ истёк!"));
+      // }
+
+      dispatch(setCategory(categories.brand_pitches));
+      navigate(`/${paths.pass}`);
     }
   };
 

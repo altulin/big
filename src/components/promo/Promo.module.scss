@@ -636,6 +636,7 @@
     @include mw($tb) {
       height: 0;
       padding-top: 100%;
+      border-bottom: var(--line) solid var(--basic-dark);
     }
   }
 
