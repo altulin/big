@@ -30,6 +30,10 @@ const ScrollBarComponent: FC<{ children: ReactNode }> = ({ children }) => {
           return <div {...props} className={clsx(style.thumb)}></div>;
         }}
         onScroll={() => setIsScroll(true)}
+        onUpdate={(el) => {
+          if (el.scrollHeight <= el.clientHeight) return;
+          setIsScroll(true);
+        }}
       >
         {children}
       </Scrollbars>

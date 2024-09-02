@@ -54,6 +54,7 @@ export const ban_list = [
   "target_audience",
   "goals",
   "is_reviewed",
+  "work_link",
 ];
 
 export const getInfoLabel = (label: string) => {
@@ -175,8 +176,8 @@ export const getArray = (el_info: any, ban_list: any, nominations: any) => {
     return [...result];
   }, []);
 
-  console.log(el_info["pitch_brand"]);
-  console.log([...sortArr, ...elList]);
+  // console.log(el_info["pitch_brand"]);
+  // console.log([...sortArr, ...elList]);
 
   [...sortArr, ...elList].forEach((item) => {
     if (el_info["pitch_brand"] === categoriesPitshes.nuum) {
@@ -188,7 +189,7 @@ export const getArray = (el_info: any, ban_list: any, nominations: any) => {
     if (ban_list.includes(item)) return;
     const key = `${getInfoLabel(item)}:`;
 
-    console.log(item);
+    // console.log(item);
 
     let value;
     switch (item) {
