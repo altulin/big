@@ -377,6 +377,10 @@
     transition: 0.3s;
     cursor: pointer;
 
+    &_loading {
+      pointer-events: none;
+    }
+
     &:hover {
       background-color: var(--color-green-hover);
     }

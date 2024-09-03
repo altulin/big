@@ -57,23 +57,18 @@ const ProfileApplicationItem: FC<IProfileApplicationItem> = ({
   ...props
 }) => {
   const [getNomination, { data: results }] = useLazyNominationsQuery(undefined);
-  const {
-    category,
-    // work_link,
-    nomination,
-    // credits,
-    // about_project,
-    // idea,
-    id,
-    title,
-    cost,
-  } = props;
+  const { category, nomination, id, title, cost } = props;
   const isDeadline = useDeadline(import.meta.env.VITE_APP_DEADLINE_PASS);
 
   useEffect(() => {
     if (!nomination) return;
     getNomination({ offset: 0, limit: 100 }).unwrap();
   }, []); // eslint-disable-line
+
+  const EditText = (text: string) => {
+    console.log(text.split("\n"));
+    return text.split("\n");
+  };
 
   return (
     <div className={clsx(style.item)}>
@@ -83,21 +78,15 @@ const ProfileApplicationItem: FC<IProfileApplicationItem> = ({
           <span>{`№${num + 1}`}</span>
         </p>
 
+        {/*временно
         {isDeadline && <EditBtn id={id} />}
 
         {!isDeadline && categories.brand_pitches === category && (
           <EditBtn id={id} />
-        )}
-
-        {/* {isDraft && (
-          <button
-            onClick={handleDelete}
-            type="button"
-            className={clsx(style.edit)}
-          >
-            <IconBasket />
-          </button>
         )} */}
+
+        {/* убрать */}
+        <EditBtn id={id} />
       </div>
 
       <div className={clsx(style.item__inner)}>
@@ -108,87 +97,14 @@ const ProfileApplicationItem: FC<IProfileApplicationItem> = ({
             (el: any, i: number) => (
               <li key={i} className={clsx(style.item__block)}>
                 <span className={clsx(style.item__subtitle)}>{el.key}</span>
-                <span className={clsx(style.item__value)}>{el.value}</span>
+                <span className={clsx(style.item__value)}>
+                  {EditText(el.value).map((item, i) => (
+                    <span key={i}>{item}</span>
+                  ))}
+                </span>
               </li>
             ),
           )}
-
-          {/* {work_link && (
-            <p
-              className={clsx(
-                style.href,
-                style.item__block,
-                style["item__block--link"],
-              )}
-            >
-              <span className={clsx(style.item__subtitle)}>Ссылка:</span>
-              <span className={clsx(style.item__value)}>{work_link}</span>
-            </p>
-          )} */}
-
-          {/* <div className={clsx(style.category, style.item__block)}>
-            <span className={clsx(style.item__subtitle)}>Категория:</span>
-            <span className={clsx(style.category__box, style.item__value)}>
-              {getCategory(category)}
-              {props.img_category && <props.img_category />}
-            </span>
-          </div> */}
-
-          {/* {nomination && (
-            <div className={clsx(style.nomination, style.item__block)}>
-              <span className={clsx(style.item__subtitle)}>Номинация:</span>
-              <span className={clsx(style.item__value)}>
-                {results?.results &&
-                  getNominationValue(nomination, results?.results)}
-              </span>
-            </div>
-          )} */}
-
-          {/* {credits && (
-            <div className={clsx(style.credits, style.item__block)}>
-              <span
-                className={clsx(style.credits__title, style.item__subtitle)}
-              >
-                Кредитсы:
-              </span>
-
-              <div className={clsx(style.credits__box, style.item__value)}>
-                {checkArr(credits) ? (
-                  credits?.map((item, i) => (
-                    <span key={i} className={clsx(style.credits__item)}>
-                      {item}
-                    </span>
-                  ))
-                ) : (
-                  <span className={clsx(style.credits__item)}>{credits}</span>
-                )}
-              </div>
-            </div>
-          )} */}
-
-          {/* {about_project && (
-            <div className={clsx(style.about, style.item__block)}>
-              <span className={clsx(style.about__title, style.item__subtitle)}>
-                О проекте:
-              </span>
-              <span className={clsx(style.about__text, style.item__value)}>
-                {about_project}
-              </span>
-            </div>
-          )} */}
-
-          {/* {idea && (
-            <div className={clsx(style.insight, style.item__block)}>
-              <span
-                className={clsx(style.insight__title, style.item__subtitle)}
-              >
-                Инсайт:
-              </span>
-              <span className={clsx(style.insight__text, style.item__value)}>
-                {idea}
-              </span>
-            </div>
-          )} */}
 
           {isDraft && (
             <div

@@ -118,7 +118,8 @@ const PassForm: FC = () => {
         fields: [getProperties()],
       }}
       validationSchema={createValidationSchema(paths.pass)}
-      onSubmit={async (values, { resetForm }) => {
+      onSubmit={async (values, { resetForm, setSubmitting }) => {
+        setSubmitting(true);
         const body = await makePayLoad(values);
         await convertBase(body).then((res) =>
           setTimeout(() => {

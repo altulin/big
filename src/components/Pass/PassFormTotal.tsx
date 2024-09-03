@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { FC } from "react";
+import { FC, useState } from "react";
 import ProfileBoxHead from "../profile/ProfileBoxHead";
 import style from "./Pass.module.scss";
 import clsx from "clsx";
@@ -9,6 +9,14 @@ import usePrice from "@/hooks/price";
 const PassFormTotal: FC<{ formik?: any }> = ({ formik }) => {
   const { isIndividual } = useProfile();
   const { data } = usePrice();
+  const [isLoading, setIsLoading] = useState(false);
+
+  const handle = () => {
+    setIsLoading(true);
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 2000);
+  };
 
   return (
     <div className={clsx(style.box)}>
@@ -24,7 +32,11 @@ const PassFormTotal: FC<{ formik?: any }> = ({ formik }) => {
 
         <button
           type="submit"
-          className={clsx(style.total__btn)}
+          className={clsx(
+            style.total__btn,
+            isLoading && style.total__btn_loading,
+          )}
+          onClick={handle}
           disabled={!(formik.isValid && formik.dirty)}
         >
           {!isIndividual && "Далее"}

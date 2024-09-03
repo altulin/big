@@ -72,8 +72,18 @@ const ProfileApplicationList: FC<{
       <button onClick={toggleVisible} className={clsx(style.visible)}>
         {isVisible ? "Свернуть" : "Показать больше"}
       </button>
-
-      {isVisible && isDraft && isPay() && (
+      {/* временно */}
+      {/* {isVisible && isDraft && isPay() && (
+        <Button
+          className={clsx(style.pay)}
+          type="button"
+          label="Оплатить"
+          modifier="green"
+          onClick={handlePay}
+        />
+      )} */}
+      {/* убрать */}
+      {isVisible && isDraft && (
         <Button
           className={clsx(style.pay)}
           type="button"

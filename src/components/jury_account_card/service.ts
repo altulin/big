@@ -49,10 +49,10 @@ export const ban_list = [
   "project_image_url",
   "status",
   "title",
-  "brand",
-  "deadlines",
-  "target_audience",
-  "goals",
+  // "brand",
+  // "deadlines",
+  // "target_audience",
+  // "goals",
   "is_reviewed",
   "work_link",
 ];
@@ -73,7 +73,7 @@ export const getInfoLabel = (label: string) => {
       break;
 
     case "title":
-      result = "Название работы";
+      result = "Название";
       break;
 
     case "brand":
@@ -85,15 +85,15 @@ export const getInfoLabel = (label: string) => {
       break;
 
     case "deadlines":
-      result = "Дедлайны";
+      result = "Сроки";
       break;
 
     case "goals":
-      result = "Цели";
+      result = "Цели и задачи";
       break;
 
     case "idea":
-      result = "Инсайт";
+      result = "Инсайт и идея";
       break;
 
     case "about_project":
@@ -176,7 +176,7 @@ export const getArray = (el_info: any, ban_list: any, nominations: any) => {
     return [...result];
   }, []);
 
-  // console.log(el_info["pitch_brand"]);
+  console.log(elList);
   // console.log([...sortArr, ...elList]);
 
   [...sortArr, ...elList].forEach((item) => {
