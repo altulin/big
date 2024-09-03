@@ -5,9 +5,10 @@ import clsx from "clsx";
 import style from "./Pass.module.scss";
 import { categories, categoriesPitshes, radioList } from "./script";
 import Radio from "../registration/Radio";
-import { useAppDispatch } from "@/hooks/hook";
+import { useAppDispatch, useAppSelector } from "@/hooks/hook";
 import { setCategory, setCategoryPitch } from "@/store/category/categorySlice";
 import useDeadline from "@/hooks/deadline";
+import { setClearForm } from "@/store/forms/formsSlice";
 
 const PassFormRadio: FC<{ formik: any; name?: string }> = ({
   formik,
@@ -15,6 +16,7 @@ const PassFormRadio: FC<{ formik: any; name?: string }> = ({
 }) => {
   const dispatch = useAppDispatch();
   const isDeadline = useDeadline(import.meta.env.VITE_APP_DEADLINE_PASS);
+  const category = useAppSelector((state) => state.category);
 
   useEffect(() => {
     if (!isDeadline) {
@@ -31,6 +33,10 @@ const PassFormRadio: FC<{ formik: any; name?: string }> = ({
 
     dispatch(setCategory(formik.values.category));
   }, [formik.values.category, dispatch]);
+
+  useEffect(() => {
+    dispatch(setClearForm());
+  }, [category, dispatch]);
 
   const getList = () => {
     //временно

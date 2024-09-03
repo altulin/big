@@ -159,8 +159,13 @@ const sortArrTemplate = [
   "category",
   "nomination",
   "credits",
-  "about_project",
+  "brand",
+  "deadlines",
+  "goals",
+  "target_audience",
   "idea",
+  "about_project",
+  "status",
 ];
 
 export const getArray = (el_info: any, ban_list: any, nominations: any) => {
