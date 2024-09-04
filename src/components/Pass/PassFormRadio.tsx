@@ -20,8 +20,7 @@ const PassFormRadio: FC<{ formik: any; name?: string }> = ({
 
   useEffect(() => {
     if (!isDeadline) {
-      //временно
-      // formik.setFieldValue("category", categories.brand_pitches);
+      formik.setFieldValue("category", categories.brand_pitches);
     }
 
     if (formik.values.category === categories.brand_pitches) {
@@ -40,16 +39,16 @@ const PassFormRadio: FC<{ formik: any; name?: string }> = ({
 
   const getList = () => {
     //временно
-    // if (!isDeadline) {
-    //   return radioList.filter(
-    //     (item) => item.value === categories.brand_pitches,
-    //   );
-    // }
+    if (!isDeadline) {
+      return radioList.filter(
+        (item) => item.value === categories.brand_pitches,
+      );
+    }
 
-    // return radioList;
+    return radioList;
 
     // убрать
-    return radioList;
+    // return radioList;
   };
 
   return (

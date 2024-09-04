@@ -78,15 +78,15 @@ const ProfileApplicationItem: FC<IProfileApplicationItem> = ({
           <span>{`№${num + 1}`}</span>
         </p>
 
-        {/*временно
+        {/* временно */}
         {isDeadline && <EditBtn id={id} />}
 
         {!isDeadline && categories.brand_pitches === category && (
           <EditBtn id={id} />
-        )} */}
+        )}
 
         {/* убрать */}
-        <EditBtn id={id} />
+        {/* <EditBtn id={id} /> */}
       </div>
 
       <div className={clsx(style.item__inner)}>
