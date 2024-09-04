@@ -66,7 +66,6 @@ const ProfileApplicationItem: FC<IProfileApplicationItem> = ({
   }, []); // eslint-disable-line
 
   const EditText = (text: string) => {
-    console.log(text.split("\n"));
     return text.split("\n");
   };
 
@@ -106,7 +105,7 @@ const ProfileApplicationItem: FC<IProfileApplicationItem> = ({
             ),
           )}
 
-          {isDraft && (
+          {isDraft && false && (
             <div
               className={clsx(
                 style.insight,

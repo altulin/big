@@ -17,6 +17,10 @@ const JuryCardInfo: FC<{ el_info: any }> = ({ el_info }) => {
     getNomination({ offset: 0, limit: 100 }).unwrap();
   }, []); // eslint-disable-line
 
+  const EditText = (text: string) => {
+    return text.split("\n");
+  };
+
   return (
     <div className={clsx(style.info)}>
       <ScrollBarComponent>
@@ -28,7 +32,11 @@ const JuryCardInfo: FC<{ el_info: any }> = ({ el_info }) => {
               (el: any, i: number) => (
                 <li key={i} className={clsx(style.info__item)}>
                   <span className={clsx(style.info__key)}>{el.key}</span>
-                  <span className={clsx(style.info__value)}>{el.value}</span>
+                  <span className={clsx(style.info__value)}>
+                    {EditText(el.value).map((item, i) => (
+                      <span key={i}>{item}</span>
+                    ))}
+                  </span>
                 </li>
               ),
             )}

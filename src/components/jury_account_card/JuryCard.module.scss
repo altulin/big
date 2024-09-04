@@ -359,11 +359,16 @@
   }
 
   &__value {
-    font-weight: 400;
-    font-size: 1.12rem;
-    line-height: 140%;
-    color: #141414;
-    word-break: break-all;
+    display: flex;
+    flex-direction: column;
+
+    span {
+      font-weight: 400;
+      font-size: 1.12rem;
+      line-height: 140%;
+      color: #141414;
+      // word-break: break-all;
+    }
 
     @include mw($tb) {
       font-weight: 400;
