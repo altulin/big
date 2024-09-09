@@ -34,14 +34,14 @@ const JuryCardForm: FC<{
           text: "Ваш голос принят",
         }),
       );
-      navigate(`/${paths.jury_account_list}`, {
-        state: {
-          values: location.state.values,
-          page: isShort
-            ? paths.jury_account_list_short
-            : paths.jury_account_list,
-        },
-      });
+      // navigate(`/${paths.jury_account_list}`, {
+      //   state: {
+      //     values: location.state.values,
+      //     page: isShort
+      //       ? paths.jury_account_list_short
+      //       : paths.jury_account_list,
+      //   },
+      // });
     }
   }, [isSuccess]);
 
