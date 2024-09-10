@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { FC, useEffect } from "react";
+import { FC, useCallback, useEffect } from "react";
 import ProfileBoxHead from "../profile/ProfileBoxHead";
 import clsx from "clsx";
 import style from "./Pass.module.scss";
@@ -7,22 +7,18 @@ import { categories, categoriesPitshes, radioList } from "./script";
 import Radio from "../registration/Radio";
 import { useAppDispatch, useAppSelector } from "@/hooks/hook";
 import { setCategory, setCategoryPitch } from "@/store/category/categorySlice";
-import useDeadline from "@/hooks/deadline";
 import { setClearForm } from "@/store/forms/formsSlice";
+import useDeadlineClose from "@/hooks/closeDeadline";
 
 const PassFormRadio: FC<{ formik: any; name?: string }> = ({
   formik,
   name = "category",
 }) => {
   const dispatch = useAppDispatch();
-  const isDeadline = useDeadline(import.meta.env.VITE_APP_DEADLINE_PASS);
   const category = useAppSelector((state) => state.category);
+  const { isCloseMain, isCloseBrand, isCloseYoung } = useDeadlineClose();
 
   useEffect(() => {
-    // if (!isDeadline) {
-    //   formik.setFieldValue("category", categories.brand_pitches);
-    // }
-
     if (formik.values.category === categories.brand_pitches) {
       dispatch(setCategoryPitch(categoriesPitshes.nuum));
       formik.setFieldValue("categoryPitch", categoriesPitshes.nuum);
@@ -37,17 +33,28 @@ const PassFormRadio: FC<{ formik: any; name?: string }> = ({
     dispatch(setClearForm());
   }, [category, dispatch]);
 
-  const getList = () => {
-    //временно
-    // if (!isDeadline) {
-    //   return radioList.filter(
-    //     (item) => item.value === categories.brand_pitches,
-    //   );
-    // }
+  const getList = useCallback(() => {
+    const radioArr = [];
+    const main = radioList.filter(
+      (i) => i.value === categories.main_category,
+    )[0];
+    const young = radioList.filter(
+      (i) => i.value === categories.young_talent,
+    )[0];
+    const brand = radioList.filter(
+      (i) => i.value === categories.brand_pitches,
+    )[0];
 
-    // убрать
-    return radioList;
-  };
+    if (!isCloseMain) radioArr.push(main);
+    if (!isCloseYoung) radioArr.push(young);
+    if (!isCloseBrand) radioArr.push(brand);
+
+    return radioArr;
+  }, [isCloseBrand, isCloseMain, isCloseYoung]);
+
+  useEffect(() => {
+    dispatch(setCategory(getList()[0].value));
+  }, [dispatch, getList]);
 
   return (
     <div className={clsx(style.box)}>

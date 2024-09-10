@@ -189,7 +189,6 @@ export const getArray = (el_info: any, ban_list: any, nominations: any) => {
     return [...result];
   }, []);
 
-  console.log(elList);
   // console.log([...sortArr, ...elList]);
 
   [...sortArr, ...elList].forEach((item) => {

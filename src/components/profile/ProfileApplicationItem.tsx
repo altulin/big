@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import clsx from "clsx";
-import { FC, useEffect } from "react";
+import { FC, useCallback, useEffect } from "react";
 import style from "./Profile.module.scss";
 
 import IconEdit from "@/images/profile/edit.svg?react";
@@ -9,10 +9,10 @@ import IconEdit from "@/images/profile/edit.svg?react";
 import { useLazyNominationsQuery } from "@/store/rtk/nominations/nominations";
 import { useNavigate } from "react-router-dom";
 import { paths } from "@/service/paths";
-import useDeadline from "@/hooks/deadline";
 import { categories } from "../Pass/script";
 import { getArray } from "../jury_account_card/service";
 import { ban_list } from "./script";
+import useDeadlineClose from "@/hooks/closeDeadline";
 // import IconBasket from "@/images/pass/basket.svg?react";
 // import { useLazyDeleteWorkQuery } from "@/store/rtk/orders/delete_work";
 
@@ -58,12 +58,28 @@ const ProfileApplicationItem: FC<IProfileApplicationItem> = ({
 }) => {
   const [getNomination, { data: results }] = useLazyNominationsQuery(undefined);
   const { category, nomination, id, title, cost } = props;
-  const isDeadline = useDeadline(import.meta.env.VITE_APP_DEADLINE_PASS);
+  const { isCloseMain, isCloseYoung, isCloseBrand } = useDeadlineClose();
 
   useEffect(() => {
     if (!nomination) return;
     getNomination({ offset: 0, limit: 100 }).unwrap();
   }, []); // eslint-disable-line
+
+  const checkEdit = useCallback(() => {
+    if (category === categories.main_category && !isCloseMain) {
+      return true;
+    }
+
+    if (category === categories.young_talent && !isCloseYoung) {
+      return true;
+    }
+
+    if (category === categories.brand_pitches && !isCloseBrand) {
+      return true;
+    }
+
+    return false;
+  }, [category, isCloseBrand, isCloseMain, isCloseYoung]);
 
   const EditText = (text: string) => {
     return text.split("\n");
@@ -77,15 +93,7 @@ const ProfileApplicationItem: FC<IProfileApplicationItem> = ({
           <span>{`№${num + 1}`}</span>
         </p>
 
-        {/* временно */}
-        {/* {isDeadline && <EditBtn id={id} />} */}
-
-        {!isDeadline && categories.brand_pitches === category && (
-          <EditBtn id={id} />
-        )}
-
-        {/* убрать */}
-        <EditBtn id={id} />
+        {checkEdit() && <EditBtn id={id} />}
       </div>
 
       <div className={clsx(style.item__inner)}>
