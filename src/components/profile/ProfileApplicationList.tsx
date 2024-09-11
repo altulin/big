@@ -9,7 +9,7 @@ import useWidget from "../Pass/widget";
 import { format } from "date-fns";
 import StatusComponents from "./StatusComponent";
 import ProfileApplicationItemTicket from "./ProfileApplicationItemTicket";
-import { categories } from "../Pass/script";
+import useDeadlineClose from "@/hooks/closeDeadline";
 
 const ProfileApplicationList: FC<{
   results: any;
@@ -18,6 +18,7 @@ const ProfileApplicationList: FC<{
   const { status, works, cost, category, works_cost } = results;
   const [isVisible, setIsVisible] = useState(false);
   const { runWidget } = useWidget();
+  const { isCloseBrand } = useDeadlineClose();
 
   const handlePay = () => {
     runWidget(results);
@@ -25,20 +26,6 @@ const ProfileApplicationList: FC<{
 
   const toggleVisible = () => {
     setIsVisible(!isVisible);
-  };
-
-  const isPay = () => {
-    if (results.category === categories.brand_pitches) {
-      if (results.tickets_amount > 0) {
-        return true;
-      }
-    } else if (results.category === categories.only_tickets) {
-      if (results.tickets_amount > 0) {
-        return true;
-      }
-    } else {
-      return false;
-    }
   };
 
   return (
@@ -72,18 +59,8 @@ const ProfileApplicationList: FC<{
       <button onClick={toggleVisible} className={clsx(style.visible)}>
         {isVisible ? "Свернуть" : "Показать больше"}
       </button>
-      {/* временно */}
-      {/* {isVisible && isDraft && isPay() && (
-        <Button
-          className={clsx(style.pay)}
-          type="button"
-          label="Оплатить"
-          modifier="green"
-          onClick={handlePay}
-        />
-      )} */}
-      {/* убрать */}
-      {isVisible && isDraft && (
+
+      {isVisible && isDraft && !isCloseBrand && (
         <Button
           className={clsx(style.pay)}
           type="button"

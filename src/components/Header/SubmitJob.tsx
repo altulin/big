@@ -8,12 +8,14 @@ import { useIsTabletDevice } from "@/hooks/IsSmallDevice";
 import { setMenuControl } from "@/store/menu/menuSlice";
 import { useAppDispatch } from "@/hooks/hook";
 import useIsYang from "@/hooks/isYang";
+import useDeadlineClose from "@/hooks/closeDeadline";
 
 const SubmitJob: FC<{ className?: string }> = ({ className }) => {
   const isAuth = useIsAuth();
   const isTablet = useIsTabletDevice();
   const dispatch = useAppDispatch();
   const { isYang } = useIsYang();
+  const { isCloseBrand } = useDeadlineClose();
 
   const handleClick = () => {
     if (isTablet) {
@@ -33,7 +35,7 @@ const SubmitJob: FC<{ className?: string }> = ({ className }) => {
       to={isAuth ? `/${paths.pass}` : `/${paths.registration}`}
       onClick={handleClick}
     >
-      Подать работу
+      {isCloseBrand ? "Купить билеты" : "Подать работу"}
     </HashLink>
   );
 };

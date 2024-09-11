@@ -51,6 +51,19 @@ const getVal = (template: any, values: any) => {
       obj[key] = values.project_image_url;
       return;
     }
+
+    if (key === "file") {
+      if (values.pitch_brand === categoriesPitshes.mega) {
+        // obj.script = values.script_url;
+        return;
+      }
+
+      if (values.pitch_brand === categoriesPitshes.nuum) {
+        // obj.presentation = values.presentation_url;
+        return;
+      }
+    }
+
     obj[key] = values[key];
   });
 
@@ -82,6 +95,7 @@ export const useInitialValues = () => {
         }
         if (categoryPitch === categoriesPitshes.mega) {
           if (values) {
+            // console.log(getVal(brand_pitches_mega, values));
             return getVal(brand_pitches_mega, values);
           }
 

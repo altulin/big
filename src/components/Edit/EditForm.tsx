@@ -9,15 +9,17 @@ import clsx from "clsx";
 import { useChangeWorkMutation } from "@/store/rtk/orders/change_work";
 import { useParams } from "react-router-dom";
 import { setSuccessModal } from "@/store/modal/modalSlice";
-import { useAppDispatch } from "@/hooks/hook";
+import { useAppDispatch, useAppSelector } from "@/hooks/hook";
 import { getBase64 } from "../Pass/payLoadServise";
 import { paths } from "@/service/paths";
+import { categoriesPitshes } from "../Pass/script";
 
 const EditForm: FC<{ data?: any }> = ({ data }) => {
   const { createValidationSchema, getProperties } = useInitialValues();
   const [changeWork, { status }] = useChangeWorkMutation();
   const { id_work } = useParams();
   const dispatch = useAppDispatch();
+  const { categoryPitch } = useAppSelector((state) => state.category);
 
   useEffect(() => {
     if (status === "fulfilled") {
@@ -38,6 +40,14 @@ const EditForm: FC<{ data?: any }> = ({ data }) => {
         body[key] = await getBase64(values.fields[0].project_image);
         return;
       }
+
+      if (key === "file") {
+        categoryPitch === categoriesPitshes.nuum
+          ? (body.presentation = await getBase64(values.fields[0].file))
+          : (body.script = await getBase64(values.fields[0].file));
+        return;
+      }
+
       body[key] = values.fields[0][key];
     });
 
@@ -58,6 +68,7 @@ const EditForm: FC<{ data?: any }> = ({ data }) => {
       enableReinitialize
     >
       {(formik) => {
+        // console.log(formik.initialValues);
         return (
           <Form>
             <SubmissionContent formik={formik} id={0} />

@@ -19,6 +19,7 @@ import useSignOut from "@/hooks/signOut";
 import { useNavigate } from "react-router-dom";
 import { paths } from "@/service/paths";
 import useGoogleManager from "@/hooks/googleManager";
+import { categoriesPitshes } from "./script";
 
 const PassForm: FC = () => {
   const { createValidationSchema, getProperties } = useInitialValues();
@@ -48,7 +49,9 @@ const PassForm: FC = () => {
       }
 
       if (item.file) {
-        item.script = await getBase64(item.file);
+        categoryPitch === categoriesPitshes.nuum
+          ? (item.presentation = await getBase64(item.file))
+          : (item.script = await getBase64(item.file));
       }
     });
 
@@ -142,7 +145,7 @@ const PassForm: FC = () => {
       enableReinitialize
     >
       {(formik) => {
-        // console.log(formik);
+        // console.log(formik.values);
 
         return (
           <>

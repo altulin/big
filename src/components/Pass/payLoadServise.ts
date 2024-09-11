@@ -3,6 +3,8 @@ import { categories, categoriesPitshes } from "./script";
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
 export const getBase64 = async (file: any) => {
+  if (file.constructor.name !== "File") return;
+
   return new Promise((resolve, reject) => {
     const reader = new FileReader();
     reader.readAsDataURL(file);
