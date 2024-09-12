@@ -19,9 +19,7 @@ import useSignOut from "@/hooks/signOut";
 import { useNavigate } from "react-router-dom";
 import { paths } from "@/service/paths";
 import useGoogleManager from "@/hooks/googleManager";
-import { categories, categoriesPitshes } from "./script";
-import useDeadlineClose from "@/hooks/closeDeadline";
-import { setCategory } from "@/store/category/categorySlice";
+import { categoriesPitshes } from "./script";
 
 const PassForm: FC = () => {
   const { createValidationSchema, getProperties } = useInitialValues();
@@ -34,7 +32,6 @@ const PassForm: FC = () => {
   const { tickets_amount } = useAppSelector((state) => state.pass);
   const navigate = useNavigate();
   const { addEvent } = useGoogleManager();
-  const { isCloseBrand } = useDeadlineClose();
 
   const makePayLoad = async (values: any) => {
     const { category, fields } = values;
@@ -65,12 +62,6 @@ const PassForm: FC = () => {
   useEffect(() => {
     addEvent({ event: "submission-start", app_category: category });
   }, [addEvent, category]);
-
-  useEffect(() => {
-    if (isCloseBrand) {
-      dispatch(setCategory(categories.only_tickets));
-    }
-  }, [dispatch, isCloseBrand]);
 
   useEffect(() => {
     if (status === "fulfilled") {
@@ -160,8 +151,8 @@ const PassForm: FC = () => {
         return (
           <>
             <Form className={clsx(style.form)}>
-              {!isCloseBrand && <PassFormRadio formik={formik} />}
-              {!isCloseBrand && <PassFormSubmission formik={formik} />}
+              <PassFormRadio formik={formik} />
+              <PassFormSubmission formik={formik} />
               <PassFormBuy formik={formik} />
               <PassFormTotal formik={formik} />
             </Form>
