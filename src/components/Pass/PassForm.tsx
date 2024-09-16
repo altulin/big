@@ -24,7 +24,7 @@ import { categoriesPitshes } from "./script";
 const PassForm: FC = () => {
   const { createValidationSchema, getProperties } = useInitialValues();
   const { category, categoryPitch } = useAppSelector((state) => state.category);
-  const [sendWork, { status, error, data }] = useSendWorkMutation();
+  const [sendWork, { status, error, data, isLoading }] = useSendWorkMutation();
   const { isIndividual } = useProfile();
   const dispatch = useDispatch();
   const { handleSignOut } = useSignOut();
@@ -154,7 +154,7 @@ const PassForm: FC = () => {
               <PassFormRadio formik={formik} />
               <PassFormSubmission formik={formik} />
               <PassFormBuy formik={formik} />
-              <PassFormTotal formik={formik} />
+              <PassFormTotal isLoading={isLoading} formik={formik} />
             </Form>
           </>
         );
