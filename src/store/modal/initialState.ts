@@ -5,6 +5,7 @@ export interface IModalState {
     comein?: boolean;
     profile?: boolean;
     title?: string;
+    look?: string;
   };
 }
 

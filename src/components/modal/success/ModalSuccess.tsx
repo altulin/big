@@ -40,6 +40,16 @@ const ModalSuccess: FC = () => {
               Вернуться в профиль
             </HashLink>
           )}
+
+          {modalState?.success?.look && (
+            <a
+              className={clsx(style.success__button)}
+              href="https://nuum.ru/channel/bigpicturefestival"
+              target="_blank"
+            >
+              Смотреть
+            </a>
+          )}
         </div>
       </div>
     </Modal>

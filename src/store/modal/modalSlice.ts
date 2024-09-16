@@ -25,6 +25,7 @@ const modalSlice = createSlice({
           comein: action.payload.comein,
           profile: action.payload.profile,
           title: action.payload.title,
+          look: action.payload.look,
         },
       };
     },

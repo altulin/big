@@ -7,8 +7,9 @@ const useDeadline = (day: string) => {
   };
   const now = new Date();
   const date = parse(day, "yyyy-MM-dd-HH:mm", new Date());
-  // console.log("now: " + toZoned(now));
-  // console.log("date :" + date);
+
+  console.log("now: " + toZoned(now));
+  console.log("date :" + toZoned(date));
 
   const deadline = isAfter(date, toZoned(now));
 
