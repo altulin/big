@@ -2,7 +2,8 @@ import { paths } from "@/service/paths";
 import IconLogoYoung from "@/images/header/logo_link.svg?react";
 
 export const links = [
-  { label: "Номинации", path: paths.nominations },
+  // { label: "Номинации", path: paths.nominations },
+  { label: "Шорт-лист ", path: paths.shortlist },
   {
     label: "Young Talent by",
     path: paths.young_talent,

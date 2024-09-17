@@ -1,0 +1,19 @@
+@import "@/sass/helpers/variables";
+@import "@/sass/helpers/mixins.scss";
+
+.shortlist {
+  box-sizing: border-box;
+  height: var(--heigh);
+  display: flex;
+  flex-direction: column;
+  border-right: var(--line) solid var(--basic-dark);
+  width: var(--width);
+
+  @include mw($tb) {
+    height: auto;
+    border-right: 0;
+  }
+
+  &__inner {
+  }
+}

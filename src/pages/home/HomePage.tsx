@@ -2,7 +2,7 @@
 import { FC } from "react";
 import Promo from "@/components/promo/Promo";
 import Steps from "@/components/steps/Steps";
-import Nominations from "@/components/nominations/Nominations";
+// import Nominations from "@/components/nominations/Nominations";
 import SubmissionOfWorks from "@/components/submission_of_works/SubmissionOfWorks";
 import Price from "@/components/Price/Price";
 import Requirements from "@/components/Requirements/Requirements";
@@ -19,11 +19,13 @@ import Faq from "@/components/Faq/Faq";
 import Pitch from "@/components/Pitch/Pitch";
 import JuryMain from "@/components/JuryMain/JuryMain";
 import Partners from "@/components/Partners/Partners";
+import Shortlist from "@/components/shortlist/Shortlist";
 
 export const pages: any = [
   <Promo />,
   <Steps />,
-  <Nominations />,
+  <Shortlist />,
+  // <Nominations />,
   <Pitch />,
   <SubmissionOfWorks />,
   <Price />,

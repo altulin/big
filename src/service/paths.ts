@@ -37,4 +37,6 @@ export const paths = {
   jury_account_card: "jury_account_card",
   jury_account_list_short: "jury_account_list_short",
   jury_account_card_short: "jury_account_card_short",
+  shortlist: "shortlist",
+  shortlist_young: "shortlist_young",
 };
