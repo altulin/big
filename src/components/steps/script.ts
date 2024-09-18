@@ -90,6 +90,8 @@ const useControlDate = (data: any) => {
     },
   };
 
+  console.log(dates);
+
   const head = [
     {
       label: "Подача работ",
@@ -113,16 +115,14 @@ const useControlDate = (data: any) => {
       label: "Жюрение",
       name: "jury",
       sub_item: [
-        { date: `${frmtDt(dates.short.start)}`, title: "Шорт-листы" },
-        { date: `${frmtDt(dates.winner.start)}`, title: "Победители" },
+        { date: `${frmtDt(dates.short.end)}`, title: "Шорт-листы" },
+        { date: `${frmtDt(dates.winner.end)}`, title: "Победители" },
       ],
     },
     {
       label: "Финал",
       name: "final",
-      sub_item: [
-        { date: `${frmtDt(dates.reward.start)}`, title: "Награждение" },
-      ],
+      sub_item: [{ date: `${frmtDt(dates.reward.end)}`, title: "Награждение" }],
     },
   ];
 

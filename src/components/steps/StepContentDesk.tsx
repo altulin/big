@@ -26,6 +26,7 @@ const StepContentDesk: FC = () => {
   if (!content) return null;
 
   const { head, schedule } = content;
+  // console.log(schedule);
 
   return (
     <div className={clsx(style.steps__content)}>

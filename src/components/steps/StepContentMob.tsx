@@ -29,6 +29,8 @@ const StepContentMob: FC = () => {
   if (!content) return null;
   const { getLengthMob, head } = content;
 
+  // console.log(head);
+
   return (
     <div className={clsx(style.steps_mob)}>
       <div className={clsx(style.steps_mob__inner)}>
