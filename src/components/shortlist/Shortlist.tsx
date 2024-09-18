@@ -3,7 +3,7 @@ import style from "./Shortlist.module.scss";
 import { FC } from "react";
 import useIsYang from "@/hooks/isYang";
 import { paths } from "@/service/paths";
-import ShortSelect from "./ShortSelect";
+import ShortSelect from "./select/ShortSelect";
 
 const Shortlist: FC = () => {
   const { isYang } = useIsYang();

@@ -66,6 +66,10 @@ const SliderHome: FC<{ pages: any }> = ({ pages }) => {
   return (
     <>
       <Swiper
+        // touchStartPreventDefault={false}
+        // preventClicks={false}
+        // preventClicksPropagation={false}
+        simulateTouch={false}
         onSwiper={setSwiper}
         className={clsx(style.home__slider)}
         modules={[Scrollbar, Mousewheel, FreeMode]}

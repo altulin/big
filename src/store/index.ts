@@ -13,6 +13,7 @@ import passSlice from "./pass/passSlice";
 import formsSlice from "./forms/formsSlice";
 import yangSlice from "./yang/yangSlice";
 import promoSlice from "./promoSlider/promoSlice";
+import shortSlice from "./short/shortSlice";
 
 const store = configureStore({
   reducer: {
@@ -28,6 +29,7 @@ const store = configureStore({
     form: formsSlice,
     yang: yangSlice,
     promo: promoSlice,
+    short: shortSlice,
     [api.reducerPath]: api.reducer,
   },
   devTools: process.env.NODE_ENV === "development",

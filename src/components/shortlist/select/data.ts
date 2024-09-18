@@ -14,7 +14,10 @@ export const class_names = {
       menuIsOpen && style["select__indicatorsContainer--menu_open"],
     ),
 
+  indicatorsContainer2: () => clsx(style.select__indicatorsContainer2),
   indicatorSeparator: () => clsx(style.select__indicatorSeparator),
+  menu: () => clsx(style.select__menu),
+  menuPortal: () => clsx(style.select__menuPortal),
   menuList: () => clsx(style.select__menuList),
   option: ({ isFocused }: { isFocused: boolean }) =>
     clsx(style.select__option, isFocused && style["select__option--focused"]),
