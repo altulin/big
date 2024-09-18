@@ -5,7 +5,7 @@ export const worksApi = api.injectEndpoints({
   endpoints: (build) => ({
     getWorks: build.query({
       query: ({
-        limit = 100,
+        limit = 300,
         offset = 0,
         category = "",
         nomination = "",
