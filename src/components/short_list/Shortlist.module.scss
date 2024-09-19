@@ -48,7 +48,7 @@
     font-weight: 400;
     font-size: 1rem;
     line-height: 130%;
-    color: #141414;
+    color: var(--basic-dark);
     padding: 1rem;
     padding-right: 1.25rem;
     border: var(--line) solid var(--basic-dark);
@@ -66,12 +66,12 @@
       border: var(--line) solid var(--basic-dark);
       border-radius: 0;
       outline: 0;
-      background-color: #fff;
+      background-color: var(--basic-light);
       box-shadow: none;
       overflow: hidden;
 
       &:hover {
-        border-color: var(--border);
+        border-color: var(--basic-dark);
       }
 
       &--error {
@@ -192,10 +192,19 @@
 
   &__item {
     &_head {
-      background-color: #f1f1f1;
+      background-color: var(--head-short);
       position: sticky;
       top: 0;
       border-top: var(--line) solid var(--basic-dark);
+    }
+  }
+
+  &__link {
+    transition: 0.3s;
+    display: block;
+
+    &:hover {
+      background-color: var(--head-short);
     }
   }
 }
@@ -222,7 +231,7 @@
     }
   }
 
-  &__link {
+  &__label {
     font-weight: 400;
     font-size: 1.12rem;
     line-height: 140%;

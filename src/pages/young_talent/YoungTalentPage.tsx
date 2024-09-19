@@ -1,6 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { FC, useEffect } from "react";
-import Nominations from "@/components/nominations/Nominations";
 import SubmissionOfWorks from "@/components/submission_of_works/SubmissionOfWorks";
 import Price from "@/components/Price/Price";
 import Criteria from "@/components/criteria/Criteria";
@@ -15,13 +14,12 @@ import { setYang } from "@/store/yang/yangSlice";
 import { setPath } from "@/store/menu/menuSlice";
 import { paths } from "@/service/paths";
 import Requirements from "@/components/Requirements/Requirements";
-import Shortlist from "@/components/shortlist/Shortlist";
+import Shortlist from "@/components/short_list/Shortlist";
 
 export const pages: any = [
-  <Shortlist />,
   <SubmissionOfWorks />,
   <Cool />,
-  <Nominations />,
+  <Shortlist />,
   <Criteria />,
   <Price />,
   <Requirements />,

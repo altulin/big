@@ -12,12 +12,14 @@
   --width: 100vw;
   --error: #ee00ff;
   --delta: 0.7143;
+  --head-short: #f1f1f1;
 
   .dark {
     --basic-light: #141414;
     --basic-dark: #ffffff;
     --color-green: #552bef;
     --color-green-hover: #391f9a;
+    --head-short: #404040;
   }
   @media screen and (max-width: 1920px) {
     --heigh-scroll: calc(100vh - 10.5rem);

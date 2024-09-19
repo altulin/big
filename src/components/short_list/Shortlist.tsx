@@ -10,9 +10,10 @@ import { content_head } from "./data";
 import { useLazyGetWorksQuery } from "@/store/rtk/jury/works";
 import { useAppSelector } from "@/hooks/hook";
 import { useNominationsShortQuery } from "@/store/rtk/nominations/nominations_short";
-import { getNominationValue } from "../profile/service";
+// import { useIsTabletDevice } from "@/hooks/IsSmallDevice";
 
 const Shortlist: FC = () => {
+  // const isTablet = useIsTabletDevice();
   const { isYang } = useIsYang();
   const [getWorks, { data, isSuccess }] = useLazyGetWorksQuery();
   const { nomination } = useAppSelector((state) => state.short);
@@ -23,15 +24,8 @@ const Shortlist: FC = () => {
     });
 
   useEffect(() => {
-    getWorks({ category: "", nomination: "" });
+    getWorks({ category: "", nomination });
   }, [getWorks, nomination]);
-
-  // , is_short_list: "true"
-
-  useEffect(() => {
-    if (!isSuccessNominations) return;
-    console.log(data.results);
-  }, [data, dataNominations, isSuccess, isSuccessNominations]);
 
   return (
     <section
@@ -50,7 +44,8 @@ const Shortlist: FC = () => {
               <ShortRow {...content_head} isHead={true} />
               {isSuccess &&
                 isSuccessNominations &&
-                data.results.map((el, i) => (
+                // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                data.results.map((el: any, i: number) => (
                   <ShortRow
                     key={i}
                     nomination={
@@ -60,6 +55,7 @@ const Shortlist: FC = () => {
                     }
                     name_work={el.title}
                     author=""
+                    id={el.id}
                   />
                 ))}
             </ul>

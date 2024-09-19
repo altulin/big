@@ -1,7 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { useLocation } from "react-router-dom";
 import { categories, categoriesLabel } from "../Pass/script.ts";
-import { paths } from "@/service/paths.ts";
 import { useSettigsQuery } from "@/store/rtk/main/settings.ts";
 import { toZonedTime } from "date-fns-tz";
 
