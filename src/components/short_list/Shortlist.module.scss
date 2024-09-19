@@ -18,6 +18,13 @@
     flex-grow: 1;
     display: flex;
     flex-direction: column;
+
+    @include mw($tb) {
+      margin-left: 0.56rem;
+      margin-right: 0.56rem;
+      border-left: var(--line) solid var(--basic-dark);
+      border-right: var(--line) solid var(--basic-dark);
+    }
   }
 
   &__header {
@@ -25,6 +32,15 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+
+    @include mw($tb) {
+      padding-left: 0.5rem;
+      padding-right: 0.5rem;
+      padding-top: 5rem;
+      flex-direction: column;
+      align-items: flex-start;
+      row-gap: 2.5rem;
+    }
   }
 
   &__title {
@@ -34,6 +50,11 @@
     letter-spacing: 0.02em;
     text-transform: uppercase;
     color: var(--basic-dark);
+
+    @include mw($tb) {
+      font-size: 2.25rem;
+      line-height: 1;
+    }
   }
 }
 
@@ -43,6 +64,12 @@
 .short_select {
   display: flex;
   width: 38%;
+
+  @include mw($tb) {
+    width: 100%;
+    flex-direction: column;
+    row-gap: 0.5rem;
+  }
 
   &__label {
     font-weight: 400;
@@ -55,6 +82,11 @@
     border-right: 0;
     display: flex;
     align-items: center;
+
+    @include mw($tb) {
+      border: 0;
+      padding: 0;
+    }
   }
 }
 
@@ -83,18 +115,32 @@
       color: var(--basic-dark);
       font-weight: 400;
       font-size: 1.12rem;
+
+      @include mw($tb) {
+        font-size: 1rem;
+      }
     }
 
     &__valueContainer {
       outline: 0;
       padding: 0.75rem 1.5rem;
       border-radius: 0.62rem;
+
+      @include mw($tb) {
+        padding: 1rem;
+      }
     }
 
     &__input {
       color: var(--basic-dark);
       font-weight: 400;
       font-size: 1.12rem;
+      margin: 0;
+      padding: 0;
+
+      @include mw($tb) {
+        font-size: 1rem;
+      }
     }
 
     &__placeholder {
@@ -188,6 +234,14 @@
     border-top: 0;
     min-height: 100%;
     margin: 0 2rem;
+
+    @include mw($tb) {
+      margin-left: 0;
+      margin-right: 0;
+      border-right: 0;
+      border-left: 0;
+      border-top: var(--line) solid var(--basic-dark);
+    }
   }
 
   &__item {
@@ -196,6 +250,10 @@
       position: sticky;
       top: 0;
       border-top: var(--line) solid var(--basic-dark);
+
+      @include mw($tb) {
+        display: none;
+      }
     }
   }
 
@@ -213,33 +271,74 @@
   display: flex;
   border-bottom: var(--line) solid var(--basic-dark);
 
+  @include mw($tb) {
+    flex-direction: column;
+    padding: 2rem 1rem;
+    row-gap: 1rem;
+  }
+
   &__item {
+    padding: 0.875rem 1rem;
+    font-weight: 400;
+    font-size: 1.12rem;
+    line-height: 140%;
+
+    @include mw($tb) {
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      row-gap: 0.5rem;
+      font-size: 1rem;
+    }
+
     &:not(:first-child) {
       border-left: var(--line) solid var(--basic-dark);
+
+      @include mw($tb) {
+        border: 0;
+      }
     }
 
     &_nomination {
       width: 29%;
+
+      @include mw($tb) {
+        width: 100%;
+      }
     }
 
     &_name_work {
       width: 42%;
+
+      @include mw($tb) {
+        width: 100%;
+      }
     }
 
     &_author {
       flex-grow: 1;
+
+      @include mw($tb) {
+        width: 100%;
+      }
     }
   }
 
   &__label {
-    font-weight: 400;
-    font-size: 1.12rem;
-    line-height: 140%;
     color: var(--basic-dark);
-    display: block;
-    padding: 0.875rem 1rem;
     overflow: hidden;
     text-wrap: nowrap;
     text-overflow: ellipsis;
+    width: 100%;
+    display: block;
+  }
+
+  &__key {
+    color: var(--key-short);
+    display: none;
+
+    @include mw($tb) {
+      display: block;
+    }
   }
 }

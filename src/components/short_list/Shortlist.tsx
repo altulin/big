@@ -46,17 +46,20 @@ const Shortlist: FC = () => {
                 isSuccessNominations &&
                 // eslint-disable-next-line @typescript-eslint/no-explicit-any
                 data.results.map((el: any, i: number) => (
-                  <ShortRow
-                    key={i}
-                    nomination={
-                      dataNominations.filter(
-                        (m) => m.value === el.nomination,
-                      )[0].label
-                    }
-                    name_work={el.title}
-                    author=""
-                    id={el.id}
-                  />
+                  <>
+                    <h3>fgh</h3>
+                    <ShortRow
+                      key={i}
+                      nomination={
+                        dataNominations.filter(
+                          (m) => m.value === el.nomination,
+                        )[0].label
+                      }
+                      name_work={el.title}
+                      author="Петр Петров"
+                      id={el.id}
+                    />
+                  </>
                 ))}
             </ul>
           </ScrollBarComponent>
