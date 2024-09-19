@@ -16,7 +16,8 @@ const SubmitJob: FC<{ className?: string }> = ({ className }) => {
   const isTablet = useIsTabletDevice();
   const dispatch = useAppDispatch();
   const { isYang } = useIsYang();
-  const { isCloseBrand, isCloseTickets } = useDeadlineClose();
+  const { isCloseBrand, isCloseTickets, isCloseMain, isCloseYoung } =
+    useDeadlineClose();
   const navigate = useNavigate();
 
   const handleClick = (e: MouseEvent<HTMLAnchorElement>) => {
@@ -34,6 +35,9 @@ const SubmitJob: FC<{ className?: string }> = ({ className }) => {
       navigate(`/${paths.registration}`);
     }
   };
+
+  if (isCloseBrand && isCloseMain && isCloseYoung && isCloseTickets)
+    return null;
 
   return (
     <HashLink

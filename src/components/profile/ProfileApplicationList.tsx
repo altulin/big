@@ -18,7 +18,7 @@ const ProfileApplicationList: FC<{
   const { status, works, cost, category, works_cost } = results;
   const [isVisible, setIsVisible] = useState(false);
   const { runWidget } = useWidget();
-  const { isCloseBrand } = useDeadlineClose();
+  const { isCloseTickets } = useDeadlineClose();
 
   const handlePay = () => {
     runWidget(results);
@@ -60,7 +60,7 @@ const ProfileApplicationList: FC<{
         {isVisible ? "Свернуть" : "Показать больше"}
       </button>
 
-      {isVisible && isDraft && !isCloseBrand && (
+      {isVisible && isDraft && !isCloseTickets && (
         <Button
           className={clsx(style.pay)}
           type="button"

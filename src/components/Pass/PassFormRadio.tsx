@@ -9,6 +9,7 @@ import { useAppDispatch, useAppSelector } from "@/hooks/hook";
 import { setCategory, setCategoryPitch } from "@/store/category/categorySlice";
 import { setClearForm } from "@/store/forms/formsSlice";
 import useDeadlineClose from "@/hooks/closeDeadline";
+import { checkArr } from "@/service/checkArr";
 
 const PassFormRadio: FC<{ formik: any; name?: string }> = ({
   formik,
@@ -53,6 +54,7 @@ const PassFormRadio: FC<{ formik: any; name?: string }> = ({
   }, [isCloseBrand, isCloseMain, isCloseYoung]);
 
   useEffect(() => {
+    if (!checkArr(getList())) return;
     dispatch(setCategory(getList()[0].value));
   }, [dispatch, getList]);
 

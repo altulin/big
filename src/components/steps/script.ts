@@ -90,8 +90,6 @@ const useControlDate = (data: any) => {
     },
   };
 
-  console.log(dates);
-
   const head = [
     {
       label: "Подача работ",
