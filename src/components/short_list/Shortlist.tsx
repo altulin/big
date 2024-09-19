@@ -7,15 +7,15 @@ import ShortSelect from "./select/ShortSelect";
 import ScrollBarComponent from "@/hoc/scrollbar/ScrollBarComponent";
 import ShortRow from "./ShortRow";
 import { content_head } from "./data";
-import { useLazyGetWorksQuery } from "@/store/rtk/jury/works";
 import { useAppSelector } from "@/hooks/hook";
 import { useNominationsShortQuery } from "@/store/rtk/nominations/nominations_short";
+import { useGetWorksMutation } from "@/store/rtk/short/works";
 // import { useIsTabletDevice } from "@/hooks/IsSmallDevice";
 
 const Shortlist: FC = () => {
   // const isTablet = useIsTabletDevice();
   const { isYang } = useIsYang();
-  const [getWorks, { data, isSuccess }] = useLazyGetWorksQuery();
+  const [getWorks, { status, data, isSuccess }] = useGetWorksMutation();
   const { nomination } = useAppSelector((state) => state.short);
   const { data: dataNominations, isSuccess: isSuccessNominations } =
     useNominationsShortQuery({
@@ -27,6 +27,11 @@ const Shortlist: FC = () => {
     getWorks({ category: "", nomination });
   }, [getWorks, nomination]);
 
+  useEffect(() => {
+    if (!isSuccess) return;
+    console.log(data.results);
+  }, [isSuccess, data]);
+
   return (
     <section
       id={isYang ? paths.shortlist_young : paths.shortlist}
@@ -35,6 +40,7 @@ const Shortlist: FC = () => {
       <div className={clsx(style.shortlist__inner)}>
         <div className={clsx(style.shortlist__header)}>
           <h2 className={clsx(style.shortlist__title)}>шорт-лист</h2>
+          <h2>{`${isSuccess}`}</h2>
           <ShortSelect />
         </div>
 
