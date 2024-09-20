@@ -8,9 +8,9 @@ import Button from "../modal/template/Button";
 import { useVoteWorkMutation } from "@/store/rtk/jury/vote";
 import { useAppDispatch } from "@/hooks/hook";
 import { setSuccessModal } from "@/store/modal/modalSlice";
-import { useLocation, useNavigate } from "react-router-dom";
-import { paths } from "@/service/paths";
-import { useCheckDeadline } from "../jury_account_list/service";
+// import { useLocation, useNavigate } from "react-router-dom";
+// import { paths } from "@/service/paths";
+// import { useCheckDeadline } from "../jury_account_list/service";
 
 const JuryCardForm: FC<{
   id_work?: number;
@@ -23,9 +23,9 @@ const JuryCardForm: FC<{
 }) => {
   const [voteWork, { isSuccess }] = useVoteWorkMutation();
   const dispatch = useAppDispatch();
-  const navigate = useNavigate();
-  const location = useLocation();
-  const { isShort } = useCheckDeadline();
+  // const navigate = useNavigate();
+  // const location = useLocation();
+  // const { isShort } = useCheckDeadline();
 
   useEffect(() => {
     if (isSuccess) {
@@ -43,7 +43,7 @@ const JuryCardForm: FC<{
       //   },
       // });
     }
-  }, [isSuccess]);
+  }, [dispatch, isSuccess]);
 
   return (
     <Formik

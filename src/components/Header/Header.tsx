@@ -9,7 +9,6 @@ import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { MouseEvent, useEffect, useRef, useState } from "react";
 import { useLocation } from "react-router-dom";
-import { links } from "./script";
 import { HashLink } from "react-router-hash-link";
 import { setClick, setMenuControl, setPath } from "@/store/menu/menuSlice";
 import useStickyHead from "@/hooks/stickyHead";
@@ -19,6 +18,7 @@ import LogoBoxHome from "./LogoBoxHome";
 import Logo from "./Logo";
 import useAllLinks from "./allLinks";
 import { paths } from "@/service/paths";
+import { useGetLinks } from "./script";
 
 const Header = () => {
   const { isMenu } = useAppSelector((state) => state.menu);
@@ -31,6 +31,7 @@ const Header = () => {
   const { isYang } = useIsYang();
   const { allLinksList } = useAllLinks();
   const location = useLocation();
+  const { links } = useGetLinks();
   const [subMenu, setSubMenu] = useState<
     | {
         label: string;

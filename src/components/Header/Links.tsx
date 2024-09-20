@@ -2,13 +2,13 @@
 import style from "./Header.module.scss";
 import clsx from "clsx";
 import { FC, MouseEvent, useEffect } from "react";
-import { links } from "./script";
 import { setClick, setMenuControl, setPath } from "@/store/menu/menuSlice";
 import { useAppDispatch, useAppSelector } from "@/hooks/hook";
 import { HashLink } from "react-router-hash-link";
 import { useIsTabletDevice } from "@/hooks/IsSmallDevice";
 import { useLocation, useNavigate } from "react-router-dom";
 import { paths } from "@/service/paths";
+import { useGetLinks } from "./script";
 
 const Links: FC = () => {
   const dispatch = useAppDispatch();
@@ -16,6 +16,7 @@ const Links: FC = () => {
   const { path } = useAppSelector((state) => state.menu);
   const { pathname } = useLocation();
   const navigate = useNavigate();
+  const { links } = useGetLinks();
 
   const getLink = (item: any) => {
     if (isTablet) {

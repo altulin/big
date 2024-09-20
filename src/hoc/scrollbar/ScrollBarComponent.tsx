@@ -31,7 +31,10 @@ const ScrollBarComponent: FC<{ children: ReactNode }> = ({ children }) => {
         }}
         onScroll={() => setIsScroll(true)}
         onUpdate={(el) => {
-          if (el.scrollHeight <= el.clientHeight) return;
+          if (el.scrollHeight <= el.clientHeight) {
+            setIsScroll(false);
+            return;
+          }
           setIsScroll(true);
         }}
       >

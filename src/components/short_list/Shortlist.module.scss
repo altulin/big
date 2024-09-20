@@ -1,0 +1,343 @@
+@import "@/sass/helpers/variables";
+@import "@/sass/helpers/mixins.scss";
+
+.shortlist {
+  box-sizing: border-box;
+  height: var(--heigh);
+  display: flex;
+  flex-direction: column;
+  border-right: var(--line) solid var(--basic-dark);
+  width: var(--width);
+
+  @include mw($tb) {
+    height: auto;
+    border-right: 0;
+  }
+
+  &__inner {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+
+    @include mw($tb) {
+      margin-left: 0.56rem;
+      margin-right: 0.56rem;
+      border-left: var(--line) solid var(--basic-dark);
+      border-right: var(--line) solid var(--basic-dark);
+    }
+  }
+
+  &__header {
+    padding: 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    @include mw($tb) {
+      padding-left: 0.5rem;
+      padding-right: 0.5rem;
+      padding-top: 5rem;
+      flex-direction: column;
+      align-items: flex-start;
+      row-gap: 2.5rem;
+    }
+  }
+
+  &__title {
+    font-weight: 400;
+    font-size: 3rem;
+    line-height: 110%;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    color: var(--basic-dark);
+
+    @include mw($tb) {
+      font-size: 2.25rem;
+      line-height: 1;
+    }
+  }
+}
+
+.select {
+}
+
+.short_select {
+  display: flex;
+  width: 38%;
+
+  @include mw($tb) {
+    width: 100%;
+    flex-direction: column;
+    row-gap: 0.5rem;
+  }
+
+  &__label {
+    font-weight: 400;
+    font-size: 1rem;
+    line-height: 130%;
+    color: var(--basic-dark);
+    padding: 1rem;
+    padding-right: 1.25rem;
+    border: var(--line) solid var(--basic-dark);
+    border-right: 0;
+    display: flex;
+    align-items: center;
+
+    @include mw($tb) {
+      border: 0;
+      padding: 0;
+    }
+  }
+}
+
+.select {
+  flex-grow: 1;
+  .select {
+    &__control {
+      height: 100%;
+      border: var(--line) solid var(--basic-dark);
+      border-radius: 0;
+      outline: 0;
+      background-color: var(--basic-light);
+      box-shadow: none;
+      overflow: hidden;
+
+      &:hover {
+        border-color: var(--basic-dark);
+      }
+
+      &--error {
+        border-color: var(--error);
+      }
+    }
+
+    &__singleValue {
+      color: var(--basic-dark);
+      font-weight: 400;
+      font-size: 1.12rem;
+
+      @include mw($tb) {
+        font-size: 1rem;
+      }
+    }
+
+    &__valueContainer {
+      outline: 0;
+      padding: 0.75rem 1.5rem;
+      border-radius: 0.62rem;
+
+      @include mw($tb) {
+        padding: 1rem;
+      }
+    }
+
+    &__input {
+      color: var(--basic-dark);
+      font-weight: 400;
+      font-size: 1.12rem;
+      margin: 0;
+      padding: 0;
+
+      @include mw($tb) {
+        font-size: 1rem;
+      }
+    }
+
+    &__placeholder {
+      font-weight: 400;
+      font-size: 1.12rem;
+      line-height: 140%;
+      color: var(--basic-dark);
+    }
+
+    &__indicatorsContainer {
+      width: 3.3rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-left: var(--line) solid var(--basic-dark);
+
+      &--menu_open {
+        box-sizing: border-box;
+        svg {
+          transform: rotate(180deg);
+        }
+      }
+
+      svg {
+        width: 1.5rem;
+        height: 1.5rem;
+        flex-shrink: 0;
+        transition: 0.1s;
+        margin-left: auto;
+        margin-right: auto;
+        color: var(--basic-dark);
+      }
+    }
+
+    &__indicatorSeparator {
+      display: none;
+    }
+
+    &__menu {
+      background-color: var(--basic-light);
+    }
+
+    &__menuPortal {
+    }
+
+    &__menuList {
+      &::-webkit-scrollbar {
+        width: 0.3rem;
+      }
+
+      &::-webkit-scrollbar-track {
+        background-color: var(--white);
+      }
+
+      &::-webkit-scrollbar-thumb {
+        background-color: var(--head-short);
+        border-radius: 0.5rem;
+      }
+    }
+
+    &__option {
+      font-weight: 400;
+      font-size: 1.12rem;
+      line-height: 140%;
+      color: var(--basic-dark);
+      padding: 0.5rem 1.5rem;
+      position: relative;
+
+      &[aria-selected="true"] {
+        background-color: var(--head-short);
+      }
+
+      &--focused {
+        background-color: var(--head-short);
+      }
+
+      &:active {
+        background-color: var(--head-short);
+      }
+    }
+  }
+}
+
+.content {
+  position: relative;
+  flex-grow: 1;
+  height: 100%;
+
+  &__list {
+    border: var(--line) solid var(--basic-dark);
+    border-bottom: 0;
+    border-top: 0;
+    min-height: 100%;
+    margin: 0 2rem;
+
+    @include mw($tb) {
+      margin-left: 0;
+      margin-right: 0;
+      border-right: 0;
+      border-left: 0;
+      border-top: var(--line) solid var(--basic-dark);
+    }
+  }
+
+  &__item {
+    width: 100%;
+    &_head {
+      background-color: var(--head-short);
+      position: sticky;
+      top: 0;
+      border-top: var(--line) solid var(--basic-dark);
+
+      @include mw($tb) {
+        display: none;
+      }
+    }
+  }
+
+  &__link {
+    transition: 0.3s;
+    display: block;
+  }
+}
+
+.row {
+  display: flex;
+  border-bottom: var(--line) solid var(--basic-dark);
+
+  @include mw($tb) {
+    flex-direction: column;
+    padding: 2rem 1rem;
+    row-gap: 1rem;
+  }
+
+  &__item {
+    padding: 0.875rem 1rem;
+    font-weight: 400;
+    font-size: 1.12rem;
+    line-height: 140%;
+    flex-shrink: 0;
+
+    @include mw($tb) {
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      row-gap: 0.5rem;
+      font-size: 1rem;
+    }
+
+    &:not(:first-child) {
+      border-left: var(--line) solid var(--basic-dark);
+
+      @include mw($tb) {
+        border: 0;
+      }
+    }
+
+    &_nomination {
+      width: 29%;
+
+      @include mw($tb) {
+        width: 100%;
+      }
+    }
+
+    &_name_work {
+      width: 42%;
+
+      @include mw($tb) {
+        width: 100%;
+      }
+    }
+
+    &_author {
+      width: 29%;
+
+      @include mw($tb) {
+        width: 100%;
+      }
+    }
+  }
+
+  &__label {
+    color: var(--basic-dark);
+    overflow: hidden;
+    text-wrap: nowrap;
+    text-overflow: ellipsis;
+    width: 100%;
+    display: block;
+  }
+
+  &__key {
+    color: var(--key-short);
+    display: none;
+
+    @include mw($tb) {
+      display: block;
+    }
+  }
+}
