@@ -7,10 +7,10 @@ import { paths } from "@/service/paths";
 import clsx from "clsx";
 import style from "./JuryAccount.module.scss";
 import { categoriesLabel } from "../Pass/script";
-import { checkArr } from "@/service/checkArr";
 import { useLazyNominationsQuery } from "@/store/rtk/nominations/nominations";
 import JuryAccountListRowStatus from "./JuryAccountListRowStatus";
 import { getCategory, useCheckDeadline } from "./service";
+import { useGetWorksShortListQuery } from "@/store/rtk/jury/works_short_list";
 
 const JuryAccountListContent: FC<{ values: any; tabIndex?: number }> = ({
   values,
@@ -19,17 +19,18 @@ const JuryAccountListContent: FC<{ values: any; tabIndex?: number }> = ({
   const [getWorks, dataWorks] = useLazyGetWorksQuery();
   const [getNomination, { data }] = useLazyNominationsQuery(undefined);
   const { isShort } = useCheckDeadline();
+  const short_data = useGetWorksShortListQuery({
+    category: getCategory(tabIndex!),
+    nomination: "",
+  });
 
   useEffect(() => {
     getNomination({ offset: 0, limit: 100 }).unwrap();
   }, [getNomination]);
 
   useEffect(() => {
-    if (isShort) {
-      values.category = getCategory(tabIndex!);
-      getWorks({ ...values, is_short_list: true });
-      return;
-    }
+    if (isShort === undefined) return;
+    if (isShort) return;
 
     getWorks(values);
   }, [getWorks, isShort, values, tabIndex]);
@@ -55,35 +56,42 @@ const JuryAccountListContent: FC<{ values: any; tabIndex?: number }> = ({
     };
   };
 
+  const getList = () => {
+    if (isShort) {
+      if (!short_data.isSuccess) return [];
+      return short_data.data?.results;
+    } else {
+      if (!dataWorks.isSuccess) return [];
+      return dataWorks.data?.results;
+    }
+  };
+
   return (
     <>
-      {dataWorks.isSuccess &&
-        checkArr(dataWorks.data.results) &&
-        checkArr(data?.results) &&
-        dataWorks.data.results.map((el: any, i: number) => (
-          <HashLink
-            key={i}
-            to={`/${paths.jury_account_card}/${el.id}`}
-            className={clsx(style.list__link)}
-            state={{
-              page: isShort
-                ? paths.jury_account_list_short
-                : paths.jury_account_list,
-              id: el.id,
-              number: i,
-              list: dataWorks.data.results.map((n: any) => n.id),
-              values,
-            }}
-          >
-            <JuryAccountListRow
-              items={
-                isShort
-                  ? itemsShort(el, i)
-                  : { ...itemsShort(el, i), ...itemsSimple(el) }
-              }
-            />
-          </HashLink>
-        ))}
+      {getList().map((el: any, i: number) => (
+        <HashLink
+          key={i}
+          to={`/${paths.jury_account_card}/${el.id}`}
+          className={clsx(style.list__link)}
+          state={{
+            page: isShort
+              ? paths.jury_account_list_short
+              : paths.jury_account_list,
+            id: el.id,
+            number: i,
+            list: getList().map((n: any) => n.id),
+            values,
+          }}
+        >
+          <JuryAccountListRow
+            items={
+              isShort
+                ? itemsShort(el, i)
+                : { ...itemsShort(el, i), ...itemsSimple(el) }
+            }
+          />
+        </HashLink>
+      ))}
     </>
   );
 };

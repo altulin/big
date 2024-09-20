@@ -10,6 +10,7 @@ import { content_head } from "./data";
 import { useGetWorksShortListQuery } from "@/store/rtk/jury/works_short_list";
 import { useAppSelector } from "@/hooks/hook";
 import { useNominationsShortQuery } from "@/store/rtk/nominations/nominations_short";
+import { categories } from "../Pass/script";
 
 type TResponse = {
   id: number | undefined;
@@ -24,7 +25,7 @@ const Shortlist: FC = () => {
   const { isYang } = useIsYang();
   const { nomination } = useAppSelector((state) => state.short);
   const { data, isSuccess } = useGetWorksShortListQuery({
-    category: "",
+    category: isYang ? categories.young_talent : categories.main_category,
     nomination,
   });
 
