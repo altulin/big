@@ -1,7 +1,6 @@
 import clsx from "clsx";
 import { FC } from "react";
 import style from "./Shortlist.module.scss";
-import { HashLink } from "react-router-hash-link";
 import { content_head } from "./data";
 
 const data = ["nomination", "name_work", "author"];

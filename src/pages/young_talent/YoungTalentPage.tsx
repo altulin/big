@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { FC, useEffect } from "react";
+import { FC, useCallback, useEffect } from "react";
 import SubmissionOfWorks from "@/components/submission_of_works/SubmissionOfWorks";
 import Price from "@/components/Price/Price";
 import Criteria from "@/components/criteria/Criteria";
@@ -15,11 +15,12 @@ import { setPath } from "@/store/menu/menuSlice";
 import { paths } from "@/service/paths";
 import Requirements from "@/components/Requirements/Requirements";
 import Shortlist from "@/components/short_list/Shortlist";
+import { useCheckDeadline } from "@/components/jury_account_list/service";
+import Nominations from "@/components/nominations/Nominations";
 
-export const pages: any = [
+const pages: any = [
   <SubmissionOfWorks />,
   <Cool />,
-  <Shortlist />,
   <Criteria />,
   <Price />,
   <Requirements />,
@@ -29,6 +30,7 @@ export const pages: any = [
 const YoungTalentPage: FC = () => {
   const isTablet = useIsTabletDevice();
   const dispatch = useAppDispatch();
+  const { isShort } = useCheckDeadline();
 
   useEffect(() => {
     dispatch(setYang(true));
@@ -39,12 +41,20 @@ const YoungTalentPage: FC = () => {
     };
   });
 
+  const getPages = useCallback(() => {
+    const arr = [...pages];
+    arr.splice(2, 0, isShort ? <Shortlist /> : <Nominations />);
+
+    // console.log(arr);
+    return arr;
+  }, [isShort]);
+
   return (
     <div className={clsx(style.home, "home")}>
       {isTablet &&
-        pages.map((item: any, i: number) => <div key={i}>{item}</div>)}
+        getPages().map((item: any, i: number) => <div key={i}>{item}</div>)}
 
-      {!isTablet && <SliderHome pages={pages} />}
+      {!isTablet && <SliderHome pages={getPages()} />}
     </div>
   );
 };

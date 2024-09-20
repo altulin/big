@@ -208,9 +208,6 @@
   }
 
   &_wrap {
-    // border-left: var(--line) solid var(--basic-dark);
-    // padding-left: 1rem;
-    // padding-right: 2rem;
     display: flex;
     flex-direction: column;
     width: 50%;
@@ -224,10 +221,17 @@
       padding-left: 0;
       padding-right: 0;
       align-items: center;
-      // grid-column: 2 / 3;
 
       margin-top: 0.4rem;
       margin-bottom: 0.4rem;
+    }
+
+    &--width {
+      width: 100%;
+
+      @include mw($tb) {
+        grid-column: 1 / 3 !important;
+      }
     }
   }
 }
@@ -427,8 +431,6 @@
   &--deadline {
     width: 50%;
   }
-
-  
 
   &__icon {
     background-image: url("@/images/header/profile.png");
