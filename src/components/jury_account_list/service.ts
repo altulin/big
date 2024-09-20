@@ -1,11 +1,9 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { useLocation } from "react-router-dom";
 import { categories, categoriesLabel } from "../Pass/script.ts";
-import { paths } from "@/service/paths.ts";
 import { useSettigsQuery } from "@/store/rtk/main/settings.ts";
 import { toZonedTime } from "date-fns-tz";
 
-import { endOfDay, isAfter, parse } from "date-fns";
+import { isAfter, parseISO } from "date-fns";
 
 export const optionsCategory = () => {
   const list = Object.values(categories);
@@ -33,15 +31,18 @@ export const useCheckDeadline = () => {
   if (!isSuccess) {
     return { isDeadline: false };
   }
-
   const day = data_settings.voting_deadline;
-  // const day = "2024-08-20";
   const toZoned = (date: Date) => {
     return toZonedTime(date, "Europe/Moscow");
   };
   const now = new Date();
-  const date = parse(day, "yyyy-MM-dd", new Date());
-  const isShort = isAfter(toZoned(now), endOfDay(date));
+  const date = parseISO(day);
+
+  // console.log("now: " + toZoned(now));
+  // console.log("date :" + date);
+
+  const isShort = isAfter(toZoned(now), date);
+  // console.log(isShort);
   return { isShort };
 };
 
