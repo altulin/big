@@ -35,6 +35,7 @@ const ShortSelect: FC = () => {
           control: () => clsx(style.select__control),
           ...class_names,
         }}
+        placeholder="Выберите номинацию"
         onChange={(val) => val && dispatch(setShortNomination(val.value))}
       ></Select>
     </div>

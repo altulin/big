@@ -38,13 +38,7 @@ const ShortRow: FC<{
     <li
       className={clsx(style.content__item, isHead && style.content__item_head)}
     >
-      {isHead ? (
-        <ShortRowInner {...props} />
-      ) : (
-        <HashLink to={""} className={clsx(style.content__link, "ghj")}>
-          <ShortRowInner {...props} />
-        </HashLink>
-      )}
+      <ShortRowInner {...props} />
     </li>
   );
 };

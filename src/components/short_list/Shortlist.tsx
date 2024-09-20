@@ -1,32 +1,38 @@
 import clsx from "clsx";
 import style from "./Shortlist.module.scss";
-import { FC, useEffect } from "react";
+import { FC } from "react";
 import useIsYang from "@/hooks/isYang";
 import { paths } from "@/service/paths";
 import ShortSelect from "./select/ShortSelect";
 import ScrollBarComponent from "@/hoc/scrollbar/ScrollBarComponent";
 import ShortRow from "./ShortRow";
 import { content_head } from "./data";
-import { useLazyGetWorksShortListQuery } from "@/store/rtk/jury/works_short_list";
+import { useGetWorksShortListQuery } from "@/store/rtk/jury/works_short_list";
 import { useAppSelector } from "@/hooks/hook";
 import { useNominationsShortQuery } from "@/store/rtk/nominations/nominations_short";
-// import { useIsTabletDevice } from "@/hooks/IsSmallDevice";
+
+type TResponse = {
+  id: number | undefined;
+  title: string;
+  category: string;
+  nomination: string | number;
+  author: null | string;
+  company: string;
+};
 
 const Shortlist: FC = () => {
   const { isYang } = useIsYang();
-  const [getWorksShortList, { data, isSuccess }] =
-    useLazyGetWorksShortListQuery();
-  // const [getWorks, { status, data, isSuccess }] = useGetWorksMutation();
   const { nomination } = useAppSelector((state) => state.short);
+  const { data, isSuccess } = useGetWorksShortListQuery({
+    category: "",
+    nomination,
+  });
+
   const { data: dataNominations, isSuccess: isSuccessNominations } =
     useNominationsShortQuery({
       limit: 100,
       offset: 0,
     });
-
-  useEffect(() => {
-    getWorksShortList({ category: "", nomination });
-  }, [getWorksShortList, nomination]);
 
   return (
     <section
@@ -45,8 +51,7 @@ const Shortlist: FC = () => {
               <ShortRow {...content_head} isHead={true} />
               {isSuccess &&
                 isSuccessNominations &&
-                // eslint-disable-next-line @typescript-eslint/no-explicit-any
-                data.results.map((el: any, i: number) => (
+                data.results.map((el: TResponse, i: number) => (
                   <ShortRow
                     key={i}
                     nomination={

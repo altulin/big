@@ -13,4 +13,4 @@ export const worksApi = api.injectEndpoints({
   }),
 });
 
-export const { useLazyGetWorksShortListQuery } = worksApi;
+export const { useGetWorksShortListQuery } = worksApi;
