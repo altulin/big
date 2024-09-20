@@ -1,6 +1,6 @@
 import clsx from "clsx";
 import style from "./Shortlist.module.scss";
-import { FC } from "react";
+import { FC, useEffect } from "react";
 import useIsYang from "@/hooks/isYang";
 import { paths } from "@/service/paths";
 import ShortSelect from "./select/ShortSelect";
@@ -8,9 +8,10 @@ import ScrollBarComponent from "@/hoc/scrollbar/ScrollBarComponent";
 import ShortRow from "./ShortRow";
 import { content_head } from "./data";
 import { useGetWorksShortListQuery } from "@/store/rtk/jury/works_short_list";
-import { useAppSelector } from "@/hooks/hook";
+import { useAppDispatch, useAppSelector } from "@/hooks/hook";
 import { useNominationsShortQuery } from "@/store/rtk/nominations/nominations_short";
 import { categories } from "../Pass/script";
+import { setShortNomination } from "@/store/short/shortSlice";
 
 type TResponse = {
   id: number | undefined;
@@ -28,12 +29,17 @@ const Shortlist: FC = () => {
     category: isYang ? categories.young_talent : categories.main_category,
     nomination,
   });
+  const dispatch = useAppDispatch();
 
   const { data: dataNominations, isSuccess: isSuccessNominations } =
     useNominationsShortQuery({
       limit: 100,
       offset: 0,
     });
+
+  useEffect(() => {
+    dispatch(setShortNomination(""));
+  }, [dispatch]);
 
   return (
     <section

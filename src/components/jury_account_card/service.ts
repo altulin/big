@@ -55,6 +55,9 @@ export const ban_list = [
   // "goals",
   "is_reviewed",
   "work_link",
+  "author",
+  "video",
+  "vote",
 ];
 
 export const getInfoLabel = (label: string) => {
