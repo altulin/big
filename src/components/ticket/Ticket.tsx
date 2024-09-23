@@ -78,9 +78,9 @@ const Ticket: FC = () => {
   useEffect(() => {
     dispatch(setCategory(categories.only_tickets));
 
-    return () => {
-      dispatch(setCategory(categories.main_category));
-    };
+    // return () => {
+    // dispatch(setCategory(categories.main_category));
+    // };
   }, [dispatch]);
 
   useEffect(() => {

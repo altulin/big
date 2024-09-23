@@ -49,7 +49,7 @@ export const useCheckDeadline = () => {
 
   // console.log(now);
 
-  console.log("now: " + toZoned(now));
+  // console.log("now: " + toZoned(now));
   // console.log("date :" + date);
 
   const isShort = isAfter(toZoned(now), toZoned(date));

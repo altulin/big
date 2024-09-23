@@ -1,10 +1,11 @@
-import { getErrText } from "@/api/service/getErrText";
+// import { getErrText } from "@/api/service/getErrText";
 import {
   Middleware,
   MiddlewareAPI,
   isRejectedWithValue,
 } from "@reduxjs/toolkit";
 import { setErrorModal } from "./modal/modalSlice";
+import { dataErr } from "./dataErrors";
 
 export const rtkQueryErrorLogger: Middleware =
   (api: MiddlewareAPI) => (next) => (action) => {
@@ -15,7 +16,12 @@ export const rtkQueryErrorLogger: Middleware =
         return next(action);
       }
 
-      api.dispatch(setErrorModal(getErrText(code)));
+      if (Object.keys(dataErr).includes(code.toString())) {
+        // console.log(dataErr[code.toString()]);
+        api.dispatch(setErrorModal(dataErr[code as keyof typeof dataErr]));
+      }
+
+      // api.dispatch(setErrorModal(dataErr[code as keyof typeof dataErr]));
     }
 
     return next(action);

@@ -5,7 +5,7 @@ const categorySlice = createSlice({
   name: "menu",
 
   initialState: {
-    category: categories.main_category,
+    category: categories.only_tickets,
     categoryPitch: null,
   },
 
