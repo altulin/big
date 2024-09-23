@@ -1,13 +1,18 @@
 import { paths } from "@/service/paths";
 import IconLogoYoung from "@/images/header/logo_link.svg?react";
 import { useCheckDeadline } from "../jury_account_list/service";
+import useWinners from "@/hooks/winners";
 
 export const useGetLinks = () => {
   const { isShort } = useCheckDeadline();
+  const { isWinners } = useWinners();
+
   const links = [
     {
-      label: isShort ? "Шорт-лист" : "Номинации",
-      path: isShort ? paths.shortlist : paths.nominations,
+      // label: isShort ? "Шорт-лист" : "Номинации",
+      // path: isShort ? paths.shortlist : paths.nominations,
+      label: "Номинации",
+      path: paths.nominations,
     },
     {
       label: "Young Talent by",
@@ -52,6 +57,22 @@ export const useGetLinks = () => {
       path: "about_the_festival",
     },
   ];
+
+  const array = links.map((item, i) => {
+    if (i === 0) {
+      if (isShort) {
+        return {
+          label: "Шорт-лист",
+          path: paths.shortlist,
+        };
+      }
+
+      return item;
+    }
+    return item;
+  });
+
+  console.log(array);
 
   return { links };
 };
