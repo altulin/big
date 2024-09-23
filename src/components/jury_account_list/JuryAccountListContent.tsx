@@ -21,8 +21,12 @@ const JuryAccountListContent: FC<{ values: any; tabIndex?: number }> = ({
   const { isShort } = useCheckDeadline();
   const short_data = useGetWorksShortListQuery({
     category: getCategory(tabIndex!),
-    nomination: "",
+    nomination: values.nomination,
   });
+
+  // useEffect(() => {
+  //   console.log(values.nomination);
+  // }, [values]);
 
   useEffect(() => {
     getNomination({ offset: 0, limit: 100 }).unwrap();
