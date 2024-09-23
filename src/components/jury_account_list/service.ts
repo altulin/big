@@ -4,6 +4,7 @@ import { useSettigsQuery } from "@/store/rtk/main/settings.ts";
 import { toZonedTime } from "date-fns-tz";
 
 import { isAfter, parseISO } from "date-fns";
+import { useGetCurrentTimeQuery } from "@/store/rtk/time/time.ts";
 
 export const optionsCategory = () => {
   const list = Object.values(categories);
@@ -27,6 +28,7 @@ export const optionsReviewed = [
 
 export const useCheckDeadline = () => {
   const { data: data_settings, isSuccess } = useSettigsQuery(undefined);
+  const dataTime = useGetCurrentTimeQuery({});
 
   if (!isSuccess) {
     return { isDeadline: false };
@@ -35,10 +37,19 @@ export const useCheckDeadline = () => {
   const toZoned = (date: Date) => {
     return toZonedTime(date, "Europe/Moscow");
   };
-  const now = new Date();
+
+  let now;
   const date = parseISO(day);
 
-  // console.log("now: " + toZoned(now));
+  if (!dataTime.isSuccess) {
+    now = new Date();
+  } else {
+    now = dataTime.data.utc_datetime;
+  }
+
+  // console.log(now);
+
+  console.log("now: " + toZoned(now));
   // console.log("date :" + date);
 
   const isShort = isAfter(toZoned(now), toZoned(date));

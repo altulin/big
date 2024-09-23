@@ -38,7 +38,7 @@ export const usePitch = () => {
       text: "Запусти свой проект на платформе Nuum.",
       deadline: [
         "Дедлайн подачи работ — 20 сентября",
-        "Дата проведения Content Battle - 26 сентября",
+        "Дата проведения Content Battle - 30 сентября",
       ],
       list: [
         {
