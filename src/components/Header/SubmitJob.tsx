@@ -42,16 +42,19 @@ const SubmitJob: FC<{ className?: string }> = ({ className }) => {
   return (
     <HashLink
       smooth
-      className={clsx(
-        style.job,
-        isAuth && style.job__auth,
-        className,
-        isYang && style["job--dark"],
-      )}
+      // className={clsx(
+      //   style.job,
+      //   isAuth && style.job__auth,
+      //   className,
+      //   isYang && style["job--dark"],
+      // )}
+      className={clsx(style.event, className, isYang && style["event--dark"])}
       to={isAuth ? `/${paths.pass}` : `/${paths.registration}`}
       onClick={handleClick}
     >
-      {isCloseBrand && !isCloseTickets ? "Купить билеты" : "Подать работу"}
+      {isCloseBrand && !isCloseTickets
+        ? "Купить билет на церемонию"
+        : "Подать работу"}
     </HashLink>
   );
 };

@@ -46,6 +46,7 @@ const ModalSuccess: FC = () => {
               className={clsx(style.success__button)}
               href="https://nuum.ru/channel/bigpicturefestival"
               target="_blank"
+              onClick={() => dispatch(clearAllStep())}
             >
               Смотреть
             </a>

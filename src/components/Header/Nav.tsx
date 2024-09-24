@@ -25,15 +25,24 @@ const Nav: FC = () => {
         {isTablet && (
           <div className={clsx(style.footer, isAuth && style.footer__auth)}>
             <Registration
-              className={clsx(
-                style.footer__registration,
-                isAuth && style.footer__registration__auth,
-              )}
-            />
-            <SubmitJob
+              // className={clsx(
+              //   style.footer__registration,
+              //   isAuth && style.footer__registration__auth,
+              // )}
               className={clsx(
                 style.footer__submit,
                 isAuth && style.footer__submit__auth,
+              )}
+            />
+            <SubmitJob
+              // className={clsx(
+              //   style.footer__submit,
+              //   isAuth && style.footer__submit__auth,
+              // )}
+
+              className={clsx(
+                style.footer__registration,
+                isAuth && style.footer__registration__auth,
               )}
             />
             {!isAuth && (

@@ -2,7 +2,6 @@
 import style from "./Header.module.scss";
 import clsx from "clsx";
 import Nav from "./Nav";
-import Registration from "./Registration";
 import { useIsTabletDevice } from "@/hooks/IsSmallDevice";
 import { useAppDispatch, useAppSelector } from "@/hooks/hook";
 import gsap from "gsap";
@@ -20,6 +19,7 @@ import useAllLinks from "./allLinks";
 import { paths } from "@/service/paths";
 import { useGetLinks } from "./script";
 import useDeepCompareEffect from "use-deep-compare-effect";
+import SubmitJob from "./SubmitJob";
 
 const Header = () => {
   const { isMenu } = useAppSelector((state) => state.menu);
@@ -158,7 +158,8 @@ const Header = () => {
 
         <Nav />
 
-        {!isTablet && <Registration />}
+        {/* {!isTablet && <Registration />} */}
+        {!isTablet && <SubmitJob />}
         {!isTablet && <Submit />}
       </div>
     </header>
