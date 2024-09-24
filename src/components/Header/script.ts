@@ -3,76 +3,146 @@ import IconLogoYoung from "@/images/header/logo_link.svg?react";
 import { useCheckDeadline } from "../jury_account_list/service";
 import useWinners from "@/hooks/winners";
 
+const labels = {
+  nominations: "Номинации",
+  young_talent: "Young Talent by",
+  criteria: "Критерии оценки",
+  price: "Стоимость",
+  requirements: "Требования",
+  pitch: "Бренд-питчи",
+  participants: "Участникам",
+  winners: "Победители",
+  faq: "FAQ",
+  jury: "Жюри",
+  jury_main: "Основное жюри",
+  jury_special: "Специальное жюри",
+  program: "Программа",
+  speakers: "Спикеры",
+  about: "О нас",
+  shortlist: "Шорт-лист",
+};
+
+const {
+  nominations,
+  young_talent,
+  criteria,
+  price,
+  requirements,
+  pitch,
+  participants,
+  faq,
+  jury,
+  jury_main,
+  jury_special,
+  program,
+  about,
+  shortlist,
+  winners,
+} = labels;
+
 export const useGetLinks = () => {
   const { isShort } = useCheckDeadline();
   const { isWinners } = useWinners();
 
   const links = [
     {
-      // label: isShort ? "Шорт-лист" : "Номинации",
-      // path: isShort ? paths.shortlist : paths.nominations,
-      label: "Номинации",
+      label: nominations,
       path: paths.nominations,
     },
     {
-      label: "Young Talent by",
+      label: young_talent,
       path: paths.young_talent,
       logo: IconLogoYoung,
       submenu: [
-        {
-          label: isShort ? "Шорт-лист" : "Номинации",
-          path: isShort ? paths.shortlist_young : paths.nominations_young,
-        },
-        { label: "Критерии оценки", path: paths.criteria_young },
-        { label: "Стоимость", path: paths.price_young },
-        { label: "Требования", path: paths.requirements_young },
+        { label: nominations, path: paths.nominations_young },
+        { label: criteria, path: paths.criteria_young },
+        { label: price, path: paths.price_young },
+        { label: requirements, path: paths.requirements_young },
       ],
     },
-    { label: "Бренд-питчи", path: paths.pitch },
+    { label: pitch, path: paths.pitch },
     {
-      label: "Участникам",
+      label: participants,
       path: paths.participants,
       submenu: [
-        { label: "Стоимость", path: paths.price },
-        { label: "Требования", path: paths.requirements },
-        { label: "Критерии оценки", path: paths.criteria },
-        { label: "FAQ", path: paths.faq },
+        { label: price, path: paths.price },
+        { label: requirements, path: paths.requirements },
+        { label: criteria, path: paths.criteria },
+        { label: faq, path: paths.faq },
       ],
     },
     {
-      label: "Жюри",
+      label: jury,
       path: paths.jury_main,
       submenu: [
-        { label: "Основное жюри", path: paths.jury_main },
-        { label: "Специальное жюри", path: paths.jury_special },
+        { label: jury_main, path: paths.jury_main },
+        { label: jury_special, path: paths.jury_special },
       ],
     },
     {
-      label: "Программа",
+      label: program,
       path: paths.program,
       // submenu: [{ label: "Спикеры", path: paths.speakers }],
     },
     {
-      label: "О нас",
+      label: about,
       path: "about_the_festival",
     },
   ];
 
-  const array = links.map((item, i) => {
-    if (i === 0) {
+  const array = links.map((item) => {
+    if (item.label === nominations) {
+      let elem = item;
+
       if (isShort) {
-        return {
-          label: "Шорт-лист",
+        elem = {
+          label: shortlist,
           path: paths.shortlist,
         };
       }
+      if (isWinners) {
+        elem = {
+          label: winners,
+          path: paths.winners,
+        };
+      }
 
-      return item;
+      return elem;
     }
+
+    if (item.label === young_talent) {
+      const elem = item;
+
+      const subArray = elem.submenu?.map((subItem) => {
+        if (subItem.label === nominations) {
+          let subElem = subItem;
+
+          if (isShort) {
+            subElem = {
+              label: shortlist,
+              path: paths.shortlist_young,
+            };
+          }
+
+          if (isWinners) {
+            subElem = {
+              label: winners,
+              path: paths.winners_young,
+            };
+          }
+
+          return subElem;
+        }
+
+        return subItem;
+      });
+
+      elem.submenu = subArray;
+      return elem;
+    }
+
     return item;
   });
 
-  console.log(array);
-
-  return { links };
+  return { links: array };
 };

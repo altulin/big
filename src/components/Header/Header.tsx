@@ -19,6 +19,7 @@ import Logo from "./Logo";
 import useAllLinks from "./allLinks";
 import { paths } from "@/service/paths";
 import { useGetLinks } from "./script";
+import useDeepCompareEffect from "use-deep-compare-effect";
 
 const Header = () => {
   const { isMenu } = useAppSelector((state) => state.menu);
@@ -54,7 +55,7 @@ const Header = () => {
     }
   };
 
-  useEffect(() => {
+  useDeepCompareEffect(() => {
     if (isTablet) return;
 
     if (isYang) {
@@ -83,7 +84,7 @@ const Header = () => {
         });
       }
     });
-  }, [isTablet, location.pathname, path]);
+  }, [isTablet, location.pathname, path, links, isYang]);
 
   useEffect(() => {
     if (isTablet) return;
