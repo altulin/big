@@ -41,4 +41,6 @@ export const paths = {
   shortlist_young: "shortlist_young",
   shortlist_work: "shortlist_work",
   shortlist_young_work: "shortlist_young_work",
+  winners: "winners",
+  winners_young: "winners_young",
 };
