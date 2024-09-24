@@ -21,12 +21,13 @@ import JuryMain from "@/components/JuryMain/JuryMain";
 import Partners from "@/components/Partners/Partners";
 import Shortlist from "@/components/short_list/Shortlist";
 import { useCheckDeadline } from "@/components/jury_account_list/service";
+import useWinners from "@/hooks/winners";
+import Winners from "@/components/winners/Winners";
 
 const pages: any = [
   <Promo />,
   <Steps />,
-  // <Shortlist />,
-  // <Nominations />,
+  <Nominations />,
   <Pitch />,
   <SubmissionOfWorks />,
   <Price />,
@@ -44,12 +45,21 @@ const pages: any = [
 const HomePage: FC = () => {
   const isTablet = useIsTabletDevice();
   const { isShort } = useCheckDeadline();
+  const { isWinners } = useWinners();
 
   const getPages = useCallback(() => {
     const arr = [...pages];
-    arr.splice(2, 0, isShort ? <Shortlist /> : <Nominations />);
+    // arr.splice(2, 0, isShort ? <Shortlist /> : <Nominations />);
+    if (isShort) {
+      arr[2] = <Shortlist />;
+    }
+
+    if (isWinners) {
+      arr[2] = <Winners />;
+    }
+
     return arr;
-  }, [isShort]);
+  }, [isShort, isWinners]);
 
   return (
     <div className={clsx(style.home, "home")}>

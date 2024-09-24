@@ -17,10 +17,13 @@ import Requirements from "@/components/Requirements/Requirements";
 import Shortlist from "@/components/short_list/Shortlist";
 import { useCheckDeadline } from "@/components/jury_account_list/service";
 import Nominations from "@/components/nominations/Nominations";
+import Winners from "@/components/winners/Winners";
+import useWinners from "@/hooks/winners";
 
 const pages: any = [
   <SubmissionOfWorks />,
   <Cool />,
+  <Nominations />,
   <Criteria />,
   <Price />,
   <Requirements />,
@@ -31,6 +34,7 @@ const YoungTalentPage: FC = () => {
   const isTablet = useIsTabletDevice();
   const dispatch = useAppDispatch();
   const { isShort } = useCheckDeadline();
+  const { isWinners } = useWinners();
 
   useEffect(() => {
     dispatch(setYang(true));
@@ -43,11 +47,19 @@ const YoungTalentPage: FC = () => {
 
   const getPages = useCallback(() => {
     const arr = [...pages];
-    arr.splice(2, 0, isShort ? <Shortlist /> : <Nominations />);
+    // arr.splice(2, 0, isShort ? <Shortlist /> : <Nominations />);
+
+    if (isShort) {
+      arr[2] = <Shortlist />;
+    }
+
+    if (isWinners) {
+      arr[2] = <Winners />;
+    }
 
     // console.log(arr);
     return arr;
-  }, [isShort]);
+  }, [isShort, isWinners]);
 
   return (
     <div className={clsx(style.home, "home")}>

@@ -5,8 +5,7 @@ const useWinners = (): { isWinners: boolean } => {
   const { data, isSuccess } = useGetWinnersQuery({});
 
   if (!isSuccess) return { isWinners: false };
-  // return { isWinners: checkArr(data?.results) };
-  return { isWinners: false };
+  return { isWinners: checkArr(data?.results) };
 };
 
 export default useWinners;

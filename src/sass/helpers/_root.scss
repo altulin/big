@@ -14,6 +14,8 @@
   --delta: 0.7143;
   --head-short: #f1f1f1;
   --key-short: rgba(19, 19, 19, 0.48);
+  --video-link: rgba(19, 19, 19, 0.06);
+  --key-winners: rgba(19, 19, 19, 0.48);
 
   .dark {
     --basic-light: #141414;
@@ -22,6 +24,8 @@
     --color-green-hover: #391f9a;
     --head-short: #404040;
     --key-short: rgba(19, 19, 19, 0.48);
+    --video-link: #282828;
+    --key-winners: rgba(225, 225, 225, 0.48);
   }
   @media screen and (max-width: 1920px) {
     --heigh-scroll: calc(100vh - 10.5rem);

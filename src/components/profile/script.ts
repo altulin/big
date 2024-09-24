@@ -72,4 +72,5 @@ export const ban_list = [
   "goals",
   "presentation_url",
   "presentation",
+  "author",
 ];

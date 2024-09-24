@@ -71,6 +71,10 @@ export const getInfoLabel = (label: string) => {
       result = "Категория";
       break;
 
+    case "author":
+      result = "Автор";
+      break;
+
     case "status":
       result = "Статус";
       break;
@@ -169,6 +173,7 @@ const sortArrTemplate = [
   "work_link",
   "category",
   "nomination",
+  "author",
   "credits",
   "brand",
   "deadlines",
@@ -202,9 +207,12 @@ export const getArray = (el_info: any, ban_list: any, nominations: any) => {
     }
 
     if (ban_list.includes(item)) return;
+
     const key = `${getInfoLabel(item)}:`;
 
-    // console.log(item);
+    if (item === "author") {
+      if (!el_info[item]) return;
+    }
 
     let value;
     switch (item) {
