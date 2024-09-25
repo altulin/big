@@ -4,11 +4,18 @@ import style from "./Winners.module.scss";
 import clsx from "clsx";
 import WinnersLink from "./VideoLink";
 import WinnersInfo from "./WinnersInfo";
+import WinnersPLayer from "./WinnersPlayer";
+import ReactPlayer from "react-player";
 
 const WinnersRow: FC<{ item: any }> = ({ item }) => {
   return (
     <li className={clsx(style.row)}>
-      <WinnersLink link={item.work_link} />
+      {item.video && ReactPlayer.canPlay(item.video) ? (
+        <WinnersPLayer video={item.video} />
+      ) : (
+        <WinnersLink link={item.work_link} />
+      )}
+
       <WinnersInfo el_info={item} />
     </li>
   );

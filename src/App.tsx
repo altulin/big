@@ -5,7 +5,6 @@ import RequireAuth from "./hoc/RequireAuth";
 import ModalManager from "./components/modal/ModalManager";
 import Seo from "./hoc/seo/Seo";
 
-// import Cursor from "./hoc/AnimatedCursor";
 import { HelmetProvider } from "react-helmet-async";
 
 import { paths } from "./service/paths";

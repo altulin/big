@@ -7,10 +7,20 @@ import useIsYang from "@/hooks/isYang";
 import ScrollBarComponent from "@/hoc/scrollbar/ScrollBarComponent";
 import WinnersRow from "./WinnersRow";
 import { useGetWinnersQuery } from "@/store/rtk/jury/works_winners";
+import { categories } from "../Pass/script";
+import { checkArr } from "@/service/checkArr";
 
 const Winners: FC = () => {
   const { isYang } = useIsYang();
   const { data, isSuccess } = useGetWinnersQuery({});
+
+  const getWinnersList = () => {
+    const category = isYang
+      ? categories.young_talent
+      : categories.main_category;
+
+    return data.results.filter((el: any) => el.category === category);
+  };
 
   return (
     <section
@@ -25,10 +35,19 @@ const Winners: FC = () => {
         <div className={clsx(style.content)}>
           <ScrollBarComponent>
             <ul className={clsx(style.content__list)}>
-              {isSuccess &&
-                data.results.map((item: any, i: number) => (
-                  <WinnersRow key={i} item={item} />
-                ))}
+              {isSuccess && (
+                <>
+                  {checkArr(getWinnersList()) ? (
+                    getWinnersList().map((item: any, i: number) => (
+                      <WinnersRow key={i} item={item} />
+                    ))
+                  ) : (
+                    <h3 className={clsx(style.empty)}>
+                      В этой категории пока нет победителей
+                    </h3>
+                  )}
+                </>
+              )}
             </ul>
           </ScrollBarComponent>
         </div>
