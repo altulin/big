@@ -30,7 +30,7 @@ const Promo: FC = () => {
 
           {isTablet && (
             <div className={clsx(style.buttons)}>
-              <Registration />
+              <Registration className={clsx(style.buttons__registration)} />
               <SubmitJob className={clsx(style.buttons__submitJob)} />
             </div>
           )}

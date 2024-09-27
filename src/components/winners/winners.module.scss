@@ -71,7 +71,6 @@
   display: flex;
   align-self: flex-start;
   background: var(--video-link);
-
   max-width: 100%;
   position: sticky;
   top: 3rem;
@@ -83,6 +82,10 @@
     &--short {
       margin-bottom: 0;
     }
+  }
+
+  &--image {
+    flex-grow: 1;
   }
 
   &__icon {
@@ -138,9 +141,13 @@
 }
 
 .link {
-  width: 43%;
-  border-right: var(--line) solid var(--basic-dark);
-  padding: 3rem 2rem;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  display: flex;
+  flex-direction: column;
 
   @include mw($tb) {
     width: 100%;
@@ -148,6 +155,11 @@
     padding-left: 0;
     padding-right: 0;
     padding-bottom: 0;
+  }
+
+  &--image {
+    // padding: 3rem 2rem;
+    position: static;
   }
 }
 
@@ -247,25 +259,11 @@
 }
 
 .player {
-  width: 43%;
-  border-right: var(--line) solid var(--basic-dark);
-  padding: 3rem 2rem;
-
-  @include mw($tb) {
-    width: 100%;
-    border: 0;
-    padding-left: 0;
-    padding-right: 0;
-    padding-bottom: 0;
-  }
-
-  &__inner {
-    width: 100%;
-    height: 0;
-    padding-top: 54%;
-    position: sticky;
-    top: 0;
-  }
+  width: 100%;
+  position: absolute;
+  height: 100%;
+  left: 0;
+  top: 0;
 
   video {
     object-fit: cover;
@@ -276,6 +274,10 @@
   width: 100%;
   height: 100%;
   background-color: var(--video-link);
+
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
 }
 
 .icon {
@@ -311,5 +313,53 @@
 
   @include mw($tb) {
     font-size: 1.5rem;
+  }
+}
+
+.media {
+  width: 43%;
+  border-right: var(--line) solid var(--basic-dark);
+  padding: 3rem 2rem;
+  display: flex;
+  flex-direction: column;
+
+  @include mw($tb) {
+    width: 100%;
+    padding: 0;
+    border-right: 0;
+  }
+
+  &__inner {
+    width: 100%;
+    height: 0;
+    padding-top: 54%;
+    position: sticky;
+    top: 3rem;
+
+    &--image {
+      height: auto;
+      padding: 0;
+
+      @include mw($tb) {
+        padding-top: 3rem;
+      }
+    }
+  }
+
+  &__bg {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-color: var(--video-link);
+
+    &--image {
+      background-color: transparent;
+      position: static;
+    }
   }
 }
