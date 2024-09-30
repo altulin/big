@@ -48,7 +48,7 @@ const Slide_2: FC = () => {
         className={clsx(style.instructor__slider)}
         modules={[EffectFade, Autoplay]}
         speed={1000}
-        loop={true}
+        // loop={true}
         autoplay={{
           delay: 800,
           disableOnInteraction: false,
