@@ -15,7 +15,7 @@ export const brands = [
   { href: "https://www.hypepro.tv/", alt: "logo", icon: IconBrand_hype },
   { href: "https://nuum.ru/", alt: "logo", icon: IconNuum },
   { href: "#", alt: "", icon: IcconMega, section: paths.pitch },
-  { href: "https://bazelevs.ru/", alt: "logo", icon: IconBase },
+  { href: "https://bazelevs.studio/", alt: "logo", icon: IconBase },
 
   // { href: "#", alt: "", icon: IconBrand_2 },
   // { href: "#", alt: "", icon: IconBrand_4 },
