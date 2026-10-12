@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable @typescript-eslint/no-unused-vars */
+
 import clsx from "clsx";
 import { FC } from "react";
 import Select from "react-select";
@@ -18,7 +18,7 @@ const JuryAccountListRowSelect: FC<IJuryAccountListRowSelect> = ({
   options,
   name,
 }) => {
-  const [field, meta, helpers] = useField(name);
+  const [field, , helpers] = useField(name);
 
   if (!checkArr(options)) return;
 

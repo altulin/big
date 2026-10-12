@@ -6,12 +6,19 @@ import clsx from "clsx";
 import useProfile from "@/hooks/profile";
 import usePrice from "@/hooks/price";
 
-const PassFormTotal: FC<{ formik?: any; isLoading?: boolean }> = ({
-  formik,
+interface IPassFormTotal {
+  canSubmit: boolean;
+  worksAmount: number;
+  isLoading?: boolean;
+}
+
+const PassFormTotal: FC<IPassFormTotal> = ({
+  canSubmit,
+  worksAmount,
   isLoading,
 }) => {
   const { isIndividual } = useProfile();
-  const { data } = usePrice();
+  const { data } = usePrice(worksAmount);
 
   return (
     <div className={clsx(style.box)}>
@@ -31,7 +38,7 @@ const PassFormTotal: FC<{ formik?: any; isLoading?: boolean }> = ({
             style.total__btn,
             isLoading && style.total__btn_loading,
           )}
-          disabled={!(formik.isValid && formik.dirty)}
+          disabled={!canSubmit}
         >
           {!isIndividual && "Далее"}
           {isIndividual && (data as any)?.order_price === 0 && "Отправить"}

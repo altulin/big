@@ -1,3 +1,4 @@
+import { useField } from "formik";
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useAppSelector } from "@/hooks/hook";
 import { FC, useEffect } from "react";
@@ -8,10 +9,13 @@ import SelectField from "../form/Select";
 import UploadImage from "../form/UploadImage";
 import { categories, categoriesPitshes } from "./script";
 import { useLazyNominationsQuery } from "@/store/rtk/nominations/nominations";
-import UploadPass from "../form/UploadPass";
+import Upload from "../form/Upload";
 import { useParams } from "react-router-dom";
 
-const SubmissionContent: FC<{ formik: any; id: number }> = ({ formik, id }) => {
+const SubmissionContent: FC<{ id: number }> = ({ id }) => {
+  const [{ value: file }] = useField<File | string | undefined>(
+    `fields.${id}.file`,
+  );
   const { category, categoryPitch } = useAppSelector((state) => state.category);
   const [getNomination, { data }] = useLazyNominationsQuery(undefined);
   const params = useParams();
@@ -62,7 +66,6 @@ const SubmissionContent: FC<{ formik: any; id: number }> = ({ formik, id }) => {
       {category === categories.brand_pitches &&
         categoryPitch === categoriesPitshes.nuum && (
           <SelectField
-            form={formik}
             name={`fields.${id}.brand_category`}
             label="Категория"
             prefix="pass"
@@ -86,7 +89,6 @@ const SubmissionContent: FC<{ formik: any; id: number }> = ({ formik, id }) => {
 
       {category !== categories.brand_pitches && (
         <SelectField
-          form={formik}
           name={`fields.${id}.nomination`}
           label="Номинация"
           prefix="pass"
@@ -184,24 +186,18 @@ const SubmissionContent: FC<{ formik: any; id: number }> = ({ formik, id }) => {
           </p>
           <UploadImage
             name={`fields.${id}.project_image`}
-            data={formik}
             prefix="upload_image"
             modifier={params.id_work && "edit"}
           />
         </div>
       )}
       {category === categories.brand_pitches && (
-        <UploadPass
+        <Upload
           name={`fields.${id}.file`}
-          label={
-            !formik.values?.fields[`${id}`]?.file?.name
-              ? getLabel()
-              : formik.values.fields[`${id}`].file.name
-          }
+          label={file instanceof File ? file.name : getLabel()}
           accept=".doc, .docx, .pdf, .ppt, .pptx, .key"
           modifier="file-profile"
-          formik={formik}
-        ></UploadPass>
+        ></Upload>
       )}
     </>
   );

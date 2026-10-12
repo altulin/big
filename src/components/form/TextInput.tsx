@@ -1,11 +1,9 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Field, useField } from "formik";
-import { ChangeEvent, FC, useEffect, useId } from "react";
+import { ChangeEvent, FC, useId } from "react";
 import Container from "./blocks/Container";
 import style from "./Form.module.scss";
 import clsx from "clsx";
-import { useAppDispatch } from "@/hooks/hook";
-import { setStatus } from "@/store/reg/regSlice";
 import useIsYang from "@/hooks/isYang";
 
 interface IMyTextInput {
@@ -34,15 +32,7 @@ interface IMyTextInput {
 const TextInput: FC<IMyTextInput> = ({ children, ...props }) => {
   const [field, meta] = useField(props);
   const id = useId();
-  const dispatch = useAppDispatch();
   const { isYang } = useIsYang();
-
-  useEffect(() => {
-    if (field.name !== "status") return;
-    if (!field.checked) return;
-
-    dispatch(setStatus(field.value));
-  }, [dispatch, field.checked, field.name, field.value]);
 
   return (
     <Container {...props} meta={meta} id={props.id || id}>

@@ -1,38 +1,17 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { FC, useCallback, useEffect } from "react";
 import ProfileBoxHead from "../profile/ProfileBoxHead";
 import clsx from "clsx";
 import style from "./Pass.module.scss";
-import { categories, categoriesPitshes, radioList } from "./script";
-import Radio from "../registration/Radio";
+import { categories, radioList } from "./script";
+import RadioButton from "../form/RadioButton";
 import { useAppDispatch, useAppSelector } from "@/hooks/hook";
-import { setCategory, setCategoryPitch } from "@/store/category/categorySlice";
-import { setClearForm } from "@/store/forms/formsSlice";
+import { setCategory } from "@/store/category/categorySlice";
 import useDeadlineClose from "@/hooks/closeDeadline";
-import { checkArr } from "@/service/checkArr";
 
-const PassFormRadio: FC<{ formik: any; name?: string }> = ({
-  formik,
-  name = "category",
-}) => {
+const PassFormRadio: FC = () => {
   const dispatch = useAppDispatch();
-  const category = useAppSelector((state) => state.category);
+  const { category } = useAppSelector((state) => state.category);
   const { isCloseMain, isCloseBrand, isCloseYoung } = useDeadlineClose();
-
-  useEffect(() => {
-    if (formik.values.category === categories.brand_pitches) {
-      dispatch(setCategoryPitch(categoriesPitshes.nuum));
-      formik.setFieldValue("categoryPitch", categoriesPitshes.nuum);
-    } else {
-      dispatch(setCategoryPitch(null));
-    }
-
-    dispatch(setCategory(formik.values.category));
-  }, [formik.values.category, dispatch]);
-
-  useEffect(() => {
-    dispatch(setClearForm());
-  }, [category, dispatch]);
 
   const getList = useCallback(() => {
     const radioArr = [];
@@ -53,23 +32,29 @@ const PassFormRadio: FC<{ formik: any; name?: string }> = ({
     return radioArr;
   }, [isCloseBrand, isCloseMain, isCloseYoung]);
 
+  // выбранная заранее категория (например, со страницы питчей) сохраняется,
+  // если она доступна; иначе выбирается первая доступная
   useEffect(() => {
-    if (!checkArr(getList())) return;
-    dispatch(setCategory(getList()[0].value));
-  }, [dispatch, getList]);
+    const list = getList();
+    if (!list.length) return;
+    if (list.some((item) => item.value === category)) return;
+
+    dispatch(setCategory(list[0].value));
+  }, [category, dispatch, getList]);
 
   return (
     <div className={clsx(style.box)}>
       <ProfileBoxHead title="Категория" isBtn={false} />
 
       <div className={clsx(style.box__inner, style.radio)}>
-        {getList().map((item, i) => (
-          <Radio
-            key={i}
+        {getList().map((item) => (
+          <RadioButton
+            key={item.value}
             label={item.label}
             value={item.value}
-            name={name}
-            // icon={item.icon && <item.icon />}
+            name="category"
+            checked={category === item.value}
+            onSelect={(value) => dispatch(setCategory(value))}
           />
         ))}
       </div>

@@ -13,7 +13,7 @@ import useIsYang from "@/hooks/isYang";
 const Faq: FC = () => {
   const isTablet = useIsTabletDevice();
   const [getFaq, results] = useLazyGetFaqQuery();
-  const isYang = useIsYang();
+  const { isYang } = useIsYang();
 
   useEffect(() => {
     getFaq({ offset: 0, limit: isTablet ? 5 : 100 }).unwrap();
@@ -30,7 +30,7 @@ const Faq: FC = () => {
 
   useEffect(() => {
     if (isTablet) return;
-    initGLGrid("canvas-faq", false);
+    return initGLGrid("canvas-faq", false);
   }, [isTablet, isYang]);
 
   return (

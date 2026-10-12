@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { FC } from "react";
+import { useField } from "formik";
 import TextInput from "./TextInput";
 
 interface IUpload {
@@ -10,7 +11,6 @@ interface IUpload {
   children?: any;
   modifier?: string;
   disabled?: boolean;
-  formik?: any;
 }
 
 const Upload: FC<IUpload> = ({
@@ -21,8 +21,9 @@ const Upload: FC<IUpload> = ({
   children,
   modifier = "file",
   disabled = false,
-  formik,
 }) => {
+  const [, , helpers] = useField(name);
+
   return (
     <TextInput
       type="file"
@@ -34,7 +35,7 @@ const Upload: FC<IUpload> = ({
       disabled={disabled}
       onChange={(e: any) => {
         if (e.currentTarget.files) {
-          formik.setFieldValue(name, e.currentTarget.files[0]);
+          helpers.setValue(e.currentTarget.files[0]);
         }
       }}
       value={undefined}

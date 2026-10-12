@@ -5,7 +5,7 @@ import JuryCardControl from "./JuryCardControl";
 import JuryCardInfo from "./JuryCardInfo";
 import IconMain from "@/images/header/logo.svg?react";
 import { useIsTabletDevice } from "@/hooks/IsSmallDevice";
-import { useLocation } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 import { useLazyGetWorkJuryQuery } from "@/store/rtk/jury/work";
 import JuryCardNav from "./JuryCardNav";
 
@@ -13,11 +13,14 @@ const JuryCard: FC = () => {
   // const [getListApp, { data, isSuccess }] = useLazyGetListQuery();
   const isTablet = useIsTabletDevice();
   const location = useLocation();
+  const { id_card } = useParams();
+  const id = location.state?.id ?? id_card;
   const [getWork, { data, isSuccess }] = useLazyGetWorkJuryQuery();
 
   useEffect(() => {
-    getWork({ id: location.state.id });
-  }, [getWork, location.state.id]);
+    if (!id) return;
+    getWork({ id });
+  }, [getWork, id]);
 
   if (!isSuccess) return null;
 

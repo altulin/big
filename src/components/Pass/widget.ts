@@ -1,3 +1,4 @@
+import { env } from "@/config/env";
 import { useAppDispatch } from "@/hooks/hook";
 import useProfile from "@/hooks/profile";
 import { setErrorModal, setSuccessModal } from "@/store/modal/modalSlice";
@@ -36,7 +37,7 @@ const useWidget = () => {
       "charge", // или 'charge'
       {
         //options
-        publicId: import.meta.env.VITE_APP_API_PUBLIC_ID, //id из личного кабинета
+        publicId: env.paymentPublicId, //id из личного кабинета
         description: "Оплата заявки", //назначение
         amount, //сумма
         currency: "RUB", //валюта

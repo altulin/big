@@ -1,9 +1,9 @@
 /* eslint-disable no-useless-escape */
-const isNumber = (value) => {
+const isNumber = (value: string) => {
   return /^[\.\d]+$/g.test(value);
 };
 
-export const onAgeInput = (e) => {
+export const onAgeInput = (e: { target: HTMLInputElement }) => {
   const input = e.target;
 
   const inputLength = Number(`${input.value.length}`);

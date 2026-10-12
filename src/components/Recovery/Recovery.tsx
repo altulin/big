@@ -57,9 +57,10 @@ const Recovery: FC = () => {
           ])}
           onSubmit={(values, { resetForm }) => {
             const body = { password: values.password, recovery_token: id };
-            updatePass(body)
+            return updatePass(body)
               .unwrap()
-              .then(() => resetForm());
+              .then(() => resetForm())
+              .catch(() => {});
           }}
         >
           {(formik) => {
@@ -77,7 +78,7 @@ const Recovery: FC = () => {
                   placeholder="Повторите пароль"
                 />
 
-                <Checkbox name="offer" isChecked={formik.values.offer}>
+                <Checkbox name="offer">
                   <a
                     className={clsx(styleCheck.form__rule_link)}
                     href={data?.policy}
@@ -92,7 +93,9 @@ const Recovery: FC = () => {
                   modifier="green"
                   className={clsx(style.button)}
                   type="submit"
-                  disabled={!(formik.isValid && formik.dirty)}
+                  disabled={
+                    !(formik.isValid && formik.dirty) || formik.isSubmitting
+                  }
                 />
               </Form>
             );

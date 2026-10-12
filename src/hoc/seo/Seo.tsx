@@ -1,3 +1,4 @@
+import { env } from "@/config/env";
 import { FC } from "react";
 import { Helmet } from "react-helmet-async";
 import { googleCounter, googleNoScript } from "./analytics";
@@ -28,7 +29,7 @@ const Seo: FC<ISeo> = ({ title, description, image = "/image.jpg", url }) => {
       <meta name="twitter:description" content={description} />
       <meta name="twitter:image" content={image} />
 
-      {import.meta.env.MODE === "production" && (
+      {env.isProd && (
         <>
           <script async type="text/javascript">
             {googleCounter}

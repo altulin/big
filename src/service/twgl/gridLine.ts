@@ -2,7 +2,7 @@
 import * as twgl from "twgl.js";
 
 export function initGLGrid(id: string, isYang: any) {
-  const canvas = document.getElementById(id);
+  const canvas = document.getElementById(id) as HTMLCanvasElement | null;
 
   if (!canvas) {
     return;
@@ -45,13 +45,16 @@ export function initGLGrid(id: string, isYang: any) {
     premultipliedAlpha: false,
     depth: true,
   });
-  twgl.resizeCanvasToDisplaySize(gl.canvas);
+
+  if (!gl) return;
+
+  twgl.resizeCanvasToDisplaySize(canvas);
 
   const programInfo = twgl.createProgramInfo(gl, [vs, fs]);
 
   const gridSize = 52;
-  const positions = [];
-  const indices = [];
+  const positions: number[] = [];
+  const indices: number[] = [];
 
   for (let y = 0; y <= gridSize; y++) {
     for (let x = 0; x <= gridSize; x++) {
@@ -79,15 +82,16 @@ export function initGLGrid(id: string, isYang: any) {
   let lastMoveTime = 0;
   let intensity = 1.0;
 
-  canvas.addEventListener("mousemove", (e) => {
+  const onMouseMove = (e: MouseEvent) => {
     const rect = canvas.getBoundingClientRect();
     mouseX = e.clientX - rect.left;
     mouseY = e.clientY - rect.top;
     lastMoveTime = performance.now();
-  });
+  };
+  canvas.addEventListener("mousemove", onMouseMove);
 
-  function render(time) {
-    twgl.resizeCanvasToDisplaySize(gl.canvas);
+  const render = (time: number) => {
+    twgl.resizeCanvasToDisplaySize(canvas);
     gl.viewport(0, 0, gl.canvas.width, gl.canvas.height);
     gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
 
@@ -116,8 +120,13 @@ export function initGLGrid(id: string, isYang: any) {
     gl.blendFunc(gl.SRC_ALPHA, gl.ONE_MINUS_SRC_ALPHA);
     twgl.drawBufferInfo(gl, bufferInfo, gl.LINES);
 
-    requestAnimationFrame(render);
-  }
+    frame = requestAnimationFrame(render);
+  };
 
-  requestAnimationFrame(render);
+  let frame = requestAnimationFrame(render);
+
+  return () => {
+    cancelAnimationFrame(frame);
+    canvas.removeEventListener("mousemove", onMouseMove);
+  };
 }

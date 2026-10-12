@@ -1,16 +1,15 @@
+import { env } from "@/config/env";
 import { configureStore } from "@reduxjs/toolkit";
 import modalSlice from "./modal/modalSlice";
 import { api } from "./rtk/emptyApi";
 import { rtkQueryErrorLogger } from "./errorLogger";
 import menuSlice from "./menu/menuSlice";
 import programSlice from "./program/programSlice";
-import regSlice from "./reg/regSlice";
 import swiperSlice from "./swiper/swiperSlice";
 import speakerSlice from "./speaker/speakerSlice";
 import categorySlice from "./category/categorySlice";
 import userSlice from "./user/userSlice";
 import passSlice from "./pass/passSlice";
-import formsSlice from "./forms/formsSlice";
 import yangSlice from "./yang/yangSlice";
 import promoSlice from "./promoSlider/promoSlice";
 import shortSlice from "./short/shortSlice";
@@ -20,19 +19,17 @@ const store = configureStore({
     modal: modalSlice,
     menu: menuSlice,
     program: programSlice,
-    reg: regSlice,
     swiper: swiperSlice,
     speaker: speakerSlice,
     category: categorySlice,
     pass: passSlice,
     user: userSlice,
-    form: formsSlice,
     yang: yangSlice,
     promo: promoSlice,
     short: shortSlice,
     [api.reducerPath]: api.reducer,
   },
-  devTools: process.env.NODE_ENV === "development",
+  devTools: env.isDev,
 
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat([api.middleware, rtkQueryErrorLogger]),

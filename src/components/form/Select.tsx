@@ -1,10 +1,9 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 // import { useGetUsersQuery } from "@/store/rtk/user/userApi";
-import { FC, useEffect, useState } from "react";
+import { FC } from "react";
 import Select from "react-select";
 import style from "./Form.module.scss";
 import clsx from "clsx";
-import useParse from "@/components/form/service/parse";
 import { useField } from "formik";
 
 interface ISelectField {
@@ -14,17 +13,15 @@ interface ISelectField {
     value: string | number;
     onBlur: () => void;
   };
-  form: any;
   id?: string;
   options?: any;
-  name?: string;
+  name: string;
   label?: string;
   prefix?: string;
 }
 
 const SelectField: FC<ISelectField> = ({
   // field,
-  form,
   id,
   options,
   name,
@@ -32,8 +29,6 @@ const SelectField: FC<ISelectField> = ({
   prefix,
   placeholder,
 }) => {
-  const { pref_parse, id_parse, name_parse } = useParse(name);
-
   const [field, meta, helpers] = useField(name);
 
   if (!options) return null;
@@ -70,9 +65,7 @@ const SelectField: FC<ISelectField> = ({
 
       {meta.touched && meta.error ? (
         <div className={clsx(style.error)}>
-          <p className={clsx(style.error__text)}>
-            {form.errors[`${pref_parse}`][`${id_parse}`][`${name_parse}`]}
-          </p>
+          <p className={clsx(style.error__text)}>{meta.error}</p>
         </div>
       ) : null}
     </div>

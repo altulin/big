@@ -5,10 +5,10 @@ import { useAppDispatch, useAppSelector } from "./hook";
 import { setErrorModal } from "@/store/modal/modalSlice";
 import useSignOut from "./signOut";
 
-const usePrice = () => {
+// worksAmount — количество работ в форме (values.fields.length в Formik)
+const usePrice = (worksAmount: number) => {
   const { category } = useAppSelector((state) => state.category);
   const { tickets_amount } = useAppSelector((state) => state.pass);
-  const { forms } = useAppSelector((state) => state.form);
   const [getPrice, { data, status, error }] = useLazyGetPriceQuery();
   const dispatch = useAppDispatch();
   const { handleSignOut } = useSignOut();
@@ -28,8 +28,8 @@ const usePrice = () => {
   }, [data, status]); // eslint-disable-line
 
   useEffect(() => {
-    getPrice({ category, tickets_amount, works_amount: forms.length });
-  }, [category, forms.length, getPrice, tickets_amount]);
+    getPrice({ category, tickets_amount, works_amount: worksAmount });
+  }, [category, worksAmount, getPrice, tickets_amount]);
 
   return { data };
 };

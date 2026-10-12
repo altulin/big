@@ -84,7 +84,10 @@ const ModalAuth1: FC = () => {
               phone_number: phone,
             };
 
-            authorization(dataObj).unwrap();
+            // ошибку показывает errorLogger, здесь только гасим rejection
+            return authorization(dataObj)
+              .unwrap()
+              .catch(() => {});
           }}
         >
           {(formik) => {
@@ -120,7 +123,9 @@ const ModalAuth1: FC = () => {
                   modifier="green"
                   type="submit"
                   label="Войти "
-                  disabled={!(formik.isValid && formik.dirty)}
+                  disabled={
+                    !(formik.isValid && formik.dirty) || formik.isSubmitting
+                  }
                   className={clsx(style.auth__submit)}
                 />
 

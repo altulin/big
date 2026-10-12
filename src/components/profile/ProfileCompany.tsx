@@ -1,3 +1,4 @@
+import { env } from "@/config/env";
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { getValidationSchema } from "@/service/form/validation";
 import clsx from "clsx";
@@ -84,7 +85,7 @@ const ProfileCompany: FC = () => {
         file: "",
       }}
       validationSchema={getValidationSchema(["file"])}
-      onSubmit={(values) => {
+      onSubmit={(values, { resetForm }) => {
         if (!phone_number || !name || !email || !company_name) {
           return;
         }
@@ -102,13 +103,17 @@ const ProfileCompany: FC = () => {
 
         formData.append("company_details_file", (values as any).file);
 
-        putUserData(formData);
-
         setBtnData({
           ...btnData,
           type: "edit",
           disabled: true,
         });
+
+        // после сохранения файл уже на сервере — очищаем поле
+        return putUserData(formData)
+          .unwrap()
+          .then(() => resetForm())
+          .catch(() => {});
       }}
     >
       {(formik) => {
@@ -128,9 +133,7 @@ const ProfileCompany: FC = () => {
               {btnData.disabled && (
                 <a
                   className={clsx(style.box__download)}
-                  href={`${
-                    import.meta.env.VITE_APP_API_HOST
-                  }${company_details_file}`}
+                  href={`${env.apiHost}${company_details_file}`}
                   download
                 >
                   Реквизиты компании
@@ -140,7 +143,6 @@ const ProfileCompany: FC = () => {
               {!btnData.disabled && (
                 <>
                   <Upload
-                    formik={formik}
                     name="file"
                     label={
                       !formik.values.file

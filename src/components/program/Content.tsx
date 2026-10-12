@@ -20,67 +20,70 @@ const Content: FC<{ refParent: any }> = ({ refParent }) => {
     if (!refContent.current) return;
     if (!checkArr(data?.results)) return;
 
-    setTimeLines(
-      q(`.${styleProgram.item}`).map((item) => {
-        if (!item.querySelector(`.${styleProgram.button__icon}`)) return;
-        const tl = gsap
-          .timeline({ paused: true })
-          .add("start", "<")
+    const tls = q(`.${styleProgram.item}`).map((item) => {
+      if (!item.querySelector(`.${styleProgram.button__icon}`)) return;
+      const tl = gsap
+        .timeline({ paused: true })
+        .add("start", "<")
 
-          .fromTo(
-            [
-              item.querySelector(`.${styleProgram.button__title}`),
-              item.querySelector(`.${styleProgram.button__date}`),
-            ],
-            { autoAlpha: 1 },
-            { autoAlpha: 0, duration: 0.01 },
-            "<",
-          )
+        .fromTo(
+          [
+            item.querySelector(`.${styleProgram.button__title}`),
+            item.querySelector(`.${styleProgram.button__date}`),
+          ],
+          { autoAlpha: 1 },
+          { autoAlpha: 0, duration: 0.01 },
+          "<",
+        )
 
-          .fromTo(
-            [
-              item.querySelector(`.${styleProgram.button__title}`),
-              item.querySelector(`.${styleProgram.button__date}`),
-            ],
-            { width: "auto" },
-            { width: 0, duration: 0.01 },
-            "<",
-          )
+        .fromTo(
+          [
+            item.querySelector(`.${styleProgram.button__title}`),
+            item.querySelector(`.${styleProgram.button__date}`),
+          ],
+          { width: "auto" },
+          { width: 0, duration: 0.01 },
+          "<",
+        )
 
-          .fromTo(
-            item.querySelector(`.${styleProgram.button__icon}`),
-            { rotate: 180 },
-            { rotate: 0, ease, duration: 0.01 },
-            "<",
-          )
-          .fromTo(
-            item.querySelector(`.${styleProgram.info}`),
-            { display: "none", width: "0" },
-            { display: "flex", width: "43rem", duration: 0.01 },
-            "<",
-          )
-          .fromTo(
-            item.querySelector(`.${styleProgram.info}`),
-            { autoAlpha: 0 },
-            { autoAlpha: 1, duration: 0.5 },
-          );
+        .fromTo(
+          item.querySelector(`.${styleProgram.button__icon}`),
+          { rotate: 180 },
+          { rotate: 0, ease, duration: 0.01 },
+          "<",
+        )
+        .fromTo(
+          item.querySelector(`.${styleProgram.info}`),
+          { display: "none", width: "0" },
+          { display: "flex", width: "43rem", duration: 0.01 },
+          "<",
+        )
+        .fromTo(
+          item.querySelector(`.${styleProgram.info}`),
+          { autoAlpha: 0 },
+          { autoAlpha: 1, duration: 0.5 },
+        );
 
-        if (item.querySelector(`.${styleProgram.button__mega}`)) {
-          tl.add(
-            gsap.fromTo(
-              item.querySelector(`.${styleProgram.button__mega}`),
-              {
-                display: "block",
-              },
-              { display: "none", duration: 0.01 },
-            ),
-            "start",
-          );
-        }
+      if (item.querySelector(`.${styleProgram.button__mega}`)) {
+        tl.add(
+          gsap.fromTo(
+            item.querySelector(`.${styleProgram.button__mega}`),
+            {
+              display: "block",
+            },
+            { display: "none", duration: 0.01 },
+          ),
+          "start",
+        );
+      }
 
-        return tl;
-      }),
-    );
+      return tl;
+    });
+
+    setTimeLines(tls);
+
+    return () => tls.forEach((tl) => tl?.kill());
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [data]);
 
   useEffect(() => {
@@ -99,11 +102,11 @@ const Content: FC<{ refParent: any }> = ({ refParent }) => {
         tl.pause("start");
       });
 
-      timeLines[current].play().then(() => {
+      timeLines[current]?.play().then(() => {
         // gsap.set(q(`.${styleProgram.planet}`), { autoAlpha: 1 });
       });
     }
-  }, [current, q, timeLines]);
+  }, [current, timeLines]);
 
   if (!data) return null;
 

@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { FC, useEffect } from "react";
 import style from "./Registration.module.scss";
 import clsx from "clsx";

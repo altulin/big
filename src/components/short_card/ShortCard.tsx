@@ -5,9 +5,7 @@ import { FC } from "react";
 const ShortCard: FC = () => {
   return (
     <section className={clsx(style.shortCard)}>
-      <div className={clsx(style.shortCard__inner)}>
-        ShortCard Component
-      </div>
+      <div className={clsx(style.shortCard__inner)}>ShortCard Component</div>
     </section>
   );
 };

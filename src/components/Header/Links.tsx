@@ -30,10 +30,10 @@ const Links: FC = () => {
     }
   };
 
-  // переход по ссылке
+  // РїРµСЂРµС…РѕРґ РїРѕ СЃСЃС‹Р»РєРµ
   useEffect(() => {
     const values = Object.values(paths);
-    let name;
+    let name: string;
 
     if (pathname.split("/")[1] === paths.young_talent) {
       name = pathname.split("/")[2];

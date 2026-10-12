@@ -1,5 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { getValidationSchema } from "@/service/form/validation";
+import { required } from "@/service/form/errText";
+import * as yup from "yup";
 import clsx from "clsx";
 import { Form, Formik } from "formik";
 import { FC } from "react";
@@ -11,7 +13,7 @@ import { onNameInput } from "@/service/form/masks/name";
 import Entity from "./Entity";
 import Checkbox from "../form/Checkbox";
 import Button from "../modal/template/Button";
-import { useAppDispatch, useAppSelector } from "@/hooks/hook";
+import { useAppDispatch } from "@/hooks/hook";
 import { setSuccessModal } from "@/store/modal/modalSlice";
 import CompanyReg from "./Company";
 import { onPhoneInput } from "@/service/form/masks/phone";
@@ -19,36 +21,33 @@ import { useSettigsQuery } from "@/store/rtk/main/settings";
 import { useRegistrationMutation } from "@/store/rtk/user/registration";
 import useGoogleManager from "@/hooks/googleManager";
 
+// реквизиты (file) обязательны только для юрлица — тип берётся из значения формы
+const validationSchema = getValidationSchema([
+  "mail",
+  "password",
+  "confirm_password",
+  "name",
+  "phone",
+  "rule",
+  "offer",
+  "company_name",
+]).shape({
+  file: yup.mixed().when("status", {
+    is: "entity",
+    then: (schema) => schema.required(required),
+  }),
+});
+
 const FormRegistration: FC = () => {
   const dispatch = useAppDispatch();
-  const { status } = useAppSelector((state) => state.reg);
   const { data } = useSettigsQuery(undefined);
   const [registration] = useRegistrationMutation();
   const { addEvent } = useGoogleManager();
 
-  const makeArr = () => {
-    const arr: any = [
-      "mail",
-      "password",
-      "confirm_password",
-      "name",
-      "phone",
-      "rule",
-      "offer",
-      "company_name",
-    ];
-
-    if (status === "entity") {
-      arr.push("file");
-    }
-
-    return arr;
-  };
-
   return (
     <Formik
       initialValues={{
-        status: status,
+        status: "individual",
         mail: "",
         password: "",
         confirm_password: "",
@@ -59,14 +58,14 @@ const FormRegistration: FC = () => {
         phone: "",
         file: undefined,
       }}
-      validationSchema={getValidationSchema(makeArr())}
+      validationSchema={validationSchema}
       onSubmit={async (values, { resetForm }) => {
         const body = {
           phone_number: values.phone,
           name: values.name,
           email: values.mail,
           password: values.password,
-          type: status,
+          type: values.status,
           company_name: values.company_name,
         };
 
@@ -74,11 +73,11 @@ const FormRegistration: FC = () => {
         for (const key in body)
           formData.append(key, body[key as keyof typeof body]);
 
-        if (status === "entity") {
+        if (values.status === "entity") {
           formData.append("company_details_file", (values as any).file);
         }
 
-        registration(formData)
+        return registration(formData)
           .unwrap()
           .then(() => {
             dispatch(
@@ -101,16 +100,8 @@ const FormRegistration: FC = () => {
             <>
               <Form className={clsx(style.form)}>
                 <div className={clsx(style.radio)}>
-                  <Radio
-                    label="Физическое лицо"
-                    value="individual"
-                    formik={formik}
-                  />
-                  <Radio
-                    label="Юридическое лицо"
-                    value="entity"
-                    formik={formik}
-                  />
+                  <Radio label="Физическое лицо" value="individual" />
+                  <Radio label="Юридическое лицо" value="entity" />
                 </div>
 
                 <TextInput
@@ -147,11 +138,11 @@ const FormRegistration: FC = () => {
                   placeholder="Повторите пароль"
                 />
 
-                {status === "individual" && <CompanyReg />}
+                {formik.values.status === "individual" && <CompanyReg />}
 
-                {status === "entity" && <Entity formik={formik} />}
+                {formik.values.status === "entity" && <Entity />}
 
-                <Checkbox name="offer" isChecked={formik.values.offer}>
+                <Checkbox name="offer">
                   <a
                     className={clsx(style.form__rule_link)}
                     href={data?.cookies}
@@ -161,7 +152,7 @@ const FormRegistration: FC = () => {
                   </a>
                 </Checkbox>
 
-                <Checkbox name="rule" isChecked={formik.values.rule}>
+                <Checkbox name="rule">
                   <a
                     className={clsx(style.form__rule_link)}
                     href={data?.offer}
@@ -176,7 +167,9 @@ const FormRegistration: FC = () => {
                     type="submit"
                     label="Зарегистрироваться"
                     modifier="green"
-                    disabled={!(formik.isValid && formik.dirty)}
+                    disabled={
+                      !(formik.isValid && formik.dirty) || formik.isSubmitting
+                    }
                     className={clsx(style.button)}
                   />
                 </div>

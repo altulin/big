@@ -13,7 +13,7 @@ const Criteria: FC = () => {
   const { isYang } = useAppSelector((state) => state.yang);
 
   useEffect(() => {
-    initGLGrid("canvas-net", isYang);
+    return initGLGrid("canvas-net", isYang);
   }, [isYang]);
 
   return (

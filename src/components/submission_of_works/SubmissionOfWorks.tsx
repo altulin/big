@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import clsx from "clsx";
 import { FC, useEffect, useRef } from "react";
 import style from "./SubmissionOfWorks.module.scss";
@@ -16,7 +15,7 @@ const SubmissionOfWorks: FC = () => {
       return;
     }
 
-    initGLTunnel(
+    return initGLTunnel(
       "gl-tunnel",
       // "0.0, 1.0, 0.0, 1.0",
       isYang ? "0.3,0.1,0.9,1.0" : "0.0, 1.0, 0.0, 1.0",

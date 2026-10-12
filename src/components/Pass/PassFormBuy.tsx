@@ -26,7 +26,7 @@ const Button: FC<{ type: "add" | "remove"; onClick?: any }> = ({
   );
 };
 
-const PassFormBuy: FC<{ formik?: any }> = () => {
+const PassFormBuy: FC = () => {
   const isTablet = useIsTabletDevice();
   const { tickets_amount } = useAppSelector((state) => state.pass);
   const dispatch = useAppDispatch();

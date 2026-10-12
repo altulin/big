@@ -38,7 +38,7 @@ const ModalRecovery1: FC = () => {
             const body = {
               email: values.mail,
             };
-            sendLink(body);
+            return sendLink(body);
           }}
         >
           {(formik) => {
@@ -59,7 +59,9 @@ const ModalRecovery1: FC = () => {
                   modifier="green"
                   type="submit"
                   label="сбросить пароль"
-                  disabled={!(formik.isValid && formik.dirty)}
+                  disabled={
+                    !(formik.isValid && formik.dirty) || formik.isSubmitting
+                  }
                   className={clsx(style.auth__submit)}
                 />
               </Form>

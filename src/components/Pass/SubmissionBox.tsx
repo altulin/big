@@ -3,11 +3,11 @@ import clsx from "clsx";
 import { FC, ReactNode, useRef } from "react";
 import style from "./Pass.module.scss";
 import IconDelete from "@/images/pass/basket.svg?react";
-import { useAppDispatch, useAppSelector } from "@/hooks/hook";
+import { useAppSelector } from "@/hooks/hook";
+import { useFormikContext } from "formik";
 import { categories } from "./script";
 import { useIsTabletDevice } from "@/hooks/IsSmallDevice";
 import usePrice from "@/hooks/price";
-import { setRemoveForm } from "@/store/forms/formsSlice";
 
 const SubmissionBox: FC<{
   children?: ReactNode;
@@ -16,13 +16,12 @@ const SubmissionBox: FC<{
 }> = ({ children, id, remove }) => {
   const { category } = useAppSelector((state) => state.category);
   const isTablet = useIsTabletDevice();
-  const { data } = usePrice();
+  const { values } = useFormikContext<{ fields: unknown[] }>();
+  const worksAmount = values.fields.length;
+  const { data } = usePrice(worksAmount);
   const refBox = useRef<any>(null);
-  const { forms } = useAppSelector((state) => state.form);
-  const dispatch = useAppDispatch();
 
   const handleDelete = () => {
-    dispatch(setRemoveForm());
     remove(id);
   };
 
@@ -55,7 +54,7 @@ const SubmissionBox: FC<{
           </div>
         )}
 
-        {forms.length > 1 && (
+        {worksAmount > 1 && (
           <button
             type="button"
             onClick={handleDelete}

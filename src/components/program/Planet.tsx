@@ -8,7 +8,7 @@ const Planet: FC = () => {
 
   useEffect(() => {
     if (isTablet) return;
-    initGLSphere("canvas-planet");
+    return initGLSphere("canvas-planet");
   }, [isTablet]);
 
   return (

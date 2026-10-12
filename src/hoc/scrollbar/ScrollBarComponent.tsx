@@ -1,5 +1,5 @@
-import { FC, ReactNode, useRef, useState } from "react";
-import { Scrollbars } from "react-custom-scrollbars";
+﻿import { FC, ReactNode, useRef, useState } from "react";
+import { Scrollbars } from "react-custom-scrollbars-2";
 import style from "./ScrollBarComponent.module.scss";
 import clsx from "clsx";
 import IconArr from "@/images/scroll/arr_simple.svg?react";

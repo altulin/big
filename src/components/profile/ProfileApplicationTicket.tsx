@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import clsx from "clsx";
 import { FC } from "react";
 import style from "./Profile.module.scss";

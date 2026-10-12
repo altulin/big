@@ -1,3 +1,4 @@
+import { env } from "@/config/env";
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { FC, useEffect } from "react";
 import ProfileBoxHead from "./ProfileBoxHead";
@@ -20,7 +21,7 @@ const ProfileVote: FC = () => {
     (state) => state.user.dataMe,
   );
   const { isShort } = useCheckDeadline();
-  const isDeadline = useDeadline(import.meta.env.VITE_APP_DEADLINE_PASS);
+  const isDeadline = useDeadline(env.deadlinePass);
 
   useEffect(() => {
     if (isShort) {
@@ -39,7 +40,8 @@ const ProfileVote: FC = () => {
     let path = paths.jury_account_list;
 
     if (isTablet) {
-      const firstWork = dataWorks.data?.results[0];
+      const firstWork = dataWorks.data?.results?.[0];
+      if (!firstWork) return;
       path = `${paths.jury_account_card}/${firstWork?.id}`;
       state.id = firstWork?.id;
       state.number = 0;

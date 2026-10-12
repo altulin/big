@@ -7,37 +7,33 @@ import SubmissionBox from "./SubmissionBox";
 import SubmissionContent from "./SubmissionContent";
 import Add from "@/UI/add/Add";
 import PassFormRadioPitch from "./PassFormRadioPitch";
-import { useAppDispatch, useAppSelector } from "@/hooks/hook";
+import { useAppSelector } from "@/hooks/hook";
 import { categories } from "./script";
-import { setAddForm } from "@/store/forms/formsSlice";
-import { FieldArray } from "formik";
+import { FieldArray, useFormikContext } from "formik";
 import { useInitialValues } from "./formService";
 
-const PassFormSubmission: FC<{ formik?: any }> = ({ formik }) => {
+const PassFormSubmission: FC = () => {
   const { category } = useAppSelector((state) => state.category);
-  const dispatch = useAppDispatch();
   const { getProperties } = useInitialValues();
 
-  const { values } = formik;
+  const { values } = useFormikContext<{ fields: unknown[] }>();
 
   return (
     <div className={clsx(style.box)}>
       <ProfileBoxHead title="Подача работы " isBtn={false} />
 
       <div className={clsx(style.box__inner)}>
-        {category === categories.brand_pitches && (
-          <PassFormRadioPitch formik={formik} name="categoryPitch" />
-        )}
+        {category === categories.brand_pitches && <PassFormRadioPitch />}
 
         <FieldArray name="fields">
           {({ push, remove }) => {
             return (
               <>
                 {values.fields.length > 0 &&
-                  values.fields.map((item: any, i: any) => {
+                  values.fields.map((_, i) => {
                     return (
                       <SubmissionBox key={i} id={i} remove={remove}>
-                        <SubmissionContent formik={formik} id={i} />
+                        <SubmissionContent id={i} />
                       </SubmissionBox>
                     );
                   })}
@@ -46,7 +42,6 @@ const PassFormSubmission: FC<{ formik?: any }> = ({ formik }) => {
                   label="Добавить еще работу"
                   className={clsx(style.box__add)}
                   onClick={() => {
-                    dispatch(setAddForm());
                     push(getProperties());
                   }}
                 />

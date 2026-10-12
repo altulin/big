@@ -3,11 +3,11 @@ import * as twgl from "twgl.js";
 import { calculateVisibility } from "./calculateVisibility";
 
 export function initGLTor(id: string, color: any) {
-  const canvas = document.getElementById(id);
+  const canvas = document.getElementById(id) as HTMLCanvasElement | null;
 
-  const gl = (canvas as HTMLCanvasElement)?.getContext("webgl");
+  const gl = canvas?.getContext("webgl");
 
-  if (!gl) return;
+  if (!canvas || !gl) return;
 
   const programInfo = twgl.createProgramInfo(gl, [
     `attribute vec4 position;
@@ -83,11 +83,11 @@ export function initGLTor(id: string, color: any) {
     }
   }
 
-  //   const lineBufferInfo = twgl.createBufferInfoFromArrays(gl, {
-  //     position: { numComponents: 3, data: positions },
-  //     normal: { numComponents: 3, data: normals },
-  //     indices: { numComponents: 2, data: lineIndices },
-  //   });
+  const lineBufferInfo = twgl.createBufferInfoFromArrays(gl, {
+    position: { numComponents: 3, data: positions, drawType: gl.DYNAMIC_DRAW },
+    normal: { numComponents: 3, data: normals, drawType: gl.DYNAMIC_DRAW },
+    indices: { numComponents: 2, data: lineIndices },
+  });
 
   gl?.enable(gl.DEPTH_TEST);
   gl?.enable(gl.CULL_FACE);
@@ -95,8 +95,8 @@ export function initGLTor(id: string, color: any) {
   //   let rotationAngle: number = 0;
   let animationOffset = 0;
 
-  function render() {
-    const scroll = calculateVisibility(canvas);
+  const render = () => {
+    const scroll = Number(calculateVisibility(canvas));
 
     // rotationAngle = scroll / 10;
     animationOffset = scroll / 100; // Амплитуда вращения. Меньше делитель — больше амплитуда
@@ -129,11 +129,9 @@ export function initGLTor(id: string, color: any) {
       }
     }
 
-    const animatedLineBufferInfo = twgl.createBufferInfoFromArrays(gl, {
-      position: { numComponents: 3, data: animatedPositions },
-      normal: { numComponents: 3, data: animatedNormals },
-      indices: { numComponents: 2, data: lineIndices },
-    });
+    const attribs = lineBufferInfo.attribs!;
+    twgl.setAttribInfoBufferFromArray(gl, attribs.position, animatedPositions);
+    twgl.setAttribInfoBufferFromArray(gl, attribs.normal, animatedNormals);
 
     twgl.resizeCanvasToDisplaySize(gl?.canvas as HTMLCanvasElement);
 
@@ -162,7 +160,7 @@ export function initGLTor(id: string, color: any) {
 
     if (!gl) return;
 
-    twgl.setBuffersAndAttributes(gl, programInfo, animatedLineBufferInfo);
+    twgl.setBuffersAndAttributes(gl, programInfo, lineBufferInfo);
     twgl.setUniforms(programInfo, {
       u_cameraDirection: [0, 0, -4],
       u_matrix: matrix,
@@ -170,12 +168,14 @@ export function initGLTor(id: string, color: any) {
     });
     gl?.drawElements(
       gl.LINES,
-      animatedLineBufferInfo.numElements,
+      lineBufferInfo.numElements,
       gl.UNSIGNED_SHORT,
       0,
     );
 
-    requestAnimationFrame(render);
-  }
-  requestAnimationFrame(render);
+    frame = requestAnimationFrame(render);
+  };
+  let frame = requestAnimationFrame(render);
+
+  return () => cancelAnimationFrame(frame);
 }

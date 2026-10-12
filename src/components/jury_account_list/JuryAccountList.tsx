@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import ScrollBarComponent from "@/hoc/scrollbar/ScrollBarComponent";
 import clsx from "clsx";
 import { FC, useEffect, useState } from "react";
@@ -58,7 +57,7 @@ const JuryAccountList: FC = () => {
           })}
         </TabList>
 
-        {getTabs().map((item, i) => {
+        {getTabs().map((_, i) => {
           return (
             <TabPanel className={clsx(style.list_wrapper__panel)} key={i}>
               <div className={clsx(style.list_wrapper__panel_inner)}>

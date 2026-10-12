@@ -3,16 +3,19 @@ import { calculateVisibility } from "./calculateVisibility";
 import { projectToScreen } from "./projectToScreen";
 
 export function initGLTunnel(id: string, color: string) {
-  const canvas = document.getElementById(id);
+  const canvas = document.getElementById(id) as HTMLCanvasElement | null;
 
   if (!canvas) {
     return;
   }
 
-  const imgContainer = canvas.parentNode.querySelector("#imageContainer");
-  const img = imgContainer.querySelector("#image");
+  const imgContainer =
+    canvas.parentElement?.querySelector<HTMLElement>("#imageContainer");
+  const img = imgContainer?.querySelector<HTMLElement>("#image");
 
   const gl = canvas.getContext("webgl");
+
+  if (!gl || !imgContainer || !img) return;
 
   const vsLines = `
       attribute vec4 position;
@@ -34,13 +37,12 @@ export function initGLTunnel(id: string, color: string) {
 
   const programInfoLines = twgl.createProgramInfo(gl, [vsLines, fsLines]);
 
-  const positions = [];
+  const positions: number[] = [];
   const lines = 40;
   const length = 5.0;
-  const tunnelWidth = 1.25;
   const tunnelHeight = 1;
 
-  function setupTunnel() {
+  const setupTunnel = () => {
     const frontWidth = 2;
     const backWidth = 1.25;
 
@@ -89,19 +91,17 @@ export function initGLTunnel(id: string, color: string) {
 
     const bufferInfoLines = twgl.createBufferInfoFromArrays(gl, arraysLines);
 
-    function render(time) {
-      time *= 0.001;
+    const render = () => {
+      twgl.resizeCanvasToDisplaySize(canvas);
 
-      twgl.resizeCanvasToDisplaySize(gl.canvas);
-
-      const scroll = calculateVisibility(canvas);
+      const scroll = Number(calculateVisibility(canvas));
       const cameraX = 0.3 - (scroll / 100) * 0.6;
 
       gl.viewport(0, 0, gl.canvas.width, gl.canvas.height);
       gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
 
       const fov = (60 * Math.PI) / 180;
-      const aspect = gl.canvas.clientWidth / gl.canvas.clientHeight;
+      const aspect = canvas.clientWidth / canvas.clientHeight;
       const zNear = 0.25;
       const zFar = 100;
       const projection = twgl.m4.perspective(fov, aspect, zNear, zFar);
@@ -179,10 +179,13 @@ export function initGLTunnel(id: string, color: string) {
               ${clipBottomLeftX}% ${clipBottomLeftY}%
           )`;
 
-      requestAnimationFrame(render);
-    }
-    requestAnimationFrame(render);
-  }
+      frame = requestAnimationFrame(render);
+    };
+    frame = requestAnimationFrame(render);
+  };
 
+  let frame = 0;
   setupTunnel();
+
+  return () => cancelAnimationFrame(frame);
 }

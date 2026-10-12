@@ -19,12 +19,7 @@ const Speakers: FC = () => {
         </h2>
 
         <div className={clsx(style.content)}>
-          <Accordion
-            className={clsx(style.accordion)}
-            onStateChange={({ key }) => {
-              console.log(key);
-            }}
-          >
+          <Accordion className={clsx(style.accordion)}>
             {speakers.map((item, i) => (
               <AccordionItem
                 className={clsx(style.accordion__item)}

@@ -9,7 +9,7 @@ import { setMenuControl } from "@/store/menu/menuSlice";
 import useDeadlineClose from "@/hooks/closeDeadline";
 
 const Profile: FC<{ className?: string }> = ({ className }) => {
-  // const isDeadline = useDeadline(import.meta.env.VITE_APP_DEADLINE_PASS);
+  // const isDeadline = useDeadline(env.deadlinePass);
   const dispatch = useAppDispatch();
   const { isCloseBrand, isCloseTickets, isCloseMain, isCloseYoung } =
     useDeadlineClose();

@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import clsx from "clsx";
 import style from "./Promo.module.scss";
 import { FC } from "react";

@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable prettier/prettier */
+
 import clsx from "clsx";
 import { FC, useEffect } from "react";
 import style from "./JuryCard.module.scss";

@@ -25,7 +25,7 @@ const makeArrayPayLoad = async (
     category === categories.main_category ||
     category === categories.young_talent
   ) {
-    fields.forEach(async (el: any) => {
+    fields.forEach((el: any) => {
       const {
         title,
         brand,

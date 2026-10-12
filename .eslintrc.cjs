@@ -16,5 +16,19 @@ module.exports = {
       { allowConstantExport: true },
     ],
     "prettier/prettier": ["warn", { endOfLine: "auto" }],
+    "no-restricted-syntax": [
+      "error",
+      {
+        selector:
+          "MemberExpression[object.type='MetaProperty'][property.name='env']",
+        message: "Переменные окружения читаются только через @/config/env",
+      },
+    ],
   },
+  overrides: [
+    {
+      files: ["src/config/env.ts"],
+      rules: { "no-restricted-syntax": "off" },
+    },
+  ],
 };

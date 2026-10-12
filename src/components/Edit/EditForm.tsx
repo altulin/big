@@ -35,21 +35,23 @@ const EditForm: FC<{ data?: any }> = ({ data }) => {
 
   const convertBase = async (values: any) => {
     const body: any = {};
-    Object.keys(values.fields[0]).forEach(async (key) => {
-      if (key === "project_image") {
-        body[key] = await getBase64(values.fields[0].project_image);
-        return;
-      }
+    await Promise.all(
+      Object.keys(values.fields[0]).map(async (key) => {
+        if (key === "project_image") {
+          body[key] = await getBase64(values.fields[0].project_image);
+          return;
+        }
 
-      if (key === "file") {
-        categoryPitch === categoriesPitshes.nuum
-          ? (body.presentation = await getBase64(values.fields[0].file))
-          : (body.script = await getBase64(values.fields[0].file));
-        return;
-      }
+        if (key === "file") {
+          categoryPitch === categoriesPitshes.nuum
+            ? (body.presentation = await getBase64(values.fields[0].file))
+            : (body.script = await getBase64(values.fields[0].file));
+          return;
+        }
 
-      body[key] = values.fields[0][key];
-    });
+        body[key] = values.fields[0][key];
+      }),
+    );
 
     return body;
   };
@@ -59,11 +61,8 @@ const EditForm: FC<{ data?: any }> = ({ data }) => {
       initialValues={{ fields: [getProperties(data)] }}
       validationSchema={createValidationSchema(paths.edit)}
       onSubmit={async (values) => {
-        convertBase(values).then((res) => {
-          setTimeout(() => {
-            changeWork({ id_work, body: res });
-          }, 500);
-        });
+        const body = await convertBase(values);
+        await changeWork({ id_work, body });
       }}
       enableReinitialize
     >
@@ -71,13 +70,13 @@ const EditForm: FC<{ data?: any }> = ({ data }) => {
         // console.log(formik.initialValues);
         return (
           <Form>
-            <SubmissionContent formik={formik} id={0} />
+            <SubmissionContent id={0} />
             <Button
               type="submit"
               className={clsx(style.button)}
               label="сохранить"
               modifier="green"
-              disabled={!formik.isValid}
+              disabled={!formik.isValid || formik.isSubmitting}
             />
           </Form>
         );

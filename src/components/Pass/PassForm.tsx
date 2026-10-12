@@ -34,7 +34,7 @@ const PassForm: FC = () => {
   const { addEvent } = useGoogleManager();
 
   const makePayLoad = async (values: any) => {
-    const { category, fields } = values;
+    const { fields } = values;
     const { works } = await makeArrayPayLoad(category, categoryPitch, fields);
     const body: any = { tickets_amount, category, works };
     if (categoryPitch) {
@@ -44,17 +44,19 @@ const PassForm: FC = () => {
   };
 
   const convertBase = async (body: any) => {
-    body.works.forEach(async (item: any) => {
-      if (item.project_image) {
-        item.project_image = await getBase64(item.project_image);
-      }
+    await Promise.all(
+      body.works.map(async (item: any) => {
+        if (item.project_image) {
+          item.project_image = await getBase64(item.project_image);
+        }
 
-      if (item.file) {
-        categoryPitch === categoriesPitshes.nuum
-          ? (item.presentation = await getBase64(item.file))
-          : (item.script = await getBase64(item.file));
-      }
-    });
+        if (item.file) {
+          categoryPitch === categoriesPitshes.nuum
+            ? (item.presentation = await getBase64(item.file))
+            : (item.script = await getBase64(item.file));
+        }
+      }),
+    );
 
     return body;
   };
@@ -102,7 +104,9 @@ const PassForm: FC = () => {
   }, [dispatch, error, status]); // eslint-disable-line
 
   const getListErr = (res: any) => {
-    const list = res.data.works;
+    const list = res?.data?.works;
+    if (!Array.isArray(list)) return [];
+
     const arr: any = [];
 
     list.forEach((item: any) => {
@@ -116,32 +120,27 @@ const PassForm: FC = () => {
   return (
     <Formik
       initialValues={{
-        category: category || "",
-        categoryPitch: categoryPitch || "",
-        tickets_amount: "",
         fields: [getProperties()],
       }}
       validationSchema={createValidationSchema(paths.pass)}
       onSubmit={async (values, { resetForm, setSubmitting }) => {
         setSubmitting(true);
         const body = await makePayLoad(values);
-        await convertBase(body).then((res) =>
-          setTimeout(() => {
-            sendWork(res)
-              .unwrap()
-              .then(() => {
-                resetForm();
-              })
-              .catch((res) => {
-                dispatch(setErrorModal(getListErr(res)[0]));
-              });
-          }, 500),
-        );
+        await convertBase(body);
         addEvent({
           event: "submission-submit",
           app_category: category,
           ticker: tickets_amount === 0 ? "no" : "yes",
         });
+        await sendWork(body)
+          .unwrap()
+          .then(() => {
+            resetForm();
+          })
+          .catch((res) => {
+            const [message] = getListErr(res);
+            if (message) dispatch(setErrorModal(message));
+          });
       }}
       enableReinitialize
     >
@@ -151,10 +150,16 @@ const PassForm: FC = () => {
         return (
           <>
             <Form className={clsx(style.form)}>
-              <PassFormRadio formik={formik} />
-              <PassFormSubmission formik={formik} />
-              <PassFormBuy formik={formik} />
-              <PassFormTotal isLoading={isLoading} formik={formik} />
+              <PassFormRadio />
+              <PassFormSubmission />
+              <PassFormBuy />
+              <PassFormTotal
+                isLoading={isLoading}
+                canSubmit={
+                  formik.isValid && formik.dirty && !formik.isSubmitting
+                }
+                worksAmount={formik.values.fields.length}
+              />
             </Form>
           </>
         );

@@ -1,6 +1,5 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { FC, useCallback, useEffect, useState } from "react";
+import { FC, useCallback, useState } from "react";
 import style from "./JuryCard.module.scss";
 import clsx from "clsx";
 import { HashLink } from "react-router-hash-link";
@@ -110,6 +109,8 @@ const JuryCardNav: FC<{ is_reviewed?: boolean }> = ({ is_reviewed }) => {
       });
   };
 
+  const navState = location.state;
+
   return (
     <div className={clsx(style.navigate)}>
       {isShort && isTablet && (
@@ -132,17 +133,19 @@ const JuryCardNav: FC<{ is_reviewed?: boolean }> = ({ is_reviewed }) => {
         </ul>
       )}
 
-      <div className={clsx(style.navigate__inner)}>
-        <NavLink state={location.state} dir="prev" label="предыдущая" />
+      {navState?.list && (
+        <div className={clsx(style.navigate__inner)}>
+          <NavLink state={navState} dir="prev" label="предыдущая" />
 
-        {isTablet && (
-          <div className={clsx(style.navigate__number)}>
-            <span>{location.state.number + 1}</span>
-          </div>
-        )}
+          {isTablet && (
+            <div className={clsx(style.navigate__number)}>
+              <span>{navState.number + 1}</span>
+            </div>
+          )}
 
-        <NavLink state={location.state} dir="next" label="следующая" />
-      </div>
+          <NavLink state={navState} dir="next" label="следующая" />
+        </div>
+      )}
       {isTablet && is_reviewed && !isShort && (
         <JuryAccountListRowStatus status="рассмотрено" />
       )}

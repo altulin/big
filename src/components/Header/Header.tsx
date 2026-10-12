@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import style from "./Header.module.scss";
 import clsx from "clsx";
 import Nav from "./Nav";
@@ -93,7 +92,7 @@ const Header = () => {
     if (!allLinksList.includes(path)) {
       setSubMenu(undefined);
     }
-  }, [allLinksList, isTablet, path]);
+  }, [allLinksList, isTablet, path, isYang]);
 
   useEffect(() => {
     if (!isTablet) return;

@@ -16,7 +16,7 @@ const JuryCardBack: FC = () => {
       className={clsx(style.control_back)}
       to={`/${paths.jury_account_list}`}
       state={{
-        values: location.state.values,
+        values: location.state?.values,
         page: isShort ? paths.jury_account_list_short : paths.jury_account_list,
       }}
     >

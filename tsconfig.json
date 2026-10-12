@@ -21,9 +21,8 @@
     "noFallthroughCasesInSwitch": true,
 
     /*alliases */
-    "baseUrl": ".",
     "paths": {
-      "@/*": ["src/*", "custom-elements.d.ts"]
+      "@/*": ["./src/*"]
     }
   },
   "include": ["src"],

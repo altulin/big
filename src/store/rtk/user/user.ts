@@ -1,6 +1,6 @@
-import { emptyApi } from "../emptyApi";
+import { api } from "../emptyApi";
 
-export const user = emptyApi.injectEndpoints({
+export const user = api.injectEndpoints({
   endpoints: (build) => ({
     getUser: build.query({
       query: (name: string) => ({

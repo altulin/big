@@ -1,6 +1,6 @@
 import clsx from "clsx";
 import { Form, Formik } from "formik";
-import { FC, useEffect } from "react";
+import { FC } from "react";
 import style from "./JuryCard.module.scss";
 import { getValRadio, radio_list } from "./service";
 import Radio from "../registration/Radio";
@@ -21,29 +21,11 @@ const JuryCardForm: FC<{
   // is_reviewed,
   vote,
 }) => {
-  const [voteWork, { isSuccess }] = useVoteWorkMutation();
+  const [voteWork] = useVoteWorkMutation();
   const dispatch = useAppDispatch();
   // const navigate = useNavigate();
   // const location = useLocation();
   // const { isShort } = useCheckDeadline();
-
-  useEffect(() => {
-    if (isSuccess) {
-      dispatch(
-        setSuccessModal({
-          text: "Ваш голос принят",
-        }),
-      );
-      // navigate(`/${paths.jury_account_list}`, {
-      //   state: {
-      //     values: location.state.values,
-      //     page: isShort
-      //       ? paths.jury_account_list_short
-      //       : paths.jury_account_list,
-      //   },
-      // });
-    }
-  }, [dispatch, isSuccess]);
 
   return (
     <Formik
@@ -51,12 +33,16 @@ const JuryCardForm: FC<{
         vote: getValRadio(vote),
         // vote: radio_list[0].value,
       }}
-      onSubmit={(values) => {
-        voteWork({ id_work, body: values });
-      }}
+      // модалка — по результату каждого голосования (isSuccess мутации остаётся true после первого)
+      onSubmit={(values) =>
+        voteWork({ id_work, body: values })
+          .unwrap()
+          .then(() => dispatch(setSuccessModal({ text: "Ваш голос принят" })))
+          .catch(() => {})
+      }
       enableReinitialize
     >
-      {() => {
+      {({ isSubmitting }) => {
         return (
           <Form className={clsx(style.form)}>
             <div className={clsx(style.form__radio)}>
@@ -76,7 +62,7 @@ const JuryCardForm: FC<{
               type="submit"
               label="голосовать"
               modifier="green"
-              // disabled={is_reviewed}
+              disabled={isSubmitting}
             />
           </Form>
         );

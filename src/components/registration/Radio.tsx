@@ -9,7 +9,6 @@ interface IRadio {
   label: string;
   name?: string;
   value: string;
-  formik?: any;
   icon?: any;
   disabled?: boolean;
 }

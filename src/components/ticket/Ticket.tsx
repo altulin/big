@@ -1,13 +1,11 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { FC, useEffect } from "react";
+import { FC, FormEvent, useEffect } from "react";
 import style from "./Ticket.module.scss";
 import clsx from "clsx";
 import ScrollBarComponent from "@/hoc/scrollbar/ScrollBarComponent";
-import { useFormik } from "formik";
 import PassFormBuy from "../Pass/PassFormBuy";
 import PassFormTotal from "../Pass/PassFormTotal";
 import { useAppDispatch, useAppSelector } from "@/hooks/hook";
-import { getValidationSchema } from "@/service/form/validation";
 import { setCategory } from "@/store/category/categorySlice";
 import { categories } from "../Pass/script";
 import { useSendWorkMutation } from "@/store/rtk/orders/send_work";
@@ -28,15 +26,11 @@ const Ticket: FC = () => {
   const { runWidget } = useWidget();
   const { handleSignOut } = useSignOut();
 
-  const formik = useFormik({
-    initialValues: {
-      ticket: tickets_amount,
-    },
-    validationSchema: getValidationSchema(["ticket"]),
-    onSubmit: () => {
-      sendWork({ category, tickets_amount });
-    },
-  });
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (tickets_amount <= 0) return;
+    sendWork({ category, tickets_amount });
+  };
 
   useEffect(() => {
     if (status === "fulfilled") {
@@ -83,19 +77,14 @@ const Ticket: FC = () => {
     // };
   }, [dispatch]);
 
-  useEffect(() => {
-    formik.setFieldValue("ticket", tickets_amount);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [tickets_amount]);
-
   return (
     <div className={clsx(style.ticket)}>
       <ScrollBarComponent>
         <div className={clsx(style.ticket__inner)}>
-          <form onSubmit={formik.handleSubmit}>
-            <PassFormBuy formik={formik} />
-            <PassFormTotal formik={formik} />
-            <input type="hidden" name="ticket" />
+          <form onSubmit={handleSubmit}>
+            <PassFormBuy />
+            {/* works_amount = 1, как и раньше: для покупки билетов сервер его не учитывает */}
+            <PassFormTotal canSubmit={tickets_amount > 0} worksAmount={1} />
           </form>
         </div>
       </ScrollBarComponent>

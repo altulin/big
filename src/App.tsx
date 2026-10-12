@@ -1,3 +1,4 @@
+import { env } from "@/config/env";
 import { FC, useEffect } from "react";
 import { Route, Routes, useLocation, useNavigate } from "react-router-dom";
 import Template from "./templates_pages/Template";
@@ -27,9 +28,7 @@ import JuryAccountList from "./components/jury_account_list/JuryAccountList";
 import JuryCard from "./components/jury_account_card/JuryCard";
 
 const App: FC = () => {
-  const title = import.meta.env.VITE_APP_TITLE;
-  const description = import.meta.env.VITE_APP_DESCRIPTION;
-  const url = import.meta.env.VITE_APP_URL;
+  const { title, description, url } = env.seo;
   const { isYang } = useIsYang();
   const isAuth = useIsAuth();
   const location = useLocation();
@@ -76,9 +75,7 @@ const App: FC = () => {
 
   return (
     <HelmetProvider>
-      {import.meta.env.PROD && (
-        <Seo title={title} description={description} url={url} />
-      )}
+      {env.isProd && <Seo title={title} description={description} url={url} />}
 
       <Routes>
         <Route path="/" element={<Template />}>

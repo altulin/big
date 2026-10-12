@@ -2,15 +2,18 @@ import * as twgl from "twgl.js";
 import { calculateVisibility } from "./calculateVisibility";
 
 export function initGLSphere(id: string) {
-  const canvas = document.getElementById(id);
+  const canvas = document.getElementById(id) as HTMLCanvasElement | null;
 
   if (!canvas) {
     return;
   }
 
   const m4 = twgl.m4;
-  const gl = twgl.getWebGLContext(canvas);
-  twgl.resizeCanvasToDisplaySize(gl.canvas);
+  const gl = canvas.getContext("webgl");
+
+  if (!gl) return;
+
+  twgl.resizeCanvasToDisplaySize(canvas);
   gl.viewport(0, 0, gl.canvas.width, gl.canvas.height);
 
   const programInfo = twgl.createProgramInfo(gl, [
@@ -29,9 +32,9 @@ export function initGLSphere(id: string) {
         `,
   ]);
 
-  function createSphereLines(verticalLines, horizontalLines) {
-    const positions = [];
-    const indices = [];
+  function createSphereLines(verticalLines: number, horizontalLines: number) {
+    const positions: number[] = [];
+    const indices: number[] = [];
     const radius = 1.3;
 
     // Generate vertices
@@ -76,16 +79,13 @@ export function initGLSphere(id: string) {
 
   const sphereLines = createSphereLines(50, 50);
   const bufferInfo = twgl.createBufferInfoFromArrays(gl, sphereLines);
-  const prevScroll = 0;
-  const scrollDirection = "down";
 
-  function render(time) {
-    time *= 0.001;
+  const render = () => {
     gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
 
-    const scroll = calculateVisibility(canvas);
+    const scroll = Number(calculateVisibility(canvas));
 
-    const aspect = gl.canvas.clientWidth / gl.canvas.clientHeight;
+    const aspect = canvas.clientWidth / canvas.clientHeight;
     const projectionMatrix = m4.perspective(Math.PI / 4, aspect, 0.1, 10);
     const eye = [1.5, 2, 2.5];
     const target = [0, 0, 0];
@@ -107,7 +107,9 @@ export function initGLSphere(id: string) {
     });
     twgl.drawBufferInfo(gl, bufferInfo, gl.LINES);
 
-    requestAnimationFrame(render);
-  }
-  requestAnimationFrame(render);
+    frame = requestAnimationFrame(render);
+  };
+  let frame = requestAnimationFrame(render);
+
+  return () => cancelAnimationFrame(frame);
 }

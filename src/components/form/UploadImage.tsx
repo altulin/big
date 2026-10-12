@@ -1,15 +1,13 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
 import clsx from "clsx";
-import { FormikErrors, useField } from "formik";
+import { useField } from "formik";
 import { FC, useEffect, useId, useState } from "react";
 import style from "./Form.module.scss";
 import IconUpload from "@/images/form/upload.svg?react";
 import IconBasket from "@/images/edit/basket_edit.svg?react";
 
 interface IUploadFile {
-  data?: any;
   name: string;
   prefix?: string;
   accept?: string;
@@ -18,14 +16,12 @@ interface IUploadFile {
 }
 
 const UploadImage: FC<IUploadFile> = ({
-  data,
   name,
   prefix,
   accept = ".jpg, .png, .jpeg",
   modifier,
-  img_url,
 }) => {
-  const [meta, field, helper] = useField({ name: `${name}` });
+  const [, meta, helper] = useField({ name: `${name}` });
 
   const id = useId();
   const [upload, setUpload] = useState({
@@ -35,10 +31,10 @@ const UploadImage: FC<IUploadFile> = ({
   });
 
   useEffect(() => {
-    if (field.value instanceof File) {
+    if (meta.value instanceof File) {
       setUpload({
         isFile: true,
-        fileName: field.value.name,
+        fileName: meta.value.name,
         text: "Файл загружен:",
       });
     } else {
@@ -48,7 +44,7 @@ const UploadImage: FC<IUploadFile> = ({
         text: "Нажмите или перетащите сюда файл, чтобы загрузить",
       });
     }
-  }, [data, field?.value, field?.value?.name, name]);
+  }, [meta?.value, meta?.value?.name, name]);
 
   const handleBasket = () => {
     helper.setValue("");
@@ -76,11 +72,11 @@ const UploadImage: FC<IUploadFile> = ({
           accept={accept}
           onChange={(e) => {
             if (e.currentTarget.files) {
-              data.setFieldValue(`${name}`, e.currentTarget.files[0]);
+              helper.setValue(e.currentTarget.files[0]);
             }
           }}
           onBlur={() => {
-            data.setFieldTouched(name, true);
+            helper.setTouched(true);
           }}
         />
 
@@ -100,9 +96,9 @@ const UploadImage: FC<IUploadFile> = ({
           </div>
         )}
 
-        {modifier === "edit" && field.value && (
+        {modifier === "edit" && meta.value && (
           <>
-            {field?.value.length === 0 || field?.value instanceof File ? (
+            {meta?.value.length === 0 || meta?.value instanceof File ? (
               <div className={clsx(style[`${prefix}__view`])}>
                 {!upload.isFile && <IconUpload />}
 
@@ -123,7 +119,7 @@ const UploadImage: FC<IUploadFile> = ({
                   style[`${prefix}__view--edit`],
                 )}
                 style={{
-                  backgroundImage: `url(${field?.value})`,
+                  backgroundImage: `url(${meta?.value})`,
                 }}
               >
                 <button
@@ -139,9 +135,9 @@ const UploadImage: FC<IUploadFile> = ({
         )}
       </label>
 
-      {field.error && (
+      {meta.error && (
         <span className={clsx(style.error)}>
-          <span className={clsx(style.error__text)}>{field.error}</span>
+          <span className={clsx(style.error__text)}>{meta.error}</span>
         </span>
       )}
     </div>

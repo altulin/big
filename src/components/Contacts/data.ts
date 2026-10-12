@@ -1,3 +1,4 @@
+import { env } from "@/config/env";
 // import IconYou from "@/images/contacts/youtube.svg?react";
 // import IconInst from "@/images/contacts/insta.svg?react";
 // import IconFb from "@/images/contacts/fb.svg?react";
@@ -26,14 +27,14 @@ export const soc = [
 export const law = [
   {
     label: "Политика использования персональных данных",
-    href: import.meta.env.VITE_APP_PERSONAL_DATA,
+    href: env.docs.personalData,
   },
   // {
   //   label: "Политика использования Cookie",
-  //   href: import.meta.env.VITE_APP_COOKIE_DATA,
+  //   href: VITE_APP_COOKIE_DATA,
   // },
   {
     label: "Регламент фестиваля",
-    href: import.meta.env.VITE_APP_FESTIVAL_DATA,
+    href: env.docs.festival,
   },
 ];

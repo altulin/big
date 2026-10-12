@@ -1,31 +1,25 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import clsx from "clsx";
-import { FC, useEffect } from "react";
+import { FC } from "react";
 import style from "./Pass.module.scss";
 import { radioListPitch } from "./script";
-import Radio from "../registration/Radio";
-import { useAppDispatch } from "@/hooks/hook";
+import RadioButton from "../form/RadioButton";
+import { useAppDispatch, useAppSelector } from "@/hooks/hook";
 import { setCategoryPitch } from "@/store/category/categorySlice";
 
-const PassFormRadioPitch: FC<{ formik: any; name?: string }> = ({
-  formik,
-  name,
-}) => {
+const PassFormRadioPitch: FC = () => {
   const dispatch = useAppDispatch();
-
-  useEffect(() => {
-    dispatch(setCategoryPitch(formik.values.categoryPitch));
-  }, [formik.values.categoryPitch, dispatch]);
+  const { categoryPitch } = useAppSelector((state) => state.category);
 
   return (
     <div className={clsx(style.radio, style["radio--pitch"])}>
-      {radioListPitch.map((item, i) => (
-        <Radio
-          key={i}
+      {radioListPitch.map((item) => (
+        <RadioButton
+          key={item.value}
           label={item.label}
           value={item.value}
-          formik={formik}
-          name={name}
+          name="categoryPitch"
+          checked={categoryPitch === item.value}
+          onSelect={(value) => dispatch(setCategoryPitch(value))}
           icon={<item.icon />}
         />
       ))}

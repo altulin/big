@@ -11,7 +11,6 @@ interface IFileUpload {
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const FileUpload: FC<IFileUpload> = ({ field, form, ...props }) => {
-  console.log(field);
   return (
     <div className={clsx(style.upload)}>
       <Field
